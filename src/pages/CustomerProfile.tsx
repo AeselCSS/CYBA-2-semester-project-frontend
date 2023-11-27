@@ -1,6 +1,7 @@
 import PageLayout from './PageLayout';
+
 interface props {
-	customer: ICustomer
+	customer: ICustomer;
 }
 
 export default function CustomerProfile({ customer }: props) {

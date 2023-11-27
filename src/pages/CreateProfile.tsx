@@ -1,6 +1,5 @@
-
 export default function CreateProfile() {
-  return (
-    <div>Create Profile</div>
-  )
+	return (
+		<div>Create Profile</div>
+	);
 }

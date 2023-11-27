@@ -1,6 +1,5 @@
-
 export default function NavbarLogo() {
-  return (
-    <h1>CYBA Auto Værksted</h1>
-  )
+	return (
+		<h1>CYBA Auto Værksted</h1>
+	);
 }
