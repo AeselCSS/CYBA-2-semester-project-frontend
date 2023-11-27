@@ -1,34 +1,25 @@
-import { NavBarButtons } from './NavbarButton'
-import NavbarLogo from './NavbarLogo'
-import { NavLink } from 'react-router-dom'
-import { useAuth0 } from "@auth0/auth0-react";
+import { NavBarButtons } from './NavbarButton';
+import NavbarLogo from './NavbarLogo';
+import { NavLink } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 
 export default function Navbar() {
-  const { user } = useAuth0();
-  console.log(user);
-  
-  
-    
-  return (
-   <>
-      <nav>
-        <NavbarLogo/>
-        <NavLink to="/">
-          Home
-        </NavLink>
+	const { user } = useAuth0();
 
-        <NavLink to="/about">
-          Abous Us
-        </NavLink>
+	return (
+		<>
+			<nav>
+				<NavbarLogo />
+				<NavLink to='/'>Home</NavLink>
 
-        <NavLink to="/contact">
-          Contact
-        </NavLink>
+				<NavLink to='/about'>Abous Us</NavLink>
 
-        {user && user.cyba_roles[0] === 'customer' && <NavLink to="/profile">My profile</NavLink>}
+				<NavLink to='/contact'>Contact</NavLink>
 
-        <NavBarButtons/>
-      </nav>
-   </>
-  )
+				{user && user.cybaRoles[0] === 'customer' && <NavLink to='/profile'>My profile</NavLink>}
+
+				<NavBarButtons />
+			</nav>
+		</>
+	);
 }

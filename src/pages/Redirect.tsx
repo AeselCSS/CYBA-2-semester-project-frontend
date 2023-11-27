@@ -22,100 +22,56 @@ import { useNavigate } from 'react-router-dom';
 // };
 
 interface IRedirectProps {
-	setUser: (user: IAPISingleCustomer) => void;
+	setCustomer: (user: ICustomer | null) => void;
+	setEmployee: (employee: IEmployee | null) => void;
 }
 
-export default function Redirect({ setUser }: IRedirectProps) {
+export default function Redirect({ setCustomer, setEmployee }: IRedirectProps) {
 	const { user, isLoading, error } = useAuth0();
 	const navigate = useNavigate();
 
 	console.log(user);
 
 	useEffect(() => {
-
 		async function getUser() {
-
 			// if (!user) throw new Error('Auth0 user not defined');
 
 			// if (!isAuthenticated) {
 			// 	return;
 			// }
 			if (user) {
-				const promise = await fetch(`http://localhost:3000/${user!['cyba_roles']}s/${user!.sub}`);
+				const promise = await fetch(`http://localhost:3000/${user!.cybaRoles}s/${user!.sub}`);
 
 				if (promise.ok) {
 					//User eksisterer
-
 					console.log(promise);
 
 					const data = await promise.json();
-					console.log(data);
-					setUser(data);
-					navigate('/profile');
+
+					if (user.cybaRoles[0] === 'employee') {
+						console.log('I AM EMPLOYEE');
+						setEmployee(data);
+						setCustomer(null);
+						navigate('/orders');
+					} else {
+						setCustomer(data.customer);
+						setEmployee(null);
+						navigate('/profile');
+					}
 
 					//TODO Skal sende til order overview, hvis man er employee
 				} else {
 					console.log(promise);
 
+					navigate('/createprofile');
 					//User eksisterer ikke
 				}
 			}
 		}
 
 		getUser();
-	}, [user, setUser, navigate]);
+	}, [user, navigate, setEmployee, setCustomer]);
 
 	return <>{isLoading && !error && <p>Loading...</p>}</>;
 }
 
-// // chatgpt forslag
-// import { useEffect } from 'react';
-// import { useAuth0 } from '@auth0/auth0-react';
-// import { useHistory } from 'react-router-dom'; // Import useHistory if you're using React Router
-
-// export default function Redirect({ setUser }: IRedirectProps) {
-//     const { user, isAuthenticated, isLoading, error } = useAuth0();
-//     const history = useHistory(); // Initialize useHistory
-
-//     useEffect(() => {
-//         async function getUser() {
-//             if (!user) {
-//                 console.error('Auth0 user not defined');
-//                 return;
-//             }
-
-//             try {
-//                 const response = await fetch(`http://localhost:3000/${user['cyba_roles']}/${user.sub}`);
-//                 if (response.ok) {
-//                     const data = await response.json();
-//                     setUser(data);
-
-//                     // Redirect based on role
-//                     if (data.cyba_roles.includes('employee')) {
-//                         history.push('/employee-dashboard');
-//                     } else if (data.cyba_roles.includes('customer')) {
-//                         history.push('/customer-dashboard');
-//                     }
-//                 } else {
-//                     // Handle user not existing in database
-//                     console.error('User not found in database');
-//                     // Redirect to sign-up page or show a message
-//                 }
-//             } catch (error) {
-//                 console.error('Error fetching user data:', error);
-//             }
-//         }
-
-//         if (isAuthenticated) {
-//             getUser();
-//         }
-//     }, [user, isAuthenticated, setUser, history]);
-
-//     return (
-//         <>
-//             {isAuthenticated && <div>{JSON.stringify(user)}</div>}
-//             {isLoading && !error && <p>Loading...</p>}
-//             {error && <p>Error: {error.message}</p>}
-//         </>
-//     );
-// }
