@@ -14,7 +14,7 @@ export default function TableBodyRow({item}: Props) {
 
                     //TODO: Der skal laves en generic type, således at "value" ikke giver en fejl
                     //@ts-ignore
-                    <td key={value}>{value}</td>
+                    <td key={item.id}>{value}</td>
                 )) }
             </tr>
         </>

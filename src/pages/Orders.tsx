@@ -11,7 +11,6 @@ export default function Orders({ employee }: props) {
 	return (
 		<PageLayout>
 			<h2>Orders</h2>
-
 			<Table itemType="order" defaultSortBy="id"/>
 		</PageLayout>
 	);
