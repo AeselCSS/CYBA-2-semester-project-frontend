@@ -1,4 +1,5 @@
 import PageLayout from './PageLayout';
+import Table from "../components/Table/Table.tsx";
 
 interface props {
 	employee: IEmployee;
@@ -10,6 +11,8 @@ export default function Orders({ employee }: props) {
 	return (
 		<PageLayout>
 			<h2>Orders</h2>
+
+			<Table itemType="orders"/>
 		</PageLayout>
 	);
 }
