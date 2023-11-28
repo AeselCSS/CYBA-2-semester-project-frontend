@@ -15,7 +15,7 @@ export default function Filter({filterValue, setFilterValue, filterByOpts}: Prop
             <select name="filter" id="filter" value={filterValue} onChange={(event) => setFilterValue(event.target.value)}>
                 <option value="">None</option>
                 {filterByOpts.map((filterOpt) => (
-                    <option value={filterOpt}>{filterOpt}</option>
+                    <option key={filterOpt} value={filterOpt}>{filterOpt}</option>
                 ))}
             </select>
         </>

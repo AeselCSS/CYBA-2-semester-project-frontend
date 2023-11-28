@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Toolbar from '../Toolbar/Toolbar.tsx';
 import Filter from '../Filter/Filter.tsx';
 import Searchbar from '../Searchbar/Searchbar.tsx';
-import SortWrapper from '../Sort/SortWrapper.tsx';
+//import SortWrapper from '../Sort/SortWrapper.tsx';
 import TableBodyRow from './TableBodyRow.tsx';
 import ReactPaginate from 'react-paginate';
 
@@ -11,6 +11,11 @@ interface Props {
 	isFilterable?: boolean;
 	defaultSortBy: string;
 }
+
+const filterDictionary = {
+	order: ['AWAITING_CUSTOMER', 'PENDING', 'IN_PROGRESS', 'COMPLETED'],
+	employee: ['ADMINISTRATION', 'BODY_WORKSHOP', 'MECHANICAL_WORKSHOP', 'PAINT_SHOP'],
+};
 
 export default function Table({ itemType, defaultSortBy, isFilterable = true }: Props) {
 	const [data, setData] = useState<any[] | null>(null);
@@ -33,13 +38,16 @@ export default function Table({ itemType, defaultSortBy, isFilterable = true }: 
 				const result = await promise.json();
 				setData(result.data);
 				setMetaData(result.metaData);
+			} else {
+				console.log('Promise not OK');
+				console.log('Error at fetch');
 			}
 		}
 
 		fetchData();
 	}, [searchValue, sortByValue, sortDirValue, filterByValue, currentPage, pageSize]);
 
-	const calculcatePageCount = () => {
+	const calculatePageCount = () => {
 		return Math.ceil(metaData.totalCount / pageSize);
 	};
 
@@ -54,47 +62,54 @@ export default function Table({ itemType, defaultSortBy, isFilterable = true }: 
 	return (
 		<>
 			<Toolbar>
-				<SortWrapper
-					sortDirValue={sortDirValue}
-					setSortDirValue={setSortDirValue}
-					sortByValue={sortByValue}
-					setSortByValue={setSortByValue}
-					sortByOpts={['status', 'id']}
-				/>
+				{/*<SortWrapper
+                 sortDirValue={sortDirValue}
+                 setSortDirValue={setSortDirValue}
+                 sortByValue={sortByValue}
+                 setSortByValue={setSortByValue}
+                 sortByOpts={['status', 'id']}
+                 />*/}
 				<Searchbar searchValue={searchValue} setSearchValue={setSearchValue} />
-				{isFilterable ?? (
+				{isFilterable && (
 					<Filter
 						filterValue={filterByValue}
 						setFilterValue={setFilterByValue}
-						filterByOpts={['COMPLETED', 'AWAITING_CUSTOMER', 'PENDING']}
+						//@ts-ignore
+						filterByOpts={filterDictionary[itemType]}
 					/>
 				)}
 			</Toolbar>
 
 			{!data.length ? (
-				<table>
-					<h2>No data found</h2>
-				</table>
+				<h2>No data found</h2>
 			) : (
 				<table>
 					<thead>
 						<tr>
 							{Object.keys(data[0]).map((key) => (
-								<th key={key}>{key}</th>
+								<th
+									id={key}
+									key={key}
+									onClick={(e) => {
+										setSortByValue((e.target as HTMLElement).id);
+										setSortDirValue((prevState) => (prevState === 'asc' ? 'desc' : 'asc'));
+									}}
+								>
+									{key}
+								</th>
 							))}
 						</tr>
 					</thead>
 					<tbody>
-						{/*@ts-ignore*/}
-						{data.map((index) => (
-							<TableBodyRow item={index} />
+						{data.map((index, i) => (
+							<TableBodyRow key={index + i} item={index} />
 						))}
 					</tbody>
 				</table>
 			)}
 
 			<ReactPaginate
-				pageCount={calculcatePageCount()}
+				pageCount={calculatePageCount()}
 				onPageChange={(event) => setCurrentPage(event.selected + 1)}
 				pageRangeDisplayed={3}
 				breakLabel='...'
