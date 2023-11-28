@@ -72,11 +72,12 @@ export default function Table({ itemType, defaultSortBy, isFilterable = true }: 
                  setSortByValue={setSortByValue}
                  sortByOpts={['status', 'id']}
                  />*/}
-				<Searchbar searchValue={searchValue} setSearchValue={setSearchValue} />
+				<Searchbar searchValue={searchValue} setSearchValue={setSearchValue} setCurrentPage={setCurrentPage} />
 				{isFilterable && (
 					<Filter
 						filterValue={filterByValue}
 						setFilterValue={setFilterByValue}
+						setCurrentPage={setCurrentPage}
 						//@ts-ignore
 						filterByOpts={filterDictionary[itemType]}
 					/>
