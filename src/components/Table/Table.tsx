@@ -25,9 +25,9 @@ export default function Table({ itemType, defaultSortBy, isFilterable = true }: 
 	useEffect(() => {
 		//brug itemType og setData() her i fetch
 		async function fetchData() {
-			const promise = await fetch(
-				`http://localhost:3000/${itemType}s/?sortDir=${sortDirValue}&sortBy=${sortByValue}&searchValue=${searchValue}&pageNum=${currentPage}&pageSize=${pageSize}&filterBy=${filterByValue}`,
-			);
+			const url =`http://localhost:3000/${itemType}s/?sortDir=${sortDirValue}&sortBy=${sortByValue}&searchValue=${searchValue}&pageNum=${currentPage}&pageSize=${pageSize}&filterBy=${filterByValue}`
+			console.log(url)
+			const promise = await fetch(url)
 
 			if (promise.ok) {
 				const result = await promise.json();
@@ -93,11 +93,13 @@ export default function Table({ itemType, defaultSortBy, isFilterable = true }: 
 
 			<ReactPaginate
 				pageCount={calculcatePageCount()}
-				onPageChange={(event) => setCurrentPage(event.selected)}
+				onPageChange={(event) => setCurrentPage(event.selected + 1)}
 				pageRangeDisplayed={3}
 				breakLabel='...'
 				nextLabel='Next'
 				previousLabel='Previous'
+				renderOnZeroPageCount={null}
+				initialPage={1}
 			/>
 		</>
 	);
