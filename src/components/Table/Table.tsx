@@ -25,9 +25,9 @@ export default function Table({ itemType, defaultSortBy, isFilterable = true }: 
 	useEffect(() => {
 		//brug itemType og setData() her i fetch
 		async function fetchData() {
-			const url =`http://localhost:3000/${itemType}s/?sortDir=${sortDirValue}&sortBy=${sortByValue}&searchValue=${searchValue}&pageNum=${currentPage}&pageSize=${pageSize}&filterBy=${filterByValue}`
-			console.log(url)
-			const promise = await fetch(url)
+			const url = `http://localhost:3000/${itemType}s/?sortDir=${sortDirValue}&sortBy=${sortByValue}&searchValue=${searchValue}&pageNum=${currentPage}&pageSize=${pageSize}&filterBy=${filterByValue}`;
+			console.log(url);
+			const promise = await fetch(url);
 
 			if (promise.ok) {
 				const result = await promise.json();
@@ -44,15 +44,15 @@ export default function Table({ itemType, defaultSortBy, isFilterable = true }: 
 		return Math.ceil(metaData.totalCount / pageSize);
 	};
 
-
-
 	/*const sortByOpts = Object.keys(data!).map((key) => {
-		return key;
-	});*/
+     return key;
+     });*/
 
 	if (!data) {
 		return <p>Loading...</p>;
 	}
+
+
 
 	return (
 		<>
@@ -62,7 +62,7 @@ export default function Table({ itemType, defaultSortBy, isFilterable = true }: 
 					setSortDirValue={setSortDirValue}
 					sortByValue={sortByValue}
 					setSortByValue={setSortByValue}
-					sortByOpts={["status", "id"]}
+					sortByOpts={['status', 'id']}
 				/>
 				<Searchbar searchValue={searchValue} setSearchValue={setSearchValue} />
 				{isFilterable ?? (
@@ -74,22 +74,27 @@ export default function Table({ itemType, defaultSortBy, isFilterable = true }: 
 				)}
 			</Toolbar>
 
-			<table>
-				<thead>
-					<tr>
-						{Object.keys(data[0]).map((key) => (
-
-							<th key={key}>{key}</th>
+			{!data.length ? (
+				<table>
+					<h2>No data found</h2>
+				</table>
+			) : (
+				<table>
+					<thead>
+						<tr>
+							{Object.keys(data[0]).map((key) => (
+								<th key={key}>{key}</th>
+							))}
+						</tr>
+					</thead>
+					<tbody>
+						{/*@ts-ignore*/}
+						{data.map((index) => (
+							<TableBodyRow item={index} />
 						))}
-					</tr>
-				</thead>
-				<tbody>
-					{/*@ts-ignore*/}
-					{data.map((index) => (
-						<TableBodyRow item={index} />
-					))}
-				</tbody>
-			</table>
+					</tbody>
+				</table>
+			)}
 
 			<ReactPaginate
 				pageCount={calculcatePageCount()}
@@ -99,7 +104,7 @@ export default function Table({ itemType, defaultSortBy, isFilterable = true }: 
 				nextLabel='Next'
 				previousLabel='Previous'
 				renderOnZeroPageCount={null}
-				initialPage={1}
+				initialPage={0}
 			/>
 		</>
 	);
