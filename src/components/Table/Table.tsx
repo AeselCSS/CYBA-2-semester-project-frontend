@@ -38,7 +38,6 @@ export default function Table({ itemType, defaultSortBy, isFilterable = true }: 
 
 		fetchData();
 	}, [searchValue, sortByValue, sortDirValue, filterByValue, currentPage, pageSize]);
-	//Tif
 
 	const calculcatePageCount = () => {
 		return Math.ceil(metaData.totalCount / pageSize);
@@ -51,8 +50,6 @@ export default function Table({ itemType, defaultSortBy, isFilterable = true }: 
 	if (!data) {
 		return <p>Loading...</p>;
 	}
-
-
 
 	return (
 		<>
@@ -108,6 +105,4 @@ export default function Table({ itemType, defaultSortBy, isFilterable = true }: 
 			/>
 		</>
 	);
-
-	//ReactPaginate
 }
