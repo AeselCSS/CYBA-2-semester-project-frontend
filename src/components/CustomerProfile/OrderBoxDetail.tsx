@@ -14,6 +14,7 @@ export default function OrdersBoxDetail({ customerData, order }: OrdersBoxDetail
 
 	useEffect(() => {
 		async function getCustomer() {
+			//TODO Brug .env til dynamisk url kald
 			const response = await fetch(`http://localhost:3000/orders/${order.id}`);
 			const data = await response.json();
 			setCurrentOrder(data);
