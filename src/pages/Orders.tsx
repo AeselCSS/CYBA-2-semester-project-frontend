@@ -12,7 +12,7 @@ export default function Orders({ employee }: props) {
 		<PageLayout>
 			<h2>Orders</h2>
 
-			<Table itemType="orders"/>
+			<Table itemType="order" defaultSortBy="id"/>
 		</PageLayout>
 	);
 }

@@ -13,7 +13,7 @@ export default function Filter({filterValue, setFilterValue, filterByOpts}: Prop
         <>
             <label htmlFor="filter">Filter by: </label>
             <select name="filter" id="filter" value={filterValue} onChange={(event) => setFilterValue(event.target.value)}>
-                <option value="none">None</option>
+                <option value="">None</option>
                 {filterByOpts.map((filterOpt) => (
                     <option value={filterOpt}>{filterOpt}</option>
                 ))}
