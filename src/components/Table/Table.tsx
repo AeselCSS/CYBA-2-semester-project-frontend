@@ -27,6 +27,8 @@ export default function Table({ itemType, defaultSortBy, isFilterable = true }: 
 	const [sortDirValue, setSortDirValue] = useState<string>('asc');
 	const [filterByValue, setFilterByValue] = useState<string>('');
 
+	//TODO Lav et component til page-size (Dropdown menu 5-10-25-50)
+
 	useEffect(() => {
 		//brug itemType og setData() her i fetch
 		async function fetchData() {
