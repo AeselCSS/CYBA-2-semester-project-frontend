@@ -5,6 +5,7 @@ import Searchbar from '../Searchbar/Searchbar.tsx';
 //import SortWrapper from '../Sort/SortWrapper.tsx';
 import TableBodyRow from './TableBodyRow.tsx';
 import ReactPaginate from 'react-paginate';
+import PageSize from '../PageSize/PageSize.tsx';
 
 interface Props {
 	itemType: string;
@@ -21,7 +22,7 @@ export default function Table({ itemType, defaultSortBy, isFilterable = true }: 
 	const [data, setData] = useState<any[] | null>(null);
 	const [metaData, setMetaData] = useState<any>(null);
 	const [currentPage, setCurrentPage] = useState<number>(1);
-	const [pageSize] = useState<number>(20);
+	const [pageSize, setPageSize] = useState<number>(20);
 	const [searchValue, setSearchValue] = useState<string>('');
 	const [sortByValue, setSortByValue] = useState<string>(defaultSortBy);
 	const [sortDirValue, setSortDirValue] = useState<string>('asc');
@@ -120,6 +121,8 @@ export default function Table({ itemType, defaultSortBy, isFilterable = true }: 
 				renderOnZeroPageCount={null}
 				initialPage={0}
 			/>
+
+			{data.length ? <PageSize setPageSize={setPageSize} pageSize={pageSize} /> : null}
 		</>
 	);
 }
