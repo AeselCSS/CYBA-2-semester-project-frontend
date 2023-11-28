@@ -4,6 +4,7 @@ import CustomerProfileGrid from '../components/CustomerProfile/CustomerProfileGr
 import PageLayout from './PageLayout';
 import { useEffect, useState } from 'react';
 import OrdersBox from '../components/CustomerProfile/OrdersBox';
+import Loader from '../components/Loader';
 
 interface props {
 	customer: ICustomer;
@@ -12,10 +13,9 @@ interface props {
 export default function CustomerProfile({ customer }: props) {
 	const [customerData, setCustomerData] = useState<IAPISingleCustomer | null>(null);
 
-	console.log(customerData);
-
 	useEffect(() => {
 		async function getCustomer() {
+			//TODO Tilføj ENV fil til fetch kaldet
 			const response = await fetch(`http://localhost:3000/customers/${customer.id}`);
 			const data = await response.json();
 			setCustomerData(data);
@@ -25,11 +25,15 @@ export default function CustomerProfile({ customer }: props) {
 
 	return (
 		<PageLayout>
-			<CustomerProfileGrid>
-				{customerData && <CustomerBox customerData={customerData} />}
-				{customerData && <CarBox customerData={customerData} />}
-				{customerData && <OrdersBox customerData={customerData} />}
-			</CustomerProfileGrid>
+			{customerData ? (
+				<CustomerProfileGrid>
+					{<CustomerBox customerData={customerData} />}
+					{<CarBox customerData={customerData} />}
+					{<OrdersBox customerData={customerData} />}
+				</CustomerProfileGrid>
+			) : (
+				<Loader />
+			)}
 		</PageLayout>
 	);
 }

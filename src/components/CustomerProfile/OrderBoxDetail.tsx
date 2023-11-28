@@ -9,8 +9,8 @@ interface OrdersBoxDetailProps {
 export default function OrdersBoxDetail({ customerData, order }: OrdersBoxDetailProps) {
 	const [currentOrder, setCurrentOrder] = useState<ICurrentOrder | null>(null);
 
+	// Finds car matching order ID
 	const [car] = customerData.cars.filter((car) => car.id === order.carId);
-	console.log(car);
 
 	useEffect(() => {
 		async function getCustomer() {
