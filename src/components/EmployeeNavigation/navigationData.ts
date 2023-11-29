@@ -1,6 +1,6 @@
 export const navigationLinks = [
-	{ title: "Orders", redirectTo: "/orders" },
-	{ title: "Customers", redirectTo: "/customers" },
-	{ title: "Cars", redirectTo: "/cars" },
-	{ title: "Employees", redirectTo: "/employees" },
+	{ title: "Ordre", redirectTo: "/orders" },
+	{ title: "Kunder", redirectTo: "/customers" },
+	{ title: "Køretøjer", redirectTo: "/cars" },
+	{ title: "Ansatte", redirectTo: "/employees" },
 ];

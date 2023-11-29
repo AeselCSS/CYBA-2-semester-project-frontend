@@ -15,7 +15,7 @@ export default function OrderOverview({ employee }: props) {
 
 	return (
 		<PageLayout>
-			<h2>Orders</h2>
+			<h2>Ordre</h2>
 			<EmployeeNavigation currentPath={location.pathname} />
 			<Table<IAPIOrder> itemType="order" defaultSortBy="id" skipValues={skipValues} />
 		</PageLayout>

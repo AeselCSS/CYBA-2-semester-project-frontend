@@ -17,7 +17,7 @@ export default function CustomerOverview({employee}: props) {
 
 	return (
 		<PageLayout>
-			<h2>Customers</h2>
+			<h2>Kunder</h2>
 			<EmployeeNavigation currentPath={location.pathname} />
 			<Table<ICustomer> itemType="customer" defaultSortBy="id" isFilterable={false} skipValues={skipValues}/>
 		</PageLayout>

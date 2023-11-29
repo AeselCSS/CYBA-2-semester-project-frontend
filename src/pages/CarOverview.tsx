@@ -25,7 +25,7 @@ export default function OrderOverview({employee}: Props) {
 
 	return (
 		<PageLayout>
-			<h2>Orders</h2>
+			<h2>Køretøjer</h2>
 			<EmployeeNavigation currentPath={location.pathname} />
 			<Table<ICar> itemType="car" defaultSortBy="id" isFilterable={false} skipValues={skipValues}/>
 		</PageLayout>

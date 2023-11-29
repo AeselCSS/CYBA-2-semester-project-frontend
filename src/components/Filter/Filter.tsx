@@ -17,7 +17,7 @@ export default function Filter({filterValue, setFilterValue, filterByOpts, setCu
 
     return (
         <>
-            <label htmlFor="filter">Filter by: </label>
+            <label htmlFor="filter">Filter: </label>
             <select name="filter" id="filter" value={filterValue} onChange={handleChange}>
                 <option value="">Ingen</option>
                 {Object.keys(filterByOpts).map((key) => (
