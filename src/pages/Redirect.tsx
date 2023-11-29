@@ -22,12 +22,13 @@ import { useNavigate } from 'react-router-dom';
 // };
 
 interface IRedirectProps {
-	setCustomer: (user: ICustomer | null) => void;
-	setEmployee: (employee: IEmployee | null) => void;
-	setAuthUser: (authUser: IAuthUser) => void;
+	// setCustomer: (user: ICustomer | null) => void;
+	// setEmployee: (employee: IEmployee | null) => void;
+	// setAuthUser: (authUser: IAuthUser) => void;
+	setUser: (user: ICustomer | IEmployee | IAuthUser | null) => void;
 }
 
-export default function Redirect({ setCustomer, setEmployee, setAuthUser }: IRedirectProps) {
+export default function Redirect({ setUser }: IRedirectProps) {
 	const { user, isLoading, error } = useAuth0();
 	const navigate = useNavigate();
 
@@ -41,33 +42,31 @@ export default function Redirect({ setCustomer, setEmployee, setAuthUser }: IRed
 			// 	return;
 			// }
 			if (user) {
-				const promise = await fetch(`http://localhost:3000/${user!.cybaRoles}s/${user!.sub}`);
+				const res = await fetch(`http://localhost:3000/${user!.cybaRoles}s/${user!.sub}`);
 
-				if (promise.ok) {
+				if (res.ok) {
 					//User eksisterer
-					console.log(promise);
+					console.log(res);
 
-					const data = await promise.json();
+					const data = await res.json();
 
 					if (user.cybaRoles[0] === 'employee') {
 						console.log('I AM EMPLOYEE');
-						setEmployee(data);
-						setCustomer(null);
+
+						setUser(data as IEmployee);
 						navigate('/orders');
 					} else {
-						setCustomer(data.customer);
-						setEmployee(null);
+						setUser(data.customer as ICustomer);
+
 						navigate('/profile');
 					}
 
 					//TODO Skal sende til order overview, hvis man er employee
 				} else {
-					console.log(promise);
+					console.log(res);
 					console.log(user);
-					
-					setAuthUser(user as IAuthUser)
-					setEmployee(null);
-					setCustomer(null);
+
+					setUser(user as IAuthUser);
 
 					navigate('/createprofile');
 					//User eksisterer ikke
@@ -76,8 +75,7 @@ export default function Redirect({ setCustomer, setEmployee, setAuthUser }: IRed
 		}
 
 		getUser();
-	}, [user, navigate, setEmployee, setCustomer, setAuthUser]);
+	}, [user, setUser, navigate]);
 
 	return <>{isLoading && !error && <p>Loading...</p>}</>;
 }
-
