@@ -1,13 +1,15 @@
 import React from 'react';
 
+
+//TODO Burde smides i en seperat mappe. Kommer 100p til at genbruges senere
 const order: { [key: string]: any } = {
 	id: 'Order Nr.',
 	status: 'Status',
 	orderStartDate: 'Start Dato',
-	createdAt: 'Oprettelsesdato',
-	updatedAt: 'Sidst Opdateret',
 	registrationNumber: 'Registrerings Nr.',
 	vinNumber: 'STEL-Nr.',
+	createdAt: 'Oprettelsesdato',
+	updatedAt: 'Sidst Opdateret',
 };
 
 const customer: { [key: string]: any } = {
@@ -19,6 +21,7 @@ const customer: { [key: string]: any } = {
 	phone: 'Tlf. Nr.',
 	email: 'E-mail',
 	createdAt: 'Oprettelsesdato',
+	updatedAt: 'Sidst Opdateret'
 };
 
 const car: { [key: string]: any } = {
@@ -27,6 +30,8 @@ const car: { [key: string]: any } = {
 	brand: 'Mærke',
 	model: 'Model',
 	modelVariant: 'Variant',
+	createdAt: 'Oprettelsesdato',
+	updatedAt: 'Sidst Opdateret'
 };
 
 const employee: { [key: string]: any } = {
@@ -34,7 +39,10 @@ const employee: { [key: string]: any } = {
 	department: 'Afdeling',
 	firstName: 'Fornavn',
 	lastName: 'Efternavn',
+	createdAt: 'Oprettelsesdato',
+	updatedAt: 'Sidst Opdateret'
 };
+//TODO slut.
 
 interface Props {
 	title: string;
