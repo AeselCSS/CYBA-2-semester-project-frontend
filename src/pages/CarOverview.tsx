@@ -13,6 +13,7 @@ export default function OrderOverview({employee}: Props) {
 
 	const skipValues = [
 		"id",
+		"customerId",
 		"createdAt",
 		"updatedAt",
 		"mileage",

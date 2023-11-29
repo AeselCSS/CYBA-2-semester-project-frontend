@@ -5,6 +5,10 @@ interface Props {
 
 export default function TableBodyRow({ item, skipIndexes }: Props) {
 
+	if (item.id === "DELETED" || item.customerId === "DELETED") {
+		return null;
+	}
+
 	return (
 		<>
 			<tr>

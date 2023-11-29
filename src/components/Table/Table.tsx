@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Toolbar from '../Toolbar/Toolbar.tsx';
 import Filter from '../Filter/Filter.tsx';
 import Searchbar from '../Searchbar/Searchbar.tsx';
 import TableBodyRow from './TableBodyRow.tsx';
 import ReactPaginate from 'react-paginate';
 import PageSize from '../PageSize/PageSize.tsx';
+import TableHeaderColumn from './TableHeaderColumn.tsx';
 
 interface Props {
 	itemType: string;
@@ -30,7 +31,6 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 	const skipIndexes: number[] = [];
 
 	useEffect(() => {
-		//brug itemType og setData() her i fetch
 		async function fetchData() {
 			const url = `http://localhost:3000/${itemType}s/?sortDir=${sortDirValue}&sortBy=${sortByValue}&searchValue=${searchValue}&pageNum=${currentPage}&pageSize=${pageSize}&filterBy=${filterByValue}`;
 			console.log(url);
@@ -47,18 +47,22 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 		}
 
 		fetchData();
-	}, [searchValue, sortByValue, sortDirValue, filterByValue, currentPage, pageSize, itemType]);
+	}, [searchValue, sortByValue, sortDirValue, filterByValue, currentPage, pageSize]);
+
+	const handleSort = (e: React.MouseEvent<HTMLElement>) => {
+		setSortByValue((e.target as HTMLElement).id);
+		setSortDirValue((prevState) => (prevState === 'asc' ? 'desc' : 'asc'));
+	}
 
 	const calculatePageCount = () => {
 		return Math.ceil(metaData!.totalCount / pageSize);
 	};
 
-	if (data) {
+	if (data && data.length) {
 		Object.keys(data[0]).forEach((key, i) => {
 			skipValues.includes(key) && skipIndexes.push(i);
 		});
 	}
-
 
 
 	return !data ? (
@@ -85,16 +89,7 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 					<tr>
 						{Object.keys(data[0]).map((key, i) => (
 							skipIndexes.includes(i) ? null :
-								<th
-									id={key}
-									key={key}
-									onClick={(e) => {
-										setSortByValue((e.target as HTMLElement).id);
-										setSortDirValue((prevState) => (prevState === 'asc' ? 'desc' : 'asc'));
-									}}
-								>
-									{key}
-								</th>
+								<TableHeaderColumn key={key} title={key} handleSort={handleSort} itemType={itemType} />
 						))}
 					</tr>
 					</thead>
