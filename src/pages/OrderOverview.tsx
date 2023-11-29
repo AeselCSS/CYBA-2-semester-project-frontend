@@ -5,13 +5,14 @@ interface props {
 	employee: IEmployee;
 }
 
-export default function Orders({ employee }: props) {
+export default function OrderOverview({ employee }: props) {
 	console.log(employee);
 
 	return (
 		<PageLayout>
 			<h2>Orders</h2>
-			<Table itemType="order" defaultSortBy="id"/>
+			<EmployeeNavigation currentPath={location.pathname} />
+			<Table<IAPIOrder> itemType="order" defaultSortBy="id"/>
 		</PageLayout>
 	);
 }

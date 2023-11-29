@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import Toolbar from '../Toolbar/Toolbar.tsx';
 import Filter from '../Filter/Filter.tsx';
 import Searchbar from '../Searchbar/Searchbar.tsx';
-//import SortWrapper from '../Sort/SortWrapper.tsx';
 import TableBodyRow from './TableBodyRow.tsx';
 import ReactPaginate from 'react-paginate';
 import PageSize from '../PageSize/PageSize.tsx';
@@ -13,14 +12,14 @@ interface Props {
 	defaultSortBy: string;
 }
 
-const filterDictionary = {
+const filterDictionary: Record<Props['itemType'], string[]> = {
 	order: ['AWAITING_CUSTOMER', 'PENDING', 'IN_PROGRESS', 'COMPLETED'],
 	employee: ['ADMINISTRATION', 'BODY_WORKSHOP', 'MECHANICAL_WORKSHOP', 'PAINT_SHOP'],
 };
 
-export default function Table({ itemType, defaultSortBy, isFilterable = true }: Props) {
-	const [data, setData] = useState<any[] | null>(null);
-	const [metaData, setMetaData] = useState<any>(null);
+export default function Table<T extends object>({ itemType, defaultSortBy, isFilterable = true }:Props) {
+	const [data, setData] = useState<T[] | null>(null);
+	const [metaData, setMetaData] = useState<IMetaData | null>(null);
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [pageSize, setPageSize] = useState<number>(20);
 	const [searchValue, setSearchValue] = useState<string>('');
@@ -65,13 +64,6 @@ export default function Table({ itemType, defaultSortBy, isFilterable = true }: 
 	return (
 		<>
 			<Toolbar>
-				{/*<SortWrapper
-                 sortDirValue={sortDirValue}
-                 setSortDirValue={setSortDirValue}
-                 sortByValue={sortByValue}
-                 setSortByValue={setSortByValue}
-                 sortByOpts={['status', 'id']}
-                 />*/}
 				<Searchbar searchValue={searchValue} setSearchValue={setSearchValue} setCurrentPage={setCurrentPage} />
 				{isFilterable && (
 					<Filter
