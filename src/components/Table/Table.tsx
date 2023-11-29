@@ -6,6 +6,7 @@ import TableBodyRow from './TableBodyRow.tsx';
 import ReactPaginate from 'react-paginate';
 import PageSize from '../PageSize/PageSize.tsx';
 import TableHeaderColumn from './TableHeaderColumn.tsx';
+import "./Table.css"
 
 interface Props {
 	itemType: string;
@@ -120,6 +121,11 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 				previousLabel='Previous'
 				renderOnZeroPageCount={null}
 				initialPage={0}
+				containerClassName="pagination"
+				pageLinkClassName="page-num"
+				previousLinkClassName="page-num"
+				nextLinkClassName="page-num"
+				activeLinkClassName="active"
 			/>
 
 			{data.length ? <PageSize setPageSize={setPageSize} pageSize={pageSize} /> : null}
