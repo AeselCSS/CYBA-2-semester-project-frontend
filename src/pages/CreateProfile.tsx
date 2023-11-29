@@ -41,7 +41,6 @@ export default function CreateProfile({ authUser }: { authUser: IAuthUser }) {
 	const {
 		register,
 		handleSubmit,
-		watch,
 		formState: { errors },
 	} = useForm<Inputs>();
 
@@ -58,18 +57,15 @@ export default function CreateProfile({ authUser }: { authUser: IAuthUser }) {
 		};
 
 		try {
-			const res =  await createCustomer(newCustomer);
-			if(res.ok) {
-				const data = await res.json()
+			const res = await createCustomer(newCustomer);
+			if (res.ok) {
+				const data = await res.json();
 				console.log(data);
 				navigate('/redirect');
-
 			}
 		} catch (error) {
-			console.log('ERROR ⛔');
+			console.log((error as Error).message);
 		}
-
-
 	}
 	onSubmit as SubmitHandler<Inputs>;
 
