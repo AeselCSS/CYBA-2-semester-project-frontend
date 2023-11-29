@@ -1,17 +1,15 @@
-
-
 interface ICustomer {
-    id: string,
-    role: Role,
-    firstName: string,
-    lastName: string,
-    address: string,
-    city: string,
-    zip: number,
-    phone: number,
-    email: string,
-    createdAt?: Date,
-    updatedAt?: Date
+	id: string;
+	role: Role;
+	firstName: string;
+	lastName: string;
+	address: string;
+	city: string;
+	zip: number;
+	phone: number;
+	email: string;
+	createdAt?: Date;
+	updatedAt?: Date;
 }
 
 interface IAPISingleCustomer {
@@ -21,64 +19,104 @@ interface IAPISingleCustomer {
 }
 
 interface IAPISingleEmployee {
-    employee: IEmployee
+	employee: IEmployee;
 }
 
 interface IOrder {
-    id: number,
-    status: Status,
-    orderStartDate: Date,
-    carId: number,
-    customerId: number,
-    createdAt?: Date,
-    updatedAt?: Date
+	id: number;
+	status: Status;
+	orderStartDate: Date;
+	carId: number;
+	customerId: number;
+	createdAt?: Date;
+	updatedAt?: Date;
 }
 
 interface ICar {
-    id: number, 
-    customerId: number,
-    registrationNumber: string,
-    vinNumber: number,
-    brand: string,
-    model: string,
-    modelVariant: string,
-    firstRegistration: Date,
-    mileage: number,
-    lastInspectionDate: Date,
-    lastInspectionResult: string,
-    lastInspectionKind: string,
-    createdAt?: Date,
-    updatedAt?: Date
+	id: number;
+	customerId: number;
+	registrationNumber: string;
+	vinNumber: number;
+	brand: string;
+	model: string;
+	modelVariant: string;
+	firstRegistration: Date;
+	mileage: number;
+	lastInspectionDate: Date;
+	lastInspectionResult: string;
+	lastInspectionKind: string;
+	createdAt?: Date;
+	updatedAt?: Date;
 }
 
 interface IEmployee {
-    id: string,
-    role: Role,
-    department: Department,
-    firstName: string,
-    lastName: string,
-    createdAt?: Date,
-    updatedAt?: Date
+	id: string;
+	role: Role;
+	department: Department;
+	firstName: string;
+	lastName: string;
+	createdAt?: Date;
+	updatedAt?: Date;
+}
+interface ICurrentOrder {
+	id: number;
+	status: string;
+	totalTime: number;
+	orderStartDate: Date;
+	createdAt?: Date;
+	updatedAt?: Date;
+	car: {
+		id: number;
+		registrationNumber: string;
+		vinNumber: string;
+		brand: string;
+		model: string;
+		modelVariant: string;
+		mileage: number;
+	};
+	customer: {
+		id: string;
+		firstName: string;
+		lastName: string;
+		email: string;
+		phone: number;
+	};
+	tasks: {
+		id: number;
+		name: string;
+		description: string;
+		status: string;
+		updatedAt: Date;
+		totalTime: number;
+		employee: null | number;
+		subtasks: {
+			id: number;
+			name: string;
+			description: string;
+			time: number;
+			status: string;
+			updatedAt: Date;
+		}[];
+	}[];
 }
 
-
 enum Status {
-    AWAITING_CUSTOMER,
-    PENDING,
-    IN_PROGRESS,
-    COMPLETED,
-    CANCELED
+	AWAITING_CUSTOMER,
+	PENDING,
+	IN_PROGRESS,
+	COMPLETED,
+	CANCELED,
 }
 
 enum Department {
-    MECHANICAL_WORKSHOP,
-    BODY_WORKSHOP,
-    PAINT_SHOP,
-    ADMINISTRATION
+	MECHANICAL_WORKSHOP,
+	BODY_WORKSHOP,
+	PAINT_SHOP,
+	ADMINISTRATION,
 }
 
 enum Role {
-    CUSTOMER,
-    EMPLOYEE,
-    ADMIN
+	CUSTOMER,
+	EMPLOYEE,
+	ADMIN,
 }
