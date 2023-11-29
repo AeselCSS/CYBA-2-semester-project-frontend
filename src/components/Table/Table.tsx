@@ -9,7 +9,8 @@ import PageSize from '../PageSize/PageSize.tsx';
 interface Props {
 	itemType: string;
 	isFilterable?: boolean;
-	defaultSortBy: string;
+	defaultSortBy: string
+
 }
 
 const filterDictionary: Record<Props['itemType'], string[]> = {
@@ -25,9 +26,7 @@ export default function Table<T extends object>({ itemType, defaultSortBy, isFil
 	const [searchValue, setSearchValue] = useState<string>('');
 	const [sortByValue, setSortByValue] = useState<string>(defaultSortBy);
 	const [sortDirValue, setSortDirValue] = useState<string>('asc');
-	const [filterByValue, setFilterByValue] = useState<string>('');
-
-	//TODO Lav et component til page-size (Dropdown menu 5-10-25-50)
+	const [filterByValue, setFilterByValue] = useState<string>('')
 
 	useEffect(() => {
 		//brug itemType og setData() her i fetch
@@ -37,7 +36,7 @@ export default function Table<T extends object>({ itemType, defaultSortBy, isFil
 			const promise = await fetch(url);
 
 			if (promise.ok) {
-				const result = await promise.json();
+				const result: APIResponse<T> = await promise.json();
 				setData(result.data);
 				setMetaData(result.metaData);
 			} else {
@@ -47,15 +46,16 @@ export default function Table<T extends object>({ itemType, defaultSortBy, isFil
 		}
 
 		fetchData();
-	}, [searchValue, sortByValue, sortDirValue, filterByValue, currentPage, pageSize]);
+	}, [searchValue, sortByValue, sortDirValue, filterByValue, currentPage, pageSize, itemType]);
 
 	const calculatePageCount = () => {
-		return Math.ceil(metaData.totalCount / pageSize);
+		return Math.ceil(metaData!.totalCount / pageSize);
 	};
 
 	/*const sortByOpts = Object.keys(data!).map((key) => {
      return key;
      });*/
+
 
 	if (!data) {
 		return <p>Loading...</p>;
@@ -70,7 +70,6 @@ export default function Table<T extends object>({ itemType, defaultSortBy, isFil
 						filterValue={filterByValue}
 						setFilterValue={setFilterByValue}
 						setCurrentPage={setCurrentPage}
-						//@ts-ignore
 						filterByOpts={filterDictionary[itemType]}
 					/>
 				)}
@@ -97,8 +96,8 @@ export default function Table<T extends object>({ itemType, defaultSortBy, isFil
 						</tr>
 					</thead>
 					<tbody>
-						{data.map((index, i) => (
-							<TableBodyRow key={index + i} item={index} />
+						{data.map((item, index) => (
+							<TableBodyRow key={index} item={item} />
 						))}
 					</tbody>
 				</table>

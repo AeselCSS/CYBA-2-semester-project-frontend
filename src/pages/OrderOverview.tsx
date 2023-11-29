@@ -1,5 +1,6 @@
 import PageLayout from './PageLayout';
 import Table from "../components/Table/Table.tsx";
+import EmployeeNavigation from '../components/EmployeeNavigation/EmployeeNavigation.tsx';
 
 interface props {
 	employee: IEmployee;

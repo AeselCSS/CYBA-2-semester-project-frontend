@@ -10,8 +10,8 @@ interface ICustomer {
     zip: number,
     phone: number,
     email: string,
-    createdAt?: Date,
-    updatedAt?: Date
+    createdAt: Date,
+    updatedAt: Date
 }
 
 interface IAPISingleCustomer {
@@ -24,14 +24,22 @@ interface IAPISingleEmployee {
     employee: IEmployee
 }
 
+interface IAPIOrder extends IOrder {
+    registrationNumber: string
+}
+
+
+
 interface IOrder {
     id: number,
     status: Status,
     orderStartDate: Date,
     carId: number,
     customerId: number,
-    createdAt?: Date,
-    updatedAt?: Date
+    createdAt: Date,
+    updatedAt: Date,
+    registrationNumber: string,
+    vinNumber: string
 }
 
 interface ICar {
@@ -47,8 +55,8 @@ interface ICar {
     lastInspectionDate: Date,
     lastInspectionResult: string,
     lastInspectionKind: string,
-    createdAt?: Date,
-    updatedAt?: Date
+    createdAt: Date,
+    updatedAt: Date
 }
 
 interface IEmployee {
@@ -57,8 +65,19 @@ interface IEmployee {
     department: Department,
     firstName: string,
     lastName: string,
-    createdAt?: Date,
-    updatedAt?: Date
+    createdAt: Date,
+    updatedAt: Date
+}
+
+type IMetaData = {
+    totalCount: number,
+    offset: number,
+    limit: number
+}
+
+type APIResponse<T> = {
+    data: T[],
+    metaData: IMetaData
 }
 
 
