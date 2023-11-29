@@ -14,9 +14,19 @@ interface Props {
 	skipValues: string[];
 }
 
-const filterDictionary: Record<Props['itemType'], string[]> = {
-	order: ['AWAITING_CUSTOMER', 'PENDING', 'IN_PROGRESS', 'COMPLETED'],
-	employee: ['ADMINISTRATION', 'BODY_WORKSHOP', 'MECHANICAL_WORKSHOP', 'PAINT_SHOP'],
+const filterDictionary: Record<Props['itemType'], object> = {
+	order: {
+		AWAITING_CUSTOMER: 'Afventer kunde',
+		PENDING: 'Afventer værksted',
+		IN_PROGRESS: 'Igangsat',
+		COMPLETED: "Fuldført"
+	},
+	employee: {
+		ADMINISTRATION: "Administration",
+		BODY_WORKSHOP: "Body Workshop",
+		MECHANICAL_WORKSHOP: "Værkstedet",
+		PAINT_SHOP: "Paint Shop"
+	},
 };
 
 export default function Table<T extends object>({ itemType, defaultSortBy, skipValues, isFilterable = true }: Props) {
@@ -52,7 +62,7 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 	const handleSort = (e: React.MouseEvent<HTMLElement>) => {
 		setSortByValue((e.target as HTMLElement).id);
 		setSortDirValue((prevState) => (prevState === 'asc' ? 'desc' : 'asc'));
-	}
+	};
 
 	const calculatePageCount = () => {
 		return Math.ceil(metaData!.totalCount / pageSize);
