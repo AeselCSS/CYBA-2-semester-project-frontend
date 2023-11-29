@@ -10,19 +10,26 @@ import Orders from './pages/Orders';
 import CustomerProfile from './pages/CustomerProfile';
 
 function App() {
-	const [customer, setCustomer] = useState<ICustomer | null>(null);
-	const [employee, setEmployee] = useState<IEmployee | null>(null);
+	const [user, setUser] = useState<ICustomer | IEmployee | IAuthUser | null>(null);
+
+	console.log(user);
 
 	return (
 		<Routes>
 			<Route path='/' element={<Homepage />} />
-			<Route path='/about' element={<About />} />
-			<Route path='/contact' element={<Contact />} />
-			<Route path='/profile' element={customer && <CustomerProfile customer={customer} />} />
-			<Route path='/orders' element={employee && <Orders employee={employee} />} />
 
-			<Route path='/createprofile' element={<CreateProfile />} />
-			<Route path='/redirect' element={<Redirect setEmployee={setEmployee} setCustomer={setCustomer} />} />
+			<Route path='/about' element={<About />} />
+
+			<Route path='/contact' element={<Contact />} />
+
+			<Route path='/profile' element={user && <CustomerProfile customer={user as ICustomer} />} />
+
+			<Route path='/orders' element={user && <Orders employee={user as IEmployee} />} />
+
+			<Route path='/createprofile' element={user && <CreateProfile authUser={user as IAuthUser} />} />
+
+			<Route path='/redirect' element={<Redirect setUser={setUser} />} />
+
 			<Route path='*' element={<PageNotFound />} />
 		</Routes>
 	);
