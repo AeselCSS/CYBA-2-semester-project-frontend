@@ -6,6 +6,9 @@ interface Props {
 
 export default function TableBodyRow({item}: Props) {
 
+    if (item.id === "DELETED" || item.customerId === "DELETED") {
+        return null;
+    }
 
     return (
         <>
