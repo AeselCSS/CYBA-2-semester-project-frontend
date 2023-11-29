@@ -9,11 +9,17 @@ interface props {
 export default function CustomerOverview({employee}: props) {
 	console.log(employee);
 
+	const skipValues = [
+		"id",
+		"role",
+		"updatedAt"
+	]
+
 	return (
 		<PageLayout>
 			<h2>Customers</h2>
 			<EmployeeNavigation currentPath={location.pathname} />
-			<Table<ICustomer> itemType="customer" defaultSortBy="id" isFilterable={false}/>
+			<Table<ICustomer> itemType="customer" defaultSortBy="id" isFilterable={false} skipValues={skipValues}/>
 		</PageLayout>
 	)
 }

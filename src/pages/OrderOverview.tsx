@@ -9,11 +9,15 @@ interface props {
 export default function OrderOverview({ employee }: props) {
 	console.log(employee);
 
+	const skipValues = [
+		"customerId"
+	]
+
 	return (
 		<PageLayout>
 			<h2>Orders</h2>
 			<EmployeeNavigation currentPath={location.pathname} />
-			<Table<IAPIOrder> itemType="order" defaultSortBy="id"/>
+			<Table<IAPIOrder> itemType="order" defaultSortBy="id" skipValues={skipValues} />
 		</PageLayout>
 	);
 }

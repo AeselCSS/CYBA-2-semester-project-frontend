@@ -11,11 +11,22 @@ export default function OrderOverview({employee}: Props) {
 	console.log(employee);
 	const location = useLocation();
 
+	const skipValues = [
+		"id",
+		"createdAt",
+		"updatedAt",
+		"mileage",
+		"lastInspectionDate",
+		"firstRegistration",
+		"lastInspectionResult",
+		"lastInspectionKind"
+	]
+
 	return (
 		<PageLayout>
 			<h2>Orders</h2>
 			<EmployeeNavigation currentPath={location.pathname} />
-			<Table<ICar> itemType="car" defaultSortBy="id" isFilterable={false}/>
+			<Table<ICar> itemType="car" defaultSortBy="id" isFilterable={false} skipValues={skipValues}/>
 		</PageLayout>
 	);
 }

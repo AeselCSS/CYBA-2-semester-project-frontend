@@ -10,7 +10,7 @@ interface Props {
 	itemType: string;
 	isFilterable?: boolean;
 	defaultSortBy: string
-
+	skipValues: string[]
 }
 
 const filterDictionary: Record<Props['itemType'], string[]> = {
@@ -18,7 +18,7 @@ const filterDictionary: Record<Props['itemType'], string[]> = {
 	employee: ['ADMINISTRATION', 'BODY_WORKSHOP', 'MECHANICAL_WORKSHOP', 'PAINT_SHOP'],
 };
 
-export default function Table<T extends object>({ itemType, defaultSortBy, isFilterable = true }:Props) {
+export default function Table<T extends object>({ itemType, defaultSortBy, skipValues, isFilterable = true }:Props) {
 	const [data, setData] = useState<T[] | null>(null);
 	const [metaData, setMetaData] = useState<IMetaData | null>(null);
 	const [currentPage, setCurrentPage] = useState<number>(1);
@@ -82,6 +82,9 @@ export default function Table<T extends object>({ itemType, defaultSortBy, isFil
 					<thead>
 						<tr>
 							{Object.keys(data[0]).map((key) => (
+
+								//@ts-ignore
+								skipValues.includes(key) ? <></> :
 								<th
 									id={key}
 									key={key}
@@ -96,9 +99,9 @@ export default function Table<T extends object>({ itemType, defaultSortBy, isFil
 						</tr>
 					</thead>
 					<tbody>
-						{data.map((item, index) => (
-							<TableBodyRow key={index} item={item} />
-						))}
+						{data.map((item, index) =>
+							<TableBodyRow key={index} item={item} skipValues={skipValues} />
+						)}
 					</tbody>
 				</table>
 			)}
@@ -118,3 +121,22 @@ export default function Table<T extends object>({ itemType, defaultSortBy, isFil
 		</>
 	);
 }
+
+/*
+{Object.keys(data[0]).map((key) => (
+	<th
+		id={key}
+		key={key}
+		onClick={(e) => {
+			setSortByValue((e.target as HTMLElement).id);
+			setSortDirValue((prevState) => (prevState === 'asc' ? 'desc' : 'asc'));
+		}}
+	>
+		{key}
+	</th>
+))}*/
+
+
+
+
+//<TableBodyRow key={index} item={item} />
