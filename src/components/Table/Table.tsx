@@ -9,8 +9,8 @@ import PageSize from '../PageSize/PageSize.tsx';
 interface Props {
 	itemType: string;
 	isFilterable?: boolean;
-	defaultSortBy: string
-	skipValues: string[]
+	defaultSortBy: string;
+	skipValues: string[];
 }
 
 const filterDictionary: Record<Props['itemType'], string[]> = {
@@ -18,7 +18,7 @@ const filterDictionary: Record<Props['itemType'], string[]> = {
 	employee: ['ADMINISTRATION', 'BODY_WORKSHOP', 'MECHANICAL_WORKSHOP', 'PAINT_SHOP'],
 };
 
-export default function Table<T extends object>({ itemType, defaultSortBy, skipValues, isFilterable = true }:Props) {
+export default function Table<T extends object>({ itemType, defaultSortBy, skipValues, isFilterable = true }: Props) {
 	const [data, setData] = useState<T[] | null>(null);
 	const [metaData, setMetaData] = useState<IMetaData | null>(null);
 	const [currentPage, setCurrentPage] = useState<number>(1);
@@ -26,7 +26,8 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 	const [searchValue, setSearchValue] = useState<string>('');
 	const [sortByValue, setSortByValue] = useState<string>(defaultSortBy);
 	const [sortDirValue, setSortDirValue] = useState<string>('asc');
-	const [filterByValue, setFilterByValue] = useState<string>('')
+	const [filterByValue, setFilterByValue] = useState<string>('');
+	const skipIndexes: number[] = [];
 
 	useEffect(() => {
 		//brug itemType og setData() her i fetch
@@ -52,16 +53,17 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 		return Math.ceil(metaData!.totalCount / pageSize);
 	};
 
-	/*const sortByOpts = Object.keys(data!).map((key) => {
-     return key;
-     });*/
-
-
-	if (!data) {
-		return <p>Loading...</p>;
+	if (data) {
+		Object.keys(data[0]).forEach((key, i) => {
+			skipValues.includes(key) && skipIndexes.push(i);
+		});
 	}
 
-	return (
+
+
+	return !data ? (
+		<p>Loading...</p>
+	) : (
 		<>
 			<Toolbar>
 				<Searchbar searchValue={searchValue} setSearchValue={setSearchValue} setCurrentPage={setCurrentPage} />
@@ -80,11 +82,9 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 			) : (
 				<table>
 					<thead>
-						<tr>
-							{Object.keys(data[0]).map((key) => (
-
-								//@ts-ignore
-								skipValues.includes(key) ? <></> :
+					<tr>
+						{Object.keys(data[0]).map((key, i) => (
+							skipIndexes.includes(i) ? null :
 								<th
 									id={key}
 									key={key}
@@ -95,13 +95,13 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 								>
 									{key}
 								</th>
-							))}
-						</tr>
+						))}
+					</tr>
 					</thead>
 					<tbody>
-						{data.map((item, index) =>
-							<TableBodyRow key={index} item={item} skipValues={skipValues} />
-						)}
+					{data.map((item, index) =>
+						<TableBodyRow key={index} item={item} skipIndexes={skipIndexes} />,
+					)}
 					</tbody>
 				</table>
 			)}
@@ -121,22 +121,3 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 		</>
 	);
 }
-
-/*
-{Object.keys(data[0]).map((key) => (
-	<th
-		id={key}
-		key={key}
-		onClick={(e) => {
-			setSortByValue((e.target as HTMLElement).id);
-			setSortDirValue((prevState) => (prevState === 'asc' ? 'desc' : 'asc'));
-		}}
-	>
-		{key}
-	</th>
-))}*/
-
-
-
-
-//<TableBodyRow key={index} item={item} />
