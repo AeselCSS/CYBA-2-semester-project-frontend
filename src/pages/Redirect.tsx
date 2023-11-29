@@ -24,9 +24,10 @@ import { useNavigate } from 'react-router-dom';
 interface IRedirectProps {
 	setCustomer: (user: ICustomer | null) => void;
 	setEmployee: (employee: IEmployee | null) => void;
+	setAuthUser: (authUser: IAuthUser) => void;
 }
 
-export default function Redirect({ setCustomer, setEmployee }: IRedirectProps) {
+export default function Redirect({ setCustomer, setEmployee, setAuthUser }: IRedirectProps) {
 	const { user, isLoading, error } = useAuth0();
 	const navigate = useNavigate();
 
@@ -62,6 +63,11 @@ export default function Redirect({ setCustomer, setEmployee }: IRedirectProps) {
 					//TODO Skal sende til order overview, hvis man er employee
 				} else {
 					console.log(promise);
+					console.log(user);
+					
+					setAuthUser(user as IAuthUser)
+					setEmployee(null);
+					setCustomer(null);
 
 					navigate('/createprofile');
 					//User eksisterer ikke
@@ -70,7 +76,7 @@ export default function Redirect({ setCustomer, setEmployee }: IRedirectProps) {
 		}
 
 		getUser();
-	}, [user, navigate, setEmployee, setCustomer]);
+	}, [user, navigate, setEmployee, setCustomer, setAuthUser]);
 
 	return <>{isLoading && !error && <p>Loading...</p>}</>;
 }

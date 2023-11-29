@@ -12,6 +12,10 @@ import CustomerProfile from './pages/CustomerProfile';
 function App() {
 	const [customer, setCustomer] = useState<ICustomer | null>(null);
 	const [employee, setEmployee] = useState<IEmployee | null>(null);
+	const [authUser, setAuthUser] = useState<IAuthUser | null>(null);
+
+	console.log(customer);
+	
 
 	return (
 		<Routes>
@@ -21,8 +25,8 @@ function App() {
 			<Route path='/profile' element={customer && <CustomerProfile customer={customer} />} />
 			<Route path='/orders' element={employee && <Orders employee={employee} />} />
 
-			<Route path='/createprofile' element={<CreateProfile />} />
-			<Route path='/redirect' element={<Redirect setEmployee={setEmployee} setCustomer={setCustomer} />} />
+			<Route path='/createprofile' element={<CreateProfile authUser={authUser as IAuthUser} />} />
+			<Route path='/redirect' element={<Redirect setEmployee={setEmployee} setCustomer={setCustomer} setAuthUser={setAuthUser} />} />
 			<Route path='*' element={<PageNotFound />} />
 		</Routes>
 	);
