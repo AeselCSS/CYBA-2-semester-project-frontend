@@ -13,13 +13,13 @@ export default function OrdersBoxDetail({ customerData, order }: OrdersBoxDetail
 	const [car] = customerData.cars.filter((car) => car.id === order.carId);
 
 	useEffect(() => {
-		async function getCustomer() {
+		async function getOrders() {
 			//TODO Brug .env til dynamisk url kald
 			const response = await fetch(`http://localhost:3000/orders/${order.id}`);
 			const data = await response.json();
 			setCurrentOrder(data);
 		}
-		getCustomer();
+		getOrders();
 	}, [order.id]);
 
 	return (

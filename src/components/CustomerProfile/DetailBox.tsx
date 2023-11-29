@@ -1,4 +1,4 @@
-export default function DetailBox({ title, value }: { title: string; value: string | number | undefined }) {
+export default function DetailBox({ title, value }: { title: string; value: string | number |undefined }) {
 	return (
 		<div>
 			{title}

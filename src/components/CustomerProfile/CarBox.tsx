@@ -1,5 +1,5 @@
-import DetailBox from './DetailBox';
 import BoxHeader from './BoxHeader';
+import CarBoxDetails from './CarBoxDetails';
 
 export default function CarBox({ customerData }: { customerData: IAPISingleCustomer }) {
 	return (
@@ -8,7 +8,7 @@ export default function CarBox({ customerData }: { customerData: IAPISingleCusto
 
 			<section className='car-box-grid'>
 				{customerData.cars.map((car) => (
-					<DetailBox title={'Model'} value={car.brand} key={car.id} />
+					<CarBoxDetails car={car} key={car.id} />
 				))}
 			</section>
 		</div>
