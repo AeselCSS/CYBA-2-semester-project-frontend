@@ -15,9 +15,6 @@ export default function Filter({filterValue, setFilterValue, filterByOpts, setCu
         setCurrentPage(1);
     }
 
-
-
-
     return (
         <>
             <label htmlFor="filter">Filter by: </label>
@@ -30,9 +27,3 @@ export default function Filter({filterValue, setFilterValue, filterByOpts, setCu
         </>
     )
 }
-
-/*
-{filterByOpts.map((filterOpt) => (
-    <option key={filterOpt} value={filterOpt}>{filterOpt}</option>
-))}
-*/
