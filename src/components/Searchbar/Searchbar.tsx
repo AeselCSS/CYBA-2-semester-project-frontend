@@ -1,12 +1,10 @@
 import {CiSearch} from "react-icons/ci"
 
-
 interface Props {
     searchValue: string,
     setSearchValue: (newSearchValue: string) => void;
 	setCurrentPage: (newValue: number) => void;
 }
-
 
 export default function Searchbar({searchValue, setSearchValue, setCurrentPage }: Props) {
 	return (

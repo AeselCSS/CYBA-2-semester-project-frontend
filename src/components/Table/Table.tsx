@@ -122,9 +122,7 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 					nextLinkClassName='page-num'
 					activeLinkClassName='active'
 				/>
-
 			</div>
-
 		</>
 	);
 }

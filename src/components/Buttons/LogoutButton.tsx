@@ -13,8 +13,6 @@ export const LogoutButton: React.FC = () => {
 	};
 
 	return (
-		<button onClick={handleLogout}>
-			Log Ud
-		</button>
+		<button onClick={handleLogout}>Log Ud</button>
 	);
 };

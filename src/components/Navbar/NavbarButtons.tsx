@@ -21,4 +21,5 @@ export function NavBarButtons() {
 				</>
 			)}
 		</div>
-	)}
+	)
+}

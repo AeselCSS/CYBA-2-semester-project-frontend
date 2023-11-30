@@ -16,8 +16,6 @@ export const LoginButton: React.FC = () => {
 	};
 
 	return (
-		<button onClick={handleLogin}>
-			Log Ind
-		</button>
+		<button onClick={handleLogin}>Log Ind</button>
 	);
 };
