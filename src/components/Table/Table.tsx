@@ -6,7 +6,7 @@ import TableBodyRow from './TableBodyRow.tsx';
 import ReactPaginate from 'react-paginate';
 import PageSize from '../PageSize/PageSize.tsx';
 import TableHeaderColumn from './TableHeaderColumn.tsx';
-import "./Table.css"
+import './Table.css';
 import * as dictionaries from './danishDictionary.ts';
 
 interface Props {
@@ -86,7 +86,13 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 					<tr>
 						{Object.keys(data[0]).map((key: string, i: number) => (
 							skipIndexes.includes(i) ? null :
-								<TableHeaderColumn key={key} title={key} handleSort={handleSort} itemType={itemType as keyof typeof dictionaries} />
+								<TableHeaderColumn
+									key={key}
+									title={key}
+									handleSort={handleSort}
+									itemType={itemType as keyof typeof dictionaries}
+									sortByValue={sortByValue}
+									sortDirValue={sortDirValue} />
 						))}
 					</tr>
 					</thead>
@@ -107,11 +113,11 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 				previousLabel='Forrige'
 				renderOnZeroPageCount={null}
 				initialPage={0}
-				containerClassName="pagination"
-				pageLinkClassName="page-num"
-				previousLinkClassName="page-num"
-				nextLinkClassName="page-num"
-				activeLinkClassName="active"
+				containerClassName='pagination'
+				pageLinkClassName='page-num'
+				previousLinkClassName='page-num'
+				nextLinkClassName='page-num'
+				activeLinkClassName='active'
 			/>
 
 			{data.length ? <PageSize setPageSize={setPageSize} pageSize={pageSize} /> : null}

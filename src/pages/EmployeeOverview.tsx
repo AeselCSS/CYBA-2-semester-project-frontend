@@ -19,7 +19,7 @@ export default function EmployeeOverview({ employee }: props) {
 		<PageLayout>
 			<h2>Ansatte</h2>
 			<EmployeeNavigation currentPath={location.pathname} />
-			<Table<IEmployee> itemType="employee" defaultSortBy="id" skipValues={skipValues}/>
+			<Table<IEmployee> itemType="employee" defaultSortBy="firstName" skipValues={skipValues}/>
 		</PageLayout>
 	);
 }
