@@ -2,6 +2,7 @@ import React from 'react';
 import * as dictionaries from './danishDictionary.ts';
 import { GoSortAsc } from 'react-icons/go';
 import { GoSortDesc } from 'react-icons/go';
+import './Table.css';
 
 interface Props {
 	title: string;
@@ -15,14 +16,12 @@ export default function TableHeaderColumn({ title, handleSort, itemType, sortByV
 	const selectedDictionary = dictionaries[itemType] as Record<string, string>;
 
 	return (
-		<>
-			<th id={title} onClick={handleSort}>
-				{selectedDictionary[title]}
-				{title === sortByValue && (
-					<>{sortDirValue === 'asc' ? <GoSortDesc /> : <GoSortAsc />}</>
-				)}
-			</th>
-		</>
+		<th>
+			<span className="pointer" onClick={handleSort} id={title}>{selectedDictionary[title]}</span>
+			{title === sortByValue && (
+				<span className='disable-click sort-icon'>{sortDirValue === 'asc' ? <GoSortAsc /> : <GoSortDesc />}</span>
+			)}
+		</th>
 	);
 }
 

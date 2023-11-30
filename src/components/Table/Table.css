@@ -27,3 +27,18 @@
     background-color: #7ffffd;
     color: black;
 }
+
+
+/* TABLEHEADERCOLUMN */
+
+.disable-click {
+    pointer-events: none;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.sort-icon {
+    margin-left: 6px;
+}
