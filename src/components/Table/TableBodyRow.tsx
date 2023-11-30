@@ -7,7 +7,7 @@ interface Props {
 
 export default function TableBodyRow({ item, skipIndexes }: Props) {
 
-	if (item.id === "DELETED" || item.customerId === "DELETED") {
+	if (item.id === 'DELETED' || item.customerId === 'DELETED') {
 		return null;
 	}
 
@@ -20,9 +20,9 @@ export default function TableBodyRow({ item, skipIndexes }: Props) {
 
 				let renderedValue = value as string;
 
-				if (typeof value === "string" && !isNaN(Date.parse(value))) {
+				if (typeof value === 'string' && !isNaN(Date.parse(value))) {
 					const date = new Date(value);
-					renderedValue = formatDate(date); // Assuming you have formatDate function defined
+					renderedValue = formatDate(date);
 				}
 
 				return <td style={{ paddingLeft: '30px' }} key={item.id + i}>{renderedValue}</td>;
