@@ -1,0 +1,31 @@
+/*==== PAGINATION =====*/
+
+.pagination {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5rem;
+    font-size: 1.2rem;
+    gap: 5px;
+    scale: 0.7;
+}
+
+.pagination .active {
+    background-color: #7ffffd;
+    color: black;
+}
+
+.pagination .page-num {
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-weight: 400;
+}
+
+.pagination .page-num:hover {
+    background-color: #7ffffd;
+    color: black;
+}
+
+
