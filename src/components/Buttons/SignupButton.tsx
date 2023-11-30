@@ -17,8 +17,8 @@ export const SignupButton: React.FC = () => {
 	};
 
 	return (
-		<button className='button__sign-up' onClick={handleSignUp}>
-			Sign Up
+		<button onClick={handleSignUp}>
+			Opret Bruger
 		</button>
 	);
 };

@@ -1,0 +1,40 @@
+footer {
+    background-color: var(--black); /* Dark grey background, matching the navbar */
+    color: var(--white);
+    text-align: center;
+    padding: var(--spacing-small) 0 var(--spacing-base) 0;
+    font-size: 0.9em;
+    border-top: 1px solid var(--orange);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+footer h3 {
+    margin-bottom: var(--spacing-small); /* Spacing between the heading and the links */
+    font-size: 1.1em;
+}
+
+.footer-name-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer a {
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    padding-left: var(--spacing-small);
+}
+
+footer a:hover {
+    color: var(--orange);; /* Orange color for hover effect */
+}
+
+/* Responsive design adjustments, if needed */
+@media (max-width: 768px) {
+    footer {
+        font-size: 0.8em; /* Smaller font size for mobile devices */
+    }
+}

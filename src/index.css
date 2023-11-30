@@ -1,21 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&family=Rokkitt:wght@100;400&display=swap');
+
+/*
+  H1 - Roboto regular 400
+Navbar - Rokkitt regular 400
+H3 - Roboto regular 300
+P - Roboto thin 100
+Button - Rokkitt thin 100 italic
+  */
+
+/*
+  :D
+  CSS RULES TO SPECIFY FAMILIES 
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Rokkitt', serif;
+  */
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+	--header-font-family: Roboto, sans-serif;
+	--font-family: Rokkitt, serif;
+	line-height: 1.5;
+	font-weight: var(--font-weight-normal);
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+	/* ----- Color variables ----- */
+	--black: #262626;
+	--charcoalGrey: #3c3c3c;
+	--lightGrey: #bbbab9;
+	--orange: #e97b05;
+	--white: #f4f4f4;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+	/* spacing */
+	--spacing-small: 0.5rem;
+	--spacing-base: 1rem;
+	--spacing-large: 1.5rem;
+	--spacing-xlarge: 2rem;
+
+	/* fontsize */
+	--font-size-small: 0.875rem;
+	--font-size-base: 1rem;
+	--font-size-large: 1.25rem;
+	--font-size-xlarge: 1.5rem;
+
+	/* fontweight */
+	--font-weight-light: 300;
+	--font-weight-normal: 400;
+	--font-weight-bold: 700;
+
+	/* border */
+	--border-radius: 0.25rem;
+	--border-none: none;
+
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
 }
-/* css reset*/
+
+/* ----- css reset ----- */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: var(--font-family);
+	color-scheme: light dark;
+	color: var(--white);
+	background-color: var(--charcoalGrey);
+}
+
+h1, h2, h3, h4 {
+	color: var(--orange);
+	font-family: var(--header-font-family);
+}
+
+h1 {
+	font-size: var(--font-size-xlarge);
+	font-weight: var(--font-weight-bold);
+}
+
+h2 {
+	font-size: var(--font-size-large);
+	font-weight: var(--font-weight-bold);
+}
+
+h3 {
+	font-size: var(--font-size-base);
+	font-weight: var(--font-weight-bold);
+}
+
+.page-layout {
+	margin: var(--spacing-base);
+}
+
+button {
+	font-family: var(--font-family);
+	font-weight: var(--font-weight-normal);
+	font-size: var(--font-size-base);
+	text-transform: capitalize;
+  border-radius: var(--border-radius)
+
 }
