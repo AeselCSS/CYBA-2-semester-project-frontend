@@ -117,8 +117,8 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 				onPageChange={(event) => setCurrentPage(event.selected + 1)}
 				pageRangeDisplayed={3}
 				breakLabel='...'
-				nextLabel='Next'
-				previousLabel='Previous'
+				nextLabel='Næste'
+				previousLabel='Forrige'
 				renderOnZeroPageCount={null}
 				initialPage={0}
 				containerClassName="pagination"
