@@ -1,0 +1,21 @@
+/* Style for active NavLink */
+.nav-link-active {
+    background-color: blue;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+/* Style for default NavLink */
+.nav-link {
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+/* Hover effect */
+.nav-link:hover, .nav-link-active:hover {
+    opacity: 0.8;
+}
