@@ -9,7 +9,7 @@ export default function OrdersBox({ customerData }: { customerData: IAPISingleCu
 	const [orders, setOrders] = useState<IOrder[] | null>(null);
 	const [metaData, setMetaData] = useState<IMetaData | null>(null);
 	const [currentPage, setCurrentPage] = useState<number>(1);
-	const [pageSize] = useState<number>(2);
+	const [pageSize] = useState<number>(4);
 
 	useEffect(() => {
 		async function fetchData() {
