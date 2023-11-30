@@ -1,7 +1,7 @@
 
 
 
-export const status = {
+export const status: { [key: string]: string } = {
 		AWAITING_CUSTOMER: 'Afventer kunde',
 		PENDING: 'Afventer værksted',
 		IN_PROGRESS: 'Igangsat',
@@ -9,7 +9,7 @@ export const status = {
 };
 
 
-export const department = {
+export const department: { [key: string]: string } = {
 	ADMINISTRATION: 'Administration',
 	BODY_WORKSHOP: 'Body Workshop',
 	MECHANICAL_WORKSHOP: 'Værkstedet',
