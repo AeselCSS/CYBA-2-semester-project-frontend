@@ -8,6 +8,7 @@ import PageSize from '../PageSize/PageSize.tsx';
 import TableHeaderColumn from './TableHeaderColumn.tsx';
 import './Table.css';
 import * as dictionaries from './danishDictionary.ts';
+import Loader from '../Loader/Loader.tsx';
 
 interface Props {
 	itemType: string;
@@ -63,7 +64,7 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 
 
 	return !data ? (
-		<p>Loading...</p>
+		<Loader/>
 	) : (
 		<>
 			<Toolbar>
