@@ -3,7 +3,7 @@ const formatDateOptions = {
 	day: 'numeric' as "numeric",
 	month: 'long' as "long",
 	year: 'numeric' as "numeric",
-	timeZone: 'Denmark/Copenhagen',
+	timeZone: 'Europe/Copenhagen',
 } ;
 
 const formatDate = (date: Date) => new Intl.DateTimeFormat('da-DK', formatDateOptions).format(date);
