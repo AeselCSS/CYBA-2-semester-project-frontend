@@ -64,7 +64,7 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 
 
 	return !data ? (
-		<Loader/>
+		<Loader />
 	) : (
 		<>
 			<Toolbar>
@@ -77,6 +77,7 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 						itemType={itemType}
 					/>
 				)}
+				<PageSize setPageSize={setPageSize} pageSize={pageSize} />
 			</Toolbar>
 
 			{!data.length ? (
@@ -105,23 +106,25 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 				</table>
 			)}
 
-			<ReactPaginate
-				pageCount={calculatePageCount()}
-				onPageChange={(event) => setCurrentPage(event.selected + 1)}
-				pageRangeDisplayed={3}
-				breakLabel='...'
-				nextLabel='Næste'
-				previousLabel='Forrige'
-				renderOnZeroPageCount={null}
-				initialPage={0}
-				containerClassName='pagination'
-				pageLinkClassName='page-num'
-				previousLinkClassName='page-num'
-				nextLinkClassName='page-num'
-				activeLinkClassName='active'
-			/>
+			<div>
+				<ReactPaginate
+					pageCount={calculatePageCount()}
+					onPageChange={(event) => setCurrentPage(event.selected + 1)}
+					pageRangeDisplayed={3}
+					breakLabel='...'
+					nextLabel='Næste'
+					previousLabel='Forrige'
+					renderOnZeroPageCount={null}
+					initialPage={0}
+					containerClassName='pagination'
+					pageLinkClassName='page-num'
+					previousLinkClassName='page-num'
+					nextLinkClassName='page-num'
+					activeLinkClassName='active'
+				/>
 
-			{data.length ? <PageSize setPageSize={setPageSize} pageSize={pageSize} /> : null}
+			</div>
+
 		</>
 	);
 }

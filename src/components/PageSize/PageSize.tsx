@@ -1,4 +1,5 @@
 import React from 'react';
+import "./PageSize.css"
 
 interface Props {
 	pageSize: number;
@@ -12,12 +13,15 @@ export default function PageSize({ pageSize, setPageSize }: Props) {
 	};
 
 	return (
-		<select value={pageSize} onChange={handleChange} name='size' id='size'>
-			<option value='5'>5</option>
-			<option value='10'>10</option>
-			<option value='20'>20</option>
-			<option value='30'>30</option>
-			<option value='50'>50</option>
-		</select>
+		<>
+			<label htmlFor='size'>Antal pr. side</label>
+			<select value={pageSize} onChange={handleChange} name='size' id='size'>
+				<option value='5'>5</option>
+				<option value='10'>10</option>
+				<option value='20'>20</option>
+				<option value='30'>30</option>
+				<option value='50'>50</option>
+			</select>
+		</>
 	);
 }
