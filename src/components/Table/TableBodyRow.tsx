@@ -1,13 +1,14 @@
 import formatDate from '../Toolbar/dateFormat.ts';
 
-interface Props {
-	item: any;
+interface Props<T> {
+	item: T;
 	skipIndexes: number[];
+
 }
 
-export default function TableBodyRow({ item, skipIndexes }: Props) {
+export default function TableBodyRow<T extends object>({ item, skipIndexes }: Props<T>) {
 
-	if (item.id === 'DELETED' || item.customerId === 'DELETED') {
+	if ('id' in item && item.id === "DELETED" || 'vinNumber' in item && item.vinNumber === "DELETED") {
 		return null;
 	}
 
@@ -25,9 +26,15 @@ export default function TableBodyRow({ item, skipIndexes }: Props) {
 					renderedValue = formatDate(date);
 				}
 
-				return <td style={{ paddingLeft: '30px' }} key={item.id + i}>{renderedValue}</td>;
+				return <td style={{ paddingLeft: '30px' }} key={(item.id as number) + i}>{renderedValue}</td>;
 			})}
 		</tr>
 	);
+
+
+
 }
 
+/*
+return <td style={{ paddingLeft: '30px' }} key={(item.id as number) + i}>{renderedValue}</td>;
+*/

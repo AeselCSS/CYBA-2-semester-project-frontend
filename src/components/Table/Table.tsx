@@ -56,7 +56,7 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 	};
 
 	if (data && data.length) {
-		Object.keys(data[0]).forEach((key, i) => {
+		Object.keys(data[0]).forEach((key: string, i: number) => {
 			skipValues.includes(key) && skipIndexes.push(i);
 		});
 	}
@@ -84,15 +84,15 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 				<table>
 					<thead>
 					<tr>
-						{Object.keys(data[0]).map((key, i) => (
+						{Object.keys(data[0]).map((key: string, i: number) => (
 							skipIndexes.includes(i) ? null :
 								<TableHeaderColumn key={key} title={key} handleSort={handleSort} itemType={itemType as keyof typeof dictionaries} />
 						))}
 					</tr>
 					</thead>
 					<tbody>
-					{data.map((item, index) =>
-						<TableBodyRow key={index} item={item} skipIndexes={skipIndexes} />,
+					{data.map((item: T, index: number) =>
+						<TableBodyRow<typeof item> key={index} item={item} skipIndexes={skipIndexes} />,
 					)}
 					</tbody>
 				</table>

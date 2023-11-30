@@ -1,9 +1,4 @@
 
-interface FilterDictionary {
-	order: Record<string, string>;
-	employee: Record<string, string>;
-}
-
 
 export const filterDictionary:{ [key: string]: object }  = {
 	order: {
