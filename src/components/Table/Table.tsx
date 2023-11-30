@@ -7,6 +7,7 @@ import ReactPaginate from 'react-paginate';
 import PageSize from '../PageSize/PageSize.tsx';
 import TableHeaderColumn from './TableHeaderColumn.tsx';
 import "./Table.css"
+import * as dictionaries from './danishDictionary.ts';
 
 interface Props {
 	itemType: string;
@@ -14,21 +15,6 @@ interface Props {
 	defaultSortBy: string;
 	skipValues: string[];
 }
-
-const filterDictionary: Record<Props['itemType'], object> = {
-	order: {
-		AWAITING_CUSTOMER: 'Afventer kunde',
-		PENDING: 'Afventer værksted',
-		IN_PROGRESS: 'Igangsat',
-		COMPLETED: "Fuldført"
-	},
-	employee: {
-		ADMINISTRATION: "Administration",
-		BODY_WORKSHOP: "Body Workshop",
-		MECHANICAL_WORKSHOP: "Værkstedet",
-		PAINT_SHOP: "Paint Shop"
-	},
-};
 
 export default function Table<T extends object>({ itemType, defaultSortBy, skipValues, isFilterable = true }: Props) {
 	const [data, setData] = useState<T[] | null>(null);
@@ -87,7 +73,7 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 						filterValue={filterByValue}
 						setFilterValue={setFilterByValue}
 						setCurrentPage={setCurrentPage}
-						filterByOpts={filterDictionary[itemType]}
+						itemType={itemType}
 					/>
 				)}
 			</Toolbar>
@@ -100,7 +86,7 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 					<tr>
 						{Object.keys(data[0]).map((key, i) => (
 							skipIndexes.includes(i) ? null :
-								<TableHeaderColumn key={key} title={key} handleSort={handleSort} itemType={itemType} />
+								<TableHeaderColumn key={key} title={key} handleSort={handleSort} itemType={itemType as keyof typeof dictionaries} />
 						))}
 					</tr>
 					</thead>
