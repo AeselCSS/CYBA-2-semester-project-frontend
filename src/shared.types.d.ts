@@ -85,9 +85,9 @@ type IMetaData = {
 }
 
 type APIResponse<T> = {
-    data: T[],
-    metaData: IMetaData
-
+	data: T[],
+	metaData: IMetaData
+}
 
 interface ICurrentOrder {
 	id: number;

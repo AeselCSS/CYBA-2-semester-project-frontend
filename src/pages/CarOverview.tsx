@@ -27,7 +27,7 @@ export default function OrderOverview({employee}: Props) {
 		<PageLayout>
 			<h2>Køretøjer</h2>
 			<EmployeeNavigation currentPath={location.pathname} />
-			<Table<ICar> itemType="car" defaultSortBy="id" isFilterable={false} skipValues={skipValues}/>
+			<Table<ICar> itemType="car" defaultSortBy="registrationNumber" isFilterable={false} skipValues={skipValues}/>
 		</PageLayout>
 	);
 }

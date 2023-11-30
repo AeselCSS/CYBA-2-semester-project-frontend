@@ -8,7 +8,7 @@ import { useState } from 'react';
 import Redirect from './pages/Redirect';
 import OrderOverview from './pages/OrderOverview.tsx';
 import CarOverview from './pages/CarOverview.tsx';
-import CustomerProfile from './pages/CustomerProfile';
+import CustomerProfile from './pages/CustomerProfile.tsx';
 import EmployeeOverview from './pages/EmployeeOverview.tsx';
 import CustomerOverview from './pages/CustomerOverview.tsx';
 
@@ -17,7 +17,7 @@ function App() {
 	const [user, setUser] = useState<ICustomer | IEmployee | IAuthUser | null>(null);
 
 	console.log(user);
-
+	console.log("I am in redirect");
 
 	return (
 		<Routes>

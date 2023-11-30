@@ -1,23 +1,39 @@
-interface Props {
-	item: any;
+import formatDate from '../Toolbar/dateFormat.ts';
+
+interface Props<T> {
+	item: T;
 	skipIndexes: number[];
+
 }
 
-export default function TableBodyRow({ item, skipIndexes }: Props) {
+export default function TableBodyRow<T extends object>({ item, skipIndexes }: Props<T>) {
 
-	if (item.id === "DELETED" || item.customerId === "DELETED") {
+	if ('id' in item && item.id === 'DELETED' || 'vinNumber' in item && item.vinNumber === 'DELETED') {
 		return null;
 	}
 
 	return (
-		<>
-			<tr>
-				{Object.values(item).map((value, i) => (
-					//@ts-ignore
-					skipIndexes.includes(i) ? null : <td style={{ paddingLeft: '30px' }} key={item.id + i}>{value}</td>
-				))}
-			</tr>
-		</>
+		<tr>
+			{Object.values(item).map((value, i) => {
+				if (skipIndexes.includes(i)) {
+					return null;
+				}
+
+				let renderedValue = value as string;
+
+				if (typeof value === 'string' && !isNaN(Date.parse(value))) {
+					const date = new Date(value);
+					renderedValue = formatDate(date);
+				}
+
+				return <td style={{ paddingLeft: '30px' }} key={(item as { id: number | string }).id + String(i)}>{renderedValue}</td>;
+			})}
+		</tr>
 	);
+
+
 }
 
+/*
+ return <td style={{ paddingLeft: '30px' }} key={(item.id as number) + i}>{renderedValue}</td>;
+ */

@@ -12,7 +12,7 @@ interface props {
 
 export default function CustomerProfile({ customer }: props) {
 	const [customerData, setCustomerData] = useState<IAPISingleCustomer | null>(null);
-
+	console.log("I am in CustomerProfile");
 	useEffect(() => {
 		async function getCustomer() {
 			//TODO Tilføj ENV fil til fetch kaldet

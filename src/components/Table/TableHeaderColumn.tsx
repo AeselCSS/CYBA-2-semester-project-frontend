@@ -1,83 +1,28 @@
 import React from 'react';
-
-
-//TODO Burde smides i en seperat mappe. Kommer 100p til at genbruges senere
-const order: { [key: string]: string } = {
-	id: 'Order Nr.',
-	status: 'Status',
-	orderStartDate: 'Start Dato',
-	registrationNumber: 'Registrerings Nr.',
-	vinNumber: 'STEL-Nr.',
-	createdAt: 'Oprettelsesdato',
-	updatedAt: 'Sidst Opdateret',
-};
-
-const customer: { [key: string]: string } = {
-	firstName: 'Fornavn',
-	lastName: 'Efternavn',
-	address: 'Adresse',
-	city: 'By',
-	zip: 'Post Nr.',
-	phone: 'Tlf. Nr.',
-	email: 'E-mail',
-	createdAt: 'Oprettelsesdato',
-	updatedAt: 'Sidst Opdateret',
-};
-
-const car: { [key: string]: string } = {
-	registrationNumber: 'Registrerings Nr.',
-	vinNumber: 'STEL-Nr.',
-	brand: 'Mærke',
-	model: 'Model',
-	modelVariant: 'Variant',
-	createdAt: 'Oprettelsesdato',
-	updatedAt: 'Sidst Opdateret',
-};
-
-const employee: { [key: string]: string } = {
-	role: 'Stilling',
-	department: 'Afdeling',
-	firstName: 'Fornavn',
-	lastName: 'Efternavn',
-	createdAt: 'Oprettelsesdato',
-	updatedAt: 'Sidst Opdateret',
-};
-//TODO slut.
+import * as dictionaries from './danishDictionary.ts';
+import { GoSortAsc } from 'react-icons/go';
+import { GoSortDesc } from 'react-icons/go';
+import './Table.css';
 
 interface Props {
 	title: string;
 	handleSort: (e: React.MouseEvent<HTMLElement>) => void;
-	/*itemType: { [key: string]: any };*/
-	itemType: string;
+	itemType: keyof typeof dictionaries;
+	sortByValue: string,
+	sortDirValue: string
 }
 
-export default function TableHeaderColumn({ title, handleSort, itemType }: Props) {
+export default function TableHeaderColumn({ title, handleSort, itemType, sortByValue, sortDirValue }: Props) {
+	const selectedDictionary = dictionaries[itemType] as Record<string, string>;
 
-	if (itemType === 'order') {
-		return (
-			<th id={title} onClick={handleSort}>
-				{order[title]}
-			</th>
-		);
-	} else if (itemType === 'customer') {
-		return (
-			<th id={title} onClick={handleSort}>
-				{customer[title]}
-			</th>
-		);
-	} else if (itemType === 'car') {
-		return (
-			<th id={title} onClick={handleSort}>
-				{car[title]}
-			</th>
-		);
-	} else if (itemType === 'employee') {
-		return (
-			<th id={title} onClick={handleSort}>
-				{employee[title]}
-			</th>
-		);
-	}
-
-	return null;
+	return (
+		<th>
+			<span className="pointer" onClick={handleSort} id={title}>{selectedDictionary[title]}</span>
+			{title === sortByValue && (
+				<span className='disable-click sort-icon'>{sortDirValue === 'asc' ? <GoSortAsc /> : <GoSortDesc />}</span>
+			)}
+		</th>
+	);
 }
+
+
