@@ -2,7 +2,7 @@ import React from 'react';
 
 
 //TODO Burde smides i en seperat mappe. Kommer 100p til at genbruges senere
-const order: { [key: string]: any } = {
+const order: { [key: string]: string } = {
 	id: 'Order Nr.',
 	status: 'Status',
 	orderStartDate: 'Start Dato',
@@ -12,7 +12,7 @@ const order: { [key: string]: any } = {
 	updatedAt: 'Sidst Opdateret',
 };
 
-const customer: { [key: string]: any } = {
+const customer: { [key: string]: string } = {
 	firstName: 'Fornavn',
 	lastName: 'Efternavn',
 	address: 'Adresse',
@@ -21,26 +21,26 @@ const customer: { [key: string]: any } = {
 	phone: 'Tlf. Nr.',
 	email: 'E-mail',
 	createdAt: 'Oprettelsesdato',
-	updatedAt: 'Sidst Opdateret'
+	updatedAt: 'Sidst Opdateret',
 };
 
-const car: { [key: string]: any } = {
+const car: { [key: string]: string } = {
 	registrationNumber: 'Registrerings Nr.',
 	vinNumber: 'STEL-Nr.',
 	brand: 'Mærke',
 	model: 'Model',
 	modelVariant: 'Variant',
 	createdAt: 'Oprettelsesdato',
-	updatedAt: 'Sidst Opdateret'
+	updatedAt: 'Sidst Opdateret',
 };
 
-const employee: { [key: string]: any } = {
+const employee: { [key: string]: string } = {
 	role: 'Stilling',
 	department: 'Afdeling',
 	firstName: 'Fornavn',
 	lastName: 'Efternavn',
 	createdAt: 'Oprettelsesdato',
-	updatedAt: 'Sidst Opdateret'
+	updatedAt: 'Sidst Opdateret',
 };
 //TODO slut.
 

@@ -58,7 +58,7 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 		}
 
 		fetchData();
-	}, [searchValue, sortByValue, sortDirValue, filterByValue, currentPage, pageSize]);
+	}, [searchValue, sortByValue, sortDirValue, filterByValue, currentPage, pageSize, itemType]);
 
 	const handleSort = (e: React.MouseEvent<HTMLElement>) => {
 		setSortByValue((e.target as HTMLElement).id);
