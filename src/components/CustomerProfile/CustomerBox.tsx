@@ -4,11 +4,10 @@ import DetailBox from './DetailBox';
 export default function CustomerBox({ customerData }: { customerData: IAPISingleCustomer }) {
 	console.log(customerData);
 
-	const fullName = `${customerData.customer.firstName} ${customerData.customer.lastName}`;
 
 	return (
-		<div className='profile-box'>
-			<BoxHeader title={fullName} btnName='Rediger profil' />
+		<div className='profile-box box'>
+			<BoxHeader title={'Profil'} btnName='Rediger profil' />
 
 			<section className='customer-box-grid'>
 				<DetailBox title={'Fornavn'} value={customerData.customer.firstName} />

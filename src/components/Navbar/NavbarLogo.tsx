@@ -1,5 +1,5 @@
 export default function NavbarLogo() {
 	return (
-		<h1>CYBA Auto Værksted</h1>
+		<img src="header-icon.png" alt="" />
 	);
 }

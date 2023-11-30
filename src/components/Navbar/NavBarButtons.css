@@ -1,0 +1,18 @@
+.nav-bar-buttons {
+	display: flex;
+	align-items: center;
+	gap: var(--spacing-base);
+}
+
+.nav-bar-buttons button {
+	background-color: var(--orange); /* Orange button color */
+	color: var(--white);
+	border: none;
+	padding: var(--spacing-small) var(--spacing-base);
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.nav-bar-buttons button:hover {
+	background-color: var(--orange); /* Darker shade of orange for hover */
+}

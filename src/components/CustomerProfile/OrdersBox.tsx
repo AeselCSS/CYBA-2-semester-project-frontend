@@ -3,7 +3,7 @@ import OrdersBoxDetail from './OrderBoxDetail';
 
 export default function OrdersBox({ customerData }: { customerData: IAPISingleCustomer }) {
 	return (
-		<div className='orders-box'>
+		<div className='orders-box box'>
 			<BoxHeader title='Ordrer' btnName='Tilføj ordre' />
 
 			<section className='orders-box-grid'>

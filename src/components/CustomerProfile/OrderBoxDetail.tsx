@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Loader from '../Loader';
+import Loader from '../Loader/Loader';
 
 interface OrdersBoxDetailProps {
 	customerData: IAPISingleCustomer;
@@ -26,25 +26,33 @@ export default function OrdersBoxDetail({ customerData, order }: OrdersBoxDetail
 		<article className='order-box-details'>
 			{currentOrder ? (
 				<>
-					{/* <div>Billede</div> */}
 					<div className='image-container'>
-						<img src='car-icon.png' alt='' />
+						<img src='order-icon.png' alt='' />
 					</div>
-					<div>
-						<p>
-							<em>Ordre:</em> {order.id}
+					<section className='order-text-wrapper'>
+						<div>Ordre:</div>
+						<h3>{order.id}</h3>
+						<div>Reg.nr:</div>
+						<h3>{car.registrationNumber}</h3>
+						<div>Pris:</div>
+						<h3>{currentOrder.totalTime}</h3>
+						<div>Status:</div>
+						<h3>{currentOrder.status}</h3>
+
+						{/* <p>
+							<em>Ordre:</em> <span>{order.id}</span>
 						</p>
 						<p>
-							<em>Reg.nr:</em> {car.registrationNumber}
+							<em>Reg.nr:</em> <span>{car.registrationNumber}</span>
 						</p>
 						<p>
-							<em>Pris:</em> {currentOrder.totalTime}
+							<em>Pris:</em> <span>{currentOrder.totalTime}</span>
 						</p>
 						<p>
-							<em>Status:</em> {currentOrder.status}
+							<em>Status:</em> <span>{currentOrder.status}</span>
 						</p>
-						<button>Aflever bil</button>
-					</div>
+						<button>Aflever bil</button> */}
+					</section>
 				</>
 			) : (
 				<Loader />
