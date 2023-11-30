@@ -1,4 +1,4 @@
-import formatDate from '../Toolbar/dateFormat.ts';
+import formatDate from '../../dateFormat.ts';
 
 interface Props<T> {
 	item: T;

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Loader from '../Loader/Loader';
+import {status } from '../../danishDictionary.ts';
 
 interface OrdersBoxDetailProps {
 	customerData: IAPISingleCustomer;
@@ -32,12 +33,12 @@ export default function OrdersBoxDetail({ customerData, order }: OrdersBoxDetail
 					<section className='order-text-wrapper'>
 						<div>Ordre:</div>
 						<h3>{order.id}</h3>
-						<div>Reg.nr:</div>
+						<div>Reg. nr:</div>
 						<h3>{car.registrationNumber}</h3>
 						<div>Pris:</div>
 						<h3>{currentOrder.totalTime}</h3>
 						<div>Status:</div>
-						<h3>{currentOrder.status}</h3>
+						<h3>{status[currentOrder.status]}</h3>
 
 						{/* <p>
 							<em>Ordre:</em> <span>{order.id}</span>

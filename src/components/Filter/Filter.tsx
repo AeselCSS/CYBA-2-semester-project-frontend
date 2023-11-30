@@ -1,5 +1,5 @@
 import React from "react";
-import { filterDictionary } from '../Table/danishDictionary.ts';
+import { filterDictionary } from '../../danishDictionary.ts';
 
 interface Props {
     filterValue: string,
