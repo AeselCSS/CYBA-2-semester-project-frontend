@@ -26,7 +26,7 @@ export default function TableBodyRow<T extends object>({ item, skipIndexes }: Pr
 					renderedValue = formatDate(date);
 				}
 
-				return <td style={{ paddingLeft: '30px' }} key={(item as { id: number | string }).id + String(i)}>{renderedValue}</td>;
+				return <td key={(item as { id: number | string }).id + String(i)}>{renderedValue}</td>;
 			})}
 		</tr>
 	);

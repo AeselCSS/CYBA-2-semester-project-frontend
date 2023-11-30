@@ -17,9 +17,13 @@ export default function CustomerOverview({employee}: props) {
 
 	return (
 		<PageLayout>
-			<h2>Kunder</h2>
-			<EmployeeNavigation currentPath={location.pathname} />
-			<Table<ICustomer> itemType="customer" defaultSortBy="firstName" isFilterable={false} skipValues={skipValues}/>
+			<div className='employee-view-wrapper'>
+				<div className='employee-view'>
+					<h1>Kunder</h1>
+					<EmployeeNavigation />
+					<Table<ICustomer> itemType='customer' defaultSortBy='firstName' isFilterable={false} skipValues={skipValues} />
+				</div>
+			</div>
 		</PageLayout>
-	)
+	);
 }

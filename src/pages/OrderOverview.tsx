@@ -1,5 +1,5 @@
 import PageLayout from './PageLayout';
-import Table from "../components/Table/Table.tsx";
+import Table from '../components/Table/Table.tsx';
 import EmployeeNavigation from '../components/EmployeeNavigation/EmployeeNavigation.tsx';
 
 interface props {
@@ -9,15 +9,17 @@ interface props {
 export default function OrderOverview({ employee }: props) {
 	console.log(employee);
 
-	const skipValues = [
-		"customerId"
-	]
+	const skipValues = ['customerId'];
 
 	return (
 		<PageLayout>
-			<h2>Ordre</h2>
-			<EmployeeNavigation currentPath={location.pathname} />
-			<Table<IAPIOrder> itemType="order" defaultSortBy="id" skipValues={skipValues} />
+			<div className='employee-view-wrapper'>
+				<div className='employee-view'>
+					<h1>Ordre</h1>
+					<EmployeeNavigation />
+					<Table<IAPIOrder> itemType='order' defaultSortBy='id' skipValues={skipValues} />
+				</div>
+			</div>
 		</PageLayout>
 	);
 }

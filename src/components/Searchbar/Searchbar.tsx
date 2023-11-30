@@ -12,7 +12,7 @@ export default function Searchbar({searchValue, setSearchValue, setCurrentPage }
 	return (
 		<>
 			<label htmlFor='searchbar'><CiSearch/></label>
-			<input id="searchbar" type='text' value={searchValue} onChange={(event) => {
+			<input id="searchbar" type='text' placeholder="Søg..." value={searchValue} onChange={(event) => {
 				setCurrentPage(1);
 				setSearchValue(event.target.value)
 			} } ></input>

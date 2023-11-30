@@ -10,7 +10,7 @@ interface Props  {
 export default function Toolbar({children}: Props) {
 
     return(
-        <div>
+        <div className="toolbar">
             {children}
         </div>
     )

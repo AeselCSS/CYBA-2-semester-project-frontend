@@ -1,0 +1,99 @@
+.employee-view-wrapper {
+	display: flex;
+	justify-content: center;
+}
+
+.employee-view {
+	width: 90%;
+}
+
+/* Employee nav links */
+.employee-nav-links-wrapper {
+	font-size: var(--font-size-large);
+	display: flex;
+	width: 300px;
+	gap: 1rem;
+	margin-top: var(--spacing-base);
+	margin-bottom: var(--spacing-base);
+}
+
+.employee-nav-links-wrapper .active {
+	color: var(--orange);
+}
+
+.nav-link {
+	color: var(--lightGrey);
+	text-decoration: none;
+}
+
+.nav-link:hover {
+	opacity: 0.8;
+}
+
+/* Toolbar */
+.employee-view .toolbar {
+	display: flex;
+	gap: var(--spacing-small);
+	margin-bottom: var(--spacing-base);
+}
+
+.employee-view .toolbar label {
+	display: flex;
+	align-items: center;
+}
+
+.employee-view .toolbar input {
+	height: 2rem;
+	width: 15rem;
+	padding-left: var(--spacing-small);
+	outline: 1px solid var(--charcoalGrey);
+	border-radius: var(--border-radius);
+	box-shadow: 0 0 0 var(--black);
+	transition: 0.2s ease-in-out;
+}
+
+.employee-view .toolbar input:focus {
+	outline: 1px solid var(--orange);
+	box-shadow: 5px 5px 5px var(--black);
+}
+
+.employee-view .toolbar select {
+	height: 2rem;
+	width: 8rem;
+}
+
+/* Table */
+.employee-view table {
+	width: 100%;
+	background-color: var(--black);
+	border-radius: 20px;
+	overflow: hidden;
+	border: 1px solid var(--lightGrey);
+	border-collapse: separate;
+	border-spacing: 0;
+}
+
+.employee-view thead {
+	background-color: var(--orange);
+	color: var(--black);
+	font-weight: var(--font-weight-bold);
+	font-size: var(--font-size-large);
+}
+.employee-view th {
+	text-align: center;
+}
+
+.employee-view td {
+	padding: 0.2rem 0.2rem 0.2rem 0.7rem;
+	text-align: left;
+	border-right: 1px solid var(--charcoalGrey);
+	min-width: 120px;
+}
+
+/* For CSSing, delete when done! */
+.employee-view table,
+th,
+tr,
+td {
+	/* outline: 1px solid red; */
+}
