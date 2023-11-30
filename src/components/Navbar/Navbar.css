@@ -1,0 +1,49 @@
+/* Navbar.css */
+
+nav {
+	background-color: var(--black);
+	color: var(--white);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: var(--spacing-small) var(--spacing-base);
+	border-bottom: 1px solid var(--orange);
+    text-transform: capitalize;
+    font-family: var(--font-family);
+	font-weight: var(--font-weight-bold);
+	font-size: var(--font-size-large);
+}
+
+nav .active {
+	color: var(--orange);
+}
+
+nav a {
+	color: var(--white);
+	text-decoration: none;
+	margin: 0 1em;
+	transition: color 0.3s ease;
+}
+
+nav a:hover {
+	color: var(--orange);
+}
+
+nav img {
+	width: 80px;
+}
+
+.nav-links-wrapper {
+	display: flex;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+	nav {
+		flex-direction: column;
+	}
+
+	.NavBarButtons {
+		margin-top: 1em;
+	}
+}

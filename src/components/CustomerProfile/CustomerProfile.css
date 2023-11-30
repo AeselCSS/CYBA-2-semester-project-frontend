@@ -3,38 +3,82 @@
 	grid-template-areas:
 		'profile profile car'
 		'orders orders orders';
+
+	grid-template-columns: 1fr 1fr 1fr;
+	border: dotted 1px var(--lightGrey);
+	border-radius: var(--border-radius);
+	overflow: hidden;
+	background-color: var(--black);
+	box-shadow: 5px 5px 13px var(--black);
+	color: var(--lightGrey);
+}
+
+.customer-view-grid button {
+	background-color: var(--charcoalGrey);
+	color: var(--white);
+	border: none;
+	padding: var(--spacing-small) var(--spacing-small);
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.customer-view-grid button:hover {
+	background-color: var(--orange);
+}
+
+.customer-view-grid h3 {
+	color: var(--white);
+}
+
+.box {
+	padding: var(--spacing-base);
 }
 
 .profile-box {
 	grid-area: profile;
-	background-color: red;
+	border-right: dotted 1px var(--charcoalGrey);
+	border-bottom: dotted 1px var(--charcoalGrey);
 }
 .car-box {
 	grid-area: car;
-	background-color: blue;
+	border-bottom: dotted 1px var(--charcoalGrey);
 }
 .orders-box {
 	grid-area: orders;
-	background-color: green;
 }
 
 .customer-box-grid {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
+	gap: var(--spacing-base);
 }
 
 .car-box-grid {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
+	gap: var(--spacing-base);
 }
 .orders-box-grid {
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	gap: var(--spacing-base);
+}
+
+.order-text-wrapper {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	/* width: 80px; */
 }
 
 .order-box-details {
 	display: grid;
 	grid-template-columns: 1fr 3fr;
+	gap: var(--spacing-base);
+	/* width: 100px; */
+}
+
+.order-box-details span {
+	color: var(--white);
 }
 
 .image-container {
@@ -46,6 +90,12 @@
 .image-container img {
 	width: 100px;
 	object-fit: cover;
+	transition: 0.3s ease-out;
+	cursor: pointer;
+}
+
+.image-container img:hover {
+	transform: scale(1.05) rotate(3deg);
 }
 
 .header-flex {
