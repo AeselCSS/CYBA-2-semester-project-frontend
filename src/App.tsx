@@ -14,22 +14,26 @@ import CustomerOverview from './pages/CustomerOverview.tsx';
 
 
 function App() {
-	const [customer, setCustomer] = useState<ICustomer | null>(null);
-	const [employee, setEmployee] = useState<IEmployee | null>(null);
+	const [user, setUser] = useState<ICustomer | IEmployee | IAuthUser | null>(null);
+
+	console.log(user);
 
 
 	return (
 		<Routes>
 			<Route path='/' element={<Homepage />} />
+
 			<Route path='/about' element={<About />} />
+
 			<Route path='/contact' element={<Contact />} />
-			<Route path='/profile' element={customer && <CustomerProfile customer={customer} />} />
-			<Route path='/orders' element={employee && <OrderOverview employee={employee} />} />
-			<Route path='/cars' element={employee && <CarOverview employee={employee} />} />
-			<Route path='/employees' element={employee && <EmployeeOverview employee={employee} />} />
-			<Route path='/customers' element={employee && <CustomerOverview employee={employee} />} />
-			<Route path='/createprofile' element={<CreateProfile />} />
-			<Route path='/redirect' element={<Redirect setEmployee={setEmployee} setCustomer={setCustomer} />} />
+
+			<Route path='/orders' element={user && <OrderOverview employee={user as IEmployee} />} />
+			<Route path='/cars' element={user && <CarOverview employee={user as IEmployee} />} />
+			<Route path='/employees' element={user && <EmployeeOverview employee={user as IEmployee} />} />
+			<Route path='/customers' element={user && <CustomerOverview employee={user as IEmployee} />} />
+			<Route path='/profile' element={user && <CustomerProfile customer={user as ICustomer} />} />
+			<Route path='/createprofile' element={user && <CreateProfile authUser={user as IAuthUser} />} />
+			<Route path='/redirect' element={<Redirect setUser={setUser} />} />
 			<Route path='*' element={<PageNotFound />} />
 		</Routes>
 	);

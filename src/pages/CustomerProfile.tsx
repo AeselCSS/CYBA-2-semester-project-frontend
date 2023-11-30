@@ -1,19 +1,39 @@
+import CarBox from '../components/CustomerProfile/CarBox';
+import CustomerBox from '../components/CustomerProfile/CustomerBox';
+import CustomerProfileGrid from '../components/CustomerProfile/CustomerProfileGrid';
 import PageLayout from './PageLayout';
+import { useEffect, useState } from 'react';
+import OrdersBox from '../components/CustomerProfile/OrdersBox';
+import Loader from '../components/Loader';
 
 interface props {
 	customer: ICustomer;
 }
 
 export default function CustomerProfile({ customer }: props) {
-	// const [customer, setCustomer] = useState(user.customer);
-	// const [cars, setCars] = useState(user.cars);
-	// const [orders, setOrders] = useState(user.orders);
+	const [customerData, setCustomerData] = useState<IAPISingleCustomer | null>(null);
+
+	useEffect(() => {
+		async function getCustomer() {
+			//TODO Tilføj ENV fil til fetch kaldet
+			const response = await fetch(`http://localhost:3000/customers/${customer.id}`);
+			const data = await response.json();
+			setCustomerData(data);
+		}
+		getCustomer();
+	}, [customer.id]);
 
 	return (
 		<PageLayout>
-			<h2>{customer.firstName}</h2>
-			<h2>{customer.lastName}</h2>
-			<h2>{customer.phone}</h2>
+			{customerData ? (
+				<CustomerProfileGrid>
+					{<CustomerBox customerData={customerData} />}
+					{<CarBox customerData={customerData} />}
+					{<OrdersBox customerData={customerData} />}
+				</CustomerProfileGrid>
+			) : (
+				<Loader />
+			)}
 		</PageLayout>
 	);
 }

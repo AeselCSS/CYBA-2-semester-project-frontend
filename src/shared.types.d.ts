@@ -1,4 +1,13 @@
-
+interface IAuthUser {
+	cybaRoles: string[];
+	email: string;
+	email_verified: boolean;
+	name: string;
+	nickname: string;
+	picture: string;
+	sub: string;
+	updated_at: string;
+}
 
 interface ICustomer {
     id: string,
@@ -21,7 +30,7 @@ interface IAPISingleCustomer {
 }
 
 interface IAPISingleEmployee {
-    employee: IEmployee
+	employee: IEmployee;
 }
 
 interface IAPIOrder extends IOrder {
@@ -78,26 +87,67 @@ type IMetaData = {
 type APIResponse<T> = {
     data: T[],
     metaData: IMetaData
+
+
+interface ICurrentOrder {
+	id: number;
+	status: string;
+	totalTime: number;
+	orderStartDate: Date;
+	createdAt?: Date;
+	updatedAt?: Date;
+	car: {
+		id: number;
+		registrationNumber: string;
+		vinNumber: string;
+		brand: string;
+		model: string;
+		modelVariant: string;
+		mileage: number;
+	};
+	customer: {
+		id: string;
+		firstName: string;
+		lastName: string;
+		email: string;
+		phone: number;
+	};
+	tasks: {
+		id: number;
+		name: string;
+		description: string;
+		status: string;
+		updatedAt: Date;
+		totalTime: number;
+		employee: null | number;
+		subtasks: {
+			id: number;
+			name: string;
+			description: string;
+			time: number;
+			status: string;
+			updatedAt: Date;
+		}[];
+	}[];
 }
 
-
 enum Status {
-    AWAITING_CUSTOMER,
-    PENDING,
-    IN_PROGRESS,
-    COMPLETED,
-    CANCELED
+	AWAITING_CUSTOMER,
+	PENDING,
+	IN_PROGRESS,
+	COMPLETED,
+	CANCELED,
 }
 
 enum Department {
-    MECHANICAL_WORKSHOP,
-    BODY_WORKSHOP,
-    PAINT_SHOP,
-    ADMINISTRATION
+	MECHANICAL_WORKSHOP,
+	BODY_WORKSHOP,
+	PAINT_SHOP,
+	ADMINISTRATION,
 }
 
 enum Role {
-    CUSTOMER,
-    EMPLOYEE,
-    ADMIN
+	CUSTOMER,
+	EMPLOYEE,
+	ADMIN,
 }
