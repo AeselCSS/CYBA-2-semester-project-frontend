@@ -22,8 +22,8 @@ export default function Filter({filterValue, setFilterValue, itemType, setCurren
             <select name="filter" id="filter" value={filterValue} onChange={handleChange}>
                 <option value="">Ingen</option>
                 {Object.keys(filterDictionary[itemType]).map((key) => (
-                    //@ts-ignore
-                    <option key={key} value={key}>{filterDictionary[itemType][key]}</option>
+
+                    <option key={key} value={key}>{(filterDictionary[itemType] as Record<string, string>)[key]}</option>
                 ))}
             </select>
         </>

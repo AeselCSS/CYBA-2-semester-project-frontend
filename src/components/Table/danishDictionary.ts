@@ -1,5 +1,11 @@
 
-export const filterDictionary: Record<string, object> = {
+interface FilterDictionary {
+	order: Record<string, string>;
+	employee: Record<string, string>;
+}
+
+
+export const filterDictionary:{ [key: string]: object }  = {
 	order: {
 		AWAITING_CUSTOMER: 'Afventer kunde',
 		PENDING: 'Afventer værksted',
