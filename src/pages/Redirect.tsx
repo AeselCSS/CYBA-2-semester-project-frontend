@@ -57,7 +57,7 @@ export default function Redirect({ setUser }: IRedirectProps) {
 						navigate('/orders');
 					} else {
 						setUser(data.customer as ICustomer);
-
+						console.log("REDIRECTING TO PROFILE");
 						navigate('/profile');
 					}
 
