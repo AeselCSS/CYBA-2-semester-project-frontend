@@ -3,7 +3,7 @@ import OrdersBoxDetail from './OrderBoxDetail';
 import ReactPaginate from 'react-paginate';
 import { useEffect, useState } from 'react';
 import './OrdersBox.css';
-import Loader from '../Loader.tsx';
+import Loader from '../Loader/Loader.tsx';
 
 export default function OrdersBox({ customerData }: { customerData: IAPISingleCustomer }) {
 	const [orders, setOrders] = useState<IOrder[] | null>(null);
@@ -35,15 +35,14 @@ export default function OrdersBox({ customerData }: { customerData: IAPISingleCu
 		return Math.ceil(metaData!.totalCount / pageSize);
 	};
 
-
 	return !orders ? (
-			<p>Loading...</p>
+			<Loader/>
 		) :
 		!orders.length ? (
 			<Loader />
 		) : (
 			<div className='orders-box box'>
-				<BoxHeader title='Ordrer' btnName='Tilføj ordre' />
+				<BoxHeader title='Ordre' btnName='Tilføj ordre' />
 
 				<section className='orders-box-grid'>
 					{orders.map((order) => (
