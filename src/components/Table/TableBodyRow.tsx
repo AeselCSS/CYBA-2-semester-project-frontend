@@ -8,7 +8,7 @@ interface Props<T> {
 
 export default function TableBodyRow<T extends object>({ item, skipIndexes }: Props<T>) {
 
-	if ('id' in item && item.id === "DELETED" || 'vinNumber' in item && item.vinNumber === "DELETED") {
+	if ('id' in item && item.id === 'DELETED' || 'vinNumber' in item && item.vinNumber === 'DELETED') {
 		return null;
 	}
 
@@ -26,15 +26,14 @@ export default function TableBodyRow<T extends object>({ item, skipIndexes }: Pr
 					renderedValue = formatDate(date);
 				}
 
-				return <td style={{ paddingLeft: '30px' }} key={(item.id as number) + i}>{renderedValue}</td>;
+				return <td style={{ paddingLeft: '30px' }} key={(item as { id: number | string }).id + String(i)}>{renderedValue}</td>;
 			})}
 		</tr>
 	);
 
 
-
 }
 
 /*
-return <td style={{ paddingLeft: '30px' }} key={(item.id as number) + i}>{renderedValue}</td>;
-*/
+ return <td style={{ paddingLeft: '30px' }} key={(item.id as number) + i}>{renderedValue}</td>;
+ */

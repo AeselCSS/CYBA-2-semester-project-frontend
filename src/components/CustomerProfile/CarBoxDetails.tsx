@@ -1,4 +1,3 @@
-import React from 'react';
 import DetailBox from './DetailBox';
 
 export default function CarBoxDetails({ car }: { car: ICar }) {
