@@ -31,7 +31,7 @@ export default function OrdersBoxDetail({ customerData, order }: OrdersBoxDetail
 						<img src='order-icon.png' alt='' />
 					</div>
 					<section className='order-text-wrapper'>
-						<div>Ordre:</div>
+						<div>Ordre nr:</div>
 						<h3>{order.id}</h3>
 						<div>Reg. nr:</div>
 						<h3>{car.registrationNumber}</h3>
