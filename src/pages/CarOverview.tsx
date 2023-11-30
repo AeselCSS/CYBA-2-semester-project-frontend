@@ -1,6 +1,5 @@
 import PageLayout from './PageLayout';
 import Table from "../components/Table/Table.tsx";
-import EmployeeNavigation from '../components/EmployeeNavigation/EmployeeNavigation.tsx';
 
 interface Props {
 	employee: IEmployee;
@@ -25,8 +24,8 @@ export default function OrderOverview({employee}: Props) {
 		<PageLayout>
 			<div className='employee-view-wrapper'>
 				<div className='employee-view'>
-					<h1>Køretøjer</h1>
-					<EmployeeNavigation />
+					<h1 style={{textAlign: "center"}}>Køretøjer</h1>
+					{/*<EmployeeNavigation />*/}
 					<Table<ICar> itemType='car' defaultSortBy='registrationNumber' isFilterable={false} skipValues={skipValues} />
 				</div>
 			</div>
