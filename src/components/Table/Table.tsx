@@ -81,7 +81,7 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 			</Toolbar>
 
 			{!data.length ? (
-				<h2>No data found</h2>
+				<h2>Ingen data fundet</h2>
 			) : (
 				<table>
 					<thead>
