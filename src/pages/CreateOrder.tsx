@@ -30,7 +30,8 @@ async function createOrder(newOrder: newOrder) {
 export default function CreateOrder({ customer }: Props) {
 	const [tasks, setTasks] = useState<null | IAPITask[]>(null);
 	const [cars, setCars] = useState<null | ICar[]>(null);
-	const [selectedCarId, setSelectedCarId] = useState("")
+	const [selectedCarId, setSelectedCarId] = useState("");
+	const [selectedTasks, setSelectedTasks] = useState<{id: number}[] | []>([])
 	const navigate = useNavigate();
 	console.log(customer);
 	console.log(cars);
@@ -116,7 +117,7 @@ export default function CreateOrder({ customer }: Props) {
 						<div className='form-container'>
 							<section className='create-order-container'>
 								{tasks.map((task) => (
-									<TaskCheckbox key={task.id} task={task} />
+									<TaskCheckbox key={task.id} task={task} setSelectedTasks={setSelectedTasks} selectedTasks={selectedTasks} />
 								))}
 							</section>
 							<select name='cars' id='cars' onChange={(e) => setSelectedCarId(e.target.value)}>
@@ -125,7 +126,7 @@ export default function CreateOrder({ customer }: Props) {
 									<option value={String(car.id)} key={car.id}>{car.brand} : Reg. nr. {car.registrationNumber}</option>
 								))}
 							</select>
-							<input type='submit' value='Submit' disabled={!selectedCarId}></input>
+							<input type='submit' value='Submit' disabled={!selectedCarId || !selectedTasks}></input>
 						</div>
 
 					</form>
