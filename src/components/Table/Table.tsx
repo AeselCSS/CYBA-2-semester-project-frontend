@@ -7,7 +7,7 @@ import ReactPaginate from 'react-paginate';
 import PageSize from '../PageSize/PageSize.tsx';
 import TableHeaderColumn from './TableHeaderColumn.tsx';
 import './Table.css';
-import * as dictionaries from '../../danishDictionary.ts';
+import * as dictionaries from '../../utility/danishDictionary.ts';
 import Loader from '../Loader/Loader.tsx';
 
 interface Props {

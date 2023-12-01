@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Loader from '../Loader/Loader';
-import {status as danishStatus } from '../../danishDictionary.ts';
+import {status as danishStatus } from '../../utility/danishDictionary.ts';
 
 interface OrdersBoxDetailProps {
 	customerData: IAPISingleCustomer;
