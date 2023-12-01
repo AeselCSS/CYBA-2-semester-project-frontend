@@ -42,7 +42,7 @@ export default function OrdersBox({ customerData }: { customerData: IAPISingleCu
 			<Loader />
 		) : (
 			<div className='orders-box box'>
-				<BoxHeader title='Ordre' btnName='Tilføj ordre' />
+				<BoxHeader title='Ordre' btnName='Tilføj ordre' navigateTo="" />
 
 				<section className='orders-box-grid'>
 					{orders.map((order) => (

@@ -7,7 +7,7 @@ export default function CustomerBox({ customerData }: { customerData: IAPISingle
 
 	return (
 		<div className='profile-box box'>
-			<BoxHeader title={'Profil'} btnName='Rediger profil' />
+			<BoxHeader title={'Profil'} btnName='Rediger profil' navigateTo="" />
 
 			<section className='customer-box-grid'>
 				<DetailBox title={'Fornavn'} value={customerData.customer.firstName} />
