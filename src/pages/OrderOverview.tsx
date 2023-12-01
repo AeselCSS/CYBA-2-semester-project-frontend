@@ -1,7 +1,7 @@
 import PageLayout from './PageLayout';
 import Table from '../components/Table/Table.tsx';
 import "../components/EmployeeNavigation/EmployeeView.css"
-
+import "../components/Table/Table.css"
 interface props {
 	employee: IEmployee;
 }

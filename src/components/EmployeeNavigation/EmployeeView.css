@@ -90,6 +90,11 @@
 	min-width: 120px;
 }
 
+.employee-view tr:nth-child(even) {
+	background-color: #313131;
+}
+
+
 /* For CSSing, delete when done! */
 .employee-view table,
 th,

@@ -3,6 +3,8 @@ import NavbarLogo from './NavbarLogo';
 import { NavLink } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import './Navbar.css';
+import { IoIosArrowDropdown } from "react-icons/io";
+
 
 
 export default function Navbar() {
@@ -21,7 +23,11 @@ export default function Navbar() {
 						{user && user.cybaRoles[0] === 'employee' && (
 							<>
 								<li>
-									<a style={{cursor: "default"}}>Oversigt</a>
+									<a style={{cursor: "default"}}>
+										Oversigt
+									<IoIosArrowDropdown color="#e97b05" />
+									</a>
+
 									<ul className="dropdown">
 										<li><NavLink to='/employee/orders'>Ordre</NavLink></li>
 										<li><NavLink to='/employee/cars'>Køretøjer</NavLink></li>
