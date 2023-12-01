@@ -3,13 +3,18 @@ import PageLayout from './PageLayout.tsx';
 import React, { useEffect, useState } from 'react';
 import Loader from '../components/Loader/Loader.tsx';
 import TaskCheckbox from '../components/TaskCheckbox/TaskCheckbox.tsx';
+import "../components/TaskCheckbox/CreateOrder.css"
 
 interface Props {
 	customer: ICustomer;
 }
 
 interface newOrder {
-
+	orderStartDate: string,
+	carId: number,
+	customerId: string,
+	//Arrays af tasks ID'er
+	tasks: number[]
 }
 
 async function createOrder(newOrder) {
@@ -57,6 +62,15 @@ export default function CreateOrder({ customer }: Props) {
 
 		const form = e.target as HTMLFormElement;
 
+
+		const newOrder: newOrder = {
+			customerId: customer.id,
+			carId: 0,
+			orderStartDate: "0",
+			tasks: [0,0,0,0]
+		}
+
+
 	}
 
 
@@ -67,11 +81,11 @@ export default function CreateOrder({ customer }: Props) {
 			{tasks ? (
 				<>
 					<form onSubmit={handleSubmit}>
-						<ul className='myclass'>
+						<section className='create-order-container'>
 							{tasks.map((task) => (
 								<TaskCheckbox key={task.id} task={task} />
 							))}
-						</ul>
+						</section>
 						<input type='submit' value="Submit"></input>
 					</form>
 				</>

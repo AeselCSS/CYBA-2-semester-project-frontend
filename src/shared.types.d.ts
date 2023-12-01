@@ -152,10 +152,12 @@ enum Role {
 	ADMIN,
 }
 
-
-interface IAPITask {
+interface ITask {
 	id: number,
 	name: string,
 	description: string
+}
+
+interface IAPITask extends ITask{
 	time: number
 }
