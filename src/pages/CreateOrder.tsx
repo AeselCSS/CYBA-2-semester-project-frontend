@@ -32,6 +32,7 @@ export default function CreateOrder({ customer }: Props) {
 	const [cars, setCars] = useState<null | ICar[]>(null);
 	const navigate = useNavigate();
 	console.log(customer);
+	console.log(cars);
 
 	useEffect(() => {
 		async function getTasksAndCars() {
@@ -67,7 +68,6 @@ export default function CreateOrder({ customer }: Props) {
 		e.preventDefault();
 
 		const form = e.target as HTMLFormElement;
-
 
 		// Get all checked checkboxes
 		const checkedCheckboxes = form.querySelectorAll('input[type="checkbox"]:checked');
@@ -114,6 +114,11 @@ export default function CreateOrder({ customer }: Props) {
 									<TaskCheckbox key={task.id} task={task} />
 								))}
 							</section>
+							<select name='cars' id='cars'>
+								{cars ? cars.map((car) => (
+									<option value={car.id} key={car.id}>{car.brand} : Reg. nr. {car.registrationNumber}</option>
+								))}
+							</select>
 							<input type='submit' value='Submit'></input>
 						</div>
 

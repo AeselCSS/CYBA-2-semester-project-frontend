@@ -5,7 +5,6 @@ interface Props {
 }
 
 export default function TaskCheckbox({ task }: Props) {
-	console.log(task);
 	return (
 		<div title={task.description} className="checkbox-div">
 			<input type='checkbox' name={String(task.id)} id={String(task.id)} />
@@ -15,8 +14,3 @@ export default function TaskCheckbox({ task }: Props) {
 		</div>
 	);
 }
-
-
-/*
- <li><input type="checkbox" value={task.name}></input></li>
- */
