@@ -38,6 +38,7 @@ export default function CreateCar({ customer }: { customer: ICustomer }) {
 	const navigate = useNavigate();
 	const apiKey = import.meta.env.VITE_API_SYNSBASEN_TOKEN as string;
 	console.log(customer);
+	console.log(APIResult);
 
 	async function onSubmit(data: CarInputs) {
 		const newCar: INewCar = {
@@ -62,10 +63,12 @@ export default function CreateCar({ customer }: { customer: ICustomer }) {
 
 
 	const handleAPIGet = async () => {
-		const response = await fetch('https://api.synsbasen.dk/v1/vehicles/registration/', {
+		const response = await fetch(`https://cors-anywhere.herokuapp.com/https://api.synsbasen.dk/v1/vehicles/registration/${registrationNumber}`, {
 			method: 'GET',
 			headers: {
-				Authorization: `Bearer ${apiKey}`,
+				"Authorization": `Bearer ${apiKey}`,
+				"Content-Type": "application/json",
+				"crossOrigin": "true"
 			},
 		});
 
@@ -98,7 +101,7 @@ export default function CreateCar({ customer }: { customer: ICustomer }) {
 
 					<p>
 						<label htmlFor='vinNumber'>STEL NR</label>
-						<input value={APIResult?.vinNumber} disabled={true} placeholder='STEL-nr.' {...register('vinNumber', { required: true })} />
+						<input value={APIResult.vin} disabled={true} placeholder='STEL-nr.' {...register('vinNumber', { required: true })} />
 						{errors.vinNumber && <span>This field is required</span>}
 					</p>
 
@@ -115,33 +118,33 @@ export default function CreateCar({ customer }: { customer: ICustomer }) {
 
 					<p>
 						<label htmlFor='modelVariant'>Variant</label>
-						<input value={APIResult?.modelVariant} disabled={true} placeholder='Model variant' {...register('modelVariant', { required: true })} />
+						<input value={APIResult?.variant} disabled={true} placeholder='Model variant' {...register('modelVariant', { required: true })} />
 						{errors.modelVariant && <span>This field is required</span>}
 					</p>
 
 					{/*TODO DATO*/}
 					<p>
 						<label htmlFor='firstRegistration'>Først Registreret</label>
-						<input value={APIResult?.firstRegistration} disabled={true} type='date' placeholder='Først registreret' {...register('firstRegistration', { required: true })} />
+						<input value={APIResult?.first_registration_date} disabled={true} type='date' placeholder='Først registreret' {...register('firstRegistration', { required: true })} />
 						{errors.firstRegistration && <span>This field is required</span>}
 					</p>
 
 					<p>
 						<label htmlFor='lastInspectionDate'>Sidste inspektionsdato</label>
-						<input value={APIResult?.lastInspectionDate} disabled={true} type='date' placeholder='Sidste inspektionsdato' {...register('lastInspectionDate', { required: true })} />
+						<input value={APIResult?.last_inspection_date} disabled={true} type='date' placeholder='Sidste inspektionsdato' {...register('lastInspectionDate', { required: true })} />
 						{errors.lastInspectionDate && <span>This field is required</span>}
 					</p>
 
 
 					<p>
 						<label htmlFor='lastInspectionResult'>Sidste inspektionsresultat</label>
-						<input value={APIResult?.lastInspectionResult} disabled={true} placeholder='Sidste inspektionsresultat' {...register('lastInspectionResult', { required: true })} />
+						<input value={APIResult?.last_inspection_result} disabled={true} placeholder='Sidste inspektionsresultat' {...register('lastInspectionResult', { required: true })} />
 						{errors.lastInspectionResult && <span>This field is required</span>}
 					</p>
 
 					<p>
 						<label htmlFor='lastInspectionKind'>Sidste inspektionstype</label>
-						<input value={APIResult?.lastInspectionKind} disabled={true} placeholder='Sidste inspektionstype' {...register('lastInspectionKind', { required: true })} />
+						<input value={APIResult?.last_inspection_kind} disabled={true} placeholder='Sidste inspektionstype' {...register('lastInspectionKind', { required: true })} />
 						{errors.lastInspectionKind && <span>This field is required</span>}
 					</p>
 
