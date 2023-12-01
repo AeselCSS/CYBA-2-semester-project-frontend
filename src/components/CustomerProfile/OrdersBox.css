@@ -12,7 +12,7 @@
 }
 
 .pagination .active {
-    background-color: #7ffffd;
+    background-color: var(--orange);
     color: black;
 }
 
@@ -21,10 +21,11 @@
     cursor: pointer;
     border-radius: 3px;
     font-weight: 400;
+    transition: 0.2s ease-out;
 }
 
 .pagination .page-num:hover {
-    background-color: #7ffffd;
+    background-color: var(--orange);
     color: black;
 }
 

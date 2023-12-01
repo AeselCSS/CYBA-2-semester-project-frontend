@@ -1,44 +1,42 @@
-
 /*==== PAGINATION =====*/
 
 .pagination {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 5rem;
-    font-size: 1.2rem;
-    gap: 5px;
+	list-style: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 5rem;
+	font-size: 1.2rem;
+	gap: 5px;
 }
 
 .pagination .active {
-    background-color: #7ffffd;
-    color: black;
+	background-color: var(--orange);
+	color: black;
 }
 
 .pagination .page-num {
-    padding: 8px 15px;
-    cursor: pointer;
-    border-radius: 3px;
-    font-weight: 400;
+	padding: 8px 15px;
+	cursor: pointer;
+	border-radius: 3px;
+	font-weight: 400;
 }
 
 .pagination .page-num:hover {
-    background-color: #7ffffd;
-    color: black;
+	background-color: var(--orange);
+	color: black;
 }
-
 
 /* TABLEHEADERCOLUMN */
 
 .disable-click {
-    pointer-events: none;
+	pointer-events: none;
 }
 
 .pointer {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .sort-icon {
-    margin-left: 6px;
+	margin-left: 6px;
 }

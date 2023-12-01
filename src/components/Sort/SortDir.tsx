@@ -4,9 +4,7 @@ interface Props {
     setSortDirValue: (newValue: string) => void;
 }
 
-
 export default function SortDir({sortDirValue, setSortDirValue}: Props) {
-
 
     return (
         <div>

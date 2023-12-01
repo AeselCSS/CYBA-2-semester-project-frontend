@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import './EmployeeNavLink.css';
+import './EmployeeView.css';
 
 interface Props {
 	isActive?: boolean,
@@ -7,8 +7,7 @@ interface Props {
 	redirectTo: string,
 }
 
-export default function EmployeeNavLink({isActive = false, title, redirectTo}: Props) {
-	const linkClass = isActive ? 'nav-link-active' : 'nav-link';
+export default function EmployeeNavLink({title, redirectTo}: Props) {
 
-	return <NavLink className={linkClass} to={redirectTo}>{title}</NavLink>;
+	return <NavLink className='nav-link' to={redirectTo}>{title}</NavLink>;
 }

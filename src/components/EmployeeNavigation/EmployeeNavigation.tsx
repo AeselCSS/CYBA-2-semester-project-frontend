@@ -1,19 +1,14 @@
 import EmployeeNavLink from './EmployeeNavLink';
 import { navigationLinks } from './navigationData';
 
-interface Props {
-	currentPath: string;
-}
-
-export default function EmployeeNavigation({ currentPath }: Props) {
+export default function EmployeeNavigation() {
 	return (
-		<div>
+		<div className='employee-nav-links-wrapper'>
 			{navigationLinks.map(link => (
 				<EmployeeNavLink
 					key={link.title}
 					title={link.title}
 					redirectTo={link.redirectTo}
-					isActive={currentPath === link.redirectTo}
 				/>
 			))}
 		</div>

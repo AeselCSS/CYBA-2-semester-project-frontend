@@ -17,8 +17,6 @@ export const SignupButton: React.FC = () => {
 	};
 
 	return (
-		<button onClick={handleSignUp}>
-			Opret Bruger
-		</button>
+		<button onClick={handleSignUp}>Opret Bruger</button>
 	);
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import * as dictionaries from './danishDictionary.ts';
+import * as dictionaries from '../../utility/danishDictionary.ts';
 import { GoSortAsc } from 'react-icons/go';
 import { GoSortDesc } from 'react-icons/go';
 import './Table.css';

@@ -1,7 +1,7 @@
 import PageLayout from './PageLayout';
 import Table from "../components/Table/Table.tsx";
-import { useLocation } from 'react-router-dom';
-import EmployeeNavigation from '../components/EmployeeNavigation/EmployeeNavigation.tsx';
+import "../components/EmployeeNavigation/EmployeeView.css"
+import "../components/Table/Table.css"
 
 interface Props {
 	employee: IEmployee;
@@ -9,7 +9,6 @@ interface Props {
 
 export default function OrderOverview({employee}: Props) {
 	console.log(employee);
-	const location = useLocation();
 
 	const skipValues = [
 		"id",
@@ -25,9 +24,13 @@ export default function OrderOverview({employee}: Props) {
 
 	return (
 		<PageLayout>
-			<h2>Køretøjer</h2>
-			<EmployeeNavigation currentPath={location.pathname} />
-			<Table<ICar> itemType="car" defaultSortBy="registrationNumber" isFilterable={false} skipValues={skipValues}/>
+			<div className='employee-view-wrapper'>
+				<div className='employee-view'>
+					<h1 style={{textAlign: "center"}}>Køretøjer</h1>
+					{/*<EmployeeNavigation />*/}
+					<Table<ICar> itemType='car' defaultSortBy='registrationNumber' isFilterable={false} skipValues={skipValues} />
+				</div>
+			</div>
 		</PageLayout>
 	);
 }

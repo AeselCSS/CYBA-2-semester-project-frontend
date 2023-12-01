@@ -1,4 +1,4 @@
-import formatDate from '../Toolbar/dateFormat.ts';
+import formatDate from '../../utility/dateFormat.ts';
 
 interface Props<T> {
 	item: T;
@@ -25,8 +25,9 @@ export default function TableBodyRow<T extends object>({ item, skipIndexes }: Pr
 					const date = new Date(value);
 					renderedValue = formatDate(date);
 				}
+				//TODO Employee view viser departments på engelsk. Dictionary skal bruges.
 
-				return <td style={{ paddingLeft: '30px' }} key={(item as { id: number | string }).id + String(i)}>{renderedValue}</td>;
+				return <td key={(item as { id: number | string }).id + String(i)}>{renderedValue}</td>;
 			})}
 		</tr>
 	);

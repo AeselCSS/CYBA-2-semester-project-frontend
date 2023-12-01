@@ -7,7 +7,7 @@ import ReactPaginate from 'react-paginate';
 import PageSize from '../PageSize/PageSize.tsx';
 import TableHeaderColumn from './TableHeaderColumn.tsx';
 import './Table.css';
-import * as dictionaries from './danishDictionary.ts';
+import * as dictionaries from '../../utility/danishDictionary.ts';
 import Loader from '../Loader/Loader.tsx';
 
 interface Props {
@@ -64,7 +64,7 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 
 
 	return !data ? (
-		<Loader/>
+		<Loader />
 	) : (
 		<>
 			<Toolbar>
@@ -77,10 +77,11 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 						itemType={itemType}
 					/>
 				)}
+				<PageSize setPageSize={setPageSize} pageSize={pageSize} />
 			</Toolbar>
 
 			{!data.length ? (
-				<h2>No data found</h2>
+				<h2>Ingen data fundet</h2>
 			) : (
 				<table>
 					<thead>
@@ -105,23 +106,23 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 				</table>
 			)}
 
-			<ReactPaginate
-				pageCount={calculatePageCount()}
-				onPageChange={(event) => setCurrentPage(event.selected + 1)}
-				pageRangeDisplayed={3}
-				breakLabel='...'
-				nextLabel='Næste'
-				previousLabel='Forrige'
-				renderOnZeroPageCount={null}
-				initialPage={0}
-				containerClassName='pagination'
-				pageLinkClassName='page-num'
-				previousLinkClassName='page-num'
-				nextLinkClassName='page-num'
-				activeLinkClassName='active'
-			/>
-
-			{data.length ? <PageSize setPageSize={setPageSize} pageSize={pageSize} /> : null}
+			<div>
+				<ReactPaginate
+					pageCount={calculatePageCount()}
+					onPageChange={(event) => setCurrentPage(event.selected + 1)}
+					pageRangeDisplayed={3}
+					breakLabel='...'
+					nextLabel='Næste'
+					previousLabel='Forrige'
+					renderOnZeroPageCount={null}
+					initialPage={0}
+					containerClassName='pagination'
+					pageLinkClassName='page-num'
+					previousLinkClassName='page-num'
+					nextLinkClassName='page-num'
+					activeLinkClassName='active'
+				/>
+			</div>
 		</>
 	);
 }

@@ -12,12 +12,11 @@ import CustomerProfile from './pages/CustomerProfile.tsx';
 import EmployeeOverview from './pages/EmployeeOverview.tsx';
 import CustomerOverview from './pages/CustomerOverview.tsx';
 
-
 function App() {
 	const [user, setUser] = useState<ICustomer | IEmployee | IAuthUser | null>(null);
 
 	console.log(user);
-	console.log("I am in redirect");
+	console.log('I am in redirect');
 
 	return (
 		<Routes>
@@ -27,12 +26,12 @@ function App() {
 
 			<Route path='/contact' element={<Contact />} />
 
-			<Route path='/orders' element={user && <OrderOverview employee={user as IEmployee} />} />
-			<Route path='/cars' element={user && <CarOverview employee={user as IEmployee} />} />
-			<Route path='/employees' element={user && <EmployeeOverview employee={user as IEmployee} />} />
-			<Route path='/customers' element={user && <CustomerOverview employee={user as IEmployee} />} />
+			<Route path='/employee/orders' element={user && <OrderOverview employee={user as IEmployee} />} />
+			<Route path='/employee/cars' element={user && <CarOverview employee={user as IEmployee} />} />
+			<Route path='/employee/employees' element={user && <EmployeeOverview employee={user as IEmployee} />} />
+			<Route path='/employee/customers' element={user && <CustomerOverview employee={user as IEmployee} />} />
 			<Route path='/profile' element={user && <CustomerProfile customer={user as ICustomer} />} />
-			<Route path='/createprofile' element={user && <CreateProfile authUser={user as IAuthUser} />} />
+			<Route path='/profile/create' element={user && <CreateProfile authUser={user as IAuthUser} />} />
 			<Route path='/redirect' element={<Redirect setUser={setUser} />} />
 			<Route path='*' element={<PageNotFound />} />
 		</Routes>
