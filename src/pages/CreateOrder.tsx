@@ -14,11 +14,11 @@ interface newOrder {
 	carId: number,
 	customerId: string,
 	//Arrays af tasks ID'er
-	tasks: number[]
+	tasks: {id: number}[]
 }
 
 async function createOrder(newOrder: newOrder) {
-	return await fetch(`http://localhost:3000/customers`, {
+	return await fetch(`http://localhost:3000/orders`, {
 		method: 'POST',
 		body: JSON.stringify(newOrder),
 		headers: {
@@ -30,6 +30,7 @@ async function createOrder(newOrder: newOrder) {
 export default function CreateOrder({ customer }: Props) {
 	const [tasks, setTasks] = useState<null | IAPITask[]>(null);
 	const [cars, setCars] = useState<null | ICar[]>(null);
+	const [selectedCarId, setSelectedCarId] = useState("")
 	const navigate = useNavigate();
 	console.log(customer);
 	console.log(cars);
@@ -39,7 +40,7 @@ export default function CreateOrder({ customer }: Props) {
 
 			try {
 				const promiseTasks = await fetch('http://localhost:3000/tasks');
-				const promiseCars = await fetch(`http://localhost:3000/cars/${customer.id}`);
+				const promiseCars = await fetch(`http://localhost:3000/customers/${customer.id}/cars`);
 
 				if (promiseTasks.ok) {
 					setTasks(await promiseTasks.json());
@@ -64,7 +65,7 @@ export default function CreateOrder({ customer }: Props) {
 		getTasksAndCars();
 	}, []);
 
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
 		const form = e.target as HTMLFormElement;
@@ -73,17 +74,22 @@ export default function CreateOrder({ customer }: Props) {
 		const checkedCheckboxes = form.querySelectorAll('input[type="checkbox"]:checked');
 
 		// Extract task IDs from checked checkboxes
-		const taskIds = Array.from(checkedCheckboxes).map((checkbox) => Number(checkbox.id));
+		const taskObjects = Array.from(checkedCheckboxes).map((checkbox) => {
+			return {
+				id: parseInt(checkbox.id)
+			}
+		});
 
 		const newOrder: newOrder = {
 			customerId: customer.id,
-			carId: 0,
-			orderStartDate: new Date().toString(),
-			tasks: taskIds,
+			carId: parseInt(selectedCarId),
+			orderStartDate: "2023-12-01",
+			tasks: taskObjects,
 		};
 
+		console.log(newOrder.orderStartDate);
 
-		/*try {
+		try {
 			const promise = await createOrder(newOrder);
 
 			if (promise.ok) {
@@ -95,8 +101,7 @@ export default function CreateOrder({ customer }: Props) {
 
 		} catch (error: any) {
 			console.log(error.message);
-		}*/
-
+		}
 	};
 
 
@@ -114,12 +119,13 @@ export default function CreateOrder({ customer }: Props) {
 									<TaskCheckbox key={task.id} task={task} />
 								))}
 							</section>
-							<select name='cars' id='cars'>
-								{cars ? cars.map((car) => (
-									<option value={car.id} key={car.id}>{car.brand} : Reg. nr. {car.registrationNumber}</option>
+							<select name='cars' id='cars' onChange={(e) => setSelectedCarId(e.target.value)}>
+								<option value=''>Ej køretøj valgt</option>
+								{cars && cars.map((car) => (
+									<option value={String(car.id)} key={car.id}>{car.brand} : Reg. nr. {car.registrationNumber}</option>
 								))}
 							</select>
-							<input type='submit' value='Submit'></input>
+							<input type='submit' value='Submit' disabled={!selectedCarId}></input>
 						</div>
 
 					</form>
@@ -131,3 +137,4 @@ export default function CreateOrder({ customer }: Props) {
 		</PageLayout>
 	);
 }
+
