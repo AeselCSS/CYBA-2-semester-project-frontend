@@ -23,10 +23,10 @@ export default function Navbar() {
 								<li>
 									<a style={{cursor: "default"}}>Oversigt</a>
 									<ul className="dropdown">
-										<li><NavLink to='/orders'>Ordre</NavLink></li>
-										<li><NavLink to='/cars'>Køretøjer</NavLink></li>
-										<li><NavLink to='/customers'>Kunder</NavLink></li>
-										<li><NavLink to='/employees'>Ansatte</NavLink></li>
+										<li><NavLink to='/employee/orders'>Ordre</NavLink></li>
+										<li><NavLink to='/employee/cars'>Køretøjer</NavLink></li>
+										<li><NavLink to='/employee/customers'>Kunder</NavLink></li>
+										<li><NavLink to='/employee/employees'>Ansatte</NavLink></li>
 									</ul>
 								</li>
 							</>

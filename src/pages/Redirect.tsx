@@ -32,7 +32,7 @@ export default function Redirect({ setUser }: IRedirectProps) {
 						console.log('I AM EMPLOYEE');
 
 						setUser(data as IEmployee);
-						navigate('/orders');
+						navigate('/employee/orders');
 					} else {
 						setUser(data.customer as ICustomer);
 						console.log("REDIRECTING TO PROFILE");
@@ -44,7 +44,7 @@ export default function Redirect({ setUser }: IRedirectProps) {
 
 					setUser(user as IAuthUser);
 
-					navigate('/createprofile');
+					navigate('/profile/create');
 					//User eksisterer ikke
 				}
 			}
