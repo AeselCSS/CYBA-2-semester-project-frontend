@@ -3,7 +3,7 @@ import PageLayout from './PageLayout.tsx';
 import React, { useEffect, useState } from 'react';
 import Loader from '../components/Loader/Loader.tsx';
 import TaskCheckbox from '../components/TaskCheckbox/TaskCheckbox.tsx';
-import "../components/TaskCheckbox/CreateOrder.css"
+import '../components/TaskCheckbox/CreateOrder.css';
 
 interface Props {
 	customer: ICustomer;
@@ -23,7 +23,7 @@ async function createOrder(newOrder) {
 
 export default function CreateOrder({ customer }: Props) {
 	const [tasks, setTasks] = useState<null | IAPITask[]>(null);
-	const [cars, setCars] = useState<null | ICar[]>(null)
+	const [cars, setCars] = useState<null | ICar[]>(null);
 	const navigate = useNavigate();
 	console.log(customer);
 
@@ -32,7 +32,7 @@ export default function CreateOrder({ customer }: Props) {
 
 			try {
 				const promiseTasks = await fetch('http://localhost:3000/tasks');
-				const promiseCars = await fetch(`http://localhost:3000/cars/${customer.id}`)
+				const promiseCars = await fetch(`http://localhost:3000/cars/${customer.id}`);
 
 				if (promiseTasks.ok) {
 					setTasks(await promiseTasks.json());
@@ -58,7 +58,7 @@ export default function CreateOrder({ customer }: Props) {
 	}, []);
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault()
+		e.preventDefault();
 
 		const form = e.target as HTMLFormElement;
 
@@ -66,12 +66,12 @@ export default function CreateOrder({ customer }: Props) {
 		const newOrder: newOrder = {
 			customerId: customer.id,
 			carId: 0,
-			orderStartDate: "0",
-			tasks: [0,0,0,0]
-		}
+			orderStartDate: '0',
+			tasks: [0, 0, 0, 0],
+		};
 
 
-	}
+	};
 
 
 	return (
@@ -81,12 +81,16 @@ export default function CreateOrder({ customer }: Props) {
 			{tasks ? (
 				<>
 					<form onSubmit={handleSubmit}>
-						<section className='create-order-container'>
-							{tasks.map((task) => (
-								<TaskCheckbox key={task.id} task={task} />
-							))}
-						</section>
-						<input type='submit' value="Submit"></input>
+
+						<div className='form-container'>
+							<section className='create-order-container'>
+								{tasks.map((task) => (
+									<TaskCheckbox key={task.id} task={task} />
+								))}
+							</section>
+							<input type='submit' value='Submit'></input>
+						</div>
+						
 					</form>
 				</>
 			) : (

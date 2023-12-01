@@ -1,4 +1,8 @@
 
+.form-container {
+    margin-bottom: 10rem;
+}
+
 .create-order-container {
     display: grid;
     grid-template-rows: repeat(auto-fill, 1fr);
