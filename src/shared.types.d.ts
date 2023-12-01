@@ -153,8 +153,9 @@ enum Role {
 }
 
 
-interface ITask {
+interface IAPITask {
 	id: number,
 	name: string,
 	description: string
+	time: number
 }
