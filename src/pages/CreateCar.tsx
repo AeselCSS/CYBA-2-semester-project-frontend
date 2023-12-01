@@ -32,124 +32,130 @@ async function createCar(newCar: INewCar) {
 
 
 export default function CreateCar({ customer }: { customer: ICustomer }) {
-	const { register, handleSubmit, formState: { errors } } = useForm<CarInputs>();
 	const [APIResult, setAPIResult] = useState<CarInputs | null>(null);
 	const [registrationNumber, setRegistrationNumber] = useState('');
+	const [mileage, setMileage] = useState('');
+	const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
 	const navigate = useNavigate();
 	const apiKey = import.meta.env.VITE_API_SYNSBASEN_TOKEN as string;
 	console.log(customer);
 	console.log(APIResult);
 
-	async function onSubmit(data: CarInputs) {
-		const newCar: INewCar = {
-			customerId: customer.id,
-			...data,
-		};
+	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+		e.preventDefault();
+		const form = e.target as HTMLFormElement;
 
-		try {
-			const res = await createCar(newCar);
-			if (res.ok) {
-				const data = await res.json();
-				console.log(data);
-				navigate('/redirect');
-			}
-		} catch (error) {
-			console.log((error as Error).message);
+		console.log(form);
+
+		if (APIResult) {
+			const newCar: INewCar = {
+				customerId: customer.id,
+				mileage: parseInt(mileage),
+				vinNumber: APIResult.vinNumber,
+				brand: APIResult.brand,
+				model: APIResult.model,
+				modelVariant: APIResult.modelVariant
+
+			};
+
+			/*try {
+			 const res = await createCar(newCar);
+			 if (res.ok) {
+			 const data = await res.json();
+			 console.log(data);
+			 navigate('/redirect');
+			 }
+			 } catch (error) {
+			 console.log((error as Error).message);
+			 }*/
+
 		}
 
-	}
 
-	onSubmit as SubmitHandler<CarInputs>;
+	}
 
 
 	const handleAPIGet = async () => {
 		const response = await fetch(`https://cors-anywhere.herokuapp.com/https://api.synsbasen.dk/v1/vehicles/registration/${registrationNumber}`, {
 			method: 'GET',
 			headers: {
-				"Authorization": `Bearer ${apiKey}`,
-				"Content-Type": "application/json",
-				"crossOrigin": "true"
+				'Authorization': `Bearer ${apiKey}`,
+				'Content-Type': 'application/json',
+				'crossOrigin': 'true',
 			},
 		});
 
 		if (response.ok) {
 			const { data } = await response.json();
 			setAPIResult(data);
+			setIsSubmitDisabled(false);
 		}
 	};
 
-	const handleChange = (event: React.ChangeEvent<HTMLInputElement> ) => {
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setIsSubmitDisabled(true);
 		setRegistrationNumber(event.target.value);
 	};
 
 	return (
 		<>
 			<PageLayout>
-				<p>
-					<label htmlFor='registrationNumber'>Registerings Nr.</label>
-					<input value={registrationNumber} onChange={handleChange} id='registrationNumber' placeholder='Registerings nr.' />
-					<button onClick={handleAPIGet}>Søg efter oplysninger</button>
-				</p>
-
-				<form onSubmit={handleSubmit(onSubmit)}>
+				<form onSubmit={handleSubmit}>
+					<p>
+						<label htmlFor='registrationNumber'>Registerings Nr.</label>
+						<input value={registrationNumber} onChange={handleChange} id='registrationNumber' placeholder='Registerings nr.' required={true} />
+						<button onClick={handleAPIGet}>Søg efter oplysninger</button>
+					</p>
 
 					<p>
 						<label htmlFor='mileage'>KM KØRT</label>
-						<input type='tel' value={APIResult?.mileage} pattern='[0-9]{6}' placeholder='K/m kørt' {...register('mileage', { required: true })} />
-						{errors.mileage && <span>This field is required</span>}
+						<input type='tel' pattern='[0-9]{0-6}' placeholder='K/m kørt' required={true} value={mileage} onChange={(e) => setMileage(e.target.value)} />
 					</p>
 
 					<p>
 						<label htmlFor='vinNumber'>STEL NR</label>
-						<input value={APIResult.vin} disabled={true} placeholder='STEL-nr.' {...register('vinNumber', { required: true })} />
-						{errors.vinNumber && <span>This field is required</span>}
+						<input value={APIResult?.vin} disabled={true} required={true} placeholder='STEL-nr.' />
 					</p>
 
 					<p>
 						<label htmlFor='brand'>Mærke</label>
-						<input value={APIResult?.brand} disabled={true} placeholder='Mærke' {...register('brand', { required: true })} />
-						{errors.brand && <span>This field is required</span>}
+						<input value={APIResult?.brand} disabled={true} placeholder='Mærke' />
 					</p>
 					<p>
 						<label htmlFor='model'>Model</label>
-						<input value={APIResult?.model} disabled={true} placeholder='Model' {...register('model', { required: true })} />
-						{errors.model && <span>This field is required</span>}
+						<input value={APIResult?.model} disabled={true} placeholder='Model' />
 					</p>
 
 					<p>
 						<label htmlFor='modelVariant'>Variant</label>
-						<input value={APIResult?.variant} disabled={true} placeholder='Model variant' {...register('modelVariant', { required: true })} />
-						{errors.modelVariant && <span>This field is required</span>}
+						<input value={APIResult?.variant} disabled={true} placeholder='Model variant' />
 					</p>
 
 					{/*TODO DATO*/}
 					<p>
 						<label htmlFor='firstRegistration'>Først Registreret</label>
-						<input value={APIResult?.first_registration_date} disabled={true} type='date' placeholder='Først registreret' {...register('firstRegistration', { required: true })} />
-						{errors.firstRegistration && <span>This field is required</span>}
+						<input value={APIResult?.first_registration_date} disabled={true} type='date' placeholder='Først registreret' />
 					</p>
 
 					<p>
 						<label htmlFor='lastInspectionDate'>Sidste inspektionsdato</label>
-						<input value={APIResult?.last_inspection_date} disabled={true} type='date' placeholder='Sidste inspektionsdato' {...register('lastInspectionDate', { required: true })} />
-						{errors.lastInspectionDate && <span>This field is required</span>}
+						<input value={APIResult?.last_inspection_date} disabled={true} type='date' placeholder='Sidste inspektionsdato' />
 					</p>
 
 
 					<p>
 						<label htmlFor='lastInspectionResult'>Sidste inspektionsresultat</label>
-						<input value={APIResult?.last_inspection_result} disabled={true} placeholder='Sidste inspektionsresultat' {...register('lastInspectionResult', { required: true })} />
-						{errors.lastInspectionResult && <span>This field is required</span>}
+						<input value={APIResult?.last_inspection_result} disabled={true} placeholder='Sidste inspektionsresultat' />
+
 					</p>
 
 					<p>
 						<label htmlFor='lastInspectionKind'>Sidste inspektionstype</label>
-						<input value={APIResult?.last_inspection_kind} disabled={true} placeholder='Sidste inspektionstype' {...register('lastInspectionKind', { required: true })} />
-						{errors.lastInspectionKind && <span>This field is required</span>}
+						<input value={APIResult?.last_inspection_kind} disabled={true} placeholder='Sidste inspektionstype' />
+
 					</p>
 
-
-					<input type='submit' />
+					<input type='submit' disabled={isSubmitDisabled} />
 				</form>
 			</PageLayout>
 		</>
