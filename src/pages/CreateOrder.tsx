@@ -17,8 +17,14 @@ interface newOrder {
 	tasks: number[]
 }
 
-async function createOrder(newOrder) {
-
+async function createOrder(newOrder: newOrder) {
+	return await fetch(`http://localhost:3000/customers`, {
+		method: 'POST',
+		body: JSON.stringify(newOrder),
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	});
 }
 
 export default function CreateOrder({ customer }: Props) {
@@ -63,13 +69,33 @@ export default function CreateOrder({ customer }: Props) {
 		const form = e.target as HTMLFormElement;
 
 
+		// Get all checked checkboxes
+		const checkedCheckboxes = form.querySelectorAll('input[type="checkbox"]:checked');
+
+		// Extract task IDs from checked checkboxes
+		const taskIds = Array.from(checkedCheckboxes).map((checkbox) => Number(checkbox.id));
+
 		const newOrder: newOrder = {
 			customerId: customer.id,
 			carId: 0,
-			orderStartDate: '0',
-			tasks: [0, 0, 0, 0],
+			orderStartDate: new Date().toString(),
+			tasks: taskIds,
 		};
 
+
+		/*try {
+			const promise = await createOrder(newOrder);
+
+			if (promise.ok) {
+				navigate("/profile")
+			} else {
+				console.log("FETCH CREATE ERROR");
+				console.log(promise.body);
+			}
+
+		} catch (error: any) {
+			console.log(error.message);
+		}*/
 
 	};
 
@@ -90,7 +116,7 @@ export default function CreateOrder({ customer }: Props) {
 							</section>
 							<input type='submit' value='Submit'></input>
 						</div>
-						
+
 					</form>
 				</>
 			) : (
