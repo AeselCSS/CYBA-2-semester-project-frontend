@@ -1,23 +1,30 @@
 import PageLayout from './PageLayout.tsx';
 import { useNavigate } from 'react-router-dom';
-import { SubmitHandler, useForm } from 'react-hook-form';
 import React, { useState } from 'react';
 
-interface CarInputs {
+interface SynsBasenAPI {
+	vin: string,
+	brand: string,
+	model: string,
+	variant: string,
+	first_registration_date: string,
+	last_inspection_date: string,
+	last_inspection_result: string,
+	last_inspection_kind: string,
+}
+
+interface INewCar {
+	customerId: string,
 	registrationNumber: string,
 	vinNumber: string,
-	mileage: number
 	brand: string,
 	model: string,
 	modelVariant: string,
 	firstRegistration: string,
+	mileage: number,
 	lastInspectionDate: string,
 	lastInspectionResult: string,
 	lastInspectionKind: string,
-}
-
-interface INewCar extends CarInputs {
-	customerId: string;
 }
 
 async function createCar(newCar: INewCar) {
@@ -32,7 +39,7 @@ async function createCar(newCar: INewCar) {
 
 
 export default function CreateCar({ customer }: { customer: ICustomer }) {
-	const [APIResult, setAPIResult] = useState<CarInputs | null>(null);
+	const [APIResult, setAPIResult] = useState<SynsBasenAPI | null>(null);
 	const [registrationNumber, setRegistrationNumber] = useState('');
 	const [mileage, setMileage] = useState('');
 	const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
@@ -43,37 +50,36 @@ export default function CreateCar({ customer }: { customer: ICustomer }) {
 
 	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
-		const form = e.target as HTMLFormElement;
-
-		console.log(form);
 
 		if (APIResult) {
 			const newCar: INewCar = {
 				customerId: customer.id,
 				mileage: parseInt(mileage),
-				vinNumber: APIResult.vinNumber,
+				registrationNumber: registrationNumber,
+				vinNumber: APIResult.vin,
 				brand: APIResult.brand,
 				model: APIResult.model,
-				modelVariant: APIResult.modelVariant
-
+				modelVariant: APIResult.variant,
+				firstRegistration: APIResult.first_registration_date,
+				lastInspectionDate: APIResult.last_inspection_date,
+				lastInspectionKind: APIResult.last_inspection_kind,
+				lastInspectionResult: APIResult.last_inspection_result,
 			};
 
-			/*try {
-			 const res = await createCar(newCar);
-			 if (res.ok) {
-			 const data = await res.json();
-			 console.log(data);
-			 navigate('/redirect');
-			 }
-			 } catch (error) {
-			 console.log((error as Error).message);
-			 }*/
+			console.log(newCar);
 
+			try {
+				const res = await createCar(newCar);
+				if (res.ok) {
+					const data = await res.json();
+					console.log(data);
+					navigate('/redirect');
+				}
+			} catch (error) {
+				console.log((error as Error).message);
+			}
 		}
-
-
 	}
-
 
 	const handleAPIGet = async () => {
 		const response = await fetch(`https://cors-anywhere.herokuapp.com/https://api.synsbasen.dk/v1/vehicles/registration/${registrationNumber}`, {
@@ -89,10 +95,12 @@ export default function CreateCar({ customer }: { customer: ICustomer }) {
 			const { data } = await response.json();
 			setAPIResult(data);
 			setIsSubmitDisabled(false);
+		} else {
+			setAPIResult(null)
 		}
 	};
 
-	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setIsSubmitDisabled(true);
 		setRegistrationNumber(event.target.value);
 	};
@@ -103,7 +111,7 @@ export default function CreateCar({ customer }: { customer: ICustomer }) {
 				<form onSubmit={handleSubmit}>
 					<p>
 						<label htmlFor='registrationNumber'>Registerings Nr.</label>
-						<input value={registrationNumber} onChange={handleChange} id='registrationNumber' placeholder='Registerings nr.' required={true} />
+						<input value={registrationNumber} onChange={handleInput} id='registrationNumber' placeholder='Registerings nr.' required={true} />
 						<button onClick={handleAPIGet}>Søg efter oplysninger</button>
 					</p>
 
@@ -131,7 +139,6 @@ export default function CreateCar({ customer }: { customer: ICustomer }) {
 						<input value={APIResult?.variant} disabled={true} placeholder='Model variant' />
 					</p>
 
-					{/*TODO DATO*/}
 					<p>
 						<label htmlFor='firstRegistration'>Først Registreret</label>
 						<input value={APIResult?.first_registration_date} disabled={true} type='date' placeholder='Først registreret' />
