@@ -13,8 +13,7 @@ interface newOrder {
 	orderStartDate: string,
 	carId: number,
 	customerId: string,
-	//Arrays af tasks ID'er
-	tasks: {id: number}[]
+	tasks: { id: number }[]
 }
 
 async function createOrder(newOrder: newOrder) {
@@ -30,11 +29,10 @@ async function createOrder(newOrder: newOrder) {
 export default function CreateOrder({ customer }: Props) {
 	const [tasks, setTasks] = useState<null | IAPITask[]>(null);
 	const [cars, setCars] = useState<null | ICar[]>(null);
-	const [selectedCarId, setSelectedCarId] = useState("");
-	const [selectedTasks, setSelectedTasks] = useState<{id: number}[] | []>([])
+	const [selectedCarId, setSelectedCarId] = useState('');
+	const [selectedTasks, setSelectedTasks] = useState<{ id: number }[] | []>([]);
 	const navigate = useNavigate();
-	console.log(customer);
-	console.log(cars);
+
 
 	useEffect(() => {
 		async function getTasksAndCars() {
@@ -77,45 +75,38 @@ export default function CreateOrder({ customer }: Props) {
 		// Extract task IDs from checked checkboxes
 		const taskObjects = Array.from(checkedCheckboxes).map((checkbox) => {
 			return {
-				id: parseInt(checkbox.id)
-			}
+				id: parseInt(checkbox.id),
+			};
 		});
 
 		const newOrder: newOrder = {
 			customerId: customer.id,
 			carId: parseInt(selectedCarId),
-			orderStartDate: "2023-12-01",
+			orderStartDate: '2023-12-01',
 			tasks: taskObjects,
 		};
-
 		console.log(newOrder.orderStartDate);
 
 		try {
 			const promise = await createOrder(newOrder);
 
 			if (promise.ok) {
-				navigate("/profile")
+				navigate('/profile');
 			} else {
-				console.log("FETCH CREATE ERROR");
+				console.log('FETCH CREATE ERROR');
 				console.log(promise.body);
 			}
-
 		} catch (error: any) {
 			console.log(error.message);
 		}
 	};
 
-	console.log(selectedTasks);
-
-
 	return (
 		<PageLayout>
 			<h1>Opret Ordre</h1>
-
 			{tasks ? (
 				<>
 					<form onSubmit={handleSubmit}>
-
 						<div className='form-container'>
 							<section className='create-order-container'>
 								{tasks.map((task) => (
@@ -130,14 +121,11 @@ export default function CreateOrder({ customer }: Props) {
 							</select>
 							<input type='submit' value='Submit' disabled={!selectedCarId || !selectedTasks.length}></input>
 						</div>
-
 					</form>
 				</>
 			) : (
 				<Loader />
 			)}
-
 		</PageLayout>
 	);
 }
-

@@ -10,7 +10,6 @@ export default function TaskCheckbox({ task, setSelectedTasks, selectedTasks }: 
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const id = parseInt(e.target.id);
-		console.log(id);
 
 		const isSelected = selectedTasks.some((task) => task.id === id);
 
@@ -20,7 +19,6 @@ export default function TaskCheckbox({ task, setSelectedTasks, selectedTasks }: 
 		} else {
 			setSelectedTasks([...selectedTasks, { id }]);
 		}
-
 	}
 
 	return (
