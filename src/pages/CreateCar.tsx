@@ -38,7 +38,9 @@ async function createCar(newCar: INewCar) {
 }
 
 
-export default function CreateCar({ customer }: { customer: ICustomer }) {
+export default function CreateCar({ customer }: {
+	customer: ICustomer
+}) {
 	const [APIResult, setAPIResult] = useState<SynsBasenAPI | null>(null);
 	const [registrationNumber, setRegistrationNumber] = useState('');
 	const [mileage, setMileage] = useState('');
@@ -108,62 +110,65 @@ export default function CreateCar({ customer }: { customer: ICustomer }) {
 	return (
 		<>
 			<PageLayout>
-				<button onClick={handleAPIGet}>Søg efter oplysninger</button>
-				<form onSubmit={handleSubmit}>
+				<div>
 					<p>
 						<label htmlFor='registrationNumber'>Registerings Nr.</label>
 						<input value={registrationNumber} onChange={handleInput} id='registrationNumber' placeholder='Registerings nr.' required={true} />
 					</p>
+					<button onClick={handleAPIGet}>Søg efter oplysninger</button>
+					
+					<form onSubmit={handleSubmit}>
 
-					<p>
-						<label htmlFor='mileage'>KM KØRT</label>
-						<input type='tel' pattern='[0-9]{0-6}' placeholder='K/m kørt' required={true} value={mileage} onChange={(e) => setMileage(e.target.value)} />
-					</p>
+						<p>
+							<label htmlFor='mileage'>KM KØRT</label>
+							<input type='tel' pattern='[0-9]{0-6}' placeholder='K/m kørt' required={true} value={mileage} onChange={(e) => setMileage(e.target.value)} />
+						</p>
 
-					<p>
-						<label htmlFor='vinNumber'>STEL NR</label>
-						<input value={APIResult?.vin ?? ""} disabled={true} required={true} placeholder='STEL-nr.' />
-					</p>
+						<p>
+							<label htmlFor='vinNumber'>STEL NR</label>
+							<input value={APIResult?.vin ?? ''} disabled={true} required={true} placeholder='STEL-nr.' />
+						</p>
 
-					<p>
-						<label htmlFor='brand'>Mærke</label>
-						<input value={APIResult?.brand ?? ""} disabled={true} placeholder='Mærke' />
-					</p>
-					<p>
-						<label htmlFor='model'>Model</label>
-						<input value={APIResult?.model ?? ""} disabled={true} placeholder='Model' />
-					</p>
+						<p>
+							<label htmlFor='brand'>Mærke</label>
+							<input value={APIResult?.brand ?? ''} disabled={true} placeholder='Mærke' />
+						</p>
+						<p>
+							<label htmlFor='model'>Model</label>
+							<input value={APIResult?.model ?? ''} disabled={true} placeholder='Model' />
+						</p>
 
-					<p>
-						<label htmlFor='modelVariant'>Variant</label>
-						<input value={APIResult?.variant ?? ""} disabled={true} placeholder='Model variant' />
-					</p>
+						<p>
+							<label htmlFor='modelVariant'>Variant</label>
+							<input value={APIResult?.variant ?? ''} disabled={true} placeholder='Model variant' />
+						</p>
 
-					<p>
-						<label htmlFor='firstRegistration'>Først Registreret</label>
-						<input value={APIResult?.first_registration_date ?? ""} disabled={true} type='date' placeholder='Først registreret' />
-					</p>
+						<p>
+							<label htmlFor='firstRegistration'>Først Registreret</label>
+							<input value={APIResult?.first_registration_date ?? ''} disabled={true} type='date' placeholder='Først registreret' />
+						</p>
 
-					<p>
-						<label htmlFor='lastInspectionDate'>Sidste inspektionsdato</label>
-						<input value={APIResult?.last_inspection_date ?? ""} disabled={true} type='date' placeholder='Sidste inspektionsdato' />
-					</p>
+						<p>
+							<label htmlFor='lastInspectionDate'>Sidste inspektionsdato</label>
+							<input value={APIResult?.last_inspection_date ?? ''} disabled={true} type='date' placeholder='Sidste inspektionsdato' />
+						</p>
 
 
-					<p>
-						<label htmlFor='lastInspectionResult'>Sidste inspektionsresultat</label>
-						<input value={APIResult?.last_inspection_result ?? ""} disabled={true} placeholder='Sidste inspektionsresultat' />
+						<p>
+							<label htmlFor='lastInspectionResult'>Sidste inspektionsresultat</label>
+							<input value={APIResult?.last_inspection_result ?? ''} disabled={true} placeholder='Sidste inspektionsresultat' />
 
-					</p>
+						</p>
 
-					<p>
-						<label htmlFor='lastInspectionKind'>Sidste inspektionstype</label>
-						<input value={APIResult?.last_inspection_kind ?? ""} disabled={true} placeholder='Sidste inspektionstype' />
+						<p>
+							<label htmlFor='lastInspectionKind'>Sidste inspektionstype</label>
+							<input value={APIResult?.last_inspection_kind ?? ''} disabled={true} placeholder='Sidste inspektionstype' />
 
-					</p>
+						</p>
 
-					<input type='submit' disabled={isSubmitDisabled} />
-				</form>
+						<input type='submit' disabled={isSubmitDisabled} />
+					</form>
+				</div>
 			</PageLayout>
 		</>
 	);
