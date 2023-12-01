@@ -16,7 +16,7 @@
 
 .checkbox-div label {
     grid-area: labe;
-
+    font-size: large;
 }
 
 .checkbox-div input {
