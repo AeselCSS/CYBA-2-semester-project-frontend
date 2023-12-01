@@ -105,6 +105,8 @@ export default function CreateOrder({ customer }: Props) {
 		}
 	};
 
+	console.log(selectedTasks);
+
 
 	return (
 		<PageLayout>
@@ -126,7 +128,7 @@ export default function CreateOrder({ customer }: Props) {
 									<option value={String(car.id)} key={car.id}>{car.brand} : Reg. nr. {car.registrationNumber}</option>
 								))}
 							</select>
-							<input type='submit' value='Submit' disabled={!selectedCarId || !selectedTasks}></input>
+							<input type='submit' value='Submit' disabled={!selectedCarId || !selectedTasks.length}></input>
 						</div>
 
 					</form>

@@ -9,13 +9,16 @@ interface Props {
 export default function TaskCheckbox({ task, setSelectedTasks, selectedTasks }: Props) {
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const id = parseInt(e.target.value);
+		const id = parseInt(e.target.id);
+		console.log(id);
 
-		if (selectedTasks.includes({id: id})) {
-			const newTasks = selectedTasks.filter((task) => task.id != id)
-			setSelectedTasks(newTasks)
+		const isSelected = selectedTasks.some((task) => task.id === id);
+
+		if (isSelected) {
+			const newTasks = selectedTasks.filter((task) => task.id !== id);
+			setSelectedTasks(newTasks);
 		} else {
-			setSelectedTasks(selectedTasks.push())
+			setSelectedTasks([...selectedTasks, { id }]);
 		}
 
 	}
