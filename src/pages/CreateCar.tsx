@@ -96,7 +96,7 @@ export default function CreateCar({ customer }: { customer: ICustomer }) {
 			setAPIResult(data);
 			setIsSubmitDisabled(false);
 		} else {
-			setAPIResult(null)
+			setAPIResult(null);
 		}
 	};
 
@@ -108,11 +108,11 @@ export default function CreateCar({ customer }: { customer: ICustomer }) {
 	return (
 		<>
 			<PageLayout>
+				<button onClick={handleAPIGet}>Søg efter oplysninger</button>
 				<form onSubmit={handleSubmit}>
 					<p>
 						<label htmlFor='registrationNumber'>Registerings Nr.</label>
 						<input value={registrationNumber} onChange={handleInput} id='registrationNumber' placeholder='Registerings nr.' required={true} />
-						<button onClick={handleAPIGet}>Søg efter oplysninger</button>
 					</p>
 
 					<p>
@@ -122,43 +122,43 @@ export default function CreateCar({ customer }: { customer: ICustomer }) {
 
 					<p>
 						<label htmlFor='vinNumber'>STEL NR</label>
-						<input value={APIResult?.vin} disabled={true} required={true} placeholder='STEL-nr.' />
+						<input value={APIResult?.vin ?? ""} disabled={true} required={true} placeholder='STEL-nr.' />
 					</p>
 
 					<p>
 						<label htmlFor='brand'>Mærke</label>
-						<input value={APIResult?.brand} disabled={true} placeholder='Mærke' />
+						<input value={APIResult?.brand ?? ""} disabled={true} placeholder='Mærke' />
 					</p>
 					<p>
 						<label htmlFor='model'>Model</label>
-						<input value={APIResult?.model} disabled={true} placeholder='Model' />
+						<input value={APIResult?.model ?? ""} disabled={true} placeholder='Model' />
 					</p>
 
 					<p>
 						<label htmlFor='modelVariant'>Variant</label>
-						<input value={APIResult?.variant} disabled={true} placeholder='Model variant' />
+						<input value={APIResult?.variant ?? ""} disabled={true} placeholder='Model variant' />
 					</p>
 
 					<p>
 						<label htmlFor='firstRegistration'>Først Registreret</label>
-						<input value={APIResult?.first_registration_date} disabled={true} type='date' placeholder='Først registreret' />
+						<input value={APIResult?.first_registration_date ?? ""} disabled={true} type='date' placeholder='Først registreret' />
 					</p>
 
 					<p>
 						<label htmlFor='lastInspectionDate'>Sidste inspektionsdato</label>
-						<input value={APIResult?.last_inspection_date} disabled={true} type='date' placeholder='Sidste inspektionsdato' />
+						<input value={APIResult?.last_inspection_date ?? ""} disabled={true} type='date' placeholder='Sidste inspektionsdato' />
 					</p>
 
 
 					<p>
 						<label htmlFor='lastInspectionResult'>Sidste inspektionsresultat</label>
-						<input value={APIResult?.last_inspection_result} disabled={true} placeholder='Sidste inspektionsresultat' />
+						<input value={APIResult?.last_inspection_result ?? ""} disabled={true} placeholder='Sidste inspektionsresultat' />
 
 					</p>
 
 					<p>
 						<label htmlFor='lastInspectionKind'>Sidste inspektionstype</label>
-						<input value={APIResult?.last_inspection_kind} disabled={true} placeholder='Sidste inspektionstype' />
+						<input value={APIResult?.last_inspection_kind ?? ""} disabled={true} placeholder='Sidste inspektionstype' />
 
 					</p>
 
