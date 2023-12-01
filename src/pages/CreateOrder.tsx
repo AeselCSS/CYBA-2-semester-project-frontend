@@ -1,28 +1,46 @@
 import { useNavigate } from 'react-router-dom';
 import PageLayout from './PageLayout.tsx';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Loader from '../components/Loader/Loader.tsx';
+import TaskCheckbox from '../components/TaskCheckbox/TaskCheckbox.tsx';
 
 interface Props {
 	customer: ICustomer;
 }
 
+interface newOrder {
+
+}
+
+async function createOrder(newOrder) {
+
+}
+
 export default function CreateOrder({ customer }: Props) {
-	const [tasks, setTasks] = useState<null | IAPITask>(null);
+	const [tasks, setTasks] = useState<null | IAPITask[]>(null);
+	const [cars, setCars] = useState<null | ICar[]>(null)
 	const navigate = useNavigate();
 	console.log(customer);
 
 	useEffect(() => {
-		async function getTasks() {
+		async function getTasksAndCars() {
 
 			try {
-				const promise = await fetch('http://localhost:3000/tasks');
+				const promiseTasks = await fetch('http://localhost:3000/tasks');
+				const promiseCars = await fetch(`http://localhost:3000/cars/${customer.id}`)
 
-				if (promise.ok) {
-					setTasks(await promise.json())
+				if (promiseTasks.ok) {
+					setTasks(await promiseTasks.json());
 				} else {
-					console.log("Promise is nok ok");
-					console.log(promise.body);
+					console.log('Promise is nok ok');
+					console.log(promiseTasks.body);
+				}
+
+				if (promiseCars.ok) {
+					setCars(await promiseCars.json());
+				} else {
+					console.log('Promise is nok ok');
+					console.log(promiseCars.body);
 				}
 
 			} catch (error: any) {
@@ -31,8 +49,15 @@ export default function CreateOrder({ customer }: Props) {
 			}
 		}
 
-		getTasks();
+		getTasksAndCars();
 	}, []);
+
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault()
+
+		const form = e.target as HTMLFormElement;
+
+	}
 
 
 	return (
@@ -40,10 +65,19 @@ export default function CreateOrder({ customer }: Props) {
 			<h1>Opret Ordre</h1>
 
 			{tasks ? (
-				<h2>FETCHED</h2>
+				<>
+					<form onSubmit={handleSubmit}>
+						<ul className='myclass'>
+							{tasks.map((task) => (
+								<TaskCheckbox key={task.id} task={task} />
+							))}
+						</ul>
+						<input type='submit' value="Submit"></input>
+					</form>
+				</>
 			) : (
-				<Loader/>
-			) }
+				<Loader />
+			)}
 
 		</PageLayout>
 	);
