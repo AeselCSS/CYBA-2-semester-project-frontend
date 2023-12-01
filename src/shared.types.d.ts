@@ -151,3 +151,10 @@ enum Role {
 	EMPLOYEE,
 	ADMIN,
 }
+
+
+interface ITask {
+	id: number,
+	name: string,
+	description: string
+}
