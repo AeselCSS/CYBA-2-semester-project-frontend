@@ -12,6 +12,9 @@ interface props {
 
 export default function CustomerProfile({ customer }: props) {
 	const [customerData, setCustomerData] = useState<IAPISingleCustomer | null>(null);
+/*
+	const [cars, setCars] = useState<null | ICar[]>(null)
+*/
 	console.log("I am in CustomerProfile");
 	useEffect(() => {
 		async function getCustomer() {
@@ -19,6 +22,7 @@ export default function CustomerProfile({ customer }: props) {
 			const response = await fetch(`http://localhost:3000/customers/${customer.id}`);
 			const data = await response.json();
 			setCustomerData(data);
+
 		}
 		getCustomer();
 	}, [customer.id]);
