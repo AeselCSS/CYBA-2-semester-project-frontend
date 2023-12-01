@@ -34,7 +34,7 @@ export default function OrdersBoxDetail({ customerData, order }: OrdersBoxDetail
 						<div>Ordre nr:</div>
 						<h3>{order.id}</h3>
 						<div>Reg. nr:</div>
-						<h3>{car.registrationNumber}</h3>
+						<h3>{car?.registrationNumber ?? "Slettet"}</h3>
 						<div>Pris:</div>
 						<h3>{currentOrder.totalTime}</h3>
 						<div>Status:</div>
