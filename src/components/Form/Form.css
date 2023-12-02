@@ -1,11 +1,3 @@
-.form-btn-wrapper {
-	display: flex;
-	justify-content: center;
-	gap: 2rem;
-	grid-column: span 2;
-	margin-top: 1rem;
-}
-
 .form-container {
 	width: 100%;
 	display: flex;
@@ -19,17 +11,31 @@
 	margin-bottom: 1rem;
 	/* margin-left: auto;
 	margin-right: auto; */
-	background-color: var(--black);
-	border-radius: var(--spacing-base);
+	/* background-color: var(--black);
+	border-radius: var(--spacing-base); */
 	padding: 2rem;
 	width: 35rem;
 	gap: 0.7rem;
+	border: dotted 1px var(--lightGrey);
+	border-radius: var(--border-radius);
+	overflow: hidden;
+	background-color: var(--black);
+	box-shadow: 5px 5px 13px var(--black);
+	color: var(--lightGrey);
 }
 
 .form-grid span {
 	grid-column: 2;
 	color: var(--orange);
 	/* text-align: center; */
+}
+
+.form-btn-wrapper {
+	display: flex;
+	justify-content: center;
+	gap: 2rem;
+	grid-column: span 2;
+	margin-top: 1rem;
 }
 
 /* .form-container input {
