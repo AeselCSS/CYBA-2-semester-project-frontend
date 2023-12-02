@@ -35,6 +35,7 @@ async function createOrder(newOrder: newOrder) {
 export default function CreateOrder({ customer }: Props) {
 	const [tasks, setTasks] = useState<null | IAPITask[]>(null);
 	const [cars, setCars] = useState<null | ICar[]>(null);
+	const [bookedDates, setBookedDates] = useState<string[]>([])
 	const [selectedCarId, setSelectedCarId] = useState('');
 	const [selectedTasks, setSelectedTasks] = useState<{ id: number }[] | []>([]);
 	const [selectedDate, setSelectedDate] = useState<null | TDate>(null);
@@ -48,6 +49,7 @@ export default function CreateOrder({ customer }: Props) {
 			try {
 				const promiseTasks = await fetch('http://localhost:3000/tasks');
 				const promiseCars = await fetch(`http://localhost:3000/customers/${customer.id}/cars`);
+				const promiseBookedDates = await fetch("http://localhost:3000/orders/dates");
 
 				if (promiseTasks.ok) {
 					setTasks(await promiseTasks.json());
@@ -61,6 +63,13 @@ export default function CreateOrder({ customer }: Props) {
 				} else {
 					console.log('Promise is nok ok');
 					console.log(promiseCars.body);
+				}
+
+				if (promiseBookedDates.ok) {
+					setBookedDates(await promiseBookedDates.json());
+				} else {
+					console.log('Promise is nok ok');
+					console.log(promiseBookedDates.body);
 				}
 
 			} catch (error: any) {
@@ -87,10 +96,17 @@ export default function CreateOrder({ customer }: Props) {
 			};
 		});
 
+		//Create a new ISO date. Split at T and return index 0, which is YYYY-MM-DD
+		//It returns an incorrect DD (-1).We split on the dashes "-". To split the values in 3 variables.
+		//Lastly, We assemble the values together, where the day is now correct
+		const [year, month, day] = new Date(selectedDate?.toString() as string).toISOString().split("T")[0].split("-")
+		const correctDate = `${year}-${month}-${parseInt(day) + 1}`
+
+
 		const newOrder: newOrder = {
 			customerId: customer.id,
 			carId: parseInt(selectedCarId),
-			orderStartDate: '2023-12-01',
+			orderStartDate: correctDate,
 			tasks: taskObjects,
 		};
 		console.log(newOrder.orderStartDate);
@@ -107,18 +123,14 @@ export default function CreateOrder({ customer }: Props) {
 		} catch (error: any) {
 			console.log(error.message);
 		}
+
 	};
 
-	const bookedDates = [
-		'2022-03-21',
-		'2023-11-23',
-		'2023-12-15',
-	];
-
 	function disableTiles({ date }: { date: Date }): boolean {
-		console.log(date.toISOString().split("T")[0]);
 		return bookedDates.some((bookedDate) => date.toISOString().split("T")[0] === bookedDate);
 	}
+
+
 
 	return (
 		<PageLayout>
