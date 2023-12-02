@@ -31,17 +31,17 @@ async function createOrder(newOrder: newOrder) {
 	});
 }
 
-function disableTiles({date}: {date: Date}) {
-	return date.getDay() === 0;
-}
+
 
 export default function CreateOrder({ customer }: Props) {
 	const [tasks, setTasks] = useState<null | IAPITask[]>(null);
 	const [cars, setCars] = useState<null | ICar[]>(null);
 	const [selectedCarId, setSelectedCarId] = useState('');
 	const [selectedTasks, setSelectedTasks] = useState<{ id: number }[] | []>([]);
-	const [date, setDate] = useState<null | TDate>(null);
+	const [selectedDate, setSelectedDate] = useState<null | TDate>(null);
 	const navigate = useNavigate();
+
+	console.log(selectedDate);
 
 	useEffect(() => {
 		async function getTasksAndCars() {
@@ -110,6 +110,10 @@ export default function CreateOrder({ customer }: Props) {
 		}
 	};
 
+	function disableTiles({date}: {date: Date}) {
+		return date.getDay() === 0;
+	}
+
 	return (
 		<PageLayout>
 			<h1>Opret Ordre</h1>
@@ -128,8 +132,8 @@ export default function CreateOrder({ customer }: Props) {
 									<option value={String(car.id)} key={car.id}>{car.brand} : Reg. nr. {car.registrationNumber}</option>
 								))}
 							</select>
-							<Calendar value={date} onChange={(value) => setDate(value)} tileDisabled={disableTiles} />
-							<input type='submit' value='Submit' disabled={!selectedCarId || !selectedTasks.length}></input>
+							<Calendar value={selectedDate} onChange={(value) => setSelectedDate(value)} tileDisabled={disableTiles} />
+							<input type='submit' value='Submit' disabled={!selectedCarId || !selectedTasks.length || !selectedDate}></input>
 						</div>
 					</form>
 				</>
