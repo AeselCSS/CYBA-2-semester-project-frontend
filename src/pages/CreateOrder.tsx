@@ -3,6 +3,7 @@ import PageLayout from './PageLayout.tsx';
 import React, { useEffect, useState } from 'react';
 import Loader from '../components/Loader/Loader.tsx';
 import TaskCheckbox from '../components/TaskCheckbox/TaskCheckbox.tsx';
+import Calendar from 'react-calendar'
 import '../components/TaskCheckbox/CreateOrder.css';
 
 interface Props {
@@ -16,6 +17,10 @@ interface newOrder {
 	tasks: { id: number }[]
 }
 
+type TDatePiece = Date | null;
+
+type TDate = TDatePiece | [TDatePiece, TDatePiece]
+
 async function createOrder(newOrder: newOrder) {
 	return await fetch(`http://localhost:3000/orders`, {
 		method: 'POST',
@@ -26,13 +31,17 @@ async function createOrder(newOrder: newOrder) {
 	});
 }
 
+function disableTiles({date}: {date: Date}) {
+	return date.getDay() === 0;
+}
+
 export default function CreateOrder({ customer }: Props) {
 	const [tasks, setTasks] = useState<null | IAPITask[]>(null);
 	const [cars, setCars] = useState<null | ICar[]>(null);
 	const [selectedCarId, setSelectedCarId] = useState('');
 	const [selectedTasks, setSelectedTasks] = useState<{ id: number }[] | []>([]);
+	const [date, setDate] = useState<null | TDate>(null);
 	const navigate = useNavigate();
-
 
 	useEffect(() => {
 		async function getTasksAndCars() {
@@ -119,6 +128,7 @@ export default function CreateOrder({ customer }: Props) {
 									<option value={String(car.id)} key={car.id}>{car.brand} : Reg. nr. {car.registrationNumber}</option>
 								))}
 							</select>
+							<Calendar value={date} onChange={(value) => setDate(value)} tileDisabled={disableTiles} />
 							<input type='submit' value='Submit' disabled={!selectedCarId || !selectedTasks.length}></input>
 						</div>
 					</form>
