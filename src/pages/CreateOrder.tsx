@@ -3,7 +3,7 @@ import PageLayout from './PageLayout.tsx';
 import React, { useEffect, useState } from 'react';
 import Loader from '../components/Loader/Loader.tsx';
 import TaskCheckbox from '../components/TaskCheckbox/TaskCheckbox.tsx';
-import Calendar from 'react-calendar'
+import Calendar from 'react-calendar';
 import '../components/TaskCheckbox/CreateOrder.css';
 
 interface Props {
@@ -30,7 +30,6 @@ async function createOrder(newOrder: newOrder) {
 		},
 	});
 }
-
 
 
 export default function CreateOrder({ customer }: Props) {
@@ -110,8 +109,15 @@ export default function CreateOrder({ customer }: Props) {
 		}
 	};
 
-	function disableTiles({date}: {date: Date}) {
-		return date.getDay() === 0;
+	const bookedDates = [
+		'2022-03-21',
+		'2023-11-23',
+		'2023-12-15',
+	];
+
+	function disableTiles({ date }: { date: Date }): boolean {
+		console.log(date.toISOString().split("T")[0]);
+		return bookedDates.some((bookedDate) => date.toISOString().split("T")[0] === bookedDate);
 	}
 
 	return (
