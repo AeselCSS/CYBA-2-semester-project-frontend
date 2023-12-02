@@ -92,6 +92,7 @@ h3 {
 
 .page-layout {
 	margin: var(--spacing-base);
+	min-height: 100vh;
 }
 
 button {
@@ -99,6 +100,32 @@ button {
 	font-weight: var(--font-weight-normal);
 	font-size: var(--font-size-base);
 	text-transform: capitalize;
-  border-radius: var(--border-radius)
+  border-radius: var(--border-radius);
 
+  background-color: var(--charcoalGrey);
+	color: var(--white);
+	border: none;
+	padding: var(--spacing-small) var(--spacing-small);
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+
+}
+
+button:hover {
+	background-color: var(--orange);
+}
+
+input {
+	height: 2rem;
+	width: 12rem;
+	padding-left: var(--spacing-small);
+	outline: 1px solid var(--charcoalGrey);
+	border-radius: var(--border-radius);
+	box-shadow: 0 0 0 var(--black);
+	transition: 0.2s ease-in-out;
+}
+
+input:focus {
+	outline: 1px solid var(--orange);
+	box-shadow: 5px 5px 5px var(--black);
 }

@@ -1,6 +1,8 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import PageLayout from './PageLayout';
 import { useNavigate } from 'react-router-dom';
+import '../components/Form/Form.css';
+import { CiTextAlignCenter } from 'react-icons/ci';
 
 type Inputs = {
 	firstName: string;
@@ -71,41 +73,43 @@ export default function CreateProfile({ authUser }: { authUser: IAuthUser }) {
 
 	return (
 		<PageLayout>
-			<form onSubmit={handleSubmit(onSubmit)}>
-				<p>
-					<input placeholder='Fornavn' {...register('firstName', { required: true })} />
-					{errors.firstName && <span>This field is required</span>}
-				</p>
-				<p>
-					<input placeholder='Efternavn' {...register('lastName', { required: true })} />
-					{errors.lastName && <span>This field is required</span>}
-				</p>
+			<h1 style={{ textAlign: 'center' }}>Opret konto</h1>
+			<div className='form-container'>
+				<form onSubmit={handleSubmit(onSubmit)}>
+					<div className='form-grid'>
+						<label htmlFor='firstName'>Fornavn</label>
+						<input placeholder='Fornavn' {...register('firstName', { required: true })} />
+						{errors.firstName && <span>Fornavn skal udfyldes</span>}
 
-				<p>
-					<input placeholder='Adresse' {...register('address', { required: true })} />
-					{errors.address && <span>This field is required</span>}
-				</p>
+						<label htmlFor='lastName'>Efternavn</label>
+						<input placeholder='Efternavn' {...register('lastName', { required: true })} />
+						{errors.lastName && <span>Efternavn skal udfyldes</span>}
 
-				<p>
-					<input placeholder='By' {...register('city', { required: true })} />
-					{errors.city && <span>This field is required</span>}
-				</p>
-				<p>
-					<input type='tel' pattern='[0-9]{4}' placeholder='Post nr.' {...register('zip', { required: true })} />
-					{errors.zip && <span>This field is required</span>}
-				</p>
+						<label htmlFor='address'>Adresse</label>
+						<input placeholder='Adresse' {...register('address', { required: true })} />
+						{errors.address && <span>Adresse skal udfyldes</span>}
 
-				<p>
-					<input type='tel' pattern='[0-9]{8}' placeholder='Telefon nr.' {...register('phone', { required: true })} />
-					{errors.phone && <span>This field is required</span>}
-				</p>
-				<p>
-					<input defaultValue={authUser.email} disabled {...register('email')} />
-					{errors.email && <span>This field is required</span>}
-				</p>
+						<label htmlFor='city'>By</label>
+						<input placeholder='By' {...register('city', { required: true })} />
+						{errors.city && <span>By skal udfyldes</span>}
 
-				<input type='submit' />
-			</form>
+						<label htmlFor='zip'>Post nr.</label>
+						<input type='tel' pattern='[0-9]{4}' placeholder='Post nr.' {...register('zip', { required: true })} />
+						{errors.zip && <span>Post nr. skal udfyldes</span>}
+
+						<label htmlFor='phone'>Telefon nr.</label>
+						<input type='tel' pattern='[0-9]{8}' placeholder='Telefon nr.' {...register('phone', { required: true })} />
+						{errors.phone && <span>Telefon nr. skal udfyldes</span>}
+
+						<label htmlFor='email'>Telefon nr.</label>
+						<input defaultValue={authUser.email} disabled {...register('email')} />
+						{errors.email && <span>E-mail skal udfyldes</span>}
+						<div className='form-btn-wrapper'>
+							<button type='submit'> Opret konto</button>
+						</div>
+					</div>
+				</form>
+			</div>
 		</PageLayout>
 	);
 }

@@ -5,8 +5,8 @@ footer {
     padding: var(--spacing-small) 0 var(--spacing-base) 0;
     font-size: 0.9em;
     border-top: 1px solid var(--orange);
-    position: fixed;
-    bottom: 0;
+    /* position: fixed;
+    bottom: 0; */
     width: 100%;
 }
 

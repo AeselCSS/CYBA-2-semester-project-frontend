@@ -42,7 +42,7 @@
 	align-items: center;
 }
 
-.employee-view .toolbar input {
+/* .employee-view .toolbar input {
 	height: 2rem;
 	width: 15rem;
 	padding-left: var(--spacing-small);
@@ -55,7 +55,7 @@
 .employee-view .toolbar input:focus {
 	outline: 1px solid var(--orange);
 	box-shadow: 5px 5px 5px var(--black);
-}
+} */
 
 .employee-view .toolbar select {
 	height: 2rem;
@@ -92,13 +92,4 @@
 
 .employee-view tr:nth-child(even) {
 	background-color: #313131;
-}
-
-
-/* For CSSing, delete when done! */
-.employee-view table,
-th,
-tr,
-td {
-	/* outline: 1px solid red; */
 }

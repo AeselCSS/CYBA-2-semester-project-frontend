@@ -13,7 +13,7 @@
 	color: var(--lightGrey);
 }
 
-.customer-view-grid button {
+/* .customer-view-grid button {
 	background-color: var(--charcoalGrey);
 	color: var(--white);
 	border: none;
@@ -24,7 +24,7 @@
 
 .customer-view-grid button:hover {
 	background-color: var(--orange);
-}
+} */
 
 .customer-view-grid h3 {
 	color: var(--white);
