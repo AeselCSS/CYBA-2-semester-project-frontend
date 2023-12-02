@@ -28,44 +28,41 @@ export default function OrdersBox({ customerData }: { customerData: IAPISingleCu
 		}
 
 		fetchData();
-	}, [currentPage, pageSize]);
-
+	}, [currentPage, pageSize, customerData.customer.id]);
 
 	const calculatePageCount = () => {
 		return Math.ceil(metaData!.totalCount / pageSize);
 	};
 
-	return !orders ? (
-			<Loader/>
-		) :
-		!orders.length ? (
-			<Loader />
-		) : (
-			<div className='orders-box box'>
-				<BoxHeader title='Ordre' btnName='Tilføj ordre' />
+	return (
+		<div className='orders-box box'>
+			<BoxHeader title='Ordre' btnName='Tilføj ordre' />
+			{!orders ? <Loader /> : !orders.length && <h2>Ingen ordrer</h2>}
+			{orders && (
+				<>
+					<section className='orders-box-grid'>
+						{orders.map((order) => (
+							<OrdersBoxDetail customerData={customerData} order={order} key={order.id} />
+						))}
+					</section>
 
-				<section className='orders-box-grid'>
-					{orders.map((order) => (
-						<OrdersBoxDetail customerData={customerData} order={order} key={order.id} />
-					))}
-				</section>
-
-
-				<ReactPaginate
-					pageCount={calculatePageCount()}
-					onPageChange={(event) => setCurrentPage(event.selected + 1)}
-					pageRangeDisplayed={3}
-					breakLabel='...'
-					nextLabel='Næste'
-					previousLabel='Forrige'
-					renderOnZeroPageCount={null}
-					initialPage={0}
-					containerClassName='pagination'
-					pageLinkClassName='page-num'
-					previousLinkClassName='page-num'
-					nextLinkClassName='page-num'
-					activeLinkClassName='active'
-				/>
-			</div>
-		);
+					<ReactPaginate
+						pageCount={calculatePageCount()}
+						onPageChange={(event) => setCurrentPage(event.selected + 1)}
+						pageRangeDisplayed={3}
+						breakLabel='...'
+						nextLabel='Næste'
+						previousLabel='Forrige'
+						renderOnZeroPageCount={null}
+						initialPage={0}
+						containerClassName='pagination'
+						pageLinkClassName='page-num'
+						previousLinkClassName='page-num'
+						nextLinkClassName='page-num'
+						activeLinkClassName='active'
+					/>
+				</>
+			)}
+		</div>
+	);
 }
