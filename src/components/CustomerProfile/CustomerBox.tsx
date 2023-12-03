@@ -1,5 +1,6 @@
 import BoxHeader from './BoxHeader';
 import DetailBox from './DetailBox';
+import dateFormat from '../../utility/dateFormat.ts';
 
 export default function CustomerBox({ customerData }: { customerData: IAPISingleCustomer }) {
 	console.log(customerData);
@@ -18,7 +19,7 @@ export default function CustomerBox({ customerData }: { customerData: IAPISingle
 				<DetailBox title={'Adresse'} value={customerData.customer.address} />
 				<DetailBox title={'Post nr.'} value={customerData.customer.zip} />
 				<DetailBox title={'Telefon nr.'} value={customerData.customer.phone} />
-				<DetailBox title={'Kundeoprettelse'} value={'CreatedAt data mangler'} />
+				<DetailBox title={'Kundeoprettelse'} value={dateFormat(customerData.customer.createdAt)} />
 			</section>
 		</div>
 	);
