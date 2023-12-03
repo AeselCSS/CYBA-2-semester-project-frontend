@@ -5,9 +5,6 @@ import dateFormat from '../../utility/dateFormat.ts';
 export default function CustomerBox({ customerData }: { customerData: IAPISingleCustomer }) {
 	console.log(customerData);
 
-	console.log();
-
-
 	return (
 		<div className='profile-box box'>
 			<BoxHeader title={'Profil'} btnName='Rediger profil' navigateTo="" />
