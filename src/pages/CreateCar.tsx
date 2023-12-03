@@ -84,7 +84,7 @@ export default function CreateCar({ customer }: {
 	}
 	//https://cors-anywhere.herokuapp.com/
 	const handleAPIGet = async () => {
-		const response = await fetch(`https://api.synsbasen.dk/v1/vehicles/registration/${registrationNumber}`, {
+		const response = await fetch(`https://cors-anywhere.herokuapp.com/https://api.synsbasen.dk/v1/vehicles/registration/${registrationNumber}`, {
 			method: 'GET',
 			headers: {
 				'Authorization': `Bearer ${apiKey}`,
