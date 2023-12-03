@@ -74,9 +74,8 @@ export default function CreateProfile({ authUser }: { authUser: IAuthUser }) {
 	return (
 		<PageLayout>
 			<h1 style={{ textAlign: 'center' }}>Opret konto</h1>
-			
-			<FormLayout onSubmit={handleSubmit(onSubmit)}>
 
+			<FormLayout onSubmit={handleSubmit(onSubmit)}>
 				<label htmlFor='firstName'>Fornavn</label>
 				<input placeholder='Fornavn' {...register('firstName', { required: true })} />
 				{errors.firstName && <span>Fornavn skal udfyldes</span>}
@@ -101,9 +100,10 @@ export default function CreateProfile({ authUser }: { authUser: IAuthUser }) {
 				<input type='tel' pattern='[0-9]{8}' placeholder='Telefon nr.' {...register('phone', { required: true })} />
 				{errors.phone && <span>Telefon nr. skal udfyldes</span>}
 
-				<label htmlFor='email'>Telefon nr.</label>
+				<label htmlFor='email'>E-mail</label>
 				<input defaultValue={authUser.email} disabled {...register('email')} />
 				{errors.email && <span>E-mail skal udfyldes</span>}
+
 				<div className='form-btn-wrapper'>
 					<button type='submit'> Opret konto</button>
 				</div>
