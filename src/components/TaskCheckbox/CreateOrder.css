@@ -42,7 +42,9 @@
 }
 
 
-
+.react-calendar__navigation button {
+    padding: 3px 6px;
+}
 
 /*Den valgte dato i kalenderen*/
 .react-calendar__tile--active {

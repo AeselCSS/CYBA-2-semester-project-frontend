@@ -35,7 +35,7 @@ async function createOrder(newOrder: newOrder) {
 export default function CreateOrder({ customer }: Props) {
 	const [tasks, setTasks] = useState<null | IAPITask[]>(null);
 	const [cars, setCars] = useState<null | ICar[]>(null);
-	const [bookedDates, setBookedDates] = useState<string[]>([])
+	const [bookedDates, setBookedDates] = useState<string[]>([]);
 	const [selectedCarId, setSelectedCarId] = useState('');
 	const [selectedTasks, setSelectedTasks] = useState<{ id: number }[] | []>([]);
 	const [selectedDate, setSelectedDate] = useState<null | TDate>(null);
@@ -49,7 +49,7 @@ export default function CreateOrder({ customer }: Props) {
 			try {
 				const promiseTasks = await fetch('http://localhost:3000/tasks');
 				const promiseCars = await fetch(`http://localhost:3000/customers/${customer.id}/cars`);
-				const promiseBookedDates = await fetch("http://localhost:3000/orders/dates");
+				const promiseBookedDates = await fetch('http://localhost:3000/orders/dates');
 
 				if (promiseTasks.ok) {
 					setTasks(await promiseTasks.json());
@@ -99,8 +99,8 @@ export default function CreateOrder({ customer }: Props) {
 		//Create a new ISO date. Split at T and return index 0, which is YYYY-MM-DD
 		//It returns an incorrect DD (-1).We split on the dashes "-". To split the values in 3 variables.
 		//Lastly, We assemble the values together, where the day is now correct
-		const [year, month, day] = new Date(selectedDate?.toString() as string).toISOString().split("T")[0].split("-")
-		const correctDate = `${year}-${month}-${parseInt(day) + 1}`
+		const [year, month, day] = new Date(selectedDate?.toString() as string).toISOString().split('T')[0].split('-');
+		const correctDate = `${year}-${month}-${parseInt(day) + 1}`;
 
 
 		const newOrder: newOrder = {
@@ -127,9 +127,8 @@ export default function CreateOrder({ customer }: Props) {
 	};
 
 	function disableTiles({ date }: { date: Date }): boolean {
-		return bookedDates.some((bookedDate) => date.toISOString().split("T")[0] === bookedDate);
+		return bookedDates.some((bookedDate) => date.toISOString().split('T')[0] === bookedDate);
 	}
-
 
 
 	return (
@@ -144,21 +143,27 @@ export default function CreateOrder({ customer }: Props) {
 									<TaskCheckbox key={task.id} task={task} setSelectedTasks={setSelectedTasks} selectedTasks={selectedTasks} />
 								))}
 							</section>
-							<select name='cars' id='cars' onChange={(e) => setSelectedCarId(e.target.value)}>
-								<option value=''>Ej køretøj valgt</option>
-								{cars && cars.map((car) => (
-									<option value={String(car.id)} key={car.id}>{car.brand} : Reg. nr. {car.registrationNumber}</option>
-								))}
-							</select>
-							<Calendar
-								className="calender"
-								value={selectedDate}
-								onChange={(value) => setSelectedDate(value)}
-								tileDisabled={disableTiles}
-								nextLabel=">"
-								prevLabel="<"
-								minDetail="year"
-							/>
+
+							<section>
+								<select name='cars' id='cars' onChange={(e) => setSelectedCarId(e.target.value)}>
+									<option value=''>Ej køretøj valgt</option>
+									{cars && cars.map((car) => (
+										<option value={String(car.id)} key={car.id}>{car.brand} : Reg. nr. {car.registrationNumber}</option>
+									))}
+								</select>
+							</section>
+
+							<section>
+								<Calendar
+									className='calender'
+									value={selectedDate}
+									onChange={(value) => setSelectedDate(value)}
+									tileDisabled={disableTiles}
+									nextLabel='>'
+									prevLabel='<'
+									minDetail='year'
+								/>
+							</section>
 							<input type='submit' value='Submit' disabled={!selectedCarId || !selectedTasks.length || !selectedDate}></input>
 						</div>
 					</form>
