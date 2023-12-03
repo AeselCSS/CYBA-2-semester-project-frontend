@@ -88,8 +88,6 @@ export default function CreateCar({ customer }: {
 			method: 'GET',
 			headers: {
 				'Authorization': `Bearer ${apiKey}`,
-				'Content-Type': 'application/json',
-				'crossOrigin': 'true',
 			},
 		});
 
