@@ -35,3 +35,16 @@
     grid-area: desc;
 
 }
+
+.calender {
+    padding: 15px;
+    color-scheme: white;
+}
+
+
+
+
+/*Den valgte dato i kalenderen*/
+.react-calendar__tile--active {
+    background-color: blue;
+}

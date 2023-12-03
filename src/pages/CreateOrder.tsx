@@ -150,7 +150,15 @@ export default function CreateOrder({ customer }: Props) {
 									<option value={String(car.id)} key={car.id}>{car.brand} : Reg. nr. {car.registrationNumber}</option>
 								))}
 							</select>
-							<Calendar value={selectedDate} onChange={(value) => setSelectedDate(value)} tileDisabled={disableTiles} />
+							<Calendar
+								className="calender"
+								value={selectedDate}
+								onChange={(value) => setSelectedDate(value)}
+								tileDisabled={disableTiles}
+								nextLabel=">"
+								prevLabel="<"
+								minDetail="year"
+							/>
 							<input type='submit' value='Submit' disabled={!selectedCarId || !selectedTasks.length || !selectedDate}></input>
 						</div>
 					</form>
