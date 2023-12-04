@@ -1,4 +1,3 @@
-import BoxHeader from './BoxHeader';
 import DetailBox from './DetailBox';
 import dateFormat from '../../utility/dateFormat.ts';
 import BoxHeaderProfile from './BoxHeaderProfile.tsx';

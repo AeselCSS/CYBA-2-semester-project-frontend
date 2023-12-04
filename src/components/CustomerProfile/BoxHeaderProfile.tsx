@@ -24,7 +24,7 @@ export default function BoxHeaderProfile({ customerId }: { customerId: string })
 	const handleDelete = async () => {
 		try {
 			await deleteCustomer(customerId);
-			navigate("/redirect");
+			navigate("/");
 		} catch (error: unknown) {
 			console.log((error as Error).message);
 		}
