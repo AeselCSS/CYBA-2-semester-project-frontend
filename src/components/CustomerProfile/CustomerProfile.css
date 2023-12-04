@@ -71,7 +71,7 @@
 	font-size: var(--font-size-small);
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	width: 8rem;
+	width: 12rem;
 }
 
 .order-box-details {
