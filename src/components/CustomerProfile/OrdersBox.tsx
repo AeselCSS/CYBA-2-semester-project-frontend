@@ -42,14 +42,13 @@ export default function OrdersBox({ customerData }: { customerData: IAPISingleCu
 			<Loader />
 		) : (
 			<div className='orders-box box'>
-				<BoxHeader title='Ordre' btnName='Tilføj ordre' navigateTo="" />
+				<BoxHeader title='Ordre' btnName='Tilføj ordre' navigateTo="/orders/create" />
 
 				<section className='orders-box-grid'>
 					{orders.map((order) => (
 						<OrdersBoxDetail customerData={customerData} order={order} key={order.id} />
 					))}
 				</section>
-
 
 				<ReactPaginate
 					pageCount={calculatePageCount()}

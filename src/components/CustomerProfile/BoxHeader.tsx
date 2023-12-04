@@ -3,13 +3,11 @@ import { useNavigate } from 'react-router-dom';
 interface BoxHeaderProps {
 	title: string;
 	btnName: string;
-	navigateTo: string
+	navigateTo: string;
 }
 
 export default function BoxHeader({ title, btnName, navigateTo }: BoxHeaderProps) {
 	const navigate = useNavigate();
-
-
 
 	return (
 		<div className='header-flex'>

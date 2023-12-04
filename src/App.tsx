@@ -11,7 +11,9 @@ import CarOverview from './pages/CarOverview.tsx';
 import CustomerProfile from './pages/CustomerProfile.tsx';
 import EmployeeOverview from './pages/EmployeeOverview.tsx';
 import CustomerOverview from './pages/CustomerOverview.tsx';
+import CreateOrder from './pages/CreateOrder.tsx';
 import CreateCar from './pages/CreateCar.tsx';
+
 
 function App() {
 	const [user, setUser] = useState<ICustomer | IEmployee | IAuthUser | null>(null);
@@ -26,6 +28,7 @@ function App() {
 			<Route path='/about' element={<About />} />
 
 			<Route path='/contact' element={<Contact />} />
+			<Route path='/orders/create' element={user && <CreateOrder customer={user as ICustomer} />} />
 
 			<Route path='/employee/orders' element={user && <OrderOverview employee={user as IEmployee} />} />
 			<Route path='/employee/cars' element={user && <CarOverview employee={user as IEmployee} />} />

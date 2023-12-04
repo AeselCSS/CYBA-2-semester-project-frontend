@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Loader from '../Loader/Loader';
 import {status as danishStatus } from '../../utility/danishDictionary.ts';
+import calculatePrice from '../../utility/priceCalculator.ts';
 
 interface OrdersBoxDetailProps {
 	customerData: IAPISingleCustomer;
@@ -36,7 +37,7 @@ export default function OrdersBoxDetail({ customerData, order }: OrdersBoxDetail
 						<div>Reg. nr:</div>
 						<h3>{car?.registrationNumber ?? "Slettet"}</h3>
 						<div>Pris:</div>
-						<h3>{currentOrder.totalTime}</h3>
+						<h3>{calculatePrice(currentOrder.totalTime)},-</h3>
 						<div>Status:</div>
 						<h3>{danishStatus[currentOrder.status]}</h3>
 					</section>
