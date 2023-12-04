@@ -48,15 +48,7 @@ export default function CreateCar({ customer }: {
 			const newCar: INewCar = {
 				customerId: customer.id,
 				mileage: parseInt(mileage),
-				registrationNumber: registrationNumber,
-				vinNumber: APIResult.vinNumber,
-				brand: APIResult.brand,
-				model: APIResult.model,
-				modelVariant: APIResult.modelVariant,
-				firstRegistration: APIResult.firstRegistration,
-				lastInspectionDate: APIResult.lastInspectionDate,
-				lastInspectionKind: APIResult.lastInspectionKind,
-				lastInspectionResult: APIResult.lastInspectionResult,
+				...APIResult
 			};
 
 			console.log(newCar);
