@@ -22,22 +22,34 @@ export default function DetailedCustomer({ customer }: DetailedCustomerProps) {
 
 	return (
 		<div>
-			<p>Ordre data</p>
-			<div>{customerData?.customer.lastName}</div>
+			<div className='customer-modal-header-container'>
+				<h2>
+					{customerData?.customer.firstName} {customerData?.customer.lastName}
+				</h2>
+			</div>
+			<div className='customer-modal-header-container'>
+				<h3>Aktive Ordre</h3>
+			</div>
+
 			{customerData?.orders?.map((order) => (
 				<div key={order.id}>
 					{' '}
-					<div>{order.status}</div>
-					<div>{order.createdAt.toString()}</div>
-					<div>{order.updatedAt.toString()}</div>
-				</div>
-			))}
-			<p>Bil data</p>
-			{customerData?.cars.map((car) => (
-				<div key={car.id}>
-					<div>{car.registrationNumber}</div>
-					<div>{car.lastInspectionKind}</div>
-					<div>{car.lastInspectionResult}</div>
+					<div className='order-modal-container'>
+						<div className='grid-container'>
+							<div className='grid-item'>
+								<h3>Ordre id</h3>
+								<h3>Status</h3>
+								<h3>Oprettelsesdato</h3>
+								<h3>Seneste Opdatering</h3>
+							</div>
+							<div className='grid-item'>
+								<div>{order.id}</div>
+								<div>{order.status}</div>
+								<div>{order.createdAt.toString()}</div>
+								<div>{order.updatedAt.toString()}</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			))}
 		</div>
