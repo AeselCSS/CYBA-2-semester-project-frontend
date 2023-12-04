@@ -4,7 +4,7 @@ import CarBoxDetails from './CarBoxDetails';
 export default function CarBox({ customerData }: { customerData: IAPISingleCustomer }) {
 	return (
 		<div className='car-box box'>
-			<BoxHeader title='Køretøjer' btnName='Tilføj køretøj' />
+			<BoxHeader title='Køretøjer' btnName='Tilføj køretøj' navigateTo="/cars/create" />
 
 			<section className='car-box-grid'>
 				{customerData.cars.map((car) => (

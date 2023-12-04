@@ -53,9 +53,9 @@ interface IOrder {
 
 interface ICar {
     id: number, 
-    customerId: number,
+    customerId: string,
     registrationNumber: string,
-    vinNumber: number,
+    vinNumber: string,
     brand: string,
     model: string,
     modelVariant: string,
@@ -67,6 +67,8 @@ interface ICar {
     createdAt: Date,
     updatedAt: Date
 }
+
+
 
 interface IEmployee {
     id: string,
@@ -130,6 +132,8 @@ interface ICurrentOrder {
 		}[];
 	}[];
 }
+
+
 
 enum Status {
 	AWAITING_CUSTOMER,
