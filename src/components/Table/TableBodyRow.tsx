@@ -1,13 +1,12 @@
 import formatDate from '../../utility/dateFormat.ts';
-
 import { useDisclosure } from '@mantine/hooks';
 import { Modal } from '@mantine/core';
 import DetailedEmployee from '../Modal/DetailedEmployee.tsx';
-import "../Modal/modal.css"
 import { isEmployee, isCar, isCustomer, isOrder } from '../../utility/interfaceChecker.ts';
 import DetailedCustomer from '../Modal/DetailedCustomer.tsx';
 import DetailedOrder from '../Modal/DetailedOrder.tsx';
 import DetailedCar from '../Modal/DetailedCar.tsx';
+import '../Modal/Modal.css';
 
 
 interface Props<T> {
@@ -24,13 +23,13 @@ export default function TableBodyRow<T extends object>({ item, skipIndexes }: Pr
 
 	let detailedComponent = null;
 
-	if (isOrder(item)) {
+	if (isOrder(item as EnitityUnion)) {
 		detailedComponent = <DetailedOrder order={item as IOrder} />;
-	} else if (isCar(item)) {
+	} else if (isCar(item as EnitityUnion)) {
 		detailedComponent = <DetailedCar car={item as ICar} />;
-	} else if (isEmployee(item)) {
+	} else if (isEmployee(item as EnitityUnion)) {
 		detailedComponent = <DetailedEmployee employee={item as IEmployee} />;
-	} else if (isCustomer(item)) {
+	} else if (isCustomer(item as EnitityUnion)) {
 		detailedComponent = <DetailedCustomer customer={item as ICustomer} />;
 	}
 

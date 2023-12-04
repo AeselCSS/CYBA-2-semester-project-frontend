@@ -133,7 +133,7 @@ interface ICurrentOrder {
 
 
 
-enum Status {
+enum Status{
 	AWAITING_CUSTOMER,
 	PENDING,
 	IN_PROGRESS,
@@ -163,3 +163,6 @@ interface ITask {
 interface IAPITask extends ITask{
 	time: number
 }
+
+
+type EnitityUnion = ICustomer | IEmployee | ICar | IOrder;

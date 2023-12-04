@@ -28,12 +28,9 @@ function App() {
 		<MantineProvider>
 			<Routes>
 				<Route path='/' element={<Homepage />} />
-
 				<Route path='/about' element={<About />} />
-
 				<Route path='/contact' element={<Contact />} />
 				<Route path='/orders/create' element={user && <CreateOrder customer={user as ICustomer} />} />
-
 				<Route path='/employee/orders' element={user && <OrderOverview employee={user as IEmployee} />} />
 				<Route path='/employee/cars' element={user && <CarOverview employee={user as IEmployee} />} />
 				<Route path='/employee/employees' element={user && <EmployeeOverview employee={user as IEmployee} />} />
