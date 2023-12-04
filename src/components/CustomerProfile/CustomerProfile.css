@@ -55,7 +55,7 @@
 
 .car-box-grid {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 1fr 1fr 0.1fr;
 	gap: var(--spacing-base);
 }
 .orders-box-grid {
