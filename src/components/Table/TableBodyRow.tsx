@@ -3,12 +3,11 @@ import formatDate from '../../utility/dateFormat.ts';
 import { useDisclosure } from '@mantine/hooks';
 import { Modal } from '@mantine/core';
 import DetailedEmployee from '../Modal/DetailedEmployee.tsx';
-import "../Modal/modal.css"
+import '../Modal/modal.css';
 import { isEmployee, isCar, isCustomer, isOrder } from '../../utility/interfaceChecker.ts';
 import DetailedCustomer from '../Modal/DetailedCustomer.tsx';
 import DetailedOrder from '../Modal/DetailedOrder.tsx';
 import DetailedCar from '../Modal/DetailedCar.tsx';
-
 
 interface Props<T> {
 	item: T;
@@ -33,8 +32,6 @@ export default function TableBodyRow<T extends object>({ item, skipIndexes }: Pr
 	} else if (isCustomer(item)) {
 		detailedComponent = <DetailedCustomer customer={item as ICustomer} />;
 	}
-
-	
 
 	return (
 		<>
