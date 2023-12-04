@@ -50,7 +50,6 @@ export default function OrdersBox({ customerData }: { customerData: IAPISingleCu
 					))}
 				</section>
 
-
 				<ReactPaginate
 					pageCount={calculatePageCount()}
 					onPageChange={(event) => setCurrentPage(event.selected + 1)}

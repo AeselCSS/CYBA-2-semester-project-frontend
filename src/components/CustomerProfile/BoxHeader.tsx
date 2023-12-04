@@ -9,7 +9,6 @@ interface BoxHeaderProps {
 export default function BoxHeader({ title, btnName, navigateTo }: BoxHeaderProps) {
 	const navigate = useNavigate();
 
-
 	return (
 		<div className='header-flex'>
 			<h1>{title}</h1>
