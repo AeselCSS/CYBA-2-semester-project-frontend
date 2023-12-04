@@ -34,15 +34,19 @@ export default function BoxHeaderProfile({ customerId }: { customerId: string })
 		<>
 			<Modal opened={opened} onClose={close} title='Rediger Profil' className='modal' centered>
 				{/* Modal content */}
-				<button
-					className='delete-customer-btn'
-					onClick={handleDelete}>Slet Profil
-				</button>
 
-				<button
-					className='update-customer-btn'
-					onClick={() => navigate("/profile/update")}>Opdater profiloplysninger
-				</button>
+				<div className="btn-container">
+					<button
+						className='delete-customer-btn'
+						onClick={handleDelete}>Slet Profil
+					</button>
+
+					<button
+						className='update-customer-btn'
+						onClick={() => navigate("/profile/update")}>Opdater profiloplysninger
+					</button>
+				</div>
+
 			</Modal>
 
 			<div className='header-flex'>

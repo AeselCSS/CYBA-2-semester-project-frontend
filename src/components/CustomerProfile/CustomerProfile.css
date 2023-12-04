@@ -107,3 +107,16 @@
 	justify-content: space-between;
 	margin-bottom: 1rem;
 }
+
+.modal .btn-container  {
+	display: flex;
+	justify-content: space-around;
+}
+
+.delete-customer-btn {
+	background-color: red;
+}
+
+.update-customer-btn {
+	background-color: var(--orange);
+}
