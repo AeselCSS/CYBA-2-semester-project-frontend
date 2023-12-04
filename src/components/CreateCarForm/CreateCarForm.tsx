@@ -14,11 +14,21 @@ interface IAPICar {
 	lastInspectionDate: string,
 	lastInspectionResult: string,
 	lastInspectionKind: string,
+	mileage: string
 }
 
-interface INewCar extends IAPICar {
+interface INewCar  {
 	customerId: string,
-	mileage: number,
+	mileage: number
+	registrationNumber: string,
+	vinNumber: string,
+	brand: string,
+	model: string,
+	modelVariant: string,
+	firstRegistration: string,
+	lastInspectionDate: string,
+	lastInspectionResult: string,
+	lastInspectionKind: string,
 }
 
 type inputs = {
@@ -47,27 +57,21 @@ export default function CreateCarForm({ customer }: { customer: ICustomer }) {
 	const [APIResult, setAPIResult] = useState<IAPICar | null>(null);
 	const [registrationNumber, setRegistrationNumber] = useState('');
 	const navigate = useNavigate();
-
-	const values = APIResult;
-
+	const values = APIResult as IAPICar;
 
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-
 	} = useForm<inputs>({
 			values
 	});
 
 	async function onSubmit(data: inputs) {
-		console.log("Submit");
-		console.log(APIResult?.vinNumber);
-
 		const newCar: INewCar = {
 			...data,
 			customerId: customer.id,
-			registrationNumber: registrationNumber,
+			registrationNumber: registrationNumber.toUpperCase(),
 			mileage: parseInt(data.mileage),
 		};
 
@@ -132,7 +136,7 @@ export default function CreateCarForm({ customer }: { customer: ICustomer }) {
 				{errors.lastInspectionKind && <span>Sidste inspektionstype skal udfyldes</span>}
 
 				<div className='form-btn-wrapper'>
-					<button type='submit'> Opret konto</button>
+					<button type='submit'>Bekræft</button>
 				</div>
 			</FormLayout>
 		</>

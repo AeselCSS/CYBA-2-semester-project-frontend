@@ -10,6 +10,7 @@ interface IAPICar {
 	lastInspectionDate: string,
 	lastInspectionResult: string,
 	lastInspectionKind: string,
+	mileage: string
 }
 
 
