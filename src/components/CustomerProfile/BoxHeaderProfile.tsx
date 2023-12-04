@@ -43,7 +43,7 @@ export default function BoxHeaderProfile({ customerId }: { customerId: string })
 
 					<button
 						className='update-customer-btn'
-						onClick={() => navigate("/profile/update")}>Opdater profiloplysninger
+						onClick={() => navigate("/profile/update")}>Opdater oplysninger
 					</button>
 				</div>
 
