@@ -13,7 +13,7 @@
 	color: var(--lightGrey);
 }
 
-.customer-view-grid button {
+/* .customer-view-grid button {
 	background-color: var(--charcoalGrey);
 	color: var(--white);
 	border: none;
@@ -24,9 +24,10 @@
 
 .customer-view-grid button:hover {
 	background-color: var(--orange);
-}
+} */
 
 .customer-view-grid h3 {
+	font-size: var(--font-size-small);
 	color: var(--white);
 }
 
@@ -36,12 +37,13 @@
 
 .profile-box {
 	grid-area: profile;
-	border-right: dotted 1px var(--charcoalGrey);
-	border-bottom: dotted 1px var(--charcoalGrey);
+	border-right: dotted 2px var(--charcoalGrey);
+	border-bottom: dotted 2px var(--charcoalGrey);
+	padding-bottom: 2rem;
 }
 .car-box {
 	grid-area: car;
-	border-bottom: dotted 1px var(--charcoalGrey);
+	border-bottom: dotted 2px var(--charcoalGrey);
 }
 .orders-box {
 	grid-area: orders;
@@ -62,19 +64,20 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
 	gap: var(--spacing-base);
+	margin-bottom: 1rem;
 }
 
 .order-text-wrapper {
+	font-size: var(--font-size-small);
 	display: grid;
-	grid-template-columns: 1fr 2fr;
-	/* width: 80px; */
+	grid-template-columns: 1fr 1fr;
+	width: 8rem;
 }
 
 .order-box-details {
 	display: grid;
 	grid-template-columns: 1fr 3fr;
 	gap: var(--spacing-base);
-	/* width: 100px; */
 }
 
 .order-box-details span {
@@ -88,10 +91,11 @@
 }
 
 .image-container img {
-	width: 100px;
+	width: 90px;
 	object-fit: cover;
 	transition: 0.3s ease-out;
 	cursor: pointer;
+	filter: hue-rotate(185deg);
 }
 
 .image-container img:hover {
@@ -101,4 +105,5 @@
 .header-flex {
 	display: flex;
 	justify-content: space-between;
+	margin-bottom: 1rem;
 }
