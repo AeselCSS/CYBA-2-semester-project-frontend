@@ -34,9 +34,10 @@ export default function OrdersBox({ customerData }: { customerData: IAPISingleCu
 		return Math.ceil(metaData!.totalCount / pageSize);
 	};
 
+
 	return (
 		<div className='orders-box box'>
-			<BoxHeader title='Ordre' btnName='Tilføj ordre' />
+			<BoxHeader title='Ordre' btnName='Tilføj ordre' navigateTo="/orders/create" />
 			{!orders ? <Loader /> : !orders.length && <h2>Ingen ordrer</h2>}
 			{orders && (
 				<>
@@ -65,4 +66,5 @@ export default function OrdersBox({ customerData }: { customerData: IAPISingleCu
 			)}
 		</div>
 	);
+
 }

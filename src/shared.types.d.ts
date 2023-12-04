@@ -53,9 +53,9 @@ interface IOrder {
 
 interface ICar {
     id: number, 
-    customerId: number,
+    customerId: string,
     registrationNumber: string,
-    vinNumber: number,
+    vinNumber: string,
     brand: string,
     model: string,
     modelVariant: string,
@@ -67,6 +67,8 @@ interface ICar {
     createdAt: Date,
     updatedAt: Date
 }
+
+
 
 interface IEmployee {
     id: string,
@@ -131,6 +133,8 @@ interface ICurrentOrder {
 	}[];
 }
 
+
+
 enum Status {
 	AWAITING_CUSTOMER,
 	PENDING,
@@ -150,4 +154,14 @@ enum Role {
 	CUSTOMER,
 	EMPLOYEE,
 	ADMIN,
+}
+
+interface ITask {
+	id: number,
+	name: string,
+	description: string
+}
+
+interface IAPITask extends ITask{
+	time: number
 }

@@ -1,0 +1,52 @@
+
+.form-container {
+    margin-bottom: 10rem;
+}
+
+.create-order-container {
+    display: grid;
+    grid-template-rows: repeat(auto-fill, 1fr);
+    grid-template-columns: 1fr 1fr;
+}
+
+.checkbox-div {
+    display: grid;
+    grid-template-areas:
+    "inpu labe pric"
+    "inpu desc pric";
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-rows: 1fr 2fr;
+}
+
+.checkbox-div label {
+    grid-area: labe;
+    font-size: large;
+}
+
+.checkbox-div input {
+    grid-area: inpu;
+}
+
+.checkbox-div .price {
+    grid-area: pric;
+}
+
+.checkbox-div .description {
+    grid-area: desc;
+
+}
+
+.calender {
+    padding: 15px;
+    color-scheme: white;
+}
+
+
+.react-calendar__navigation button {
+    padding: 3px 6px;
+}
+
+/*Den valgte dato i kalenderen*/
+.react-calendar__tile--active {
+    background-color: blue;
+}
