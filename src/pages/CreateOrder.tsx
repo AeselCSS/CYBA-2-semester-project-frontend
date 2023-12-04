@@ -162,6 +162,7 @@ export default function CreateOrder({ customer }: Props) {
 									nextLabel='>'
 									prevLabel='<'
 									minDetail='year'
+									minDate={new Date()}
 								/>
 							</section>
 							<input type='submit' value='Submit' disabled={!selectedCarId || !selectedTasks.length || !selectedDate}></input>
