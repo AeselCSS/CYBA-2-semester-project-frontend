@@ -113,7 +113,8 @@ export default function UpdateProfile({ customer }: Props) {
 				{errors.email && <span>E-mail skal udfyldes</span>}
 
 				<div className='form-btn-wrapper'>
-					<button type='submit'> Opret konto</button>
+					<button onClick={() => navigate("/profile")} >Tilbage</button>
+					<button type='submit'>Bekræft</button>
 				</div>
 			</FormLayout>
 		</PageLayout>
