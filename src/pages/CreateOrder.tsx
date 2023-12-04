@@ -140,16 +140,24 @@ export default function CreateOrder({ customer }: Props) {
 						<div className='form-container'>
 							<section className='create-order-container'>
 								{tasks.map((task) => (
-									<TaskCheckbox key={task.id} task={task} setSelectedTasks={setSelectedTasks} selectedTasks={selectedTasks} />
+									<TaskCheckbox
+										key={task.id}
+										task={task}
+										setSelectedTasks={setSelectedTasks}
+										selectedTasks={selectedTasks}
+									/>
 								))}
 							</section>
 
 							<section>
 								<select name='cars' id='cars' onChange={(e) => setSelectedCarId(e.target.value)}>
 									<option value=''>Ej køretøj valgt</option>
-									{cars && cars.map((car) => (
-										<option value={String(car.id)} key={car.id}>{car.brand} : Reg. nr. {car.registrationNumber}</option>
-									))}
+									{cars &&
+										cars.map((car) => (
+											<option value={String(car.id)} key={car.id}>
+												{car.brand} : Reg. nr. {car.registrationNumber}
+											</option>
+										))}
 								</select>
 							</section>
 
@@ -166,6 +174,9 @@ export default function CreateOrder({ customer }: Props) {
 								/>
 							</section>
 							<input type='submit' value='Submit' disabled={!selectedCarId || !selectedTasks.length || !selectedDate}></input>
+							{!selectedDate && <p>Date is missing</p>}
+							{!selectedTasks.length && <p>Tasks are missing</p>}
+							{!selectedCarId && <p>Car is missing</p>}
 						</div>
 					</form>
 				</>
