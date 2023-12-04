@@ -22,7 +22,7 @@ interface INewCar extends IAPICar {
 }
 
 type inputs = {
-	mileage: number
+	mileage: string
 	vinNumber: string,
 	brand: string,
 	model: string,
@@ -47,20 +47,28 @@ export default function CreateCarForm({ customer }: { customer: ICustomer }) {
 	const [APIResult, setAPIResult] = useState<IAPICar | null>(null);
 	const [registrationNumber, setRegistrationNumber] = useState('');
 	const navigate = useNavigate();
+
+	const values = APIResult;
+
+
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<inputs>();
+
+	} = useForm<inputs>({
+			values
+	});
 
 	async function onSubmit(data: inputs) {
 		console.log("Submit");
 		console.log(APIResult?.vinNumber);
 
 		const newCar: INewCar = {
+			...data,
 			customerId: customer.id,
 			registrationNumber: registrationNumber,
-			...data,
+			mileage: parseInt(data.mileage),
 		};
 
 		console.log(newCar);
@@ -92,35 +100,35 @@ export default function CreateCarForm({ customer }: { customer: ICustomer }) {
 				{errors.mileage && <span>Km/t kørt skal udfyldes</span>}
 
 				<label htmlFor='vinNumber'>STEL-nr</label>
-				<input disabled={true} defaultValue={APIResult?.vinNumber}  {...register('vinNumber', )} />
+				<input disabled={true}   {...register('vinNumber', { required: true })} />
 				{errors.vinNumber && <span>STEL-nr skal udfyldes</span>}
 
 				<label htmlFor='brand'>Mærke</label>
-				<input disabled={true} defaultValue={APIResult?.brand} {...register('brand')} />
+				<input disabled={true}  {...register('brand', { required: true })} />
 				{errors.brand && <span>Mærke skal udfyldes</span>}
 
 				<label htmlFor='model'>Model</label>
-				<input disabled={true} defaultValue={APIResult?.model} {...register('model')} />
+				<input disabled={true}  {...register('model', { required: true })} />
 				{errors.model && <span>Model skal udfyldes</span>}
 
 				<label htmlFor='modelVariant'>Variant</label>
-				<input pattern='[0-9]{4}' disabled={true} defaultValue={APIResult?.modelVariant} {...register('modelVariant')} />
+				<input pattern='[0-9]{4}' disabled={true}  {...register('modelVariant', { required: true })} />
 				{errors.modelVariant && <span>Variant skal udfyldes</span>}
 
 				<label htmlFor='firstRegistration'>Første registreringsdato</label>
-				<input disabled={true} defaultValue={APIResult?.firstRegistration} {...register('firstRegistration')} />
+				<input disabled={true} {...register('firstRegistration', { required: true })} />
 				{errors.firstRegistration && <span>Første registreringsdato skal udfyldes</span>}
 
 				<label htmlFor='lastInspectionDate'>Sidste inspektionsdato</label>
-				<input disabled={true} defaultValue={APIResult?.lastInspectionDate} {...register('lastInspectionDate')} />
+				<input disabled={true}  {...register('lastInspectionDate', { required: true })} />
 				{errors.lastInspectionDate && <span>Sidste inspektionsdato skal udfyldes</span>}
 
 				<label htmlFor='lastInspectionResult'>Sidste inspektionsresultat</label>
-				<input disabled={true} defaultValue={APIResult?.lastInspectionResult} {...register('lastInspectionResult')} />
+				<input disabled={true} {...register('lastInspectionResult', { required: true })} />
 				{errors.lastInspectionResult && <span>Sidste inspektionsresultat skal udfyldes</span>}
 
 				<label htmlFor='lastInspectionKind'>Sidste inspektionstype</label>
-				<input disabled={true} defaultValue={APIResult?.lastInspectionKind}  {...register('lastInspectionKind')} />
+				<input disabled={true}  {...register('lastInspectionKind', { required: true })} />
 				{errors.lastInspectionKind && <span>Sidste inspektionstype skal udfyldes</span>}
 
 				<div className='form-btn-wrapper'>
