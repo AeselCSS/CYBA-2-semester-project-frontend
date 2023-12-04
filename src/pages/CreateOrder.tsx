@@ -72,14 +72,14 @@ export default function CreateOrder({ customer }: Props) {
 					console.log(promiseBookedDates.body);
 				}
 
-			} catch (error: any) {
+			} catch (error: unknown) {
 				console.log('ERROR at fetch');
-				console.log(error.message);
+				console.log((error as Error).message);
 			}
 		}
 
 		getTasksAndCars();
-	}, []);
+	}, [customer.id]);
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -120,8 +120,8 @@ export default function CreateOrder({ customer }: Props) {
 				console.log('FETCH CREATE ERROR');
 				console.log(promise.body);
 			}
-		} catch (error: any) {
-			console.log(error.message);
+		} catch (error: unknown) {
+			console.log((error as Error).message);
 		}
 
 	};

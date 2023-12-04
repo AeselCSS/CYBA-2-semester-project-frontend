@@ -68,8 +68,6 @@ interface ICar {
     updatedAt: Date
 }
 
-
-
 interface IEmployee {
     id: string,
     role: Role,
