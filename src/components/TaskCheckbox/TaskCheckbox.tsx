@@ -9,11 +9,11 @@ interface Props {
 export default function TaskCheckbox({ task, register }: Props) {
 
 	return (
-		<div title={task.description} className="checkbox-div">
-			<input {...register("taskIds")} type='checkbox' name={String(task.id)} id={String(task.id)}  />
+		<div className="checkbox-div">
+			<input {...register("taskIds")} type='checkbox' value={String(task.id)}  />
 			<label htmlFor={String(task.id)}>{task.name}</label>
-			<p className="price">{calculatePrice(task.time)},-</p>
 			<p className="description">{task.description}</p>
+			<p className="price">{calculatePrice(task.time)},-</p>
 		</div>
 	);
 }

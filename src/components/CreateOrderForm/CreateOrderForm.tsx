@@ -73,12 +73,7 @@ export default function CreateOrderForm({customer}: {customer: ICustomer}) {
 		<div>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				{tasks?.map((task) => (
-					<div className="checkbox-div">
-						<input {...register("taskIds")} type='checkbox' value={String(task.id)} id={String(task.id)}  />
-						<label htmlFor={String(task.id)}>{task.name}</label>
-						<p className="description">{task.description}</p>
-						<p className="price">{calculatePrice(task.time)},-</p>
-					</div>
+					<TaskCheckbox task={task} register={register}/>
 				))}
 				{errors.taskIds && <span>Vælg venligst en eller flere services</span>}
 
