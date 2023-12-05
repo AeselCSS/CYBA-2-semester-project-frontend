@@ -1,5 +1,5 @@
 export default function NavbarLogo() {
 	return (
-		<img src="header-icon.png" alt="" />
+		<img src="/header-icon.png" alt="" />
 	);
 }

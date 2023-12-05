@@ -7,7 +7,13 @@
 	color: var(--lightGrey);
 }
 
-.mantine-Modal-header {
+.mantine-Modal-body {
 	background-color: var(--black);
+	color: var(--lightGrey);
+}
+
+.mantine-Modal-header {
+	background-color: red;
 	border-bottom: dotted 1px var(--lightGrey);
+	
 }

@@ -1,10 +1,8 @@
 interface props {
-    btnText: string
-    onClick: ()=>void
+	btnText: string;
+	onClick: () => void;
 }
 
-export default function changeOrderStatusButton({btnText, onClick}: props) {
-  return (
-    <button onClick={onClick}>{btnText}</button>
-  )
+export default function ChangeOrderStatusButton({ btnText, onClick }: props) {
+	return <button onClick={onClick}>{btnText}</button>;
 }

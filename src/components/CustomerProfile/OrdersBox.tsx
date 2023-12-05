@@ -2,8 +2,8 @@ import BoxHeader from './BoxHeader';
 import OrdersBoxDetail from './OrderBoxDetail';
 import ReactPaginate from 'react-paginate';
 import { useEffect, useState } from 'react';
-import './OrdersBox.css';
 import Loader from '../Loader/Loader.tsx';
+import './OrdersBox.css';
 
 export default function OrdersBox({ customerData }: { customerData: IAPISingleCustomer }) {
 	const [orders, setOrders] = useState<IOrder[] | null>(null);
@@ -34,7 +34,8 @@ export default function OrdersBox({ customerData }: { customerData: IAPISingleCu
 	const calculatePageCount = () => {
 		return Math.ceil(metaData!.totalCount / pageSize);
 	};
-
+	console.log(orders);
+	
 
 	return (
 		<div className='orders-box box'>
