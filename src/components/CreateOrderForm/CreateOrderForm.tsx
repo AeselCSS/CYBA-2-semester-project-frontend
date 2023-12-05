@@ -112,18 +112,18 @@ export default function CreateOrderForm({ customer }: { customer: ICustomer }) {
 				{!cars ? <Loader /> : <CarSelect cars={cars} register={register} errors={errors} />}
 			</div>
 
+			{errors.taskIds && <span style={{ color: 'orange', padding: '1.5rem 5rem' }}>Vælg venligst en eller flere services</span>}
 			<div className='tasks-container'>
-				{errors.taskIds && <span style={{ color: 'orange', padding: '12rem' }}>Vælg venligst en eller flere services</span>}
 				{!tasks ? <Loader /> : tasks.map((task) => (
 					<TaskCheckbox task={task} register={register} />
 				))}
 			</div>
 
-			<div>
+			<div className="date-container">
 				<DatePicker unavailableDates={unavailableDates} date={date} setDate={setDate} />
 			</div>
 
-			<div>
+			<div className="btn-container">
 				<button type='submit'>Opret Ordre</button>
 			</div>
 

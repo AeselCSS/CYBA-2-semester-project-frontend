@@ -11,11 +11,24 @@
 }
 
 .car-container {
+    width: 20%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    
+}
+
+.date-container {
+    width: 18%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.btn-container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin-bottom: 3rem;
-    margin-top: 2rem;
 }
 
 .react-calendar__tile {
@@ -49,13 +62,10 @@
 
 }
 
-.calender {
-    padding: 15px;
-    color-scheme: white;
-}
+
 
 .react-calendar__navigation button {
-    padding: 3px 6px;
+    padding: 3px 5%;
 }
 
 /*Den valgte dato i kalenderen*/
