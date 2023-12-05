@@ -5,6 +5,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import TaskCheckbox from '../TaskCheckbox/TaskCheckbox.tsx';
 import Loader from '../Loader/Loader.tsx';
 import './CreateOrderForm.css';
+import { useNavigate } from 'react-router-dom';
 
 type TDatePiece = Date | null;
 type TDate = TDatePiece | [TDatePiece, TDatePiece]
@@ -36,6 +37,7 @@ export default function CreateOrderForm({ customer }: { customer: ICustomer }) {
 	const [cars, setCars] = useState<null | ICar[]>(null);
 	const [unavailableDates, setUnavailableDates] = useState<string[]>([]);
 	const [date, setDate] = useState<TDate>(new Date());
+	const navigate = useNavigate();
 
 	const {
 		register,
@@ -67,9 +69,38 @@ export default function CreateOrderForm({ customer }: { customer: ICustomer }) {
 	}, []);
 
 	async function onSubmit(data: Inputs) {
-		console.log('SUBMIT');
-		console.log(data);
-		console.log(date);
+
+		//Create a new ISO date. Split at T and return index 0, which is YYYY-MM-DD
+		//It returns an incorrect DD (-1).We split on the dashes "-". To split the values in 3 variables.
+		//Lastly, We assemble the values together, where the day is now correct. Padding with 0 is added if necessary
+		const [year, month, day] = new Date(date?.toString() as string)
+			.toISOString()
+			.split('T')[0]
+			.split('-');
+		const correctDate = `${year}-${month}-${String(parseInt(day) + 1).padStart(2, '0')}`;
+		console.log(correctDate);
+
+		const newOrder: newOrder = {
+			customerId: customer.id,
+			carId: parseInt(data.carId),
+			orderStartDate: correctDate,
+			tasks: data.taskIds.map((id) => {
+				return {
+					id: parseInt(id)
+				}
+			})
+		}
+
+		try {
+			const response = await createOrder(newOrder);
+
+			if (response.ok) {
+				//TODO toaster?
+				navigate("/profile")
+			}
+		} catch (error: unknown) {
+			console.log((error as Error).message);
+		}
 	}
 
 	onSubmit as SubmitHandler<Inputs>;
