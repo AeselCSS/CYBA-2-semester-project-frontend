@@ -30,7 +30,13 @@
     justify-content: center;
 }
 
+.btn-container button {
+    background-color: #313131;
+}
 
+button:disabled  {
+    background-color: #4c4c4c;
+}
 
 .btn-container {
     display: flex;
