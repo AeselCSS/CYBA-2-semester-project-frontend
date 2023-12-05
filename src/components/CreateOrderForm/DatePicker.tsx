@@ -10,26 +10,27 @@ interface Props {
 }
 
 export default function DatePicker({unavailableDates, date, setDate}: Props) {
+	const currentDate = new Date();
+	// 7 Days in the future
+	const minDate = new Date(currentDate.getTime() + 7 * 24 * 60 * 60 * 1000);
 
-	console.log(unavailableDates);
+	const disableTiles = ({ date }: { date: Date }): boolean => {
+		if (unavailableDates.some((unavailableDate) => date.toDateString() === new Date(unavailableDate).toDateString())){
+			return true
+		} else if (date.getDay() === 0 || date.getDay() === 6) {
+			//If day is saturday or sunday
+			return true
+		}
 
-	const newUnDates = unavailableDates.map((date) => {
-		const [year, month, day] = date.split("-");
-		const newDay = Number(day) - 1;
-		console.log(newDay);
-		return `${year}-${month}-${newDay}`
-	})
-
-	function disableTiles({ date }: { date: Date }): boolean {
-		return unavailableDates.some((unavailableDate) => date.toISOString().split('T')[0] === unavailableDate);
+		return false
 	}
-
+	
 	return (
 		<Calendar
 			className="calender"
 			value={date}
 			onChange={(value) => setDate(value)}
-			minDate={new Date()}
+			minDate={minDate}
 			tileDisabled={disableTiles}
 			nextLabel='>'
 			prevLabel='<'
