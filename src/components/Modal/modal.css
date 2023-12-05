@@ -12,30 +12,15 @@
 	border-bottom: dotted 1px var(--lightGrey);
 }
 
-/* .order-modal-container {
-	display: flex;
-	flex-direction: column;
-}
-
-.flex-row {
-	display: flex;
-	align-items: flex-start;
-	justify-content: flex-start;
-	gap: 20px;
-} */
-
 .customer-modal-header-container {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin: 15px 0 15px 0;
 }
 
-.grid-container {
+.modal-grid {
 	display: grid;
-	grid-template-columns: repeat(2, 1fr); /* To kolonner med lige bredde */
-	gap: 10px; /* Tilføj mellemrum mellem elementerne efter behov */
-}
-
-.grid-item {
-	/* Tilpas yderligere styling efter behov */
+	grid-template-columns: repeat(2, 1fr);
+	gap: 10px;
 }
