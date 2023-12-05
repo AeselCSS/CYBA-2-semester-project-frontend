@@ -4,10 +4,11 @@ import DatePicker from './DatePicker.tsx';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import TaskCheckbox from '../TaskCheckbox/TaskCheckbox.tsx';
 import Loader from '../Loader/Loader.tsx';
-import "./CreateOrderForm.css"
+import './CreateOrderForm.css';
 
 type TDatePiece = Date | null;
 type TDate = TDatePiece | [TDatePiece, TDatePiece]
+
 interface newOrder {
 	orderStartDate: string,
 	carId: number,
@@ -30,7 +31,7 @@ async function createOrder(newOrder: newOrder) {
 	});
 }
 
-export default function CreateOrderForm({customer}: {customer: ICustomer}) {
+export default function CreateOrderForm({ customer }: { customer: ICustomer }) {
 	const [tasks, setTasks] = useState<null | IAPITask[]>(null);
 	const [cars, setCars] = useState<null | ICar[]>(null);
 	const [unavailableDates, setUnavailableDates] = useState<string[]>([]);
@@ -41,10 +42,10 @@ export default function CreateOrderForm({customer}: {customer: ICustomer}) {
 		handleSubmit,
 		formState: { errors },
 	} = useForm<Inputs>({
-			defaultValues: {
-				taskIds: [],
-				carId: ""
-			}
+		defaultValues: {
+			taskIds: [],
+			carId: '',
+		},
 	});
 
 	useEffect(() => {
@@ -66,26 +67,32 @@ export default function CreateOrderForm({customer}: {customer: ICustomer}) {
 	}, []);
 
 	async function onSubmit(data: Inputs) {
-		console.log("SUBMIT");
+		console.log('SUBMIT');
 		console.log(data);
 		console.log(date);
-	}onSubmit as SubmitHandler<Inputs>
+	}
 
-	return(
+	onSubmit as SubmitHandler<Inputs>;
+
+	return (
 		<div>
 			<form onSubmit={handleSubmit(onSubmit)}>
-				{!tasks ?  <Loader/> : tasks.map((task) => (
-					<TaskCheckbox task={task} register={register}/>
-				))}
-				{errors.taskIds && <span>Vælg venligst en eller flere services</span>}
+				<div>
+					{!tasks ? <Loader /> : tasks.map((task) => (
+						<TaskCheckbox task={task} register={register} />
+					))}
+					{errors.taskIds && <span style={{color: 'orange'}}>Vælg venligst en eller flere services</span>}
+				</div>
 
-				{!cars ? <Loader/> : <CarSelect cars={cars} register={register} errors={errors}/>}
-				<DatePicker unavailableDates={unavailableDates} date={date} setDate={setDate}/>
+				<div>
+					{!cars ? <Loader /> : <CarSelect cars={cars} register={register} errors={errors} />}
+					<DatePicker unavailableDates={unavailableDates} date={date} setDate={setDate} />
+				</div>
 
 				<div className='form-btn-wrapper'>
 					<button type='submit'>Opret Ordre</button>
 				</div>
 			</form>
 		</div>
-	)
+	);
 }
