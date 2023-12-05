@@ -12,7 +12,7 @@
 	border-bottom: dotted 1px var(--lightGrey);
 }
 
-.customer-modal-header-container {
+.header-container {
 	display: flex;
 	justify-content: center;
 	align-items: center;

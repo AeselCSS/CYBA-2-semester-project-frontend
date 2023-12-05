@@ -19,37 +19,41 @@ export default function DetailedCustomer({ customer }: DetailedCustomerProps) {
 	}, [customer.id]);
 	console.log(customerData?.orders);
 
-	// const filteredOrders = customerData?.orders?.filter((order) => order.status.toString() !== 'COMPLETED') || [];
+	const filteredOrders = customerData?.orders?.filter((order) => order.status.toString() !== 'COMPLETED') || [];
 
 	return (
 		<div>
-			<div className='customer-modal-header-container'>
+			<div className='header-container'>
 				<h2>
 					{customerData?.customer.firstName} {customerData?.customer.lastName}
 				</h2>
 			</div>
-			<div className='customer-modal-header-container'>
+			<div className='header-container'>
 				<h3>Aktive Ordre</h3>
 			</div>
 
-			{customerData?.orders?.map((order) => (
-				<div key={order.id}>
-					{' '}
-					<section className='modal-container'>
-						<div className='modal-grid'>
-							<h3>Ordre id</h3>
-							<div>{order.id}</div>
-							<h3>Status</h3>
-							<div>{order.status}</div>
-							<h3>Oprettelses Dato</h3>
-							<div>{formatDate(new Date(order.createdAt))}</div>
-							<h3>Seneste Opdatering </h3>
-							<div>{formatDate(new Date(order.updatedAt))}</div>
-						</div>
-					</section>
-				</div>
-			))}
-			<div className='customer-modal-header-container'>
+			{filteredOrders?.length > 0 ? (
+				filteredOrders.map((order) => (
+					<div key={order.id}>
+						<section className='modal-container'>
+							<div className='modal-grid'>
+								<h3>Ordre id</h3>
+								<div>{order.id}</div>
+								<h3>Status</h3>
+								<div>{order.status}</div>
+								<h3>Oprettelses Dato</h3>
+								<div>{formatDate(new Date(order.createdAt))}</div>
+								<h3>Seneste Opdatering </h3>
+								<div>{formatDate(new Date(order.updatedAt))}</div>
+							</div>
+						</section>
+					</div>
+				))
+			) : (
+				<p className='header-container'>Ingen aktive ordre</p>
+			)}
+
+			<div className='header-container'>
 				<h3>Bildata</h3>
 			</div>
 			{customerData?.cars.map((car) => (
