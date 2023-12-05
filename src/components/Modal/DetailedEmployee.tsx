@@ -24,10 +24,8 @@ export default function DetailedEmployee({ employee }: DetailedEmployeeProps) {
 		<>
 			{employeeData && (
 				<div>
-					<div className='header-container'>{/* <h2>{carData?.car.registrationNumber}</h2> */}</div>
-					<div className='header-container'>
-						<h2>Bil Data</h2>
-					</div>
+					<h2 className='header-container'>Bil Data</h2>
+
 					<section className='modal-container'>
 						<div className='modal-grid'>
 							<h3>Stilling</h3>

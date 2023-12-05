@@ -35,9 +35,8 @@ export default function TableBodyRow<T extends object>({ item, skipIndexes }: Pr
 
 	return (
 		<>
-			<Modal opened={opened} onClose={close} title='Authentication' className='modal' centered>
+			<Modal opened={opened} onClose={close} className='modal' centered>
 				{/* Modal content */}
-				<h2>Hej</h2>
 
 				{detailedComponent}
 

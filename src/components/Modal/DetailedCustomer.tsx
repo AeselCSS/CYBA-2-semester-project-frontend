@@ -23,13 +23,13 @@ export default function DetailedCustomer({ customer }: DetailedCustomerProps) {
 
 	return (
 		<div>
-			<div className='header-container'>
+			<div className='name-header'>
 				<h2>
 					{customerData?.customer.firstName} {customerData?.customer.lastName}
 				</h2>
 			</div>
 			<div className='header-container'>
-				<h3>Aktive Ordre</h3>
+				<h3 className='header-container'>Aktive Ordre</h3>
 			</div>
 
 			{filteredOrders?.length > 0 ? (
@@ -50,11 +50,11 @@ export default function DetailedCustomer({ customer }: DetailedCustomerProps) {
 					</div>
 				))
 			) : (
-				<p className='header-container'>Ingen aktive ordre</p>
+				<p className='no-active-orders'>Ingen aktive ordre</p>
 			)}
 
 			<div className='header-container'>
-				<h3>Bildata</h3>
+				<h3 className='header-container'>Bildata</h3>
 			</div>
 			{customerData?.cars.map((car) => (
 				<div key={car.id}>
