@@ -2,31 +2,24 @@
 .form-container {
     width: 100%;
     display: grid;
-    align-items: normal;
+    grid-template-columns: 1fr;
+}
+
+.tasks-container {
+    display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
-.order-other {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+.car-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+    margin-top: 2rem;
 }
-
-
-
 
 .react-calendar__tile {
 
-}
-
-.form-container {
-    margin-bottom: 10rem;
-}
-
-.create-order-container {
-    display: grid;
-    grid-template-rows: repeat(auto-fill, 1fr);
-    grid-template-columns: 1fr 1fr;
 }
 
 .checkbox-div {
@@ -34,7 +27,7 @@
     grid-template-areas:
     "inpu labe pric"
     "inpu desc pric";
-    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-columns: 1fr 4fr 0.5fr;
     grid-template-rows: 1fr 2fr;
 }
 
@@ -60,7 +53,6 @@
     padding: 15px;
     color-scheme: white;
 }
-
 
 .react-calendar__navigation button {
     padding: 3px 6px;

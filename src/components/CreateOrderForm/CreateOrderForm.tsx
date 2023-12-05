@@ -107,28 +107,26 @@ export default function CreateOrderForm({ customer }: { customer: ICustomer }) {
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className='form-container'>
-			<div>
-				{errors.taskIds && <span style={{ color: 'orange', padding: "12rem" }}>Vælg venligst en eller flere services</span>}
+
+			<div className='car-container'>
+				{!cars ? <Loader /> : <CarSelect cars={cars} register={register} errors={errors} />}
+			</div>
+
+			<div className='tasks-container'>
+				{errors.taskIds && <span style={{ color: 'orange', padding: '12rem' }}>Vælg venligst en eller flere services</span>}
 				{!tasks ? <Loader /> : tasks.map((task) => (
 					<TaskCheckbox task={task} register={register} />
 				))}
 			</div>
 
-
-			<div className='order-other'>
-				<div>
-					<DatePicker unavailableDates={unavailableDates} date={date} setDate={setDate} />
-				</div>
-
-				<div>
-					{!cars ? <Loader /> : <CarSelect cars={cars} register={register} errors={errors} />}
-
-				</div>
-
-				<div>
-					<button type='submit'>Opret Ordre</button>
-				</div>
+			<div>
+				<DatePicker unavailableDates={unavailableDates} date={date} setDate={setDate} />
 			</div>
+
+			<div>
+				<button type='submit'>Opret Ordre</button>
+			</div>
+
 		</form>
 	);
 }
