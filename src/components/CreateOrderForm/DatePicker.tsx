@@ -5,24 +5,16 @@ type TDate = TDatePiece | [TDatePiece, TDatePiece]
 
 interface Props {
 	unavailableDates: string[],
-	date: TDate,
+	date: TDate | null,
 	setDate: (newValue: TDate) => void;
 }
 
 export default function DatePicker({unavailableDates, date, setDate}: Props) {
-	const currentDate = new Date();
 	// 5 Days in the future
-	const minDate = new Date(currentDate.getTime() + 5 * 24 * 60 * 60 * 1000);
+	const minDate = new Date(Date.now() + 5 * 24 * 60 * 60 * 1000);
 
 	const disableTiles = ({ date }: { date: Date }): boolean => {
-		if (unavailableDates.some((unavailableDate) => date.toDateString() === new Date(unavailableDate).toDateString())){
-			return true
-		} else if (date.getDay() === 0 || date.getDay() === 6) {
-			//If day is saturday or sunday
-			return true
-		}
-
-		return false
+		return unavailableDates.some((unavailableDate) => date.toDateString() === new Date(unavailableDate).toDateString())
 	}
 
 	return (

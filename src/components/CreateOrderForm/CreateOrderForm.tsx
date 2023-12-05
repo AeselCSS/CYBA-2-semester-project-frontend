@@ -36,7 +36,7 @@ export default function CreateOrderForm({ customer }: { customer: ICustomer }) {
 	const [tasks, setTasks] = useState<null | IAPITask[]>(null);
 	const [cars, setCars] = useState<null | ICar[]>(null);
 	const [unavailableDates, setUnavailableDates] = useState<string[]>([]);
-	const [date, setDate] = useState<TDate>(new Date());
+	const [date, setDate] = useState<TDate | null>(null);
 	const navigate = useNavigate();
 
 	const {
@@ -124,7 +124,7 @@ export default function CreateOrderForm({ customer }: { customer: ICustomer }) {
 			</div>
 
 			<div className="btn-container">
-				<button type='submit'>Opret Ordre</button>
+				<button type='submit' disabled={!date}>Opret Ordre</button>
 			</div>
 
 		</form>
