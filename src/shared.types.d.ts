@@ -29,11 +29,6 @@ interface IAPISingleCustomer {
 	orders: IOrder[];
 }
 
-interface IAPISingleCar {
-	car: ICar;
-	customer: ICustomer;
-}
-
 interface IAPISingleEmployee {
 	employee: IEmployee;
 }
