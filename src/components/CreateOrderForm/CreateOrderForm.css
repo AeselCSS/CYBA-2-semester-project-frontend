@@ -1,4 +1,21 @@
 
+.form-container {
+    width: 100%;
+    display: grid;
+    align-items: normal;
+    grid-template-columns: 1fr 1fr;
+}
+
+.order-other {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.cars-select {
+    margin-top: 2rem;
+}
+
 
 .react-calendar__tile {
 

@@ -17,8 +17,6 @@ export default function DatePicker({unavailableDates, date, setDate}: Props) {
 
 	return (
 		<Calendar
-			className='calender'
-
 			value={date}
 			onChange={(value) => setDate(value)}
 			tileDisabled={disableTiles}

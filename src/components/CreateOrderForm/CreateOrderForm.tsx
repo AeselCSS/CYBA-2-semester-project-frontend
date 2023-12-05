@@ -106,8 +106,8 @@ export default function CreateOrderForm({ customer }: { customer: ICustomer }) {
 	onSubmit as SubmitHandler<Inputs>;
 
 	return (
-		<div>
-			<form onSubmit={handleSubmit(onSubmit)}>
+		<div >
+			<form onSubmit={handleSubmit(onSubmit)} className="form-container">
 				<div>
 					{!tasks ? <Loader /> : tasks.map((task) => (
 						<TaskCheckbox task={task} register={register} />
@@ -115,14 +115,22 @@ export default function CreateOrderForm({ customer }: { customer: ICustomer }) {
 					{errors.taskIds && <span style={{color: 'orange'}}>Vælg venligst en eller flere services</span>}
 				</div>
 
-				<div>
-					{!cars ? <Loader /> : <CarSelect cars={cars} register={register} errors={errors} />}
-					<DatePicker unavailableDates={unavailableDates} date={date} setDate={setDate} />
+
+				<div className="order-other">
+					<div>
+						<DatePicker unavailableDates={unavailableDates} date={date} setDate={setDate} />
+					</div>
+
+					<div>
+						{!cars ? <Loader /> : <CarSelect cars={cars} register={register} errors={errors} />}
+
+					</div>
+
+					<div >
+						<button type='submit'>Opret Ordre</button>
+					</div>
 				</div>
 
-				<div className='form-btn-wrapper'>
-					<button type='submit'>Opret Ordre</button>
-				</div>
 			</form>
 		</div>
 	);
