@@ -5,8 +5,8 @@ type TDate = TDatePiece | [TDatePiece, TDatePiece]
 
 interface Props {
 	unavailableDates: string[],
-	date: null | TDate,
-	setDate: (newValue: null | TDate) => void;
+	date: TDate,
+	setDate: (newValue: TDate) => void;
 }
 
 export default function DatePicker({unavailableDates, date, setDate}: Props) {
@@ -18,6 +18,7 @@ export default function DatePicker({unavailableDates, date, setDate}: Props) {
 	return (
 		<Calendar
 			className='calender'
+
 			value={date}
 			onChange={(value) => setDate(value)}
 			tileDisabled={disableTiles}

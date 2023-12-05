@@ -4,6 +4,7 @@ import DatePicker from './DatePicker.tsx';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import TaskCheckbox from '../TaskCheckbox/TaskCheckbox.tsx';
 import Loader from '../Loader/Loader.tsx';
+import "./CreateOrderForm.css"
 
 type TDatePiece = Date | null;
 type TDate = TDatePiece | [TDatePiece, TDatePiece]
@@ -33,7 +34,7 @@ export default function CreateOrderForm({customer}: {customer: ICustomer}) {
 	const [tasks, setTasks] = useState<null | IAPITask[]>(null);
 	const [cars, setCars] = useState<null | ICar[]>(null);
 	const [unavailableDates, setUnavailableDates] = useState<string[]>([]);
-	const [date, setDate] = useState<null | TDate>(null);
+	const [date, setDate] = useState<TDate>(new Date());
 
 	const {
 		register,
@@ -67,6 +68,7 @@ export default function CreateOrderForm({customer}: {customer: ICustomer}) {
 	async function onSubmit(data: Inputs) {
 		console.log("SUBMIT");
 		console.log(data);
+		console.log(date);
 	}onSubmit as SubmitHandler<Inputs>
 
 	return(
