@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import CarSelect from './CarSelect.tsx';
 import DatePicker from './DatePicker.tsx';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import TaskCheckbox from '../TaskCheckbox/TaskCheckbox.tsx';
+import TaskCheckbox from './TaskCheckbox.tsx';
 import Loader from '../Loader/Loader.tsx';
-import './CreateOrderForm.css';
 import { useNavigate } from 'react-router-dom';
+import './CreateOrderForm.css';
 
 type TDatePiece = Date | null;
 type TDate = TDatePiece | [TDatePiece, TDatePiece]
@@ -51,7 +51,7 @@ export default function CreateOrderForm({ customer }: { customer: ICustomer }) {
 	});
 
 	useEffect(() => {
-		async function getTasksAndCars() {
+		async function getTasksAndCarsAndBookedDates() {
 			try {
 				const promiseTasks = await fetch('http://localhost:3000/tasks');
 				const promiseCars = await fetch(`http://localhost:3000/customers/${customer.id}/cars`);
@@ -65,14 +65,14 @@ export default function CreateOrderForm({ customer }: { customer: ICustomer }) {
 			}
 		}
 
-		getTasksAndCars();
+		getTasksAndCarsAndBookedDates();
 	}, []);
 
 	async function onSubmit(data: Inputs) {
 
 		//Create a new ISO date. Split at T and return index 0, which is YYYY-MM-DD
 		//It returns an incorrect DD (-1).We split on the dashes "-". To split the values in 3 variables.
-		//Lastly, We assemble the values together, where the day is now correct. Padding with 0 is added if necessary
+		//Lastly, we assemble the values together, where the day is now correct. Padding with 0 is added if necessary
 		const [year, month, day] = new Date(date?.toString() as string)
 			.toISOString()
 			.split('T')[0]
@@ -86,17 +86,17 @@ export default function CreateOrderForm({ customer }: { customer: ICustomer }) {
 			orderStartDate: correctDate,
 			tasks: data.taskIds.map((id) => {
 				return {
-					id: parseInt(id)
-				}
-			})
-		}
+					id: parseInt(id),
+				};
+			}),
+		};
 
 		try {
 			const response = await createOrder(newOrder);
 
 			if (response.ok) {
 				//TODO toaster?
-				navigate("/profile")
+				navigate('/profile');
 			}
 		} catch (error: unknown) {
 			console.log((error as Error).message);
@@ -106,32 +106,29 @@ export default function CreateOrderForm({ customer }: { customer: ICustomer }) {
 	onSubmit as SubmitHandler<Inputs>;
 
 	return (
-		<div >
-			<form onSubmit={handleSubmit(onSubmit)} className="form-container">
+		<form onSubmit={handleSubmit(onSubmit)} className='form-container'>
+			<div>
+				{errors.taskIds && <span style={{ color: 'orange', padding: "12rem" }}>Vælg venligst en eller flere services</span>}
+				{!tasks ? <Loader /> : tasks.map((task) => (
+					<TaskCheckbox task={task} register={register} />
+				))}
+			</div>
+
+
+			<div className='order-other'>
 				<div>
-					{!tasks ? <Loader /> : tasks.map((task) => (
-						<TaskCheckbox task={task} register={register} />
-					))}
-					{errors.taskIds && <span style={{color: 'orange'}}>Vælg venligst en eller flere services</span>}
+					<DatePicker unavailableDates={unavailableDates} date={date} setDate={setDate} />
 				</div>
 
+				<div>
+					{!cars ? <Loader /> : <CarSelect cars={cars} register={register} errors={errors} />}
 
-				<div className="order-other">
-					<div>
-						<DatePicker unavailableDates={unavailableDates} date={date} setDate={setDate} />
-					</div>
-
-					<div>
-						{!cars ? <Loader /> : <CarSelect cars={cars} register={register} errors={errors} />}
-
-					</div>
-
-					<div >
-						<button type='submit'>Opret Ordre</button>
-					</div>
 				</div>
 
-			</form>
-		</div>
+				<div>
+					<button type='submit'>Opret Ordre</button>
+				</div>
+			</div>
+		</form>
 	);
 }
