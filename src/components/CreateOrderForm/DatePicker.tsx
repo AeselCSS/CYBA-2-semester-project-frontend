@@ -11,8 +11,8 @@ interface Props {
 
 export default function DatePicker({unavailableDates, date, setDate}: Props) {
 	const currentDate = new Date();
-	// 7 Days in the future
-	const minDate = new Date(currentDate.getTime() + 7 * 24 * 60 * 60 * 1000);
+	// 5 Days in the future
+	const minDate = new Date(currentDate.getTime() + 5 * 24 * 60 * 60 * 1000);
 
 	const disableTiles = ({ date }: { date: Date }): boolean => {
 		if (unavailableDates.some((unavailableDate) => date.toDateString() === new Date(unavailableDate).toDateString())){
@@ -24,7 +24,7 @@ export default function DatePicker({unavailableDates, date, setDate}: Props) {
 
 		return false
 	}
-	
+
 	return (
 		<Calendar
 			className="calender"
