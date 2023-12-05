@@ -10,7 +10,7 @@ export default function TaskCheckbox({ task, register }: Props) {
 
 	return (
 		<div className="checkbox-div">
-			<input {...register("taskIds")} type='checkbox' value={String(task.id)}  />
+			<input {...register("taskIds", {required: true, minLength: 1})} type='checkbox' value={String(task.id)}  />
 			<label htmlFor={String(task.id)}>{task.name}</label>
 			<p className="description">{task.description}</p>
 			<p className="price">{calculatePrice(task.time)},-</p>

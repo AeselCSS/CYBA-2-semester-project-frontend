@@ -3,7 +3,7 @@ import CarSelect from './CarSelect.tsx';
 import DatePicker from './DatePicker.tsx';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import TaskCheckbox from '../TaskCheckbox/TaskCheckbox.tsx';
-import calculatePrice from '../../utility/priceCalculator.ts';
+import Loader from '../Loader/Loader.tsx';
 
 type TDatePiece = Date | null;
 type TDate = TDatePiece | [TDatePiece, TDatePiece]
@@ -72,16 +72,16 @@ export default function CreateOrderForm({customer}: {customer: ICustomer}) {
 	return(
 		<div>
 			<form onSubmit={handleSubmit(onSubmit)}>
-				{tasks?.map((task) => (
+				{!tasks ?  <Loader/> : tasks.map((task) => (
 					<TaskCheckbox task={task} register={register}/>
 				))}
 				{errors.taskIds && <span>Vælg venligst en eller flere services</span>}
 
-				<CarSelect cars={cars} register={register} errors={errors}/>
+				{!cars ? <Loader/> : <CarSelect cars={cars} register={register} errors={errors}/>}
 				<DatePicker unavailableDates={unavailableDates} date={date} setDate={setDate}/>
 
 				<div className='form-btn-wrapper'>
-					<button type='submit'> Opret Ordre</button>
+					<button type='submit'>Opret Ordre</button>
 				</div>
 			</form>
 		</div>
