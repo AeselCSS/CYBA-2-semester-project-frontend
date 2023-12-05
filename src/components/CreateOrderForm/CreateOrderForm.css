@@ -11,10 +11,16 @@
 }
 
 .car-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5rem 3rem;
+}
+
+.car-grid {
     width: 20%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    
 }
 
 .date-container {
