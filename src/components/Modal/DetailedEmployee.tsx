@@ -24,7 +24,7 @@ export default function DetailedEmployee({ employee }: DetailedEmployeeProps) {
 		<>
 			{employeeData && (
 				<div>
-					<h2 className='header-container'>Bil Data</h2>
+					<h2 className='header-container'>Oplysninger</h2>
 
 					<section className='modal-container'>
 						<div className='modal-grid'>
