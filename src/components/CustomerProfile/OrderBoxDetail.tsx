@@ -73,7 +73,7 @@ export default function OrdersBoxDetail({ customerData, order }: OrdersBoxDetail
 						<div>Reg. nr:</div>
 						<h3>{car?.registrationNumber.toUpperCase() ?? 'Slettet'}</h3>
 						<div>Pris:</div>
-						<h3>{calculatePrice(currentOrder.totalTime)},-</h3>
+						<h3>{calculatePrice(currentOrder.totalTime)} kr.</h3>
 						<div>Status:</div>
 						<h3>{danishStatus[currentOrder.status]}</h3>
 						{(order.status as never) === 'AWAITING_CUSTOMER' && (

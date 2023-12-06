@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
+import styles from '../Modal/modal.module.css'
 
 interface BoxHeaderProps {
 	title: string;
@@ -14,7 +15,16 @@ export default function BoxHeader({ title, btnName, navigateTo }: BoxHeaderProps
 
 	return (
 		<>
-			<Modal opened={opened} onClose={close} title='Authentication' className='modal' centered>
+			<Modal
+				opened={opened}
+				onClose={close}
+				title='Authentication'
+				className='modal'
+				centered
+				size='xl'
+				styles={{ header: { backgroundColor: '#d87005', padding: '10px' }, close: { color: '#f4f4f4', cursor: 'pointer' } }}
+				classNames={{ body: styles.body, content: styles.content, title: styles.title, close: styles.close }}
+			>
 				{/* Modal content */}
 				<h2>Hej</h2>
 			</Modal>
@@ -24,6 +34,5 @@ export default function BoxHeader({ title, btnName, navigateTo }: BoxHeaderProps
 				<button onClick={() => navigate(navigateTo)}>{btnName}</button>
 			</div>
 		</>
-
 	);
 }

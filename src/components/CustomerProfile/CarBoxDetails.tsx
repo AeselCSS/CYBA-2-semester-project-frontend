@@ -32,7 +32,7 @@ export default function CarBoxDetails({ car }: { car: ICar }) {
 		<>
 			<DetailBox title={'Model'} value={car.brand} />
 			<DetailBox title={'Registerings nr.'} value={car.registrationNumber.toUpperCase()} />
-			<div style={{cursor: "pointer"}} onClick={handleDelete}>
+			<div className='trash-icon-wrapper' style={{cursor: "pointer"}} onClick={handleDelete}>
 				<FaTrashAlt />
 			</div>
 		</>
