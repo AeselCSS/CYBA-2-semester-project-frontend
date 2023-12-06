@@ -1,13 +1,13 @@
-import formatDate from '../../utility/dateFormat.ts';
-
+import formatDate from '../../utility/dateFormat';
 import { useDisclosure } from '@mantine/hooks';
 import { Modal } from '@mantine/core';
-import DetailedEmployee from '../Modal/DetailedEmployee.tsx';
+import DetailedEmployee from '../Modal/DetailedEmployee';
+import { isEmployee, isCar, isCustomer, isOrder } from '../../utility/interfaceChecker';
+import DetailedCustomer from '../Modal/DetailedCustomer';
+import DetailedOrder from '../Modal/DetailedOrder/DetailedOrder';
+import DetailedCar from '../Modal/DetailedCar';
 import '../Modal/modal.css';
-import { isEmployee, isCar, isCustomer, isOrder } from '../../utility/interfaceChecker.ts';
-import DetailedCustomer from '../Modal/DetailedCustomer.tsx';
-import DetailedOrder from '../Modal/DetailedOrder.tsx';
-import DetailedCar from '../Modal/DetailedCar.tsx';
+
 
 interface Props<T> {
 	item: T;
@@ -22,35 +22,28 @@ export default function TableBodyRow<T extends object>({ item, skipIndexes }: Pr
 	}
 
 	let detailedComponent = null;
+	let detailedComponentTitle = null;
 
-	if (isOrder(item)) {
-		detailedComponent = <DetailedOrder order={item as IOrder} />;
-	} else if (isCar(item)) {
+	if (isOrder(item as EntityUnion)) {
+		detailedComponent = <DetailedOrder orderId={(item as ICurrentOrder).id} />;
+		detailedComponentTitle = `Ordre id: ${(item as ICurrentOrder).id}`;
+	} else if (isCar(item as EntityUnion)) {
 		detailedComponent = <DetailedCar car={item as ICar} />;
-	} else if (isEmployee(item)) {
+		detailedComponentTitle = `Bil: ${(item as ICar).registrationNumber}`;
+	} else if (isEmployee(item as EntityUnion)) {
 		detailedComponent = <DetailedEmployee employee={item as IEmployee} />;
-	} else if (isCustomer(item)) {
+		detailedComponentTitle = `Medarbejder: ${(item as IEmployee).firstName} ${(item as IEmployee).lastName}`;
+	} else if (isCustomer(item as EntityUnion)) {
 		detailedComponent = <DetailedCustomer customer={item as ICustomer} />;
+		detailedComponentTitle = `Kunde: ${(item as ICustomer).firstName} ${(item as ICustomer).lastName}`;
 	}
 
 	return (
 		<>
-			<Modal opened={opened} onClose={close} className='modal' centered>
-				{/* Modal content */}
-
+			<Modal opened={opened} onClose={close} title={detailedComponentTitle} className='modal' centered>
 				{detailedComponent}
-
-				{/* {if (("customerId" in item && "vinNumber" in item)) {
-					//Order
-				} else if (("brand" in item)) {
-					//Car
-				} else}
-				
-				<DetailedCustomer customer={item} />
-				<DetailedCar car={item} />
-				<DetailedOrder order={item} />
-				<DetailedEmployee employee={item}/> */}
 			</Modal>
+
 			<tr>
 				{Object.values(item).map((value, i) => {
 					if (skipIndexes.includes(i)) {
@@ -75,7 +68,3 @@ export default function TableBodyRow<T extends object>({ item, skipIndexes }: Pr
 		</>
 	);
 }
-
-/*
- return <td style={{ paddingLeft: '30px' }} key={(item.id as number) + i}>{renderedValue}</td>;
-*/

@@ -129,33 +129,14 @@ interface ICurrentOrder {
 	}[];
 }
 
-enum Status {
-	AWAITING_CUSTOMER,
-	PENDING,
-	IN_PROGRESS,
-	COMPLETED,
-	CANCELED,
-}
-
-enum Department {
-	MECHANICAL_WORKSHOP,
-	BODY_WORKSHOP,
-	PAINT_SHOP,
-	ADMINISTRATION,
-}
-
-enum Role {
-	CUSTOMER,
-	EMPLOYEE,
-	ADMIN,
-}
-
 interface ITask {
 	id: number;
 	name: string;
 	description: string;
 }
 
-interface IAPITask extends ITask {
-	time: number;
+interface IAPITask extends ITask{
+	time: number
 }
+
+type EntityUnion = ICustomer | IEmployee | ICar | IOrder;

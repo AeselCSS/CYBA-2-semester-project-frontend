@@ -13,6 +13,7 @@ import EmployeeOverview from './pages/EmployeeOverview.tsx';
 import CustomerOverview from './pages/CustomerOverview.tsx';
 import CreateOrder from './pages/CreateOrder.tsx';
 import CreateCar from './pages/CreateCar.tsx';
+import userContext from './context/userContext.ts';
 
 import '@mantine/core/styles.css';
 
@@ -26,27 +27,28 @@ function App() {
 	console.log('I am in redirect');
 
 	return (
-		<MantineProvider>
-			<Routes>
-				<Route path='/' element={<Homepage />} />
 
-				<Route path='/about' element={<About />} />
+		<userContext.Provider value={user}>
+			<MantineProvider>
+				<Routes>
+					<Route path='/' element={<Homepage />} />
+					<Route path='/about' element={<About />} />
+					<Route path='/contact' element={<Contact />} />
+					<Route path='/orders/create' element={user && <CreateOrder customer={user as ICustomer} />} />
+					<Route path='/employee/orders' element={user && <OrderOverview employee={user as IEmployee} />} />
+					<Route path='/employee/cars' element={user && <CarOverview employee={user as IEmployee} />} />
+					<Route path='/employee/employees' element={user && <EmployeeOverview employee={user as IEmployee} />} />
+					<Route path='/employee/customers' element={user && <CustomerOverview employee={user as IEmployee} />} />
+					<Route path='/profile' element={user && <CustomerProfile customer={user as ICustomer} />} />
+					<Route path='/profile/create' element={user && <CreateProfile authUser={user as IAuthUser} />} />
+          <Route path='/profile/update' element={user && <UpdateProfile customer={user as ICustomer} />} />
+					<Route path='/cars/create' element={user && <CreateCar customer={user as ICustomer} />} />
+					<Route path='/redirect' element={<Redirect setUser={setUser} />} />
+					<Route path='*' element={<PageNotFound />} />
+				</Routes>
+			</MantineProvider>
+		</userContext.Provider>
 
-				<Route path='/contact' element={<Contact />} />
-				<Route path='/orders/create' element={user && <CreateOrder customer={user as ICustomer} />} />
-
-				<Route path='/employee/orders' element={user && <OrderOverview employee={user as IEmployee} />} />
-				<Route path='/employee/cars' element={user && <CarOverview employee={user as IEmployee} />} />
-				<Route path='/employee/employees' element={user && <EmployeeOverview employee={user as IEmployee} />} />
-				<Route path='/employee/customers' element={user && <CustomerOverview employee={user as IEmployee} />} />
-				<Route path='/profile' element={user && <CustomerProfile customer={user as ICustomer} />} />
-				<Route path='/profile/create' element={user && <CreateProfile authUser={user as IAuthUser} />} />
-				<Route path='/profile/update' element={user && <UpdateProfile customer={user as ICustomer} />} />
-				<Route path='/cars/create' element={user && <CreateCar customer={user as ICustomer} />} />
-				<Route path='/redirect' element={<Redirect setUser={setUser} />} />
-				<Route path='*' element={<PageNotFound />} />
-			</Routes>
-		</MantineProvider>
 	);
 }
 
