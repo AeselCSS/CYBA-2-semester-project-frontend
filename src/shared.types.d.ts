@@ -10,17 +10,17 @@ interface IAuthUser {
 }
 
 interface ICustomer {
-    id: string,
-    role: Role,
-    firstName: string,
-    lastName: string,
-    address: string,
-    city: string,
-    zip: number,
-    phone: number,
-    email: string,
-    createdAt: Date,
-    updatedAt: Date
+	id: string;
+	role: Role;
+	firstName: string;
+	lastName: string;
+	address: string;
+	city: string;
+	zip: number;
+	phone: number;
+	email: string;
+	createdAt: Date;
+	updatedAt: Date;
 }
 
 interface IAPISingleCustomer {
@@ -34,60 +34,58 @@ interface IAPISingleEmployee {
 }
 
 interface IAPIOrder extends IOrder {
-    registrationNumber: string
+	registrationNumber: string;
 }
 
-
-
 interface IOrder {
-    id: number,
-    status: Status,
-    orderStartDate: Date,
-    carId: number,
-    customerId: number,
-    createdAt: Date,
-    updatedAt: Date,
-    registrationNumber: string,
-    vinNumber: string
+	id: number;
+	status: Status;
+	orderStartDate: Date;
+	carId: number;
+	customerId: number;
+	createdAt: Date;
+	updatedAt: Date;
+	registrationNumber: string;
+	vinNumber: string;
 }
 
 interface ICar {
-    id: number, 
-    customerId: string,
-    registrationNumber: string,
-    vinNumber: string,
-    brand: string,
-    model: string,
-    modelVariant: string,
-    firstRegistration: Date,
-    mileage: number,
-    lastInspectionDate: Date,
-    lastInspectionResult: string,
-    lastInspectionKind: string,
-    createdAt: Date,
-    updatedAt: Date
+	id: number;
+	customerId: string;
+	registrationNumber: string;
+	vinNumber: string;
+	brand: string;
+	model: string;
+	modelVariant: string;
+	firstRegistration: Date;
+	mileage: number;
+	lastInspectionDate: Date;
+	lastInspectionResult: string;
+	lastInspectionKind: string;
+	createdAt: Date;
+	updatedAt: Date;
 }
 
 interface IEmployee {
-    id: string,
-    role: Role,
-    department: Department,
-    firstName: string,
-    lastName: string,
-    createdAt: Date,
-    updatedAt: Date
+	id: string;
+	role: Role;
+	department: Department;
+	firstName: string;
+	lastName: string;
+	createdAt: Date;
+	updatedAt: Date;
 }
 
 type IMetaData = {
-    totalCount: number,
-    offset: number,
-    limit: number
-}
+	totalCount: number;
+	offset: number;
+	limit: number;
+};
 
 type APIResponse<T> = {
-	data: T[],
-	metaData: IMetaData
-}
+	data: T[];
+	metaData: IMetaData;
+};
 
 interface ICurrentOrder {
 	id: number;
@@ -132,14 +130,13 @@ interface ICurrentOrder {
 }
 
 interface ITask {
-	id: number,
-	name: string,
-	description: string
+	id: number;
+	name: string;
+	description: string;
 }
 
 interface IAPITask extends ITask{
 	time: number
 }
-
 
 type EntityUnion = ICustomer | IEmployee | ICar | IOrder;

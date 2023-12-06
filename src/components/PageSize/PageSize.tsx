@@ -4,12 +4,14 @@ import "./PageSize.css"
 interface Props {
 	pageSize: number;
 	setPageSize: (newPageSize: number) => void;
+	setCurrentPage: (newPage: number) => void;
 }
 
-export default function PageSize({ pageSize, setPageSize }: Props) {
+export default function PageSize({ pageSize, setPageSize, setCurrentPage }: Props) {
 	const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		const newPageSize = parseInt(e.target.value);
 		setPageSize(newPageSize);
+		setCurrentPage(1);
 	};
 
 	return (

@@ -71,7 +71,7 @@
 	font-size: var(--font-size-small);
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	width: 8rem;
+	width: 12rem;
 }
 
 .order-box-details {
@@ -106,4 +106,13 @@
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: 1rem;
+}
+
+.modal .btn-container  {
+	display: flex;
+	justify-content: space-around;
+}
+
+.delete-customer-btn:hover {
+	background-color: red;
 }

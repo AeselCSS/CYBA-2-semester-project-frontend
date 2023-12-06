@@ -18,6 +18,7 @@ import userContext from './context/userContext.ts';
 import '@mantine/core/styles.css';
 
 import { MantineProvider } from '@mantine/core';
+import UpdateProfile from './pages/UpdateProfile.tsx';
 
 function App() {
 	const [user, setUser] = useState<ICustomer | IEmployee | IAuthUser | null>(null);
@@ -26,6 +27,7 @@ function App() {
 	console.log('I am in redirect');
 
 	return (
+
 		<userContext.Provider value={user}>
 			<MantineProvider>
 				<Routes>
@@ -39,12 +41,14 @@ function App() {
 					<Route path='/employee/customers' element={user && <CustomerOverview employee={user as IEmployee} />} />
 					<Route path='/profile' element={user && <CustomerProfile customer={user as ICustomer} />} />
 					<Route path='/profile/create' element={user && <CreateProfile authUser={user as IAuthUser} />} />
+          <Route path='/profile/update' element={user && <UpdateProfile customer={user as ICustomer} />} />
 					<Route path='/cars/create' element={user && <CreateCar customer={user as ICustomer} />} />
 					<Route path='/redirect' element={<Redirect setUser={setUser} />} />
 					<Route path='*' element={<PageNotFound />} />
 				</Routes>
 			</MantineProvider>
 		</userContext.Provider>
+
 	);
 }
 
