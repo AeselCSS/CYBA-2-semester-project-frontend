@@ -1,4 +1,8 @@
 import React from 'react';
+import { notifications } from '@mantine/notifications';
+import Toaster from '../Toaster/Toaster.tsx';
+import { MdErrorOutline } from "react-icons/md";
+import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 
 interface IAPICar {
 	registrationNumber: string,
@@ -23,6 +27,7 @@ interface Props {
 export default function SearchRegistrationNumber({ setAPIResult, setRegistrationNumber, registrationNumber}: Props) {
 
 
+
 	const handleAPIGet = async () => {
 		const response = await fetch(`http://localhost:3000/cars/registration/${registrationNumber}`, {
 			method: 'GET',
@@ -32,9 +37,21 @@ export default function SearchRegistrationNumber({ setAPIResult, setRegistration
 			const carDetails = await response.json();
 			console.log(carDetails);
 			setAPIResult(carDetails);
+			notifications.show({
+				color: 'green',
+				title: "Success!",
+				message: "Dine køretøjsoplysninger er hentet",
+				icon: <IoIosCheckmarkCircleOutline />
+			})
 		} else {
-
 			setAPIResult(null);
+			console.log("FEEJL");
+			notifications.show({
+				color: 'red',
+				title: "Hov!",
+				message: "Vi kunne desværre ikke finde dit køretøj. Har du tastet rigtigt?",
+				icon: <MdErrorOutline />
+			})
 		}
 	};
 
@@ -44,6 +61,7 @@ export default function SearchRegistrationNumber({ setAPIResult, setRegistration
 
 	return (
 		<>
+			<Toaster/>
 			<label htmlFor='registrationNumber'>Registerings Nr.</label>
 			<input value={registrationNumber} onChange={handleInput} id='registrationNumber' placeholder='Registerings nr.' required={true} />
 

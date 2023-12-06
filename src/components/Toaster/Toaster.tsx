@@ -1,11 +1,13 @@
-import { ReactNode } from 'react';
+import { Notifications } from '@mantine/notifications';
+import { MantineProvider } from '@mantine/core';
 
 
-interface Props {
-	title: string,
-	children: ReactNode
-}
 
-export default function Toaster({title, children}) {
+export default function Toaster() {
 
+	return (
+		<MantineProvider>
+			<Notifications className="toaster" autoClose={3500}  />
+		</MantineProvider>
+	);
 }
