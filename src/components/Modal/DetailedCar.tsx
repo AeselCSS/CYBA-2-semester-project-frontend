@@ -25,7 +25,6 @@ export default function DetailedCar({ car }: DetailedCarProps) {
 		<>
 			{carData && (
 				<div>
-					<div className='header-container'>{/* <h2>{carData?.car.registrationNumber}</h2> */}</div>
 					<div className='header-container'>
 						<h3 className='header-container'>Bil Data</h3>
 					</div>

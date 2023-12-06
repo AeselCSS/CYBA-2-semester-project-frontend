@@ -1,6 +1,7 @@
 // import { Card } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import formatDate from '../../utility/dateFormat';
+import { department, role } from '../../utility/danishDictionary';
 
 interface DetailedEmployeeProps {
 	employee: IEmployee;
@@ -19,6 +20,8 @@ export default function DetailedEmployee({ employee }: DetailedEmployeeProps) {
 		getEmployee();
 	}, [employee.id]);
 	console.log(employeeData);
+	// console.log(department);
+	console.log(employeeData?.role);
 
 	return (
 		<>
@@ -29,14 +32,16 @@ export default function DetailedEmployee({ employee }: DetailedEmployeeProps) {
 					<section className='modal-container'>
 						<div className='modal-grid'>
 							<h3>Stilling</h3>
-							<div>{employeeData?.role}</div>
+							<div>{role[employeeData?.role]}</div>
 
 							<h3>Afdeling</h3>
-							<div>{employeeData?.department}</div>
+							<div>{department[employeeData?.department]}</div>
+
 							<h3>Medarbejder Navn</h3>
 							<div>
 								{employeeData?.firstName} {employeeData.lastName}
 							</div>
+
 							<h3>Seneste Inspektion</h3>
 							<div>{formatDate(new Date(employeeData.createdAt))}</div>
 						</div>
