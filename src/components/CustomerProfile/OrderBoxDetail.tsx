@@ -8,6 +8,9 @@ import calculatePrice from '../../utility/priceCalculator';
 import DetailedOrder from '../Modal/DetailedOrder/DetailedOrder';
 import ChangeOrderStatusButton from '../Buttons/ChangeOrderStatusButton';
 import '../Modal/modal.css';
+import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
+import { MdErrorOutline } from 'react-icons/md';
+import { notifications } from '@mantine/notifications';
 
 interface OrdersBoxDetailProps {
 	customerData: IAPISingleCustomer;
@@ -29,20 +32,46 @@ export default function OrdersBoxDetail({ customerData, order }: OrdersBoxDetail
 			const data = await response.json();
 			setCurrentOrder(data);
 		}
+
 		getOrders();
 	}, [order.id]);
 
 	async function handleClick() {
-		const response = await fetch(`http://localhost:3000/orders/${order.id}/status`, {
-			method: 'PATCH',
-			body: JSON.stringify({
-				status: 'PENDING',
-			}),
-			headers: {
-				'Content-Type': 'application/json',
-			},
-		});
-		response.ok ? navigate('/redirect') : console.log('Error at fetch');
+		try {
+			const response = await fetch(`http://localhost:3000/orders/${order.id}/status`, {
+				method: 'PATCH',
+				body: JSON.stringify({
+					status: 'PENDING',
+				}),
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			});
+
+			if (response.ok) {
+				notifications.show({
+					color: 'green',
+					title: 'Succes!',
+					message: `Status på ordre nr. ${order.id} opdateret. Køretøjet er i værkstedets varetægt`,
+					icon: <IoIosCheckmarkCircleOutline />,
+				});
+				navigate('/redirect');
+			} else {
+				notifications.show({
+					color: 'red',
+					title: 'Hov!',
+					message: `Status på ordre nr. ${order.id} kunne ikke opdateret. Prøv igen senere`,
+					icon: <MdErrorOutline />,
+				});
+			}
+		} catch (e: unknown) {
+			notifications.show({
+				color: 'red',
+				title: 'Hov!',
+				message: `Status på ordre nr. ${order.id} kunne ikke opdateret. Prøv igen senere`,
+				icon: <MdErrorOutline />,
+			});
+		}
 	}
 
 	return (
@@ -60,7 +89,7 @@ export default function OrdersBoxDetail({ customerData, order }: OrdersBoxDetail
 						<div>Ordre nr:</div>
 						<h3>{order.id}</h3>
 						<div>Reg. nr:</div>
-						<h3>{car?.registrationNumber.toUpperCase() ?? "Slettet"}</h3>
+						<h3>{car?.registrationNumber.toUpperCase() ?? 'Slettet'}</h3>
 						<div>Pris:</div>
 						<h3>{calculatePrice(currentOrder.totalTime)},-</h3>
 						<div>Status:</div>
