@@ -26,9 +26,9 @@ interface INewCar  {
 	model: string,
 	modelVariant: string,
 	firstRegistration: string,
-	lastInspectionDate: string,
-	lastInspectionResult: string,
-	lastInspectionKind: string,
+	lastInspectionDate: string | null,
+	lastInspectionResult: string | null,
+	lastInspectionKind: string | null,
 }
 
 type inputs = {
@@ -73,11 +73,14 @@ export default function CreateCarForm({ customer }: { customer: ICustomer }) {
 			customerId: customer.id,
 			registrationNumber: registrationNumber.toUpperCase(),
 			mileage: parseInt(data.mileage),
+			lastInspectionDate: data.lastInspectionDate || null,
+			lastInspectionResult: data.lastInspectionResult || null,
+			lastInspectionKind: data.lastInspectionKind || null
 		};
 
 		console.log(newCar);
 
-		try {
+		/*try {
 			const res = await createCar(newCar);
 			if (res.ok) {
 				const data = await res.json();
@@ -86,7 +89,7 @@ export default function CreateCarForm({ customer }: { customer: ICustomer }) {
 			}
 		} catch (error) {
 			console.log((error as Error).message);
-		}
+		}*/
 	}onSubmit as SubmitHandler<inputs>;
 
 
@@ -124,15 +127,15 @@ export default function CreateCarForm({ customer }: { customer: ICustomer }) {
 				{errors.firstRegistration && <span>Første registreringsdato skal udfyldes</span>}
 
 				<label htmlFor='lastInspectionDate'>Sidste inspektionsdato</label>
-				<input disabled={true} {...register('lastInspectionDate', { required: true })} />
+				<input disabled={true} {...register('lastInspectionDate')} />
 				{errors.lastInspectionDate && <span>Sidste inspektionsdato skal udfyldes</span>}
 
 				<label htmlFor='lastInspectionResult'>Sidste inspektionsresultat</label>
-				<input disabled={true} {...register('lastInspectionResult', { required: true })} />
+				<input disabled={true} {...register('lastInspectionResult')} />
 				{errors.lastInspectionResult && <span>Sidste inspektionsresultat skal udfyldes</span>}
 
 				<label htmlFor='lastInspectionKind'>Sidste inspektionstype</label>
-				<input disabled={true} {...register('lastInspectionKind', { required: true })} />
+				<input disabled={true} {...register('lastInspectionKind')} />
 				{errors.lastInspectionKind && <span>Sidste inspektionstype skal udfyldes</span>}
 
 				<div className='form-btn-wrapper'>
