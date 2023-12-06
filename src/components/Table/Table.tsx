@@ -77,7 +77,7 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 						itemType={itemType}
 					/>
 				)}
-				<PageSize setPageSize={setPageSize} pageSize={pageSize} />
+				<PageSize setPageSize={setPageSize} pageSize={pageSize} setCurrentPage={setCurrentPage} />
 			</Toolbar>
 
 			{!data.length ? (
