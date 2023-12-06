@@ -7,8 +7,7 @@ import DetailedCustomer from '../Modal/DetailedCustomer';
 import DetailedOrder from '../Modal/DetailedOrder/DetailedOrder';
 import DetailedCar from '../Modal/DetailedCar';
 import '../Modal/modal.css';
-
-
+import { role, department } from '../../utility/danishDictionary';
 interface Props<T> {
 	item: T;
 	skipIndexes: number[];
@@ -45,9 +44,13 @@ export default function TableBodyRow<T extends object>({ item, skipIndexes }: Pr
 			</Modal>
 
 			<tr>
-				{Object.values(item).map((value, i) => {
+				{Object.entries(item).map(([key, value], i) => {
 					if (skipIndexes.includes(i)) {
 						return null;
+					}
+
+					if (key === 'role') {
+						return role[value];
 					}
 
 					let renderedValue = value as string;

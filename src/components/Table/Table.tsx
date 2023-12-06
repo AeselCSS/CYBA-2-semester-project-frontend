@@ -31,7 +31,6 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 	useEffect(() => {
 		async function fetchData() {
 			const url = `http://localhost:3000/${itemType}s/?sortDir=${sortDirValue}&sortBy=${sortByValue}&searchValue=${searchValue}&pageNum=${currentPage}&pageSize=${pageSize}&filterBy=${filterByValue}`;
-			console.log(url);
 			const promise = await fetch(url);
 
 			if (promise.ok) {
@@ -47,6 +46,9 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 		fetchData();
 	}, [searchValue, sortByValue, sortDirValue, filterByValue, currentPage, pageSize, itemType]);
 
+	{
+		// console.log(data);
+	}
 	const handleSort = (e: React.MouseEvent<HTMLElement>) => {
 		setSortByValue((e.target as HTMLElement).id);
 		setSortDirValue((prevState) => (prevState === 'asc' ? 'desc' : 'asc'));
@@ -61,7 +63,6 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 			skipValues.includes(key) && skipIndexes.push(i);
 		});
 	}
-
 
 	return !data ? (
 		<Loader />
@@ -85,23 +86,25 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 			) : (
 				<table>
 					<thead>
-					<tr>
-						{Object.keys(data[0]).map((key: string, i: number) => (
-							skipIndexes.includes(i) ? null :
-								<TableHeaderColumn
-									key={key}
-									title={key}
-									handleSort={handleSort}
-									itemType={itemType as keyof typeof dictionaries}
-									sortByValue={sortByValue}
-									sortDirValue={sortDirValue} />
-						))}
-					</tr>
+						<tr>
+							{Object.keys(data[0]).map((key: string, i: number) =>
+								skipIndexes.includes(i) ? null : (
+									<TableHeaderColumn
+										key={key}
+										title={key}
+										handleSort={handleSort}
+										itemType={itemType as keyof typeof dictionaries}
+										sortByValue={sortByValue}
+										sortDirValue={sortDirValue}
+									/>
+								),
+							)}
+						</tr>
 					</thead>
 					<tbody>
-					{data.map((item: T, index: number) =>
-						<TableBodyRow<typeof item> key={index} item={item} skipIndexes={skipIndexes} />,
-					)}
+						{data.map((item: T, index: number) => (
+							<TableBodyRow<typeof item> key={index} item={item} skipIndexes={skipIndexes} />
+						))}
 					</tbody>
 				</table>
 			)}
