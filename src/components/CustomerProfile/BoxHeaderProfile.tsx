@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 async function deleteCustomer(id: string) {
@@ -20,11 +21,20 @@ async function deleteCustomer(id: string) {
 export default function BoxHeaderProfile({ customerId }: { customerId: string }) {
 	const [opened, { open, close }] = useDisclosure(false);
 	const navigate = useNavigate();
+	const { logout } = useAuth0();
+
+	const handleLogout = () => {
+		logout({
+			logoutParams: {
+				returnTo: window.location.origin,
+			},
+		});
+	};
 
 	const handleDelete = async () => {
 		try {
 			await deleteCustomer(customerId);
-			navigate("/");
+			handleLogout()
 		} catch (error: unknown) {
 			console.log((error as Error).message);
 		}
