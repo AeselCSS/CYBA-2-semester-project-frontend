@@ -1,6 +1,6 @@
 import { Status } from '../enums';
 
-const API_URL = 'http://localhost:3000'; // TODO: move to .env
+const API_URL = import.meta.env.VITE_API_URL as string || 'http://localhost:3000';
 
 export const updateOrderStatus = async (id: number, status: Status) => {
 	try {
