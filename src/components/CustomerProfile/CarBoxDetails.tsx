@@ -3,7 +3,6 @@ import { FaTrashAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { notifications } from '@mantine/notifications';
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
-import React from 'react';
 import { MdErrorOutline } from 'react-icons/md';
 
 
