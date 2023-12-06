@@ -3,6 +3,9 @@ import PageLayout from './PageLayout';
 import { useNavigate } from 'react-router-dom';
 import '../components/Form/Form.css';
 import FormLayout from '../components/Form/FormLayout';
+import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
+import { notifications } from '@mantine/notifications';
+import { MdErrorOutline } from 'react-icons/md';
 
 type Inputs = {
 	firstName: string;
@@ -61,12 +64,28 @@ export default function CreateProfile({ authUser }: { authUser: IAuthUser }) {
 		try {
 			const res = await createCustomer(newCustomer);
 			if (res.ok) {
-				const data = await res.json();
-				console.log(data);
+				notifications.show({
+					color: 'green',
+					title: "Succes!",
+					message: "Konto oprettet. Velkommen til🎉",
+					icon: <IoIosCheckmarkCircleOutline />
+				})
 				navigate('/redirect');
+			} else {
+				notifications.show({
+					color: 'red',
+					title: "Hov!",
+					message: "Vi kunne desværre ikke oprette dig. Har de tastet rigtigt?",
+					icon: <MdErrorOutline />
+				})
 			}
 		} catch (error) {
-			console.log((error as Error).message);
+			notifications.show({
+				color: 'red',
+				title: "Hov!",
+				message: "Vi kunne desværre ikke oprette dig. Prøv igen senere",
+				icon: <MdErrorOutline />
+			})
 		}
 	}
 	onSubmit as SubmitHandler<Inputs>;

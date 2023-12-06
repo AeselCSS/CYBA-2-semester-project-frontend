@@ -44,7 +44,7 @@ export default function SearchRegistrationNumber({ setAPIResult, setRegistration
 			notifications.show({
 				color: 'red',
 				title: "Hov!",
-				message: "Vi kunne desværre ikke finde dit køretøj. Har du tastet rigtigt?",
+				message: "Vi kunne desværre ikke finde dit køretøj. Har de tastet rigtigt?",
 				icon: <MdErrorOutline />
 			})
 		}
