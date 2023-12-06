@@ -1,4 +1,7 @@
 import React from 'react';
+import { notifications } from '@mantine/notifications';
+import { MdErrorOutline } from "react-icons/md";
+import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 
 interface IAPICar {
 	registrationNumber: string,
@@ -29,10 +32,21 @@ export default function SearchRegistrationNumber({ setAPIResult, setRegistration
 
 		if (response.ok) {
 			const carDetails = await response.json();
-			console.log(carDetails);
 			setAPIResult(carDetails);
+			notifications.show({
+				color: 'green',
+				title: "Succes!",
+				message: "Dine køretøjsoplysninger er hentet succesfuldt",
+				icon: <IoIosCheckmarkCircleOutline />
+			})
 		} else {
 			setAPIResult(null);
+			notifications.show({
+				color: 'red',
+				title: "Hov!",
+				message: "Vi kunne desværre ikke finde dit køretøj. Har de tastet rigtigt?",
+				icon: <MdErrorOutline />
+			})
 		}
 	};
 

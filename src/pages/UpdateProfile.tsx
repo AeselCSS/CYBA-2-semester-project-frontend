@@ -2,6 +2,9 @@ import PageLayout from './PageLayout.tsx';
 import FormLayout from '../components/Form/FormLayout.tsx';
 import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { notifications } from '@mantine/notifications';
+import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
+import { MdErrorOutline } from 'react-icons/md';
 
 
 interface Props {
@@ -30,21 +33,13 @@ interface INewCustomer {
 }
 
 async function updateCustomer(newCustomer: INewCustomer, id: string) {
-	const response = await fetch(`http://localhost:3000/customers/${id}`, {
+	return  await fetch(`http://localhost:3000/customers/${id}`, {
 		method: 'PUT',
 		body: JSON.stringify(newCustomer),
 		headers: {
 			'Content-Type': 'application/json',
 		},
 	});
-
-	if (response.ok) {
-		const data = await response.json();
-		console.log(data);
-	} else {
-		console.error(response.body);
-		throw new Error()
-	}
 }
 
 export default function UpdateProfile({ customer }: Props) {
@@ -71,10 +66,31 @@ export default function UpdateProfile({ customer }: Props) {
 		};
 
 		try {
-			await updateCustomer(newCustomer, customer.id);
-			navigate('/redirect');
+			const response = await updateCustomer(newCustomer, customer.id);
+
+			if (response.ok) {
+				notifications.show({
+					color: 'green',
+					title: "Succes!",
+					message: "Dine kontooplysninger er nu opdateret. Sådan😎",
+					icon: <IoIosCheckmarkCircleOutline />
+				})
+				navigate('/redirect');
+			} else {
+				notifications.show({
+					color: 'red',
+					title: "Hov!",
+					message: "Vi kunne desværre ikke opdatere dine kontooplysninger. Har du tastet rigtigt?",
+					icon: <MdErrorOutline />
+				})
+			}
 		} catch (error) {
-			console.error((error as Error).message);
+			notifications.show({
+				color: 'red',
+				title: "Hov!",
+				message: "Vi kunne desværre ikke opdatere dine kontooplysninger. Prøv igen senere",
+				icon: <MdErrorOutline />
+			})
 		}
 	}
 	onSubmit as SubmitHandler<Inputs>;

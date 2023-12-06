@@ -129,3 +129,9 @@ input:focus {
 	outline: 1px solid var(--orange);
 	box-shadow: 5px 5px 5px var(--black);
 }
+
+.toaster {
+    position: fixed;
+    top: 87%;
+	z-index: 99;
+}
