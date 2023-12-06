@@ -4,7 +4,7 @@ import userContext from '../../../context/userContext.ts';
 import { Role, Status } from '../../../enums.ts';
 import ChangeOrderStatusButton from '../../Buttons/ChangeOrderStatusButton.tsx';
 import { completeSubtaskInstance, initiateTaskInstance } from '../../../services/apiService.ts';
-import classes from './OrderAccordian.module.css'
+import classes from './OrderAccordian.module.css';
 
 interface AccordionProps {
 	order: ICurrentOrder;
@@ -35,14 +35,20 @@ function Accordion({ order, setOrder }: AccordionProps) {
 	return (
 		<>
 			{order.tasks && (
-				<div>
+				<section className={classes.tasksWrapper}>
 					{order.tasks?.map((task) => (
-						<div key={task.id}>
+						<div key={task.id} className={openTaskId === task.id ? classes.activeTask : ''}>
 							<button className={classes.accordianLabel} onClick={() => toggleTask(task.id)}>
-								{task.status === Status.IN_PROGRESS && <FaRegCirclePlay color='yellow' />}
-								{task.status === Status.COMPLETED && <FaRegCircleCheck color='green' />}
-								{task.name} ({task.subtasks.filter((subtask) => subtask.status === Status.COMPLETED).length}/
-								{task.subtasks.length})
+								<div>
+									<div className={classes.accordianLabelIcon}>
+										{task.status === Status.IN_PROGRESS && <FaRegCirclePlay color='yellow' />}
+										{task.status === Status.COMPLETED && <FaRegCircleCheck color='green' />}
+									</div>
+									<div>{task.name}</div>
+								</div>
+								<div>
+									({task.subtasks.filter((subtask) => subtask.status === Status.COMPLETED).length}/{task.subtasks.length})
+								</div>
 							</button>
 
 							{(user as IEmployee | ICustomer)?.role === Role.EMPLOYEE &&
@@ -74,7 +80,7 @@ function Accordion({ order, setOrder }: AccordionProps) {
 							)}
 						</div>
 					))}
-				</div>
+				</section>
 			)}
 		</>
 	);

@@ -1,24 +1,43 @@
-.accordianLabel {
-    background-color: var(--charcoalGrey);
-    border: 1px solid var(--orange);
-    border-radius: 0;
-    width: 100%;
-    margin-top: var(--spacing-base);
-    padding: var(--spacing-base);
+.tasksWrapper {
+	display: flex;
+    flex-direction: column;
+	gap: var(--spacing-small);
 }
 
-.accordianContent{
+.accordianLabel {
     display: flex;
-    flex-direction: column;
-    background-color: var(--charcoalGrey);
-    /* gap: 1rem; */
+    justify-content: space-between;
+    gap: var(--spacing-base);
+	background-color: var(--charcoalGrey);
+	border-radius: 0;
+	width: 100%;
+	padding: var(--spacing-base);
+}
+
+.accordianLabel div {
+    display: flex;
+    gap: var(--spacing-base);
+}
+
+.accordianLabelIcon {
+    display: flex;
+    align-items: center;
+}
+
+.accordianContent {
+	display: flex;
+	flex-direction: column;
+	background-color: var(--darkGrey);
 }
 
 .contentItem {
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid var(--lightGrey);
-    padding: var(--spacing-base);
-    gap: 1rem;
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid var(--lightGrey);
+	padding: var(--spacing-base);
+	gap: 1rem;
+}
 
+.activeTask {
+	border: var(--orange) 1px solid;
 }

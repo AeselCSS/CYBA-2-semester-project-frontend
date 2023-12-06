@@ -1,4 +1,4 @@
-.mantine-Modal-content {
+/* .mantine-Modal-content {
 	background-color: var(--black);
 	border-radius: var(--border-radius);
 	border: dotted 1px var(--lightGrey);
@@ -16,7 +16,7 @@
 	background-color: red;
 	border-bottom: dotted 1px var(--lightGrey);
 	
-}
+} */
 
 .header-container {
 	display: flex;

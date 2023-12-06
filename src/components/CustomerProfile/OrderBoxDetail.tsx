@@ -7,7 +7,8 @@ import { status as danishStatus } from '../../utility/danishDictionary';
 import calculatePrice from '../../utility/priceCalculator';
 import DetailedOrder from '../Modal/DetailedOrder/DetailedOrder';
 import ChangeOrderStatusButton from '../Buttons/ChangeOrderStatusButton';
-import '../Modal/modal.css';
+// import '../Modal/modal.css';
+import styles from '../Modal/modal.module.css'
 
 interface OrdersBoxDetailProps {
 	customerData: IAPISingleCustomer;
@@ -49,7 +50,17 @@ export default function OrdersBoxDetail({ customerData, order }: OrdersBoxDetail
 		<article className='order-box-details'>
 			{currentOrder ? (
 				<>
-					<Modal opened={isOpen} onClose={close} title={`Ordre nummer: ${order.id}`} className='modal' centered size='xl'>
+					<Modal
+						opened={isOpen}
+						onClose={close}
+						title={`Ordre nummer: ${order.id}`}
+						centered
+						size='xl'
+						
+						styles={{ header: { backgroundColor: '#d87005', padding: '10px' }, close: { color: '#f4f4f4', cursor: 'pointer'} }}
+
+						classNames={{body: styles.body, content: styles.content, title: styles.title, close: styles.close}}
+					>
 						<DetailedOrder orderId={order.id} />
 					</Modal>
 
@@ -60,7 +71,7 @@ export default function OrdersBoxDetail({ customerData, order }: OrdersBoxDetail
 						<div>Ordre nr:</div>
 						<h3>{order.id}</h3>
 						<div>Reg. nr:</div>
-						<h3>{car?.registrationNumber.toUpperCase() ?? "Slettet"}</h3>
+						<h3>{car?.registrationNumber.toUpperCase() ?? 'Slettet'}</h3>
 						<div>Pris:</div>
 						<h3>{calculatePrice(currentOrder.totalTime)},-</h3>
 						<div>Status:</div>

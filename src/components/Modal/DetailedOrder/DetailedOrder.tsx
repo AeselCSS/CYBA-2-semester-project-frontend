@@ -30,9 +30,7 @@ export default function DetailedOrder({ orderId: orderId }: { orderId: number })
 						<div>{order?.status}</div>
 						<div>({order.tasks.filter((task) => task.status === Status.COMPLETED).length}/{order.tasks.length}) Opgaver er færdige</div>
 					</section>
-					<section>
 						<Accordion order={order} setOrder={setOrder} />
-					</section>
 				</>
 			) : (
 				<Loader />
