@@ -8,7 +8,7 @@
 	margin: auto auto;
 }
 
-.infoWrapper div, h3 {
+.infoWrapper div, .infoWrapper h3  {
 	border-bottom: 1px solid var(--charcoalGrey);
 }
 
@@ -49,10 +49,21 @@
 
 .contentItem {
 	display: flex;
+	justify-content: space-between;
 	align-items: center;
 	border-bottom: 1px solid var(--lightGrey);
 	padding: var(--spacing-base);
 	gap: 1rem;
+}
+
+.subTaskTextWrapper {
+	display: flex;
+	gap: var(--spacing-small);
+}
+
+.accordianSubtaskIcon {
+    display: flex;
+    align-items: center;
 }
 
 .activeTask {

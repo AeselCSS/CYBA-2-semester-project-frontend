@@ -6,6 +6,7 @@ import { isEmployee, isCar, isCustomer, isOrder } from '../../utility/interfaceC
 import DetailedCustomer from '../Modal/DetailedCustomer';
 import DetailedOrder from '../Modal/DetailedOrder/DetailedOrder';
 import DetailedCar from '../Modal/DetailedCar';
+import styles from '../../components/Modal/modal.module.css';
 import '../Modal/modal.css';
 
 
@@ -15,7 +16,7 @@ interface Props<T> {
 }
 
 export default function TableBodyRow<T extends object>({ item, skipIndexes }: Props<T>) {
-	const [opened, { open, close }] = useDisclosure(false);
+	const [isOpen, { open, close }] = useDisclosure(false);
 
 	if (('id' in item && item.id === 'DELETED') || ('vinNumber' in item && item.vinNumber === 'DELETED')) {
 		return null;
@@ -40,7 +41,15 @@ export default function TableBodyRow<T extends object>({ item, skipIndexes }: Pr
 
 	return (
 		<>
-			<Modal opened={opened} onClose={close} title={detailedComponentTitle} className='modal' centered>
+			<Modal
+				opened={isOpen}
+				onClose={close}
+				title={detailedComponentTitle}
+				centered
+				size='xl'
+				styles={{ header: { backgroundColor: '#d87005', padding: '10px' }, close: { color: '#f4f4f4', cursor: 'pointer' } }}
+				classNames={{ body: styles.body, content: styles.content, title: styles.title, close: styles.close }}
+			>
 				{detailedComponent}
 			</Modal>
 

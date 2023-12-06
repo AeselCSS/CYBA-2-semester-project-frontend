@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Accordion from './OrderAccordian';
 import { Status } from '../../../enums';
 import { status } from '../../../utility/danishDictionary';
+import formatDate from '../../../utility/dateFormat';
 import classes from './DetailedOrder.module.css';
 
 export default function DetailedOrder({ orderId: orderId }: { orderId: number }) {
@@ -31,9 +32,9 @@ export default function DetailedOrder({ orderId: orderId }: { orderId: number })
 						<h3>Ordre status </h3>
 						<div>{status[order?.status]}</div>
 						<h3>Oprettelsesdato </h3>
-						<div>{order?.createdAt}</div>
+						<div>{order?.createdAt ? formatDate(new Date(order?.createdAt)) : 'Ukendt'}</div>
 						<h3>Sidst opdateret </h3>
-						<div>{order?.updatedAt}</div>
+						<div>{order?.updatedAt ? formatDate(new Date(order?.updatedAt)) : 'Ukendt'}</div>
 						<h3>Bil registerings nr. </h3>
 						<div>{order?.car.registrationNumber}</div>
 					</section>

@@ -61,19 +61,25 @@ function Accordion({ order, setOrder }: AccordionProps) {
 								<div className={classes.accordianContent}>
 									{task.subtasks.map((subtask) => (
 										<div className={classes.contentItem} key={subtask.id}>
-											<div>
-												{subtask.status === Status.PENDING && <FaRegCircle />}
-												{subtask.status === Status.COMPLETED && <FaRegCircleCheck color='green' />}
-												{subtask.status === Status.IN_PROGRESS && <FaRegCirclePlay color='yellow' />}
+											<div className={classes.subTaskTextWrapper}>
+												<div className={classes.accordianSubtaskIcon}>
+													{subtask.status === Status.PENDING && <FaRegCircle />}
+													{subtask.status === Status.COMPLETED && <FaRegCircleCheck color='green' />}
+													{subtask.status === Status.IN_PROGRESS && <FaRegCirclePlay color='yellow' />}
+												</div>
+												<div>
+													{subtask.name} - {subtask.description}
+												</div>
 											</div>
-											{subtask.name} - {subtask.description}
 											{subtask.status === Status.IN_PROGRESS &&
 											(user as IEmployee | ICustomer)?.role === Role.EMPLOYEE ? (
 												<ChangeOrderStatusButton
 													btnText='Færdig'
 													onClick={() => handleCompleteSubtask(subtask.id)}
 												/>
-											) : null}
+											) : (
+												<div></div>
+											)}
 										</div>
 									))}
 								</div>
