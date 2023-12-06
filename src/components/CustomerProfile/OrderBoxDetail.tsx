@@ -6,9 +6,8 @@ import { useDisclosure } from '@mantine/hooks';
 import { status as danishStatus } from '../../utility/danishDictionary';
 import calculatePrice from '../../utility/priceCalculator';
 import DetailedOrder from '../Modal/DetailedOrder/DetailedOrder';
-import ChangeOrderStatusButton from '../Buttons/changeOrderStatusButton';
+import ChangeOrderStatusButton from '../Buttons/ChangeOrderStatusButton';
 import '../Modal/modal.css';
-
 
 interface OrdersBoxDetailProps {
 	customerData: IAPISingleCustomer;
@@ -50,7 +49,7 @@ export default function OrdersBoxDetail({ customerData, order }: OrdersBoxDetail
 		<article className='order-box-details'>
 			{currentOrder ? (
 				<>
-					<Modal opened={isOpen} onClose={close} title={`Ordre nummer: ${order.id}`} className='modal' centered>
+					<Modal opened={isOpen} onClose={close} title={`Ordre nummer: ${order.id}`} className='modal' centered size='xl'>
 						<DetailedOrder orderId={order.id} />
 					</Modal>
 

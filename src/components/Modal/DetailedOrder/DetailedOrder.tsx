@@ -1,6 +1,7 @@
 import { Loader } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import Accordion from './OrderAccordian';
+import { Status } from '../../../enums';
 
 export default function DetailedOrder({ orderId: orderId }: { orderId: number }) {
 	const [order, setOrder] = useState<ICurrentOrder | null>(null);
@@ -27,10 +28,10 @@ export default function DetailedOrder({ orderId: orderId }: { orderId: number })
 					<section>
 						<div>{order?.id}</div>
 						<div>{order?.status}</div>
-						<div>1/3 Opgaver er færdige</div>
+						<div>({order.tasks.filter((task) => task.status === Status.COMPLETED).length}/{order.tasks.length}) Opgaver er færdige</div>
 					</section>
 					<section>
-						<Accordion tasks={order.tasks} setOrder={setOrder} />
+						<Accordion order={order} setOrder={setOrder} />
 					</section>
 				</>
 			) : (
