@@ -1,13 +1,9 @@
-
-
-
 export const status: { [key: string]: string } = {
-		AWAITING_CUSTOMER: 'Afventer kunde',
-		PENDING: 'Afventer værksted',
-		IN_PROGRESS: 'Igangsat',
-		COMPLETED: 'Fuldført',
+	AWAITING_CUSTOMER: 'Afventer kunde',
+	PENDING: 'Afventer værksted',
+	IN_PROGRESS: 'Igangsat',
+	COMPLETED: 'Fuldført',
 };
-
 
 export const department: { [key: string]: string } = {
 	ADMINISTRATION: 'Administration',
@@ -33,7 +29,7 @@ export const order: { [key: string]: string } = {
 };
 
 export const customer: { [key: string]: string } = {
-	id: "Kunde ID",
+	id: 'Kunde ID',
 	firstName: 'Fornavn',
 	lastName: 'Efternavn',
 	address: 'Adresse',
@@ -41,34 +37,40 @@ export const customer: { [key: string]: string } = {
 	zip: 'Post nr.',
 	phone: 'Tlf. nr.',
 	email: 'E-mail',
-	role: "Type",
+	role: 'Type',
 	createdAt: 'Oprettelsesdato',
 	updatedAt: 'Sidst Opdateret',
 };
 
 export const car: { [key: string]: string } = {
-	id: "ID",
-	customerId: "Kunde ID",
+	id: 'ID',
+	customerId: 'Kunde ID',
 	registrationNumber: 'Registrerings nr.',
 	vinNumber: 'STEL-nr.',
 	brand: 'Mærke',
 	model: 'Model',
 	modelVariant: 'Variant',
-	mileage: "K/m kørt",
-	lastInspectionDate: "Sidste inspektionsdato",
-	firstRegistration: "Første registreret",
-	lastInspectionResult: "Sidste inspektionsresultat",
-	lastInspectionKind: "Sidste inspektionstype",
+	mileage: 'K/m kørt',
+	lastInspectionDate: 'Sidste inspektionsdato',
+	firstRegistration: 'Første registreret',
+	lastInspectionResult: 'Sidste inspektionsresultat',
+	lastInspectionKind: 'Sidste inspektionstype',
 	createdAt: 'Oprettelsesdato',
 	updatedAt: 'Sidst Opdateret',
 };
 
 export const employee: { [key: string]: string } = {
-	id: "ID",
+	id: 'ID',
 	role: 'Stilling',
 	department: 'Afdeling',
 	firstName: 'Fornavn',
 	lastName: 'Efternavn',
 	createdAt: 'Oprettelsesdato',
 	updatedAt: 'Sidst Opdateret',
+};
+
+export const role: { [key: string]: string } = {
+	EMPLOYEE: 'Medarbejder',
+	ADMIN: 'Administrator',
+	CUSTOMER: 'Kunde',
 };
