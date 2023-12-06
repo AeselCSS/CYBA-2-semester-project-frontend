@@ -20,8 +20,7 @@ export default function DetailedCar({ car }: DetailedCarProps) {
 		}
 		getCar();
 	}, [car.id]);
-	console.log(carData?.model);
-	console.log(customerData?.firstName);
+
 	return (
 		<>
 			{carData && (
