@@ -134,5 +134,4 @@ input:focus {
     position: fixed;
     top: 87%;
 	z-index: 99;
-    display: flex;
 }
