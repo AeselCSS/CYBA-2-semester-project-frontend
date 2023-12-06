@@ -116,6 +116,7 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 					previousLabel='Forrige'
 					renderOnZeroPageCount={null}
 					initialPage={0}
+					forcePage={currentPage - 1}
 					containerClassName='pagination'
 					pageLinkClassName='page-num'
 					previousLinkClassName='page-num'

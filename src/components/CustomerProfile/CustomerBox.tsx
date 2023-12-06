@@ -1,13 +1,13 @@
-import BoxHeader from './BoxHeader';
 import DetailBox from './DetailBox';
 import dateFormat from '../../utility/dateFormat.ts';
+import BoxHeaderProfile from './BoxHeaderProfile.tsx';
 
 export default function CustomerBox({ customerData }: { customerData: IAPISingleCustomer }) {
 	console.log(customerData);
 
 	return (
 		<div className='profile-box box'>
-			<BoxHeader title={'Profil'} btnName='Rediger profil' navigateTo="" />
+			<BoxHeaderProfile customerId={customerData.customer.id} />
 
 			<section className='customer-box-grid'>
 				<DetailBox title={'Fornavn'} value={customerData.customer.firstName} />
