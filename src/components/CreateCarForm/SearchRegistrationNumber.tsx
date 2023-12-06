@@ -22,6 +22,7 @@ interface Props {
 
 export default function SearchRegistrationNumber({ setAPIResult, setRegistrationNumber, registrationNumber}: Props) {
 
+
 	const handleAPIGet = async () => {
 		const response = await fetch(`http://localhost:3000/cars/registration/${registrationNumber}`, {
 			method: 'GET',
@@ -32,6 +33,7 @@ export default function SearchRegistrationNumber({ setAPIResult, setRegistration
 			console.log(carDetails);
 			setAPIResult(carDetails);
 		} else {
+
 			setAPIResult(null);
 		}
 	};
