@@ -80,7 +80,7 @@ export default function CreateCarForm({ customer }: { customer: ICustomer }) {
 
 		console.log(newCar);
 
-		/*try {
+		try {
 			const res = await createCar(newCar);
 			if (res.ok) {
 				const data = await res.json();
@@ -89,7 +89,7 @@ export default function CreateCarForm({ customer }: { customer: ICustomer }) {
 			}
 		} catch (error) {
 			console.log((error as Error).message);
-		}*/
+		}
 	}onSubmit as SubmitHandler<inputs>;
 
 
