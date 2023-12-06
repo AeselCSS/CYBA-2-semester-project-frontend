@@ -1,3 +1,20 @@
+/* ----- Order info ----- */
+.infoWrapper {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	padding: var(--spacing-base);
+	gap: var(--spacing-base);
+	width: 60%;
+	margin: auto auto;
+}
+
+.infoWrapper div, h3 {
+	border-bottom: 1px solid var(--charcoalGrey);
+}
+
+
+/* ----- Accordian ----- */
+
 .tasksWrapper {
 	display: flex;
     flex-direction: column;

@@ -6,7 +6,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { status as danishStatus } from '../../utility/danishDictionary';
 import calculatePrice from '../../utility/priceCalculator';
 import DetailedOrder from '../Modal/DetailedOrder/DetailedOrder';
-import ChangeOrderStatusButton from '../Buttons/ChangeOrderStatusButton';
+import ChangeOrderStatusButton from '../Buttons/changeOrderStatusButton';
 // import '../Modal/modal.css';
 import styles from '../Modal/modal.module.css'
 

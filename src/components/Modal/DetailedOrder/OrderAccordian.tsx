@@ -2,9 +2,9 @@ import { useContext, useState } from 'react';
 import { FaRegCircle, FaRegCircleCheck, FaRegCirclePlay } from 'react-icons/fa6';
 import userContext from '../../../context/userContext.ts';
 import { Role, Status } from '../../../enums.ts';
-import ChangeOrderStatusButton from '../../Buttons/ChangeOrderStatusButton.tsx';
+import ChangeOrderStatusButton from '../../Buttons/changeOrderStatusButton.tsx';
 import { completeSubtaskInstance, initiateTaskInstance } from '../../../services/apiService.ts';
-import classes from './OrderAccordian.module.css';
+import classes from './DetailedOrder.module.css';
 
 interface AccordionProps {
 	order: ICurrentOrder;
