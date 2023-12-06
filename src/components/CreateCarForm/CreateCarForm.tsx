@@ -99,24 +99,24 @@ export default function CreateCarForm({ customer }: { customer: ICustomer }) {
 					registrationNumber={registrationNumber}
 				/>
 
-				<label htmlFor='mileage'>K/m kørt</label>
+				<label htmlFor='mileage'>Kilometertal</label>
 				<input type='tel' placeholder='Maks 6 cifre' pattern='[0-9]{0,6}' {...register('mileage', { required: true })} />
-				{errors.mileage && <span>Km/t kørt skal udfyldes</span>}
+				{errors.mileage && <span>Kilometertal skal udfyldes</span>}
 
 				<label htmlFor='vinNumber'>STEL-nr</label>
-				<input disabled={true}   {...register('vinNumber', { required: true })} />
+				<input disabled={true} {...register('vinNumber', { required: true })} />
 				{errors.vinNumber && <span>STEL-nr skal udfyldes</span>}
 
 				<label htmlFor='brand'>Mærke</label>
-				<input disabled={true}  {...register('brand', { required: true })} />
+				<input disabled={true} {...register('brand', { required: true })} />
 				{errors.brand && <span>Mærke skal udfyldes</span>}
 
 				<label htmlFor='model'>Model</label>
-				<input disabled={true}  {...register('model', { required: true })} />
+				<input disabled={true} {...register('model', { required: true })} />
 				{errors.model && <span>Model skal udfyldes</span>}
 
 				<label htmlFor='modelVariant'>Variant</label>
-				<input pattern='[0-9]{4}' disabled={true}  {...register('modelVariant', { required: true })} />
+				<input pattern='[0-9]{4}' disabled={true} {...register('modelVariant', { required: true })} />
 				{errors.modelVariant && <span>Variant skal udfyldes</span>}
 
 				<label htmlFor='firstRegistration'>Første registreringsdato</label>
@@ -124,7 +124,7 @@ export default function CreateCarForm({ customer }: { customer: ICustomer }) {
 				{errors.firstRegistration && <span>Første registreringsdato skal udfyldes</span>}
 
 				<label htmlFor='lastInspectionDate'>Sidste inspektionsdato</label>
-				<input disabled={true}  {...register('lastInspectionDate', { required: true })} />
+				<input disabled={true} {...register('lastInspectionDate', { required: true })} />
 				{errors.lastInspectionDate && <span>Sidste inspektionsdato skal udfyldes</span>}
 
 				<label htmlFor='lastInspectionResult'>Sidste inspektionsresultat</label>
@@ -132,7 +132,7 @@ export default function CreateCarForm({ customer }: { customer: ICustomer }) {
 				{errors.lastInspectionResult && <span>Sidste inspektionsresultat skal udfyldes</span>}
 
 				<label htmlFor='lastInspectionKind'>Sidste inspektionstype</label>
-				<input disabled={true}  {...register('lastInspectionKind', { required: true })} />
+				<input disabled={true} {...register('lastInspectionKind', { required: true })} />
 				{errors.lastInspectionKind && <span>Sidste inspektionstype skal udfyldes</span>}
 
 				<div className='form-btn-wrapper'>
