@@ -7,7 +7,7 @@ import DetailedCustomer from '../Modal/DetailedCustomer';
 import DetailedOrder from '../Modal/DetailedOrder/DetailedOrder';
 import DetailedCar from '../Modal/DetailedCar';
 import '../Modal/modal.css';
-import { role, department } from '../../utility/danishDictionary';
+import { role, department, status } from '../../utility/danishDictionary';
 interface Props<T> {
 	item: T;
 	skipIndexes: number[];
@@ -49,11 +49,20 @@ export default function TableBodyRow<T extends object>({ item, skipIndexes }: Pr
 						return null;
 					}
 
+					let renderedValue = value as string;
 					if (key === 'role') {
-						return role[value];
+						item = { ...item, role: role[value] };
+						renderedValue = role[value];
+					}
+					if (key === 'department') {
+						item = { ...item, department: department[value] };
+						renderedValue = department[value];
 					}
 
-					let renderedValue = value as string;
+					if (key === 'status') {
+						item = { ...item, status: status[value] };
+						renderedValue = status[value];
+					}
 
 					if (typeof value === 'string' && !isNaN(Date.parse(value))) {
 						const date = new Date(value);
