@@ -20,7 +20,8 @@ function Accordion({ order, setOrder }: AccordionProps) {
 		setOpenTaskId(openTaskId === taskId ? null : taskId);
 	};
 
-	async function handleStartTask(taskId: number) {
+	async function handleStartTask(e: React.MouseEvent, taskId: number) {
+		e.stopPropagation();
 		const response = await initiateTaskInstance(taskId, (user as IEmployee).id);
 		console.log(response);
 		setOrder(response);
@@ -41,21 +42,27 @@ function Accordion({ order, setOrder }: AccordionProps) {
 							<button className={classes.accordianLabel} onClick={() => toggleTask(task.id)}>
 								<div>
 									<div className={classes.accordianLabelIcon}>
+										{task.status === Status.PENDING && <FaRegCircle />}
 										{task.status === Status.IN_PROGRESS && <FaRegCirclePlay color='yellow' />}
 										{task.status === Status.COMPLETED && <FaRegCircleCheck color='green' />}
 									</div>
 									<div>{task.name}</div>
 								</div>
-								<div>
-									({task.subtasks.filter((subtask) => subtask.status === Status.COMPLETED).length}/{task.subtasks.length})
-								</div>
-							</button>
 
-							{(user as IEmployee | ICustomer)?.role === Role.EMPLOYEE &&
-							task.status === Status.PENDING &&
-							(order.status === Status.PENDING || order.status === Status.IN_PROGRESS) ? (
-								<ChangeOrderStatusButton btnText='Start opgave' onClick={() => handleStartTask(task.id)} />
-							) : null}
+								{(user as IEmployee | ICustomer)?.role === Role.EMPLOYEE &&
+								task.status === Status.PENDING &&
+								(order.status === Status.PENDING || order.status === Status.IN_PROGRESS) ? (
+									<ChangeOrderStatusButton
+										btnText='Start opgave'
+										onClick={(e: React.MouseEvent) => handleStartTask(e, task.id)}
+									/>
+								) : (
+									<div>
+										({task.subtasks.filter((subtask) => subtask.status === Status.COMPLETED).length}/
+										{task.subtasks.length})
+									</div>
+								)}
+							</button>
 
 							{openTaskId === task.id && (
 								<div className={classes.accordianContent}>

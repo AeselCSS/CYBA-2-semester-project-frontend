@@ -8,37 +8,47 @@
 	margin: auto auto;
 }
 
-.infoWrapper div, .infoWrapper h3  {
+.infoWrapper div,
+.infoWrapper h3 {
 	border-bottom: 1px solid var(--charcoalGrey);
 }
-
 
 /* ----- Accordian ----- */
 
 .tasksWrapper {
 	display: flex;
-    flex-direction: column;
+	flex-direction: column;
 	gap: var(--spacing-small);
 }
 
 .accordianLabel {
-    display: flex;
-    justify-content: space-between;
-    gap: var(--spacing-base);
+	display: flex;
+	justify-content: space-between;
+	gap: var(--spacing-base);
 	background-color: var(--charcoalGrey);
 	border-radius: 0;
 	width: 100%;
 	padding: var(--spacing-base);
 }
 
+.accordianLabel:hover {
+	background-color: var(--darkGrey);
+}
+
+.accordianLabel button {
+	background-color: var(--black);
+	border: 1px solid var(--orange);
+}
+
 .accordianLabel div {
-    display: flex;
-    gap: var(--spacing-base);
+	display: flex;
+	align-items: center;
+	gap: var(--spacing-base);
 }
 
 .accordianLabelIcon {
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .accordianContent {
@@ -62,8 +72,8 @@
 }
 
 .accordianSubtaskIcon {
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .activeTask {
