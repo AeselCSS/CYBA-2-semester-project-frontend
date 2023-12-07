@@ -79,6 +79,10 @@ button:disabled {
 	outline: none;
 }
 
+.checkboxDiv input[type='checkbox']:checked {
+	filter: hue-rotate(170deg) saturate(430%);
+}
+
 .inputAndDescrWrapper {
 	display: flex;
 	align-items: center;
