@@ -8,9 +8,11 @@ import PageLayout from '../layouts/PageLayout/PageLayout';
 import OrdersBox from '../components/CustomerProfile/OrdersBox';
 import Loader from '../components/Loader/Loader';
 import { getSingleCustomer } from '../services/apiService';
+import { useNavigate } from 'react-router-dom';
 
 export default function CustomerProfile() {
 	const [customerData, setCustomerData] = useState<IAPISingleCustomer | null>(null);
+	const navigate = useNavigate();
 	const { user } = useContext(UserContext);
 
 	useEffect(() => {
@@ -22,8 +24,8 @@ export default function CustomerProfile() {
 	}, [user]);
 
 	if (!userIsCustomer(user)) {
-		// If the user is not a customer, deny access. We might want to redirect to a 404 page instead?
-		return <p>Access Denied</p>;
+		navigate('/redirect');
+		return null;
 	}
 
 	return (
