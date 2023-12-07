@@ -12,7 +12,7 @@ export const LogoutButton: React.FC = () => {
 			logoutParams: {
 				returnTo: window.location.origin,
 			},
-		});
+		})
 	};
 
 	return (
