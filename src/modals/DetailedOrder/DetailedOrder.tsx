@@ -1,7 +1,7 @@
 import { Loader } from '@mantine/core';
 import { useEffect, useState } from 'react';
-import Accordion from './OrderAccordian';
-import { Status } from '../../../enums';
+import Accordion from './OrderAccordian.tsx';
+import { Status } from '../../utility/enums.ts';
 
 export default function DetailedOrder({ orderId: orderId }: { orderId: number }) {
 	const [order, setOrder] = useState<ICurrentOrder | null>(null);

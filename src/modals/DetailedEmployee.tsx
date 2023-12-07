@@ -1,7 +1,7 @@
 // import { Card } from '@mantine/core';
 import { useEffect, useState } from 'react';
-import formatDate from '../../utility/dateFormat';
-import { department, role } from '../../utility/danishDictionary';
+import formatDate from '../utility/dateFormat.ts';
+import { department, role } from '../utility/danishDictionary.ts';
 
 interface DetailedEmployeeProps {
 	employee: IEmployee;

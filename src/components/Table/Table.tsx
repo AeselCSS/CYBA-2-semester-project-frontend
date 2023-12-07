@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Toolbar from '../Toolbar/Toolbar.tsx';
-import Filter from '../Filter/Filter.tsx';
-import Searchbar from '../Searchbar/Searchbar.tsx';
+import Filter from '../Toolbar/Filter/Filter.tsx';
+import Searchbar from '../Toolbar/Searchbar/Searchbar.tsx';
 import TableBodyRow from './TableBodyRow.tsx';
 import ReactPaginate from 'react-paginate';
 import PageSize from '../PageSize/PageSize.tsx';

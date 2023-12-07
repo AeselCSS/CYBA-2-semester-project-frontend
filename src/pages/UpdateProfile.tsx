@@ -1,5 +1,5 @@
-import PageLayout from './PageLayout.tsx';
-import FormLayout from '../components/Form/FormLayout.tsx';
+import PageLayout from '../layouts/PageLayout/PageLayout.tsx';
+import FormLayout from '../layouts/FormLayout/FormLayout';
 import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { notifications } from '@mantine/notifications';

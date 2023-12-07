@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import formatDate from '../../utility/dateFormat';
+import formatDate from '../utility/dateFormat.ts';
 
 interface DetailedCustomerProps {
 	customer: ICustomer;

@@ -1,5 +1,5 @@
-import PageLayout from './PageLayout.tsx';
-import CreateCarForm from '../components/CreateCarForm/CreateCarForm.tsx';
+import PageLayout from '../layouts/PageLayout/PageLayout.tsx';
+import CreateCarForm from '../components/Forms/CreateCarForm/CreateCarForm.tsx';
 
 export default function CreateCar({ customer }: {
 	customer: ICustomer

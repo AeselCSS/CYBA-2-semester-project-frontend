@@ -1,12 +1,12 @@
 import formatDate from '../../utility/dateFormat';
 import { useDisclosure } from '@mantine/hooks';
 import { Modal } from '@mantine/core';
-import DetailedEmployee from '../Modal/DetailedEmployee';
+import DetailedEmployee from '../../modals/DetailedEmployee.tsx';
 import { isEmployee, isCar, isCustomer, isOrder } from '../../utility/interfaceChecker';
-import DetailedCustomer from '../Modal/DetailedCustomer';
-import DetailedOrder from '../Modal/DetailedOrder/DetailedOrder';
-import DetailedCar from '../Modal/DetailedCar';
-import '../Modal/modal.css';
+import DetailedCustomer from '../../modals/DetailedCustomer.tsx';
+import DetailedOrder from '../../modals/DetailedOrder/DetailedOrder';
+import DetailedCar from '../../modals/DetailedCar.tsx';
+import '../../modals/modal.css';
 
 
 interface Props<T> {

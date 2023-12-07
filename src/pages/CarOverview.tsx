@@ -1,6 +1,6 @@
-import PageLayout from './PageLayout';
+import PageLayout from '../layouts/PageLayout/PageLayout.tsx';
 import Table from "../components/Table/Table.tsx";
-import "../components/EmployeeNavigation/EmployeeView.css"
+import "../components/Navbar/EmployeeNavigation/EmployeeView.css"
 import "../components/Table/Table.css"
 
 interface Props {

@@ -1,6 +1,6 @@
 // import { Card } from '@mantine/core';
 import { useEffect, useState } from 'react';
-import formatDate from '../../utility/dateFormat';
+import formatDate from '../utility/dateFormat.ts';
 
 interface DetailedCarProps {
 	car: ICar;

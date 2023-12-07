@@ -1,4 +1,4 @@
-import PageLayout from './PageLayout';
+import PageLayout from '../layouts/PageLayout/PageLayout.tsx';
 
 export default function Homepage() {
 	return (

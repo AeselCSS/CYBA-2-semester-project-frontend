@@ -1,5 +1,5 @@
-import PageLayout from './PageLayout.tsx';
-import CreateOrderForm from '../components/CreateOrderForm/CreateOrderForm.tsx';
+import PageLayout from '../layouts/PageLayout/PageLayout.tsx';
+import CreateOrderForm from '../components/Forms/CreateOrderForm/CreateOrderForm.tsx';
 
 export default function CreateOrder({ customer }: { customer: ICustomer }) {
 

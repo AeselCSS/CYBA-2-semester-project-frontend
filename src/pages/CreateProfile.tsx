@@ -1,8 +1,8 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
-import PageLayout from './PageLayout';
+import PageLayout from '../layouts/PageLayout/PageLayout.tsx';
 import { useNavigate } from 'react-router-dom';
-import '../components/Form/Form.css';
-import FormLayout from '../components/Form/FormLayout';
+import '../layouts/Form/Form.css';
+import FormLayout from '../layouts/FormLayout/FormLayout';
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
 import { notifications } from '@mantine/notifications';
 import { MdErrorOutline } from 'react-icons/md';
