@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { notifications } from '@mantine/notifications';
-import SearchRegistrationNumber from './SearchRegistrationNumber.tsx';
+import SearchRegistrationNumber from './SearchRegistrationNumber';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import FormLayout from '../Form/FormLayout.tsx';
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
 import { MdErrorOutline } from 'react-icons/md';
+import FormLayout from '../../../layouts/FormLayout/FormLayout';
 
 interface IAPICar {
 	registrationNumber: string,

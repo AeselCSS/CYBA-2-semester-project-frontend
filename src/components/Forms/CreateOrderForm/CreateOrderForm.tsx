@@ -3,7 +3,7 @@ import CarSelect from './CarSelect.tsx';
 import DatePicker from './DatePicker.tsx';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import TaskCheckbox from './TaskCheckbox.tsx';
-import Loader from '../Loader/Loader.tsx';
+import Loader from '../../Loader/Loader.tsx';
 import { useNavigate } from 'react-router-dom';
 import { notifications } from '@mantine/notifications';
 import './CreateOrderForm.css';

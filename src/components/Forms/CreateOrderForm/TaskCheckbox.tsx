@@ -1,4 +1,4 @@
-import calculatePrice from '../../utility/priceCalculator.ts';
+import calculatePrice from '../../../utility/priceCalculator.ts';
 
 interface Props {
 	task: IAPITask;
