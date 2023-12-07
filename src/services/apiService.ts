@@ -1,6 +1,23 @@
-import { Status } from '../enums';
+import { Status } from '../utility/enums.ts';
 
 const API_URL = import.meta.env.VITE_API_URL as string || 'http://localhost:3000';
+
+// Customers
+
+export const getSingleCustomer = async (id: string) => {
+	try {
+		const response = await fetch(`${API_URL}/customers/${id}`);
+
+		if (!response.ok) {
+			throw new Error('Error fetching data');
+		}
+
+		return await response.json();
+
+	} catch (error: unknown) {
+		console.error(error);
+	}
+}
 
 export const updateOrderStatus = async (id: number, status: Status) => {
 	try {
@@ -71,3 +88,4 @@ export const completeSubtaskInstance = async (id: number) => {
         console.error(error);
     }
 }
+
