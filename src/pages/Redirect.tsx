@@ -2,6 +2,7 @@ import { useContext, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../context/userContext';
+import { Loader } from '@mantine/core';
 
 export default function Redirect() {
 	const { user, isAuthenticated, isLoading, error } = useAuth0();
@@ -54,7 +55,7 @@ export default function Redirect() {
 	}, [user, isAuthenticated, isLoading, setUser, navigate]);
 
 	if (isLoading) {
-		return <p>Loading...</p>;
+		return <div className='loading-wrapper'><Loader color="orange" type="bars" /></div>;
 	}
 
 	if (error) {
