@@ -2,23 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useAuth0 } from '@auth0/auth0-react';
-
 import styles from '../Modal/modal.module.css';
-
-async function deleteCustomer(id: string) {
-	const response = await fetch(`http://localhost:3000/customers/${id}`, {
-		method: "DELETE"
-	});
-
-	if (response.ok) {
-		console.log("Deleted customer");
-	} else {
-		console.error(response.body);
-		throw new Error();
-	}
-}
-
-
 import { MdErrorOutline } from 'react-icons/md';
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
 import { notifications } from '@mantine/notifications';
