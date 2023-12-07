@@ -7,7 +7,7 @@ import CustomerProfileGrid from '../components/CustomerProfile/CustomerProfileGr
 import PageLayout from '../layouts/PageLayout/PageLayout';
 import OrdersBox from '../components/CustomerProfile/OrdersBox';
 import Loader from '../components/Loader/Loader';
-import { getSingleCustomer } from '../services/apiService';
+import { getSingleCustomer } from '../services/customerServices.ts';
 import { useNavigate } from 'react-router-dom';
 
 export default function CustomerProfile() {

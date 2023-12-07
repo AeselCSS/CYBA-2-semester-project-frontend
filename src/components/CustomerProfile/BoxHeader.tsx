@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import styles from '../Modal/modal.module.css'
+import styles from '../../modals/modal.module.css'
 
 interface BoxHeaderProps {
 	title: string;

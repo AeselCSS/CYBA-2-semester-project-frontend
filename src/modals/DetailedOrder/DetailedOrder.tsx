@@ -1,16 +1,13 @@
 import { Loader } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import Accordion from './OrderAccordian';
-import { Status } from '../../../enums';
-import { status } from '../../../utility/danishDictionary';
-import formatDate from '../../../utility/dateFormat';
+import { status } from '../../utility/danishDictionary';
+import formatDate from '../../utility/dateFormat';
 import classes from './DetailedOrder.module.css';
-import Accordion from './OrderAccordian.tsx';
 import { Status } from '../../utility/enums.ts';
 
 export default function DetailedOrder({ orderId: orderId }: { orderId: number }) {
 	const [order, setOrder] = useState<ICurrentOrder | null>(null);
-	console.log(order);
 
 	// fetche single order
 	useEffect(() => {
