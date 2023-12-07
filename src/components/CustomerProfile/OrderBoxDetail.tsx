@@ -6,10 +6,11 @@ import { status as danishStatus } from '../../utility/danishDictionary';
 import calculatePrice from '../../utility/priceCalculator';
 import DetailedOrder from '../../modals/DetailedOrder/DetailedOrder';
 import ChangeOrderStatusButton from '../Buttons/ChangeOrderStatusButton';
-import '../../modals/modal.css';
+import styles from '../../modals/modal.module.css';
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
 import { MdErrorOutline } from 'react-icons/md';
 import { notifications } from '@mantine/notifications';
+import { getSingleOrder } from '../../services/orderServices.ts';
 
 interface OrdersBoxDetailProps {
 	customerData: IAPISingleCustomer;
@@ -25,14 +26,7 @@ export default function OrdersBoxDetail({ customerData, order }: OrdersBoxDetail
 	const [car] = customerData.cars.filter((car) => car.id === order.carId);
 
 	useEffect(() => {
-		async function getOrders() {
-			//TODO Brug .env til dynamisk url kald
-			const response = await fetch(`http://localhost:3000/orders/${order.id}`);
-			const data = await response.json();
-			setCurrentOrder(data);
-		}
-
-		getOrders();
+		getSingleOrder(order.id).then((order) => setCurrentOrder(order));
 	}, [order.id]);
 
 	async function handleClick() {
@@ -105,8 +99,8 @@ export default function OrdersBoxDetail({ customerData, order }: OrdersBoxDetail
 						<h3>{danishStatus[currentOrder.status]}</h3>
 						{(order.status as never) === 'AWAITING_CUSTOMER' && (
 							<ChangeOrderStatusButton btnText='Aflever bil' onClick={handleClick} />
-						)}{' '}
-						{/*TODO Fix this any type*/}
+						)}
+						{' '}
 					</section>
 				</>
 			) : (
