@@ -92,38 +92,21 @@ button:disabled {
 	filter: hue-rotate(170deg) saturate(430%);
 }
 
-.inputAndDescrWrapper {
+.inputAndDescrWrapper,
+.priceInfoContainer {
 	display: flex;
 	align-items: center;
 	gap: 1rem;
 }
 
-/* .checkboxDiv {
-	display: grid;
-	grid-template-areas:
-		'inpu labe pric'
-		'inpu desc pric';
-	grid-template-columns: 1fr 4fr 0.5fr;
-	grid-template-rows: 1fr 2fr;
+.priceInfoContainer svg {
+	color: var(--white);
+	transition: 0.2s ease-in;
 }
 
-.checkboxDiv label {
-	grid-area: labe;
-	font-size: large;
+.priceInfoContainer svg:hover {
+	color: var(--orange);
 }
-
-.checkboxDiv input {
-	grid-area: inpu;
-}
-
-.checkboxDiv .price {
-	grid-area: pric;
-} 
-
-.checkboxDiv .description {
-	grid-area: desc;
-}
-*/
 
 .react-calendar__navigation button {
 	padding: 3px 5%;

@@ -1,5 +1,6 @@
 import calculatePrice from '../../utility/priceCalculator.ts';
 import classes from '../CreateOrderForm/CreateOrderForm.module.css';
+import { FaCircleInfo } from 'react-icons/fa6';
 
 interface Props {
 	task: IAPITask;
@@ -16,7 +17,10 @@ export default function TaskCheckbox({ task, register }: Props) {
 				<label htmlFor={String(task.id)}>{task.name}</label>
 			</div>
 			{/* <p className='description'>{task.description}</p> */}
-			<p className='price'>{calculatePrice(task.time)},-</p>
+			<div className={classes.priceInfoContainer}>
+				<p>{calculatePrice(task.time)},-</p>
+				<FaCircleInfo />
+			</div>
 		</article>
 	);
 }
