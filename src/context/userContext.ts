@@ -1,5 +1,15 @@
 import { createContext } from 'react';
 
-const userContext = createContext<ICustomer | IEmployee | IAuthUser | null>(null);
+interface UserContextType {
+	user: ICustomer | IEmployee | IAuthUser | null;
+	setUser: (user: ICustomer | IEmployee | IAuthUser | null) => void;
+}
 
-export default userContext;
+const defaultState = {
+	user: null,
+	setUser: () => {}, // default empty function
+};
+
+const UserContext = createContext<UserContextType>(defaultState);
+
+export default UserContext;
