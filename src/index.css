@@ -23,6 +23,7 @@ Button - Rokkitt thin 100 italic
 
 	/* ----- Color variables ----- */
 	--black: #262626;
+	--blackasdas: #262626f1;
 	--charcoalGrey: #3c3c3c;
 	--darkGrey: #5a5a5a;
 	--lightGrey: #bbbab9;
@@ -71,7 +72,10 @@ body {
 	background-color: var(--charcoalGrey);
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
 	color: var(--orange);
 	font-family: var(--header-font-family);
 }
@@ -101,15 +105,14 @@ button {
 	font-weight: var(--font-weight-normal);
 	font-size: var(--font-size-base);
 	text-transform: capitalize;
-  border-radius: var(--border-radius);
+	border-radius: var(--border-radius);
 
-  background-color: var(--charcoalGrey);
+	background-color: var(--charcoalGrey);
 	color: var(--white);
 	border: none;
 	padding: var(--spacing-small) var(--spacing-small);
 	cursor: pointer;
 	transition: background-color 0.3s ease;
-
 }
 
 button:hover {
@@ -132,7 +135,7 @@ input:focus {
 }
 
 .toaster {
-    position: fixed;
-    top: 87%;
+	position: fixed;
+	top: 87%;
 	z-index: 99;
 }
