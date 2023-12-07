@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { notifications } from '@mantine/notifications';
 import SearchRegistrationNumber from './SearchRegistrationNumber.tsx';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import FormLayout from '../Form/FormLayout.tsx';
+import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
+import { MdErrorOutline } from 'react-icons/md';
 
 interface IAPICar {
 	registrationNumber: string,
@@ -78,17 +81,32 @@ export default function CreateCarForm({ customer }: { customer: ICustomer }) {
 			lastInspectionKind: data.lastInspectionKind || null
 		};
 
-		console.log(newCar);
-
 		try {
 			const res = await createCar(newCar);
 			if (res.ok) {
-				const data = await res.json();
-				console.log(data);
+				notifications.show({
+					color: 'green',
+					title: "VROOM VROOM!",
+					message: "Køretøj oprettet successfuldt",
+					icon: <IoIosCheckmarkCircleOutline />
+				})
 				navigate('/redirect');
+			} else {
+				notifications.show({
+					color: 'red',
+					title: "Hov!",
+					message: "Noget gik galt. Kontroller de givet oplysninger",
+					icon: <MdErrorOutline />
+				})
 			}
 		} catch (error) {
 			console.log((error as Error).message);
+			notifications.show({
+				color: 'red',
+				title: "Hov!",
+				message: "Noget gik galt. Dit køretøj blev desværre ikke oprettet. Prøv igen senere",
+				icon: <MdErrorOutline />
+			})
 		}
 	}onSubmit as SubmitHandler<inputs>;
 
@@ -139,7 +157,7 @@ export default function CreateCarForm({ customer }: { customer: ICustomer }) {
 				{errors.lastInspectionKind && <span>Sidste inspektionstype skal udfyldes</span>}
 
 				<div className='form-btn-wrapper'>
-					<button type='submit'>Bekræft</button>
+					<button type='submit' disabled={!registrationNumber || !APIResult}>Bekræft</button>
 				</div>
 			</FormLayout>
 		</>

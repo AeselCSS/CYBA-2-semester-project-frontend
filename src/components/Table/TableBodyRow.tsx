@@ -8,8 +8,7 @@ import DetailedOrder from '../Modal/DetailedOrder/DetailedOrder';
 import DetailedCar from '../Modal/DetailedCar';
 import styles from '../../components/Modal/modal.module.css';
 import '../Modal/modal.css';
-
-
+import { role, department, status } from '../../utility/danishDictionary';
 interface Props<T> {
 	item: T;
 	skipIndexes: number[];
@@ -54,17 +53,31 @@ export default function TableBodyRow<T extends object>({ item, skipIndexes }: Pr
 			</Modal>
 
 			<tr>
-				{Object.values(item).map((value, i) => {
+				{Object.entries(item).map(([key, value], i) => {
 					if (skipIndexes.includes(i)) {
 						return null;
 					}
 
 					let renderedValue = value as string;
 
+					//Checks if object has the key "role" and creates a new object with the translated value if true
+					if (key === 'role') {
+						renderedValue = role[value];
+					}
+					//Checks if object has the key "department" and creates a new object with the translated value if true
+					if (key === 'department') {
+						renderedValue = department[value];
+					}
+					//Checks if object has the key "status" and creates a new object with the translated value if true
+					if (key === 'status') {
+						renderedValue = status[value];
+					}
+
 					if (typeof value === 'string' && !isNaN(Date.parse(value))) {
 						const date = new Date(value);
 						renderedValue = formatDate(date);
 					}
+
 					//TODO Employee view viser departments på engelsk. Dictionary skal bruges.
 
 					return (

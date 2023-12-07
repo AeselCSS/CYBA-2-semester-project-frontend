@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useAuth0 } from '@auth0/auth0-react';
+
 import styles from '../Modal/modal.module.css';
 
 async function deleteCustomer(id: string) {
@@ -16,6 +17,11 @@ async function deleteCustomer(id: string) {
 		throw new Error();
 	}
 }
+
+
+import { MdErrorOutline } from 'react-icons/md';
+import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
+import { notifications } from '@mantine/notifications';
 
 
 export default function BoxHeaderProfile({ customerId }: { customerId: string }) {
@@ -33,10 +39,34 @@ export default function BoxHeaderProfile({ customerId }: { customerId: string })
 
 	const handleDelete = async () => {
 		try {
-			await deleteCustomer(customerId);
-			handleLogout()
+			const response = await fetch(`http://localhost:3000/customers/${customerId}`, {
+				method: "DELETE"
+			})
+
+			if (response.ok) {
+				notifications.show({
+					color: 'green',
+					title: "Konto slettet",
+					message: "Din konto er blevet slettet succesfuldt. Håber vi ses igen💪",
+					icon: <IoIosCheckmarkCircleOutline />
+				})
+				handleLogout()
+			} else {
+				notifications.show({
+					color: 'red',
+					title: "Hov!",
+					message: "Vi kunne desværre ikke slette din konto. Prøv igen senere",
+					icon: <MdErrorOutline />
+				})
+			}
 		} catch (error: unknown) {
 			console.log((error as Error).message);
+			notifications.show({
+				color: 'red',
+				title: "Hov!",
+				message: "Vi kunne desværre ikke slette din konto. Prøv igen senere",
+				icon: <MdErrorOutline />
+			})
 		}
 	}
 

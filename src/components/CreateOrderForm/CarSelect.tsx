@@ -4,8 +4,6 @@ interface Props {
 	errors: any;
 }
 
-
-//TODO REGISTER HER
 export default function CarSelect({ cars, register, errors }: Props) {
 
 	return (
