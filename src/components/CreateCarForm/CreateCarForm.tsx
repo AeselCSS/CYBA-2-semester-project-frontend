@@ -8,43 +8,43 @@ import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
 import { MdErrorOutline } from 'react-icons/md';
 
 interface IAPICar {
-	registrationNumber: string,
-	vinNumber: string,
-	brand: string,
-	model: string,
-	modelVariant: string,
-	firstRegistration: string,
-	lastInspectionDate: string,
-	lastInspectionResult: string,
-	lastInspectionKind: string,
-	mileage: string
+	registrationNumber: string;
+	vinNumber: string;
+	brand: string;
+	model: string;
+	modelVariant: string;
+	firstRegistration: string;
+	lastInspectionDate: string;
+	lastInspectionResult: string;
+	lastInspectionKind: string;
+	mileage: string;
 }
 
-interface INewCar  {
-	customerId: string,
-	mileage: number
-	registrationNumber: string,
-	vinNumber: string,
-	brand: string,
-	model: string,
-	modelVariant: string,
-	firstRegistration: string,
-	lastInspectionDate: string | null,
-	lastInspectionResult: string | null,
-	lastInspectionKind: string | null,
+interface INewCar {
+	customerId: string;
+	mileage: number;
+	registrationNumber: string;
+	vinNumber: string;
+	brand: string;
+	model: string;
+	modelVariant: string;
+	firstRegistration: string;
+	lastInspectionDate: string | null;
+	lastInspectionResult: string | null;
+	lastInspectionKind: string | null;
 }
 
 type inputs = {
-	mileage: string
-	vinNumber: string,
-	brand: string,
-	model: string,
-	modelVariant: string,
-	firstRegistration: string,
-	lastInspectionDate: string,
-	lastInspectionResult: string,
-	lastInspectionKind: string,
-}
+	mileage: string;
+	vinNumber: string;
+	brand: string;
+	model: string;
+	modelVariant: string;
+	firstRegistration: string;
+	lastInspectionDate: string;
+	lastInspectionResult: string;
+	lastInspectionKind: string;
+};
 
 async function createCar(newCar: INewCar) {
 	return await fetch(`http://localhost:3000/cars`, {
@@ -67,7 +67,7 @@ export default function CreateCarForm({ customer }: { customer: ICustomer }) {
 		handleSubmit,
 		formState: { errors },
 	} = useForm<inputs>({
-			values
+		values,
 	});
 
 	async function onSubmit(data: inputs) {
@@ -78,7 +78,7 @@ export default function CreateCarForm({ customer }: { customer: ICustomer }) {
 			mileage: parseInt(data.mileage),
 			lastInspectionDate: data.lastInspectionDate || null,
 			lastInspectionResult: data.lastInspectionResult || null,
-			lastInspectionKind: data.lastInspectionKind || null
+			lastInspectionKind: data.lastInspectionKind || null,
 		};
 
 		try {
@@ -86,30 +86,30 @@ export default function CreateCarForm({ customer }: { customer: ICustomer }) {
 			if (res.ok) {
 				notifications.show({
 					color: 'green',
-					title: "VROOM VROOM!",
-					message: "Køretøj oprettet successfuldt",
-					icon: <IoIosCheckmarkCircleOutline />
-				})
+					title: 'VROOM VROOM!',
+					message: 'Køretøj oprettet successfuldt',
+					icon: <IoIosCheckmarkCircleOutline />,
+				});
 				navigate('/redirect');
 			} else {
 				notifications.show({
 					color: 'red',
-					title: "Hov!",
-					message: "Noget gik galt. Kontroller de givet oplysninger",
-					icon: <MdErrorOutline />
-				})
+					title: 'Hov!',
+					message: 'Noget gik galt. Kontroller de givet oplysninger',
+					icon: <MdErrorOutline />,
+				});
 			}
 		} catch (error) {
 			console.log((error as Error).message);
 			notifications.show({
 				color: 'red',
-				title: "Hov!",
-				message: "Noget gik galt. Dit køretøj blev desværre ikke oprettet. Prøv igen senere",
-				icon: <MdErrorOutline />
-			})
+				title: 'Hov!',
+				message: 'Noget gik galt. Dit køretøj blev desværre ikke oprettet. Prøv igen senere',
+				icon: <MdErrorOutline />,
+			});
 		}
-	}onSubmit as SubmitHandler<inputs>;
-
+	}
+	onSubmit as SubmitHandler<inputs>;
 
 	return (
 		<>
@@ -157,7 +157,9 @@ export default function CreateCarForm({ customer }: { customer: ICustomer }) {
 				{errors.lastInspectionKind && <span>Sidste inspektionstype skal udfyldes</span>}
 
 				<div className='form-btn-wrapper'>
-					<button type='submit' disabled={!registrationNumber || !APIResult}>Bekræft</button>
+					<button type='submit' disabled={!registrationNumber || !APIResult}>
+						Bekræft
+					</button>
 				</div>
 			</FormLayout>
 		</>

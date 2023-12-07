@@ -1,0 +1,89 @@
+.orderFormWrapper {
+	margin: auto auto;
+	width: 80%;
+}
+.orderFormContainer {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	gap: 4rem;
+}
+
+.tasksContainer {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+.formRightSideContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.carContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 3rem;
+}
+
+.carGrid {
+	/* width: 20%; */
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+.dateContainer {
+	/* width: 18%; */
+	display: flex;
+	/* align-items: center; */
+	justify-content: center;
+}
+
+.btnContainer button {
+	background-color: #313131;
+}
+
+button:disabled {
+	background-color: #4c4c4c;
+}
+
+.btnContainer {
+	display: flex;
+	justify-content: center;
+}
+
+.checkboxDiv {
+	display: grid;
+	grid-template-areas:
+		'inpu labe pric'
+		'inpu desc pric';
+	grid-template-columns: 1fr 4fr 0.5fr;
+	grid-template-rows: 1fr 2fr;
+}
+
+.checkboxDiv label {
+	grid-area: labe;
+	font-size: large;
+}
+
+.checkboxDiv input {
+	grid-area: inpu;
+}
+
+.checkboxDiv .price {
+	grid-area: pric;
+}
+
+.checkboxDiv .description {
+	grid-area: desc;
+}
+
+.react-calendar__navigation button {
+	padding: 3px 5%;
+}
+
+/*Den valgte dato i kalenderen*/
+.react-calendar__tile--active {
+	background-color: blue;
+}
