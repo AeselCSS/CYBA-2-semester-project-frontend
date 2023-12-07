@@ -31,17 +31,28 @@
 	border: 1px solid var(--orange);
 }
 
-.carContainer {
+.carSelectContainer {
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
 	align-items: center;
-	margin-top: 3rem;
+	margin-top: var(--spacing-large);
+	gap: var(--spacing-small);
 }
 
-.carGrid {
-	/* width: 20%; */
-	display: grid;
-	grid-template-columns: 1fr 1fr;
+.carSelectContainer select {
+	height: var(--spacing-xxlarge);
+	width: 220px;
+	text-align: center;
+	border-radius: var(--border-radius);
+	font-size: var(--font-size-large);
+}
+
+.carSelectContainer select:focus {
+	outline: none;
+}
+
+.carSelectContainer h3 {
+	color: var(--white);
 }
 
 .dateContainer {
@@ -51,10 +62,6 @@
 	justify-content: center;
 }
 
-.btnContainer button {
-	background-color: #313131;
-}
-
 button:disabled {
 	background-color: #4c4c4c;
 }
@@ -62,6 +69,19 @@ button:disabled {
 .btnContainer {
 	display: flex;
 	justify-content: center;
+}
+
+.btnContainer button {
+	background-color: var(--orange);
+	width: 220px;
+	height: var(--spacing-xxlarge);
+	transition: 0.2s ease-in;
+	outline: 1px solid var(--black);
+	font-size: var(--font-size-xlarge);
+}
+
+.btnContainer button:hover {
+	filter: brightness(120%);
 }
 
 .checkboxDiv {
@@ -90,6 +110,10 @@ button:disabled {
 
 .checkboxDiv input[type='checkbox']:checked {
 	filter: hue-rotate(170deg) saturate(430%);
+}
+
+.checkboxDiv input[type='checkbox']:focus {
+	outline: none;
 }
 
 .inputAndDescrWrapper,

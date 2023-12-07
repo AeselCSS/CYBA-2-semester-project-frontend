@@ -1,3 +1,5 @@
+import classes from './CreateOrderForm.module.css';
+
 interface Props {
 	cars: ICar[] | null;
 	register: any;
@@ -6,7 +8,7 @@ interface Props {
 
 export default function CarSelect({ cars, register, errors }: Props) {
 	return (
-		<div className='car-grid'>
+		<>
 			{errors.carId && (
 				<>
 					<p></p>
@@ -15,16 +17,18 @@ export default function CarSelect({ cars, register, errors }: Props) {
 			)}
 
 			<div>
-				<label htmlFor='cars'>Tilgængelige køretøjer</label>
+				<label htmlFor='cars'>
+					<h3>Tilgængelige køretøjer</h3>
+				</label>
 			</div>
 			<select className='cars-select' name='cars' id='cars' {...register('carId', { required: true, minLength: 1 })}>
-				<option value=''>Ej køretøj valgt</option>
+				<option value=''>Vælg et køretøj</option>
 				{cars?.map((car) => (
 					<option value={car.id} key={car.id}>
 						{car.brand}, Reg. nr. {car.registrationNumber.toUpperCase()}
 					</option>
 				))}
 			</select>
-		</div>
+		</>
 	);
 }

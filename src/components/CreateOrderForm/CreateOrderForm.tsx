@@ -132,7 +132,7 @@ export default function CreateOrderForm({ customer }: { customer: ICustomer }) {
 					{!tasks ? <Loader /> : tasks.map((task) => <TaskCheckbox task={task} register={register} key={task.id} />)}
 				</aside>
 				<aside className={classes.formRightSideContainer}>
-					<div className={classes.carContainer}>
+					<div className={classes.carSelectContainer}>
 						{!cars ? <Loader /> : <CarSelect cars={cars} register={register} errors={errors} />}
 					</div>
 					{errors.taskIds && (
