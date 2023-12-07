@@ -1,5 +1,5 @@
-import EmployeeNavLink from './EmployeeNavLink';
-import { navigationLinks } from './navigationData';
+import EmployeeNavLink from './EmployeeNavLink.tsx';
+import { navigationLinks } from './navigationData.ts';
 
 export default function EmployeeNavigation() {
 	return (
