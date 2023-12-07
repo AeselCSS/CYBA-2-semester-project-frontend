@@ -128,10 +128,10 @@ export default function CreateOrderForm({ customer }: { customer: ICustomer }) {
 	return (
 		<div className={classes.orderFormWrapper}>
 			<form className={classes.orderFormContainer} onSubmit={handleSubmit(onSubmit)}>
-				<div className={classes.tasksContainer}>
+				<aside className={classes.tasksContainer}>
 					{!tasks ? <Loader /> : tasks.map((task) => <TaskCheckbox task={task} register={register} key={task.id} />)}
-				</div>
-				<div className={classes.formRightSideContainer}>
+				</aside>
+				<aside className={classes.formRightSideContainer}>
 					<div className={classes.carContainer}>
 						{!cars ? <Loader /> : <CarSelect cars={cars} register={register} errors={errors} />}
 					</div>
@@ -146,7 +146,7 @@ export default function CreateOrderForm({ customer }: { customer: ICustomer }) {
 							Opret Ordre
 						</button>
 					</div>
-				</div>
+				</aside>
 			</form>
 		</div>
 	);

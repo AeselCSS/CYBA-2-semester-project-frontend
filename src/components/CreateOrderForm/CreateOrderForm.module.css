@@ -7,19 +7,28 @@
 	width: 100%;
 	display: grid;
 	grid-template-columns: 3fr 1fr;
-	gap: 3rem;
+	gap: 1rem;
 }
 
 .tasksContainer {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 1rem;
+	padding: var(--spacing-base);
+	background-color: var(--darkGrey);
+	border-radius: var(--border-radius);
+	box-shadow: 5px 5px 10px var(--black);
+	border: 1px solid var(--orange);
 }
 
 .formRightSideContainer {
 	display: flex;
 	flex-direction: column;
-	gap: 2rem;
+	gap: 3rem;
+	background-color: var(--darkGrey);
+	border-radius: var(--border-radius);
+	box-shadow: 5px 5px 10px var(--black);
+	border: 1px solid var(--orange);
 }
 
 .carContainer {
@@ -61,7 +70,7 @@ button:disabled {
 	justify-content: space-between;
 	gap: var(--spacing-base);
 	background-color: var(--black);
-	border-radius: var(--spacing-base);
+	border-radius: var(--border-radius);
 	padding: var(--spacing-base);
 	height: 70px;
 }

@@ -8,7 +8,7 @@ interface Props {
 
 export default function TaskCheckbox({ task, register }: Props) {
 	return (
-		<div className={classes.checkboxDiv}>
+		<article className={classes.checkboxDiv}>
 			<div className={classes.inputAndDescrWrapper}>
 				<div className={classes.inputContainer}>
 					<input {...register('taskIds', { required: true, minLength: 1 })} type='checkbox' value={String(task.id)} />
@@ -17,6 +17,6 @@ export default function TaskCheckbox({ task, register }: Props) {
 			</div>
 			{/* <p className='description'>{task.description}</p> */}
 			<p className='price'>{calculatePrice(task.time)},-</p>
-		</div>
+		</article>
 	);
 }
