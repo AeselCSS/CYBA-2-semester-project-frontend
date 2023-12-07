@@ -1,15 +1,17 @@
 import Calendar from 'react-calendar';
+import './Calender.css';
+// import 'react-calendar/dist/Calendar.css';
 
 type TDatePiece = Date | null;
-type TDate = TDatePiece | [TDatePiece, TDatePiece]
+type TDate = TDatePiece | [TDatePiece, TDatePiece];
 
 interface Props {
-	unavailableDates: string[],
-	date: TDate | null,
+	unavailableDates: string[];
+	date: TDate | null;
 	setDate: (newValue: TDate) => void;
 }
 
-export default function DatePicker({unavailableDates, date, setDate}: Props) {
+export default function DatePicker({ unavailableDates, date, setDate }: Props) {
 	// 5 Days in the future
 	const minDate = new Date(Date.now() + 5 * 24 * 60 * 60 * 1000);
 	// 3 month in the future
@@ -21,15 +23,15 @@ export default function DatePicker({unavailableDates, date, setDate}: Props) {
 		if (unavailableDates.some((unavailableDate) => date.toDateString() === new Date(unavailableDate).toDateString())) {
 			return true;
 		} else if (date.getDay() === 0 || date.getDay() === 6) {
-			return true
+			return true;
 		}
 
 		return false;
-	}
+	};
 
 	return (
 		<Calendar
-			className="calender"
+			className='calender'
 			showNeighboringMonth={false}
 			value={date}
 			onChange={(value) => setDate(value)}
@@ -40,5 +42,5 @@ export default function DatePicker({unavailableDates, date, setDate}: Props) {
 			prevLabel='<'
 			minDetail='year'
 		/>
-	)
+	);
 }
