@@ -1,6 +1,5 @@
 import Calendar from 'react-calendar';
 import './Calender.css';
-// import 'react-calendar/dist/Calendar.css';
 
 type TDatePiece = Date | null;
 type TDate = TDatePiece | [TDatePiece, TDatePiece];

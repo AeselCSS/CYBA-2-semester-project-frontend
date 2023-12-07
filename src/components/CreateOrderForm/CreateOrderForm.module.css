@@ -24,6 +24,7 @@
 .formRightSideContainer {
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	gap: 3rem;
 	background-color: var(--darkGrey);
 	border-radius: var(--border-radius);
@@ -36,7 +37,6 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin-top: var(--spacing-large);
 	gap: var(--spacing-small);
 }
 
@@ -57,9 +57,7 @@
 }
 
 .dateContainer {
-	/* width: 18%; */
 	display: flex;
-	/* align-items: center; */
 	justify-content: center;
 }
 
@@ -101,7 +99,6 @@ button:disabled {
 	justify-content: center;
 	align-items: center;
 	width: 40px;
-	/* background-color: red; */
 }
 
 .checkboxDiv input {
@@ -115,6 +112,10 @@ button:disabled {
 
 .checkboxDiv input[type='checkbox']:focus {
 	outline: none;
+}
+
+.checkboxDiv input[type='checkbox']:hover {
+	filter: hue-rotate(170deg) saturate(430%);
 }
 
 .inputAndDescrWrapper,
@@ -132,20 +133,3 @@ button:disabled {
 .priceInfoContainer svg:hover {
 	color: var(--orange);
 }
-
-/* .react-calendar__navigation */
-
-/* .react-calendar__navigation button {
-	background-color: red;
-}
-
-.react-calendar__navigation {
-	display: flex;
-	justify-content: center;
-	background-color: red;
-} */
-
-/*Den valgte dato i kalenderen*/
-/* .react-calendar__tile--active {
-	background-color: blue;
-} */
