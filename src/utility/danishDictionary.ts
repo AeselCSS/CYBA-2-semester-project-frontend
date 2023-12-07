@@ -7,9 +7,9 @@ export const status: { [key: string]: string } = {
 
 export const department: { [key: string]: string } = {
 	ADMINISTRATION: 'Administration',
-	BODY_WORKSHOP: 'Body Workshop',
-	MECHANICAL_WORKSHOP: 'Værkstedet',
-	PAINT_SHOP: 'Paint Shop',
+	BODY_WORKSHOP: 'Pladeværksted',
+	MECHANICAL_WORKSHOP: 'Mekanisk værksted',
+	PAINT_SHOP: 'Malerværksted',
 };
 
 export const filterDictionary: { [key: string]: object } = {
@@ -52,7 +52,7 @@ export const car: { [key: string]: string } = {
 	modelVariant: 'Variant',
 	mileage: 'K/m kørt',
 	lastInspectionDate: 'Sidste inspektionsdato',
-	firstRegistration: 'Første registreret',
+	firstRegistration: 'Først registreret',
 	lastInspectionResult: 'Sidste inspektionsresultat',
 	lastInspectionKind: 'Sidste inspektionstype',
 	createdAt: 'Oprettelsesdato',
@@ -61,7 +61,7 @@ export const car: { [key: string]: string } = {
 
 export const employee: { [key: string]: string } = {
 	id: 'ID',
-	role: 'Stilling',
+	role: 'Rolle',
 	department: 'Afdeling',
 	firstName: 'Fornavn',
 	lastName: 'Efternavn',
