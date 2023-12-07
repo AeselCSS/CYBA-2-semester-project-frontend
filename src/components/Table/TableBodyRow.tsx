@@ -53,17 +53,14 @@ export default function TableBodyRow<T extends object>({ item, skipIndexes }: Pr
 
 					//Checks if object has the key "role" and creates a new object with the translated value if true
 					if (key === 'role') {
-						item = { ...item, role: role[value] };
 						renderedValue = role[value];
 					}
 					//Checks if object has the key "department" and creates a new object with the translated value if true
 					if (key === 'department') {
-						item = { ...item, department: department[value] };
 						renderedValue = department[value];
 					}
 					//Checks if object has the key "status" and creates a new object with the translated value if true
 					if (key === 'status') {
-						item = { ...item, status: status[value] };
 						renderedValue = status[value];
 					}
 
@@ -71,6 +68,7 @@ export default function TableBodyRow<T extends object>({ item, skipIndexes }: Pr
 						const date = new Date(value);
 						renderedValue = formatDate(date);
 					}
+
 					//TODO Employee view viser departments på engelsk. Dictionary skal bruges.
 
 					return (
