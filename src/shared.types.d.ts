@@ -140,3 +140,5 @@ interface IAPITask extends ITask{
 }
 
 type EntityUnion = ICustomer | IEmployee | ICar | IOrder;
+
+type UserUnion = ICustomer | IEmployee | IAuthUser | null;
