@@ -1,0 +1,36 @@
+.content {
+	font-weight: 700;
+	color: red;
+	background-color: green;
+	outline: red;
+}
+
+.header {
+	background-color: red;
+	padding: 10px;
+}
+
+.title {
+	color: var(--white);
+	/* background-color: red; */
+}
+
+.content {
+	border: 1px solid var(--orange);
+}
+.body {
+	color: var(--white);
+	background-color: var(--black);
+}
+
+.close {
+	color: #f4f4f4;
+	padding: 5px;
+	border-radius: 5px;
+	cursor: pointer;
+	border: #f4f4f4 1px solid;
+}
+
+.close:hover {
+	background-color: orange;
+}

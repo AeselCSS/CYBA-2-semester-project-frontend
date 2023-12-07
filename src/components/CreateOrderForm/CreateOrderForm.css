@@ -43,10 +43,6 @@ button:disabled  {
     justify-content: center;
 }
 
-.react-calendar__tile {
-
-}
-
 .checkbox-div {
     display: grid;
     grid-template-areas:

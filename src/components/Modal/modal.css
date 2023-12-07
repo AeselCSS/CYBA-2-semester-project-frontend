@@ -1,4 +1,4 @@
-.mantine-Modal-content {
+/* .mantine-Modal-content {
 	background-color: var(--black);
 	border-radius: var(--border-radius);
 	border: dotted 1px var(--lightGrey);
@@ -16,14 +16,14 @@
 	background-color: red;
 	border-bottom: dotted 1px var(--lightGrey);
 	
-}
+} */
 
 .header-container {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin: 15px 0 15px 0;
-	text-decoration: underline;
+	/* margin: 15px 0 15px 0; */
+	/* text-decoration: underline; */
 }
 
 .no-active-orders,
@@ -31,7 +31,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin: 15px 0 15px 0;
+	/* margin: 15px 0 15px 0; */
 }
 
 .modal-container {
@@ -41,5 +41,5 @@
 .modal-grid {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	gap: 10px;
+	gap: var(--spacing-base);
 }

@@ -2,6 +2,9 @@ import { Loader } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import Accordion from './OrderAccordian';
 import { Status } from '../../../enums';
+import { status } from '../../../utility/danishDictionary';
+import formatDate from '../../../utility/dateFormat';
+import classes from './DetailedOrder.module.css';
 
 export default function DetailedOrder({ orderId: orderId }: { orderId: number }) {
 	const [order, setOrder] = useState<ICurrentOrder | null>(null);
@@ -25,14 +28,21 @@ export default function DetailedOrder({ orderId: orderId }: { orderId: number })
 		<div>
 			{order ? (
 				<>
-					<section>
-						<div>{order?.id}</div>
-						<div>{order?.status}</div>
-						<div>({order.tasks.filter((task) => task.status === Status.COMPLETED).length}/{order.tasks.length}) Opgaver er færdige</div>
+					<section className={classes.infoWrapper}>
+						<h3>Ordre status </h3>
+						<div>{status[order?.status]}</div>
+						<h3>Oprettelsesdato </h3>
+						<div>{order?.createdAt ? formatDate(new Date(order?.createdAt)) : 'Ukendt'}</div>
+						<h3>Sidst opdateret </h3>
+						<div>{order?.updatedAt ? formatDate(new Date(order?.updatedAt)) : 'Ukendt'}</div>
+						<h3>Bil registerings nr. </h3>
+						<div>{order?.car.registrationNumber}</div>
 					</section>
-					<section>
-						<Accordion order={order} setOrder={setOrder} />
-					</section>
+					<div>
+						( {order.tasks.filter((task) => task.status === Status.COMPLETED).length} / {order.tasks.length} ) Opgaver er
+						færdige
+					</div>
+					<Accordion order={order} setOrder={setOrder} />
 				</>
 			) : (
 				<Loader />
