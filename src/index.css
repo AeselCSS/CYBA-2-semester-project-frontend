@@ -135,3 +135,10 @@ input:focus {
     top: 87%;
 	z-index: 99;
 }
+
+.loading-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
