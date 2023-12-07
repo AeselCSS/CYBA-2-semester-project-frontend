@@ -12,12 +12,12 @@ interface BoxHeaderProps {
 
 export default function BoxHeader({ title, btnName, navigateTo }: BoxHeaderProps) {
 	const navigate = useNavigate();
+	const [isOpen, { close }] = useDisclosure(false);
 
 	return (
-
 		<>
 			<Modal
-				opened={opened}
+				opened={isOpen}
 				onClose={close}
 				title='Authentication'
 				className='modal'
