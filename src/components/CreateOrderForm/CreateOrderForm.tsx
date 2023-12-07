@@ -129,7 +129,7 @@ export default function CreateOrderForm({ customer }: { customer: ICustomer }) {
 		<div className={classes.orderFormWrapper}>
 			<form className={classes.orderFormContainer} onSubmit={handleSubmit(onSubmit)}>
 				<div className={classes.tasksContainer}>
-					{!tasks ? <Loader /> : tasks.map((task) => <TaskCheckbox task={task} register={register} />)}
+					{!tasks ? <Loader /> : tasks.map((task) => <TaskCheckbox task={task} register={register} key={task.id} />)}
 				</div>
 				<div className={classes.formRightSideContainer}>
 					<div className={classes.carContainer}>
