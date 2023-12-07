@@ -2,9 +2,12 @@ import { useContext, useState } from 'react';
 import UserContext from '../../context/userContext';
 import { completeSubtaskInstance, initiateTaskInstance } from '../../services/apiService';
 import ChangeOrderStatusButton from '../../components/Buttons/ChangeOrderStatusButton';
-import { Status } from '../../utility/enums';
+import { Status, Role } from '../../utility/enums';
 import { userIsEmployee } from '../../utility/userRoleChecker';
 import { FaRegCircle, FaRegCircleCheck, FaRegCirclePlay } from 'react-icons/fa6';
+import ChangeOrderStatusButton from '../../Buttons/changeOrderStatusButton.tsx';
+import { completeSubtaskInstance, initiateTaskInstance } from '../../../services/apiService.ts';
+import classes from './DetailedOrder.module.css';
 import styles from './OrderAccordian.module.css'
 
 interface AccordionProps {
@@ -20,64 +23,86 @@ function Accordion({ order, setOrder }: AccordionProps) {
 		setOpenTaskId(openTaskId === taskId ? null : taskId);
 	};
 
-	async function handleStartTask(taskId: number) {
+	async function handleStartTask(e: React.MouseEvent, taskId: number) {
+		e.stopPropagation();
 		const isEmployee = userIsEmployee(user);
 		if (isEmployee) {
 			const employee = user as IEmployee;
 			const response = await initiateTaskInstance(taskId, employee.id);
 			setOrder(response);
 		}
-	}
 
-	async function handleCompleteSubtask(subtaskId: number) {
-		const response = await completeSubtaskInstance(subtaskId);
-		console.log(response);
-		setOrder(response);
-	}
+		async function handleCompleteSubtask(subtaskId: number) {
+			const response = await completeSubtaskInstance(subtaskId);
+			console.log(response);
+			setOrder(response);
+		}
 
-	return (
-		<>
-			{order.tasks && (
-				<div>
-					{order.tasks.map((task) => (
-						<div key={task.id}>
-							<button className={styles.accordianLabel} onClick={() => toggleTask(task.id)}>
-								{task.status === Status.IN_PROGRESS && <FaRegCirclePlay color='yellow' />}
-								{task.status === Status.COMPLETED && <FaRegCircleCheck color='green' />}
-								{task.name} ({task.subtasks.filter((subtask) => subtask.status === Status.COMPLETED).length}/{task.subtasks.length})
-							</button>
+		return (
+			<>
+				{order.tasks && (
+					<section className={classes.tasksWrapper}>
+						{order.tasks?.map((task) => (
+							<div key={task.id} className={openTaskId === task.id ? classes.activeTask : ''}>
+								<button className={classes.accordianLabel} onClick={() => toggleTask(task.id)}>
+									<div>
+										<div className={classes.accordianLabelIcon}>
+											{task.status === Status.PENDING && <FaRegCircle />}
+											{task.status === Status.IN_PROGRESS && <FaRegCirclePlay color='yellow' />}
+											{task.status === Status.COMPLETED && <FaRegCircleCheck color='green' />}
+										</div>
+										<div>{task.name}</div>
+									</div>
 
-							{userIsEmployee(user) && task.status === Status.PENDING &&
-								(order.status === Status.PENDING || order.status === Status.IN_PROGRESS) && (
-									<ChangeOrderStatusButton btnText='Start opgave' onClick={() => handleStartTask(task.id)} />
-								)}
-
-							{openTaskId === task.id && (
-								<div className={styles.accordianContent}>
-									{task.subtasks.map((subtask) => (
-										<div className={styles.contentItem} key={subtask.id}>
-											<div>
-												{subtask.status === Status.PENDING && <FaRegCircle />}
-												{subtask.status === Status.COMPLETED && <FaRegCircleCheck color='green' />}
-												{subtask.status === Status.IN_PROGRESS && <FaRegCirclePlay color='yellow' />}
-											</div>
-											{subtask.name} - {subtask.description}
-											{subtask.status === Status.IN_PROGRESS && userIsEmployee(user) && (
-												<ChangeOrderStatusButton
-													btnText='Færdig'
-													onClick={() => handleCompleteSubtask(subtask.id)}
-												/>
-											)}
+									{(userIsEmployee(user) &&
+									task.status === Status.PENDING &&
+									(order.status === Status.PENDING || order.status === Status.IN_PROGRESS) ? (
+										<ChangeOrderStatusButton
+											btnText='Start opgave'
+											onClick={(e: React.MouseEvent) => handleStartTask(e, task.id)}
+										/>
+									) : (
+										<div>
+											({task.subtasks.filter((subtask) => subtask.status === Status.COMPLETED).length}/
+											{task.subtasks.length})
 										</div>
 									))}
-								</div>
-							)}
-						</div>
-					))}
-				</div>
-			)}
-		</>
-	);
-}
+								</button>
 
+								{openTaskId === task.id && (
+									<div className={classes.accordianContent}>
+										{task.subtasks.map((subtask) => (
+											<div className={classes.contentItem} key={subtask.id}>
+												<div className={classes.subTaskTextWrapper}>
+													<div className={classes.accordianSubtaskIcon}>
+														{subtask.status === Status.PENDING && <FaRegCircle />}
+														{subtask.status === Status.COMPLETED &&
+															<FaRegCircleCheck color='green' />}
+														{subtask.status === Status.IN_PROGRESS &&
+															<FaRegCirclePlay color='yellow' />}
+													</div>
+													<div>
+														{subtask.name} - {subtask.description}
+													</div>
+												</div>
+												{subtask.status === Status.IN_PROGRESS && userIsEmployee(user) ? (
+													<ChangeOrderStatusButton
+														btnText='Færdig'
+														onClick={() => handleCompleteSubtask(subtask.id)}
+													/>
+												) : (
+													<div></div>
+												)}
+											</div>
+										))}
+									</div>
+								)}
+							</div>
+						))}
+					</section>
+				)}
+			</>
+		);
+	}
+}
 export default Accordion;

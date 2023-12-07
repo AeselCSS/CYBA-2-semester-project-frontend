@@ -2,9 +2,27 @@ import { useNavigate } from 'react-router-dom';
 import { Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useAuth0 } from '@auth0/auth0-react';
+
+import styles from '../Modal/modal.module.css';
+
+async function deleteCustomer(id: string) {
+	const response = await fetch(`http://localhost:3000/customers/${id}`, {
+		method: "DELETE"
+	});
+
+	if (response.ok) {
+		console.log("Deleted customer");
+	} else {
+		console.error(response.body);
+		throw new Error();
+	}
+}
+
+
 import { MdErrorOutline } from 'react-icons/md';
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
 import { notifications } from '@mantine/notifications';
+
 
 export default function BoxHeaderProfile({ customerId }: { customerId: string }) {
 	const [opened, { open, close }] = useDisclosure(false);
@@ -54,21 +72,26 @@ export default function BoxHeaderProfile({ customerId }: { customerId: string })
 
 	return (
 		<>
-			<Modal opened={opened} onClose={close} title='Rediger Profil' className='modal' centered>
+			<Modal
+				opened={opened}
+				onClose={close}
+				title='Rediger Profil'
+				className='modal'
+				centered
+				styles={{ header: { backgroundColor: '#d87005', padding: '10px' }, close: { color: '#f4f4f4', cursor: 'pointer' } }}
+				classNames={{ body: styles.body, content: styles.content, title: styles.title, close: styles.close }}
+			>
 				{/* Modal content */}
 
-				<div className="btn-container">
-					<button
-						className='delete-customer-btn'
-						onClick={handleDelete}>Slet Profil
+				<div className='btn-container'>
+					<button className='delete-customer-btn' onClick={handleDelete}>
+						Slet Profil
 					</button>
 
-					<button
-						className='update-customer-btn'
-						onClick={() => navigate("/profile/update")}>Opdater oplysninger
+					<button className='update-customer-btn' onClick={() => navigate('/profile/update')}>
+						Opdater oplysninger
 					</button>
 				</div>
-
 			</Modal>
 
 			<div className='header-flex'>
@@ -76,6 +99,5 @@ export default function BoxHeaderProfile({ customerId }: { customerId: string })
 				<button onClick={open}>Rediger Profil</button>
 			</div>
 		</>
-
 	);
 }

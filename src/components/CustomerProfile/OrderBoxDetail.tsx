@@ -77,7 +77,17 @@ export default function OrdersBoxDetail({ customerData, order }: OrdersBoxDetail
 		<article className='order-box-details'>
 			{currentOrder ? (
 				<>
-					<Modal opened={isOpen} onClose={close} title={`Ordre nummer: ${order.id}`} className='modal' centered size='xl'>
+					<Modal
+						opened={isOpen}
+						onClose={close}
+						title={`Ordre nummer: ${order.id}`}
+						centered
+						size='xl'
+
+						styles={{ header: { backgroundColor: '#d87005', padding: '10px' }, close: { color: '#f4f4f4', cursor: 'pointer'} }}
+
+						classNames={{body: styles.body, content: styles.content, title: styles.title, close: styles.close}}
+					>
 						<DetailedOrder orderId={order.id} />
 					</Modal>
 
@@ -90,7 +100,7 @@ export default function OrdersBoxDetail({ customerData, order }: OrdersBoxDetail
 						<div>Reg. nr:</div>
 						<h3>{car?.registrationNumber.toUpperCase() ?? 'Slettet'}</h3>
 						<div>Pris:</div>
-						<h3>{calculatePrice(currentOrder.totalTime)},-</h3>
+						<h3>{calculatePrice(currentOrder.totalTime)} kr.</h3>
 						<div>Status:</div>
 						<h3>{danishStatus[currentOrder.status]}</h3>
 						{(order.status as never) === 'AWAITING_CUSTOMER' && (

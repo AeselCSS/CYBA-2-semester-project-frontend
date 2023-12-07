@@ -108,11 +108,24 @@
 	margin-bottom: 1rem;
 }
 
-.modal .btn-container  {
+.modal .btn-container {
 	display: flex;
 	justify-content: space-around;
+	padding-top: var(--spacing-base);
 }
 
 .delete-customer-btn:hover {
 	background-color: red;
+}
+
+.trash-icon-wrapper {
+	display: flex;
+	align-items: center;
+}
+.trash-icon-wrapper svg {
+	transition: 0.2s ease-out;
+}
+.trash-icon-wrapper svg:hover {
+	color: red;
+	transform: scale(1.05);
 }
