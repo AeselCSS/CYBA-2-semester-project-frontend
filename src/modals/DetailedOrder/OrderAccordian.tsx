@@ -1,14 +1,13 @@
-import { useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import UserContext from '../../context/userContext';
-import { completeSubtaskInstance, initiateTaskInstance } from '../../services/apiService';
+import { completeSubtaskInstance } from '../../services/subtaskServices';
+import { initiateTaskInstance } from '../../services/taskServices'
 import ChangeOrderStatusButton from '../../components/Buttons/ChangeOrderStatusButton';
-import { Status, Role } from '../../utility/enums';
+import { Status } from '../../utility/enums';
 import { userIsEmployee } from '../../utility/userRoleChecker';
 import { FaRegCircle, FaRegCircleCheck, FaRegCirclePlay } from 'react-icons/fa6';
-import ChangeOrderStatusButton from '../../Buttons/changeOrderStatusButton.tsx';
-import { completeSubtaskInstance, initiateTaskInstance } from '../../../services/apiService.ts';
+
 import classes from './DetailedOrder.module.css';
-import styles from './OrderAccordian.module.css'
 
 interface AccordionProps {
 	order: ICurrentOrder;
@@ -23,20 +22,16 @@ function Accordion({ order, setOrder }: AccordionProps) {
 		setOpenTaskId(openTaskId === taskId ? null : taskId);
 	};
 
-	async function handleStartTask(e: React.MouseEvent, taskId: number) {
+	const handleStartTask = async (e: React.MouseEvent, taskId: number) => {
 		e.stopPropagation();
-		const isEmployee = userIsEmployee(user);
-		if (isEmployee) {
-			const employee = user as IEmployee;
-			const response = await initiateTaskInstance(taskId, employee.id);
-			setOrder(response);
+		if (userIsEmployee(user)) {
+			setOrder(await initiateTaskInstance(taskId, (user as IEmployee).id));
 		}
+	}
 
-		async function handleCompleteSubtask(subtaskId: number) {
-			const response = await completeSubtaskInstance(subtaskId);
-			console.log(response);
-			setOrder(response);
-		}
+	const handleCompleteSubtask = async (subtaskId: number) => {
+		setOrder(await completeSubtaskInstance(subtaskId));
+	}
 
 		return (
 			<>
@@ -104,5 +99,5 @@ function Accordion({ order, setOrder }: AccordionProps) {
 			</>
 		);
 	}
-}
+
 export default Accordion;
