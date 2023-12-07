@@ -1,5 +1,5 @@
 import { BaseSyntheticEvent, ReactNode } from 'react';
-import './Form.css';
+import './FormLayout.css';
 
 interface props {
 	children: ReactNode;
