@@ -57,6 +57,7 @@ export default function TableBodyRow<T extends object>({ item, skipIndexes }: Pr
 					if (skipIndexes.includes(i)) {
 						return null;
 					}
+					console.log('YAW');
 
 					let renderedValue = value as string;
 
