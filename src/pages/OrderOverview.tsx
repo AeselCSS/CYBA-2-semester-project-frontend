@@ -1,13 +1,20 @@
+import { useContext } from 'react';
+import UserContext from '../context/userContext';
+import { useNavigate } from 'react-router-dom';
+import { userIsEmployee } from '../utility/userRoleChecker';
 import PageLayout from '../layouts/PageLayout/PageLayout.tsx';
 import Table from '../components/Table/Table.tsx';
 import "../components/Navbar/EmployeeNavigation/EmployeeView.css"
 import "../components/Table/Table.css"
-interface props {
-	employee: IEmployee;
-}
 
-export default function OrderOverview({ employee }: props) {
-	console.log(employee);
+export default function OrderOverview() {
+	const navigate = useNavigate();
+	const { user } = useContext(UserContext);
+
+	if (!userIsEmployee(user)) {
+		navigate('/redirect');
+		return null;
+	}
 
 	const skipValues = ['customerId'];
 
@@ -16,7 +23,6 @@ export default function OrderOverview({ employee }: props) {
 			<div className='employee-view-wrapper'>
 				<div className='employee-view'>
 					<h1 style={{textAlign: "center"}}>Ordre</h1>
-					{/*<EmployeeNavigation />*/}
 					<Table<IAPIOrder> itemType='order' defaultSortBy='id' skipValues={skipValues} />
 				</div>
 			</div>

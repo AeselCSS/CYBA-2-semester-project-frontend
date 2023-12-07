@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import UserContext from '../context/userContext';
 import PageLayout from '../layouts/PageLayout/PageLayout.tsx';
 import FormLayout from '../layouts/FormLayout/FormLayout';
 import { useNavigate } from 'react-router-dom';
@@ -5,11 +7,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { notifications } from '@mantine/notifications';
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
 import { MdErrorOutline } from 'react-icons/md';
-
-
-interface Props {
-	customer: ICustomer;
-}
+import { userIsCustomer } from '../utility/userRoleChecker.ts';
 
 type Inputs = {
 	firstName: string;
@@ -42,15 +40,18 @@ async function updateCustomer(newCustomer: INewCustomer, id: string) {
 	});
 }
 
-export default function UpdateProfile({ customer }: Props) {
+export default function UpdateProfile() {
 	const navigate = useNavigate();
+	const { user } = useContext(UserContext);
 
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-	} = useForm<Inputs>();
+	const { register, handleSubmit, formState: { errors }, } = useForm<Inputs>();
 
+	if (!userIsCustomer(user)) {
+		navigate('/redirect');
+		return null;
+	}
+
+	const customer = user as ICustomer;
 
 	async function onSubmit(data: Inputs) {
 

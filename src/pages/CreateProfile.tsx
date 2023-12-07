@@ -1,11 +1,14 @@
+import { useContext } from 'react';
+import UserContext from '../context/userContext';
+import { useNavigate } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import PageLayout from '../layouts/PageLayout/PageLayout.tsx';
-import { useNavigate } from 'react-router-dom';
-import '../layouts/FormLayout/FormLayout.css';
 import FormLayout from '../layouts/FormLayout/FormLayout';
+import '../layouts/FormLayout/FormLayout.css';
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
 import { notifications } from '@mantine/notifications';
 import { MdErrorOutline } from 'react-icons/md';
+import { userIsAuthUser } from '../utility/userRoleChecker.ts';
 
 type Inputs = {
 	firstName: string;
@@ -39,15 +42,17 @@ async function createCustomer(newCustomer: INewCustomer) {
 	});
 }
 
-export default function CreateProfile({ authUser }: { authUser: IAuthUser }) {
+export default function CreateProfile() {
 	const navigate = useNavigate();
-	console.log(authUser);
+	const { user } = useContext(UserContext);
+	const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
 
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-	} = useForm<Inputs>();
+	if (!userIsAuthUser(user)) {
+		navigate('/redirect');
+		return null;
+	}
+
+	const authUser = user as IAuthUser
 
 	async function onSubmit(data: Inputs) {
 		const newCustomer = {

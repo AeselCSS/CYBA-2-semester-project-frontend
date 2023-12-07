@@ -1,13 +1,19 @@
+import { useContext } from 'react';
+import UserContext from '../context/userContext';
+import { useNavigate } from 'react-router-dom';
+import { userIsEmployee } from '../utility/userRoleChecker';
 import PageLayout from '../layouts/PageLayout/PageLayout.tsx';
 import Table from '../components/Table/Table.tsx';
 import "../components/Navbar/EmployeeNavigation/EmployeeView.css"
 
-interface props {
-	employee: IEmployee
-}
+export default function CustomerOverview() {
+	const navigate = useNavigate();
+	const { user } = useContext(UserContext);
 
-export default function CustomerOverview({employee}: props) {
-	console.log(employee);
+	if (!userIsEmployee(user)) {
+		navigate('/redirect');
+		return null;
+	}
 
 	const skipValues = [
 		"id",
@@ -20,7 +26,6 @@ export default function CustomerOverview({employee}: props) {
 			<div className='employee-view-wrapper'>
 				<div className='employee-view'>
 					<h1 style={{textAlign: "center"}}>Kunder</h1>
-					{/*<EmployeeNavigation />*/}
 					<Table<ICustomer> itemType='customer' defaultSortBy='firstName' isFilterable={false} skipValues={skipValues} />
 				</div>
 			</div>
