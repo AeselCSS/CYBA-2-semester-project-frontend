@@ -1,11 +1,14 @@
-import { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import CarSelect from './CarSelect.tsx';
 import DatePicker from './DatePicker.tsx';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import TaskCheckbox from './TaskCheckbox.tsx';
 import Loader from '../Loader/Loader.tsx';
 import { useNavigate } from 'react-router-dom';
+import { notifications } from '@mantine/notifications';
 import './CreateOrderForm.css';
+import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
+import { MdErrorOutline } from 'react-icons/md';
 
 type TDatePiece = Date | null;
 type TDate = TDatePiece | [TDatePiece, TDatePiece]
@@ -95,11 +98,30 @@ export default function CreateOrderForm({ customer }: { customer: ICustomer }) {
 			const response = await createOrder(newOrder);
 
 			if (response.ok) {
-				//TODO toaster?
+				const createdOrder = await response.json()
+				notifications.show({
+					color: 'green',
+					title: "Succes!",
+					message: `Ordre oprettet succesfuldt med følgende ordre nr: ${createdOrder.id}`,
+					icon: <IoIosCheckmarkCircleOutline />
+				})
 				navigate('/profile');
+			} else {
+				notifications.show({
+					color: 'red',
+					title: "Hov!",
+					message: "Noget gik galt ved oprettelse af ordre. Prøv igen senere",
+					icon: <MdErrorOutline />
+				})
 			}
 		} catch (error: unknown) {
 			console.log((error as Error).message);
+			notifications.show({
+				color: 'red',
+				title: "Hov!",
+				message: "Noget gik galt ved oprettelse af ordre. Prøv igen senere",
+				icon: <MdErrorOutline />
+			})
 		}
 	}
 
