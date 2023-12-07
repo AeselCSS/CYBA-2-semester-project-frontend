@@ -1,0 +1,14 @@
+export { default as About } from './About';
+export { default as CarOverview } from './CarOverview';
+export { default as Contact } from './Contact';
+export { default as CreateCar } from './CreateCar';
+export { default as CreateOrder } from './CreateOrder';
+export { default as CreateProfile } from './CreateProfile';
+export { default as CustomerOverview } from './CustomerOverview';
+export { default as CustomerProfile } from './CustomerProfile';
+export { default as EmployeeOverview } from './EmployeeOverview';
+export { default as Homepage } from './Homepage';
+export { default as OrderOverview } from './OrderOverview';
+export { default as PageNotFound } from './PageNotFound';
+export { default as Redirect } from './Redirect';
+export { default as UpdateProfile } from './UpdateProfile';
