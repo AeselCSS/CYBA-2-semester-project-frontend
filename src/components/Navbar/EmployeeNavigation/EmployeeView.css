@@ -83,6 +83,10 @@
 	text-align: center;
 }
 
+.employee-view tbody tr:hover {
+	background-color: var(--darkGrey);
+}
+
 .employee-view td {
 	padding: 0.2rem 0.2rem 0.2rem 0.7rem;
 	text-align: left;
@@ -92,4 +96,5 @@
 
 .employee-view tr:nth-child(even) {
 	background-color: #313131;
+	transition: 3s, ease-in;
 }

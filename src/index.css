@@ -1,20 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&family=Rokkitt:wght@100;400&display=swap');
 
-/*
-  H1 - Roboto regular 400
-Navbar - Rokkitt regular 400
-H3 - Roboto regular 300
-P - Roboto thin 100
-Button - Rokkitt thin 100 italic
-  */
-
-/*
-  :D
-  CSS RULES TO SPECIFY FAMILIES 
-  font-family: 'Roboto', sans-serif;
-  font-family: 'Rokkitt', serif;
-  */
-
 :root {
 	--header-font-family: Roboto, sans-serif;
 	--font-family: Rokkitt, serif;
