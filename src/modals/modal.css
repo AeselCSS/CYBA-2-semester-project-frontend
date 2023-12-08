@@ -18,12 +18,23 @@
 	
 } */
 
-.header-container {
+.header-one-container,
+.header-two-container {
+	position: relative;
 	display: flex;
 	justify-content: center;
-	align-items: center;
-	/* margin: 15px 0 15px 0; */
-	/* text-decoration: underline; */
+	margin-bottom: 15px;
+}
+
+.header-one-container::after,
+.header-two-container::after {
+	content: '';
+	position: absolute;
+	bottom: -2px;
+	left: 0;
+	width: 100%;
+	height: 1px;
+	background-color: var(--charcoalGrey);
 }
 
 .no-active-orders,
@@ -42,4 +53,8 @@
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	gap: var(--spacing-base);
+	width: 60%;
+	margin: auto auto;
+	padding-bottom: 30px;
+	place-items: center;
 }
