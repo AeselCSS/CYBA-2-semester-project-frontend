@@ -25,38 +25,40 @@ export default function DetailedCustomer({ customer }: DetailedCustomerProps) {
 	return (
 		<div>
 			<div className='name-header'>
-				<h2>
+				{/* <h2>
 					{customerData?.customer.firstName} {customerData?.customer.lastName}
-				</h2>
-			</div>
-			<div className='header-container'>
-				<h3 className='header-container'>Aktive Ordre</h3>
+				</h2> */}
 			</div>
 
 			{filteredOrders?.length > 0 ? (
-				filteredOrders.map((order) => (
-					<div key={order.id}>
-						<section className='modal-container'>
-							<div className='modal-grid'>
-								<h3>Ordre nr.</h3>
-								<div>{order.id}</div>
-								<h3>Status</h3>
-								<div>{status[order.status]}</div>
-								<h3>Oprettelses Dato</h3>
-								<div>{formatDate(new Date(order.createdAt))}</div>
-								<h3>Seneste Opdatering </h3>
-								<div>{formatDate(new Date(order.updatedAt))}</div>
-							</div>
-							<hr />
-						</section>
-					</div>
-				))
+				// Added a div container for the header when there are active orders
+				<div className='header-container'>
+					<h2 className='header-one-container'>Aktive Ordre</h2>
+					{/* Mapping through filteredOrders and rendering each order */}
+					{filteredOrders.map((order) => (
+						<div key={order.id}>
+							<section className='modal-container'>
+								<div className='modal-grid'>
+									<h3>Ordre nr.</h3>
+									<div>{order.id}</div>
+									<h3>Status</h3>
+									<div>{status[order.status]}</div>
+									<h3>Oprettelses Dato</h3>
+									<div>{formatDate(new Date(order.createdAt))}</div>
+									<h3>Seneste Opdatering </h3>
+									<div>{formatDate(new Date(order.updatedAt))}</div>
+								</div>
+							</section>
+						</div>
+					))}
+				</div>
 			) : (
-				<p className='no-active-orders'>Ingen aktive ordre</p>
+				// Displaying a message when there are no active orders
+				<h3 className='no-active-orders'>Ingen aktive ordre ✅</h3>
 			)}
 
 			<div className='header-container'>
-				<h3 className='header-container'>Bildata</h3>
+				<h2 className='header-one-container'>Bildata</h2>
 			</div>
 			{customerData?.cars.map((car) => (
 				<div key={car.id}>
@@ -69,7 +71,6 @@ export default function DetailedCustomer({ customer }: DetailedCustomerProps) {
 								{car.brand} {car.model} - {car.modelVariant}
 							</div>
 						</div>
-						<hr />
 					</div>
 				</div>
 			))}
