@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { notifications } from '@mantine/notifications';
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
 import { MdErrorOutline } from 'react-icons/md';
-import styles from '../Modal/modal.module.css';
+import styles from '../../modals/modal.module.css';
 import { Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 
