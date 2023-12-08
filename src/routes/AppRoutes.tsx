@@ -1,4 +1,4 @@
-import { Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import {
 	Homepage,
 	PageNotFound,
@@ -18,7 +18,7 @@ import {
 
 export function AppRoutes() {
 	return (
-		<>
+		<Routes>
 			<Route path='/' element={<Homepage />} />
 			<Route path='/about' element={<About />} />
 			<Route path='/contact' element={<Contact />} />
@@ -37,6 +37,6 @@ export function AppRoutes() {
 
 			{/* Catch-all Route */}
 			<Route path='*' element={<PageNotFound />} />
-		</>
+		</Routes>
 	);
 }

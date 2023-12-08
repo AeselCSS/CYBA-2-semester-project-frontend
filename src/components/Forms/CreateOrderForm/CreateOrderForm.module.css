@@ -1,0 +1,135 @@
+.orderFormWrapper {
+	margin: auto auto;
+	width: 90%;
+	margin-top: 3rem;
+}
+.orderFormContainer {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	gap: 1rem;
+}
+
+.tasksContainer {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1rem;
+	padding: var(--spacing-base);
+	background-color: var(--darkGrey);
+	border-radius: var(--border-radius);
+	box-shadow: 5px 5px 10px var(--black);
+	border: 1px solid var(--orange);
+}
+
+.formRightSideContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 3rem;
+	background-color: var(--darkGrey);
+	border-radius: var(--border-radius);
+	box-shadow: 5px 5px 10px var(--black);
+	border: 1px solid var(--orange);
+	padding: var(--spacing-base);
+}
+
+.carSelectContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--spacing-small);
+}
+
+.carSelectContainer select {
+	height: var(--spacing-xxlarge);
+	width: 220px;
+	text-align: center;
+	border-radius: var(--border-radius);
+	font-size: var(--font-size-large);
+}
+
+.carSelectContainer select:focus {
+	outline: none;
+}
+
+.carSelectContainer h3 {
+	color: var(--white);
+}
+
+.dateContainer {
+	display: flex;
+	justify-content: center;
+}
+
+button:disabled {
+	background-color: #4c4c4c;
+}
+
+.btnContainer {
+	display: flex;
+	justify-content: center;
+}
+
+.btnContainer button {
+	background-color: var(--orange);
+	width: 220px;
+	height: var(--spacing-xxlarge);
+	transition: 0.2s ease-in;
+	outline: 1px solid var(--black);
+	font-size: var(--font-size-xlarge);
+}
+
+.btnContainer button:hover {
+	filter: brightness(120%);
+}
+
+.checkboxDiv {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--spacing-base);
+	background-color: var(--black);
+	border-radius: var(--border-radius);
+	padding: var(--spacing-base);
+	height: 70px;
+}
+
+.inputContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 40px;
+}
+
+.checkboxDiv input {
+	width: 50px;
+	outline: none;
+}
+
+.checkboxDiv input[type='checkbox']:checked {
+	filter: hue-rotate(170deg) saturate(430%);
+}
+
+.checkboxDiv input[type='checkbox']:focus {
+	outline: none;
+}
+
+.checkboxDiv input[type='checkbox']:hover {
+	filter: hue-rotate(170deg) saturate(430%);
+}
+
+.inputAndDescrWrapper,
+.priceInfoContainer {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.priceInfoContainer svg {
+	color: var(--white);
+	transition: 0.2s ease-in;
+}
+
+.priceInfoContainer svg:hover {
+	color: var(--orange);
+}

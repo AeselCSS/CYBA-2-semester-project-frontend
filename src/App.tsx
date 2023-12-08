@@ -4,7 +4,6 @@ import Toaster from './components/Toaster/Toaster.tsx';
 import '@mantine/core/styles.css';
 import { AppRoutes } from './routes/AppRoutes.tsx';
 
-
 function App() {
 	return (
 		<UserProvider>
