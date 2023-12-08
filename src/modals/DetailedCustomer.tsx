@@ -37,7 +37,7 @@ export default function DetailedCustomer({ customer }: DetailedCustomerProps) {
 					<div key={order.id}>
 						<section className='modal-container'>
 							<div className='modal-grid'>
-								<h3>Ordre id</h3>
+								<h3>Ordre nr.</h3>
 								<div>{order.id}</div>
 								<h3>Status</h3>
 								<div>{order.status}</div>
@@ -46,6 +46,7 @@ export default function DetailedCustomer({ customer }: DetailedCustomerProps) {
 								<h3>Seneste Opdatering </h3>
 								<div>{formatDate(new Date(order.updatedAt))}</div>
 							</div>
+								<hr/>
 						</section>
 					</div>
 				))
@@ -60,26 +61,14 @@ export default function DetailedCustomer({ customer }: DetailedCustomerProps) {
 				<div key={car.id}>
 					<div className='modal-container'>
 						<div className='modal-grid'>
-							<h3>Model</h3>
-							<div>
-								{car.model} - {car.modelVariant}
-							</div>
 							<h3>Regnr.</h3>
 							<div>{car.registrationNumber}</div>
-							<h3>Synsdato</h3>
-
-							<div>{formatDate(new Date(car.lastInspectionDate))}</div>
-							<h3>Syns Type</h3>
-							<div>{car.lastInspectionKind}</div>
-							<h3>Syns Resultat</h3>
-							<div>{car.lastInspectionResult}</div>
-							<h3>Biloprettelse</h3>
-							<div>{formatDate(new Date(car.createdAt))}</div>
-							<h3>Kilometertal</h3>
-							<div>{car.mileage}</div>
-							<h3>Sidste registeret kilometertal </h3>
-							<div>{formatDate(new Date(car.updatedAt))}</div>
+							<h3>Model</h3>
+							<div>
+								{car.brand} {car.model} - {car.modelVariant}
+							</div>
 						</div>
+						<hr/>
 					</div>
 				</div>
 			))}

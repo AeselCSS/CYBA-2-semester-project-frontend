@@ -19,9 +19,6 @@ export default function DetailedEmployee({ employee }: DetailedEmployeeProps) {
 		}
 		getEmployee();
 	}, [employee.id]);
-	console.log(employeeData);
-	// console.log(department);
-	console.log(employeeData?.role);
 
 	return (
 		<>
@@ -42,7 +39,7 @@ export default function DetailedEmployee({ employee }: DetailedEmployeeProps) {
 								{employeeData?.firstName} {employeeData.lastName}
 							</div>
 
-							<h3>Seneste Inspektion</h3>
+							<h3>Seneste Opgave</h3>
 							<div>{formatDate(new Date(employeeData.createdAt))}</div>
 						</div>
 					</section>
