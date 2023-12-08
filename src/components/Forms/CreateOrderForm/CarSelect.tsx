@@ -24,7 +24,7 @@ export default function CarSelect({ cars, register, errors }: Props) {
 			<select className='cars-select' name='cars' id='cars' {...register('carId', { required: true, minLength: 1 })}>
 				<option value=''>Vælg et køretøj</option>
 				{cars?.map((car) => (
-					<option className='choose-carxxx' value={car.id} key={car.id}>
+					<option value={car.id} key={car.id}>
 						{car.brand}, Reg. nr. {car.registrationNumber.toUpperCase()}
 					</option>
 				))}
