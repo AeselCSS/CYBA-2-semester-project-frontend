@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import formatDate from '../utility/dateFormat.ts';
+import { status } from '../utility/danishDictionary.ts';
 
 interface DetailedCustomerProps {
 	customer: ICustomer;
@@ -40,13 +41,13 @@ export default function DetailedCustomer({ customer }: DetailedCustomerProps) {
 								<h3>Ordre nr.</h3>
 								<div>{order.id}</div>
 								<h3>Status</h3>
-								<div>{order.status}</div>
+								<div>{status[order.status]}</div>
 								<h3>Oprettelses Dato</h3>
 								<div>{formatDate(new Date(order.createdAt))}</div>
 								<h3>Seneste Opdatering </h3>
 								<div>{formatDate(new Date(order.updatedAt))}</div>
 							</div>
-								<hr/>
+							<hr />
 						</section>
 					</div>
 				))
@@ -68,7 +69,7 @@ export default function DetailedCustomer({ customer }: DetailedCustomerProps) {
 								{car.brand} {car.model} - {car.modelVariant}
 							</div>
 						</div>
-						<hr/>
+						<hr />
 					</div>
 				</div>
 			))}

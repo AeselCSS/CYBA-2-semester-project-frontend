@@ -70,6 +70,7 @@
 
 .employee-view tbody tr:hover {
 	background-color: var(--darkGrey);
+	cursor: pointer;
 }
 
 .employee-view td {
