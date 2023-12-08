@@ -1,3 +1,5 @@
+import React from 'react';
+
 interface props {
 	btnText: string;
 	onClick: (e: React.MouseEvent, ...args: unknown[]) => void;
