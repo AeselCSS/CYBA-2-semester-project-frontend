@@ -39,7 +39,7 @@ function Accordion({ order, setOrder }: AccordionProps) {
 					<section className={classes.tasksWrapper}>
 						{order.tasks?.map((task) => (
 							<div key={task.id} className={openTaskId === task.id ? classes.activeTask : ''}>
-								<button className={classes.accordianLabel} onClick={() => toggleTask(task.id)}>
+								<div className={classes.accordianLabel} onClick={() => toggleTask(task.id)}>
 									<div>
 										<div className={classes.accordianLabelIcon}>
 											{task.status === Status.PENDING && <FaRegCircle />}
@@ -62,7 +62,7 @@ function Accordion({ order, setOrder }: AccordionProps) {
 											{task.subtasks.length})
 										</div>
 									))}
-								</button>
+								</div>
 
 								{openTaskId === task.id && (
 									<div className={classes.accordianContent}>
