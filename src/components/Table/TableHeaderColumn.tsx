@@ -1,28 +1,27 @@
-import React from 'react';
 import * as dictionaries from '../../utility/danishDictionary.ts';
-import { GoSortAsc } from 'react-icons/go';
-import { GoSortDesc } from 'react-icons/go';
+import { GoSortAsc, GoSortDesc } from 'react-icons/go';
 import './Table.css';
 
 interface Props {
 	title: string;
-	handleSort: (e: React.MouseEvent<HTMLElement>) => void;
+	handleSort: (title: string) => void;
 	itemType: keyof typeof dictionaries;
-	sortByValue: string,
-	sortDirValue: string
+	sortByValue: string;
+	sortDirValue: string;
 }
 
 export default function TableHeaderColumn({ title, handleSort, itemType, sortByValue, sortDirValue }: Props) {
 	const selectedDictionary = dictionaries[itemType] as Record<string, string>;
+	const displayTitle = selectedDictionary[title]; // The translated title for display
 
 	return (
 		<th>
-			<span className="pointer" onClick={handleSort} id={title}>{selectedDictionary[title]}</span>
-			{title === sortByValue && (
-				<span className='disable-click sort-icon'>{sortDirValue === 'asc' ? <GoSortAsc /> : <GoSortDesc />}</span>
-			)}
+			<div className="header-content" onClick={() => handleSort(title)}>
+				<span>{displayTitle}</span>
+				{title === sortByValue && (
+					<span className='sort-icon'>{sortDirValue === 'asc' ? <GoSortAsc /> : <GoSortDesc />}</span>
+				)}
+			</div>
 		</th>
 	);
 }
-
-

@@ -1,5 +1,37 @@
-/*==== PAGINATION =====*/
+/* Global table styles */
+table {
+	width: 100%;
+	background-color: var(--black);
+	border-radius: 20px;
+	overflow: hidden;
+	border: 1px solid var(--lightGrey);
+	border-collapse: separate;
+	border-spacing: 0;
+}
 
+thead {
+	background-color: var(--orange);
+	color: var(--black);
+	font-weight: var(--font-weight-bold);
+	font-size: var(--font-size-large);
+}
+
+th {
+	text-align: center;
+}
+
+td {
+	padding: 0.2rem 0.2rem 0.2rem 0.7rem;
+	text-align: left;
+	border-right: 1px solid var(--charcoalGrey);
+	min-width: 120px;
+}
+
+tr:nth-child(even) {
+	background-color: #313131;
+}
+
+/* Pagination */
 .pagination {
 	list-style: none;
 	display: flex;
@@ -16,7 +48,7 @@
 }
 
 .pagination .page-num {
-	padding: 8px 15px;
+	padding: 6px 12px;
 	cursor: pointer;
 	border-radius: 3px;
 	font-weight: 400;
@@ -27,16 +59,72 @@
 	color: black;
 }
 
-/* TABLEHEADERCOLUMN */
+/* Header Content */
+.header-content {
+	display: flex;
+	justify-content: space-around;
+	align-items: center; /* This will vertically center the items */
+	cursor: pointer; /* Change cursor to pointer to indicate clickable area */
+}
 
+.sort-icon {
+
+	width: 1em;
+	height: 1em;
+}
+
+/* You may want to disable pointer events on the icons to ensure they don't interfere with click events */
 .disable-click {
 	pointer-events: none;
 }
 
-.pointer {
-	cursor: pointer;
+/* Employee View Specific Styles */
+.employee-view-wrapper {
+	display: flex;
+	justify-content: center;
 }
 
-.sort-icon {
-	margin-left: 6px;
+.employee-view {
+	width: 90%;
 }
+
+/* Employee nav links */
+.employee-nav-links-wrapper {
+	font-size: var(--font-size-large);
+	display: flex;
+	width: 300px;
+	gap: 1rem;
+	margin-top: var(--spacing-base);
+	margin-bottom: var(--spacing-base);
+}
+
+.employee-nav-links-wrapper .active {
+	color: var(--orange);
+}
+
+.nav-link {
+	color: var(--lightGrey);
+	text-decoration: none;
+}
+
+.nav-link:hover {
+	opacity: 0.8;
+}
+
+/* Toolbar */
+.toolbar {
+	display: flex;
+	gap: var(--spacing-small);
+	margin-bottom: var(--spacing-base);
+}
+
+.toolbar label {
+	display: flex;
+	align-items: center;
+}
+
+.toolbar select {
+	height: 2rem;
+	width: 8rem;
+}
+

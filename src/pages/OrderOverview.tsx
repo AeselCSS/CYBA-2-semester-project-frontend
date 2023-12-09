@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { userIsEmployee } from '../utility/userRoleChecker';
 import PageLayout from '../layouts/PageLayout/PageLayout.tsx';
 import Table from '../components/Table/Table.tsx';
-import "../components/Navbar/EmployeeNavigation/EmployeeView.css"
 import "../components/Table/Table.css"
 
 export default function OrderOverview() {

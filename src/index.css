@@ -139,3 +139,17 @@ input:focus {
 	top: 87%;
 	z-index: 99;
 }
+
+.modal .btn-container {
+	display: flex;
+	justify-content: space-around;
+	padding-top: var(--spacing-base);
+}
+
+.yes-btn, .no-btn {
+	padding: var(--spacing-small) var(--spacing-large);
+}
+
+.yes-btn:hover {
+	background-color: red;
+}

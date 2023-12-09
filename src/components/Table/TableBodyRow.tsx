@@ -8,7 +8,7 @@ import DetailedCustomer from '../../modals/DetailedCustomer.tsx';
 import DetailedOrder from '../../modals/DetailedOrder/DetailedOrder';
 import DetailedCar from '../../modals/DetailedCar.tsx';
 import '../../modals/modal.css';
-import styles from '../../modals/modal.module.css';
+import { getModalOptions } from '../../modals/modalOptions.ts';
 
 interface Props<T> {
 	item: T;
@@ -44,11 +44,7 @@ export default function TableBodyRow<T extends object>({ item, skipIndexes }: Pr
 			<Modal
 				opened={isOpen}
 				onClose={close}
-				title={detailedComponentTitle}
-				centered
-				size='xl'
-				styles={{ header: { backgroundColor: '#d87005', padding: '10px' }, close: { color: '#f4f4f4', cursor: 'pointer' } }}
-				classNames={{ body: styles.body, content: styles.content, title: styles.title, close: styles.close }}
+				{...getModalOptions(`${detailedComponentTitle}`)}
 			>
 				{detailedComponent}
 			</Modal>

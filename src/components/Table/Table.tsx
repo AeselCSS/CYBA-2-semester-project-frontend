@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Toolbar from '../Toolbar/Toolbar.tsx';
 import Filter from '../Toolbar/Filter/Filter.tsx';
 import Searchbar from '../Toolbar/Searchbar/Searchbar.tsx';
@@ -8,7 +8,9 @@ import PageSize from '../PageSize/PageSize.tsx';
 import TableHeaderColumn from './TableHeaderColumn.tsx';
 import './Table.css';
 import * as dictionaries from '../../utility/danishDictionary.ts';
-import Loading from '../Loader/Loading.tsx';
+import Loading from '../Loading/Loading.tsx';
+import { getTableData } from '../../services/tableDataServices.ts';
+import usePagination from '../../hooks/usePagination.ts';
 
 interface Props {
 	itemType: string;
@@ -20,7 +22,6 @@ interface Props {
 export default function Table<T extends object>({ itemType, defaultSortBy, skipValues, isFilterable = true }: Props) {
 	const [data, setData] = useState<T[] | null>(null);
 	const [metaData, setMetaData] = useState<IMetaData | null>(null);
-	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [pageSize, setPageSize] = useState<number>(20);
 	const [searchValue, setSearchValue] = useState<string>('');
 	const [sortByValue, setSortByValue] = useState<string>(defaultSortBy);
@@ -28,34 +29,35 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 	const [filterByValue, setFilterByValue] = useState<string>('');
 	const skipIndexes: number[] = [];
 
-	useEffect(() => {
-		async function fetchData() {
-			const url = `http://localhost:3000/${itemType}s/?sortDir=${sortDirValue}&sortBy=${sortByValue}&searchValue=${searchValue}&pageNum=${currentPage}&pageSize=${pageSize}&filterBy=${filterByValue}`;
-			const promise = await fetch(url);
+	const metaDataTotalCount = metaData ? metaData.totalCount : 0;
+	const { currentPage, setCurrentPage, paginationSettings } = usePagination(pageSize, metaDataTotalCount);
 
-			if (promise.ok) {
-				const result: APIResponse<T> = await promise.json();
+
+	useEffect(() => {
+		const queryParams = new URLSearchParams({
+			sortDir: sortDirValue,
+			sortBy: sortByValue,
+			searchValue: searchValue,
+			pageNum: currentPage.toString(),
+			pageSize: pageSize.toString(),
+			filterBy: filterByValue
+		}).toString();
+
+		
+		getTableData<T>(queryParams, itemType)
+			.then(result => {
 				setData(result.data);
 				setMetaData(result.metaData);
-			} else {
-				console.log('Promise not OK');
-				console.log('Error at fetch');
-			}
-		}
-
-		fetchData();
+			})
+			.catch(error => {
+				console.log('Error at fetch:', error);
+			});
 	}, [searchValue, sortByValue, sortDirValue, filterByValue, currentPage, pageSize, itemType]);
 
-	{
-		// console.log(data);
-	}
-	const handleSort = (e: React.MouseEvent<HTMLElement>) => {
-		setSortByValue((e.target as HTMLElement).id);
+	const handleSort = (sortKey: string) => {
+		setSortByValue(sortKey);
 		setSortDirValue((prevState) => (prevState === 'asc' ? 'desc' : 'asc'));
-	};
-
-	const calculatePageCount = () => {
-		return Math.ceil(metaData!.totalCount / pageSize);
+		setCurrentPage(1);
 	};
 
 	if (data && data.length) {
@@ -65,7 +67,7 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 	}
 
 	return !data ? (
-		<Loader />
+		<Loading />
 	) : (
 		<>
 			<Toolbar>
@@ -110,21 +112,7 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 			)}
 
 			<div>
-				<ReactPaginate
-					pageCount={calculatePageCount()}
-					onPageChange={(event) => setCurrentPage(event.selected + 1)}
-					pageRangeDisplayed={3}
-					breakLabel='...'
-					nextLabel='Næste'
-					previousLabel='Forrige'
-					renderOnZeroPageCount={null}
-					forcePage={currentPage - 1}
-					containerClassName='pagination'
-					pageLinkClassName='page-num'
-					previousLinkClassName='page-num'
-					nextLinkClassName='page-num'
-					activeLinkClassName='active'
-				/>
+				<ReactPaginate {...paginationSettings} />
 			</div>
 		</>
 	);
