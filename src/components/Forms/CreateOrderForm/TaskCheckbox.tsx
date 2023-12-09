@@ -2,10 +2,11 @@ import calculatePrice from '../../../utility/priceCalculator.ts';
 import classes from '../CreateOrderForm/CreateOrderForm.module.css';
 import { FaCircleInfo } from 'react-icons/fa6';
 import { HoverCard, Group, Box } from '@mantine/core';
+import { UseFormRegister } from 'react-hook-form';
 
 interface Props {
 	task: IAPITask;
-	register: any;
+	register: UseFormRegister<newOrderInputs>;
 }
 
 export default function TaskCheckbox({ task, register }: Props) {

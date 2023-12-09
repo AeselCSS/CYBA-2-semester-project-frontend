@@ -3,12 +3,10 @@ import dateFormat from '../../utility/dateFormat.ts';
 import BoxHeaderProfile from './BoxHeaderProfile.tsx';
 
 export default function CustomerBox({ customerData }: { customerData: IAPISingleCustomer }) {
-	console.log(customerData);
 
 	return (
 		<div className='profile-box box'>
 			<BoxHeaderProfile customerId={customerData.customer.id} />
-
 			<section className='customer-box-grid'>
 				<DetailBox title={'Fornavn'} value={customerData.customer.firstName} />
 				<DetailBox title={'Efternavn'} value={customerData.customer.lastName} />

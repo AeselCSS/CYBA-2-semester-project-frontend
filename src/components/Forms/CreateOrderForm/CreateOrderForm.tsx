@@ -13,11 +13,6 @@ import { getBookedDates, submitOrder } from '../../../services/orderServices.ts'
 type TDatePiece = Date | null;
 type TDate = TDatePiece | [TDatePiece, TDatePiece];
 
-type Inputs = {
-	carId: string;
-	taskIds: string[];
-};
-
 export default function CreateOrderForm({ customer }: { customer: ICustomer }) {
 	const [tasks, setTasks] = useState<null | IAPITask[]>(null);
 	const [cars, setCars] = useState<null | ICar[]>(null);
@@ -25,7 +20,7 @@ export default function CreateOrderForm({ customer }: { customer: ICustomer }) {
 	const [date, setDate] = useState<TDate | null>(null);
 	const navigate = useNavigate();
 
-	const { register, handleSubmit, formState: { errors }, } = useForm<Inputs>({ defaultValues: { taskIds: [], carId: '', },
+	const { register, handleSubmit, formState: { errors }, } = useForm<newOrderInputs>({ defaultValues: { taskIds: [], carId: '', },
 	});
 
 	useEffect(() => {
@@ -42,7 +37,7 @@ export default function CreateOrderForm({ customer }: { customer: ICustomer }) {
 		getTasksAndCarsAndBookedDates();
 	}, [customer.id]);
 
-	const onSubmit: SubmitHandler<Inputs> = data => {
+	const onSubmit: SubmitHandler<newOrderInputs> = data => {
 		submitOrder(data, date, customer, navigate);
 	};
 

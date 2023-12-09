@@ -34,14 +34,11 @@ export default function OrdersBoxDetail({ customerData, order }: OrdersBoxDetail
 		}
 	};
 
-	// Get modal options
-	const modalOptions = getModalOptions(`Ordre nummer: ${order.id}`)
-
 	return (
 		<article className='order-box-details'>
 			{currentOrder ? (
 				<>
-					<Modal opened={isOpen} onClose={close} {...modalOptions}>
+					<Modal opened={isOpen} onClose={close} {...getModalOptions(`Ordre nummer: ${order.id}`)}>
 						<DetailedOrder orderId={order.id} />
 					</Modal>
 

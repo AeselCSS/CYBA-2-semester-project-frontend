@@ -1,5 +1,3 @@
-/* Navbar.css */
-
 nav {
 	background-color: var(--black);
 	color: var(--white);
@@ -8,8 +6,8 @@ nav {
 	align-items: center;
 	padding: var(--spacing-small) var(--spacing-base);
 	border-bottom: 1px solid var(--orange);
-    text-transform: capitalize;
-    font-family: var(--font-family);
+	text-transform: capitalize;
+	font-family: var(--font-family);
 	font-weight: var(--font-weight-bold);
 	font-size: var(--font-size-large);
 }
@@ -25,7 +23,8 @@ nav a {
 	transition: color 0.3s ease;
 }
 
-nav a:hover {
+nav a:hover,
+nav li:hover > a { /* Hovering over the list item will also change the color of the link */
 	color: var(--orange);
 }
 
@@ -37,50 +36,62 @@ nav img {
 	display: flex;
 }
 
-/* Responsive design for smaller screens */
+.nav-links-wrapper ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.nav-links-wrapper > ul > li {
+	display: inline-flex;
+	position: relative;
+	align-items: center;
+}
+
+.nav-links-wrapper > ul > li a {
+	display: block;
+	text-decoration: none;
+}
+
+.nav-links-wrapper > ul > li .dropdown-wrapper {
+	cursor: pointer;
+}
+
+.nav-links-wrapper > ul > li ul.dropdown {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	background-color: var(--black);
+	z-index: 99;
+	display: none;
+	border: none;
+}
+
+.nav-links-wrapper > ul > li:hover ul.dropdown {
+	display: block;
+}
+
+.dropdown-icon {
+	color: var(--orange);
+	margin-left: var(--spacing-small);
+	vertical-align: middle;
+}
+
+
 @media (max-width: 768px) {
 	nav {
 		flex-direction: column;
 	}
 
+	.nav-links-wrapper ul {
+		flex-direction: column;
+	}
+
 	.NavBarButtons {
-		margin-top: 1em;
+		margin-top: var(--spacing-small);
+	}
+
+	.nav-links-wrapper > ul > li {
+		display: block;
 	}
 }
-
-
-ul {
-	list-style: none;
-
-}
-
-ul li {
-	display: inline-block;
-	position: relative;
-}
-
-ul li a {
-	display: block;
-	text-decoration: none;
-}
-
-ul li a:hover {
-	cursor: pointer;
-}
-
-ul li ul.dropdown li {
-	display: block;
-}
-
-ul li ul.dropdown {
-	width: 100%;
-	background-color: var(--black);
-	position: absolute;
-	z-index: 99;
-	display: none;
-}
-
-li:hover ul.dropdown {
-	display: block;
-}
-

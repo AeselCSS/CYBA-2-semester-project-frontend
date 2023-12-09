@@ -1,115 +1,20 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { notifications } from '@mantine/notifications';
 import SearchRegistrationNumber from './SearchRegistrationNumber';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
-import { MdErrorOutline } from 'react-icons/md';
 import FormLayout from '../../../layouts/FormLayout/FormLayout';
-
-interface IAPICar {
-	registrationNumber: string;
-	vinNumber: string;
-	brand: string;
-	model: string;
-	modelVariant: string;
-	firstRegistration: string;
-	lastInspectionDate: string;
-	lastInspectionResult: string;
-	lastInspectionKind: string;
-	mileage: string;
-}
-
-interface INewCar {
-	customerId: string;
-	mileage: number;
-	registrationNumber: string;
-	vinNumber: string;
-	brand: string;
-	model: string;
-	modelVariant: string;
-	firstRegistration: string;
-	lastInspectionDate: string | null;
-	lastInspectionResult: string | null;
-	lastInspectionKind: string | null;
-}
-
-type inputs = {
-	mileage: string;
-	vinNumber: string;
-	brand: string;
-	model: string;
-	modelVariant: string;
-	firstRegistration: string;
-	lastInspectionDate: string;
-	lastInspectionResult: string;
-	lastInspectionKind: string;
-};
-
-async function createCar(newCar: INewCar) {
-	return await fetch(`http://localhost:3000/cars`, {
-		method: 'POST',
-		body: JSON.stringify(newCar),
-		headers: {
-			'Content-Type': 'application/json',
-		},
-	});
-}
+import { submitCarForm } from '../../../services/carServices.ts';
 
 export default function CreateCarForm({ customer }: { customer: ICustomer }) {
 	const [APIResult, setAPIResult] = useState<IAPICar | null>(null);
 	const [registrationNumber, setRegistrationNumber] = useState('');
 	const navigate = useNavigate();
 	const values = APIResult as IAPICar;
+	const { register, handleSubmit, formState: { errors }, } = useForm<CreateCarInputs>({ values, });
 
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-	} = useForm<inputs>({
-		values,
-	});
-
-	async function onSubmit(data: inputs) {
-		const newCar: INewCar = {
-			...data,
-			customerId: customer.id,
-			registrationNumber: registrationNumber.toUpperCase(),
-			mileage: parseInt(data.mileage),
-			lastInspectionDate: data.lastInspectionDate || null,
-			lastInspectionResult: data.lastInspectionResult || null,
-			lastInspectionKind: data.lastInspectionKind || null,
+		const onSubmit: SubmitHandler<CreateCarInputs> = async (data: CreateCarInputs) => {
+			await submitCarForm(data, registrationNumber, customer, navigate);
 		};
-
-		try {
-			const res = await createCar(newCar);
-			if (res.ok) {
-				notifications.show({
-					color: 'green',
-					title: 'VROOM VROOM!',
-					message: 'Køretøj oprettet successfuldt',
-					icon: <IoIosCheckmarkCircleOutline />,
-				});
-				navigate('/redirect');
-			} else {
-				notifications.show({
-					color: 'red',
-					title: 'Hov!',
-					message: 'Noget gik galt. Kontroller de givet oplysninger',
-					icon: <MdErrorOutline />,
-				});
-			}
-		} catch (error) {
-			console.log((error as Error).message);
-			notifications.show({
-				color: 'red',
-				title: 'Hov!',
-				message: 'Noget gik galt. Dit køretøj blev desværre ikke oprettet. Prøv igen senere',
-				icon: <MdErrorOutline />,
-			});
-		}
-	}
-	onSubmit as SubmitHandler<inputs>;
 
 	return (
 		<>

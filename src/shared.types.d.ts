@@ -154,3 +154,43 @@ interface IAPITask extends ITask{
 type EntityUnion = ICustomer | IEmployee | ICar | IOrder;
 
 type UserUnion = ICustomer | IEmployee | IAuthUser | null;
+
+
+interface IAPICar {
+	registrationNumber: string,
+	vinNumber: string,
+	brand: string,
+	model: string,
+	modelVariant: string,
+	firstRegistration: string,
+	lastInspectionDate: string,
+	lastInspectionResult: string,
+	lastInspectionKind: string,
+	mileage: string
+}
+
+interface INewCar {
+	customerId: string;
+	mileage: number;
+	registrationNumber: string;
+	vinNumber: string;
+	brand: string;
+	model: string;
+	modelVariant: string;
+	firstRegistration: string;
+	lastInspectionDate: string | null;
+	lastInspectionResult: string | null;
+	lastInspectionKind: string | null;
+}
+
+type CreateCarInputs = {
+	mileage: string;
+	vinNumber: string;
+	brand: string;
+	model: string;
+	modelVariant: string;
+	firstRegistration: string;
+	lastInspectionDate: string;
+	lastInspectionResult: string;
+	lastInspectionKind: string;
+};

@@ -17,7 +17,6 @@ export default function DetailedOrder({ orderId: orderId }: { orderId: number })
 			if (response.ok) {
 				const data = await response.json();
 				setOrder(data);
-				console.log(data);
 			}
 		}
 		getOrder();

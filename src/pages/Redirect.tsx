@@ -26,9 +26,7 @@ export default function Redirect() {
 				}
 			}
 		};
-		processUser().then(() => {
-			console.log('User data processed');
-		});
+		processUser();
 	}, [user, isAuthenticated, isLoading, setUser, navigate]);
 
 	if (isLoading) {

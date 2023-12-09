@@ -1,9 +1,9 @@
-import classes from './CreateOrderForm.module.css';
+import { FieldErrors, UseFormRegister } from 'react-hook-form';
 
 interface Props {
 	cars: ICar[] | null;
-	register: any;
-	errors: any;
+	register: UseFormRegister<newOrderInputs>;
+	errors: FieldErrors<newOrderInputs>;
 }
 
 export default function CarSelect({ cars, register, errors }: Props) {
@@ -21,7 +21,7 @@ export default function CarSelect({ cars, register, errors }: Props) {
 					<h3>Tilgængelige køretøjer</h3>
 				</label>
 			</div>
-			<select className='cars-select' name='cars' id='cars' {...register('carId', { required: true, minLength: 1 })}>
+			<select className='cars-select' id='cars' {...register('carId', { required: true, minLength: 1 })}>
 				<option value=''>Vælg et køretøj</option>
 				{cars?.map((car) => (
 					<option value={car.id} key={car.id}>

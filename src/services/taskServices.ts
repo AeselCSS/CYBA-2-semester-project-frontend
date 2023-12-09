@@ -14,7 +14,7 @@ export const initiateTaskInstance = async (id: number, employeeId: string) => {
 
 export async function getTasks() {
 	try {
-		const response = await fetch('http://localhost:3000/tasks');
+		const response = await fetch(`${API_URL}/tasks`);
 		if (response.ok) {
 			return await response.json();
 		} else {

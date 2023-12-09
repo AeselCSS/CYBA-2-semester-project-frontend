@@ -17,15 +17,11 @@ export default function DatePicker({ unavailableDates, date, setDate }: Props) {
 	const maxDate = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000);
 
 	const disableTiles = ({ date }: { date: Date }): boolean => {
-		// return unavailableDates.some((unavailableDate) => date.toDateString() === new Date(unavailableDate).toDateString())
-
-		if (unavailableDates.some((unavailableDate) => date.toDateString() === new Date(unavailableDate).toDateString())) {
-			return true;
-		} else if (date.getDay() === 0 || date.getDay() === 6) {
-			return true;
-		}
-
-		return false;
+		// Disable dates that are in the past or weekends
+		return (
+			unavailableDates.some((unavailableDate) => date.toDateString() === new Date(unavailableDate).toDateString()) ||
+			[0, 6].includes(date.getDay())
+		);
 	};
 
 	return (

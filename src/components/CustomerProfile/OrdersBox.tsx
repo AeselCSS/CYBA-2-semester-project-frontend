@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import usePagination from '../../hooks/usePagination.ts';
 import './OrdersBox.css';
 import Loading from '../Loading/Loading.tsx';
+import { getCustomerOrders } from '../../services/customerServices.ts';
 
 export default function OrdersBox({ customerData }: { customerData: IAPISingleCustomer }) {
 	const [orders, setOrders] = useState<IOrder[] | null>(null);
@@ -15,21 +16,21 @@ export default function OrdersBox({ customerData }: { customerData: IAPISingleCu
 	const { currentPage, paginationSettings } = usePagination(pageSize, metaDataTotalCount);
 
 	useEffect(() => {
-		async function fetchData() {
-			const url = `http://localhost:3000/customers/${customerData.customer.id}/orders?pageNum=${currentPage}&pageSize=${pageSize}`;
-			const promise = await fetch(url);
+		const queryParams = new URLSearchParams({
+			pageNum: currentPage.toString(),
+			pageSize: pageSize.toString()
+		}).toString();
 
-			if (promise.ok) {
-				const result: APIResponse<IOrder> = await promise.json();
-				setOrders(result.data);
-				setMetaData(result.metaData);
-			} else {
-				console.log('Promise not OK');
-				console.log('Error at fetch');
-			}
+		if (customerData.customer.id) {
+			getCustomerOrders(customerData.customer.id, queryParams)
+				.then(result => {
+					setOrders(result.data);
+					setMetaData(result.metaData);
+				})
+				.catch(error => {
+					console.error('Error while fetching customer orders:', error);
+				});
 		}
-
-		fetchData();
 	}, [currentPage, pageSize, customerData.customer.id]);
 
 	return (

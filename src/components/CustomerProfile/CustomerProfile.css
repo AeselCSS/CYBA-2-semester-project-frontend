@@ -13,19 +13,6 @@
 	color: var(--lightGrey);
 }
 
-/* .customer-view-grid button {
-	background-color: var(--charcoalGrey);
-	color: var(--white);
-	border: none;
-	padding: var(--spacing-small) var(--spacing-small);
-	cursor: pointer;
-	transition: background-color 0.3s ease;
-}
-
-.customer-view-grid button:hover {
-	background-color: var(--orange);
-} */
-
 .customer-view-grid h3 {
 	font-size: var(--font-size-small);
 	color: var(--white);
@@ -112,6 +99,14 @@
 	display: flex;
 	justify-content: space-around;
 	padding-top: var(--spacing-base);
+}
+
+.yes-btn, .no-btn {
+	padding: var(--spacing-small) var(--spacing-large);
+}
+
+.yes-btn:hover {
+	background-color: red;
 }
 
 .delete-customer-btn:hover {

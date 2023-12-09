@@ -1,10 +1,10 @@
 import styles from './modal.module.css';
 
-export const getModalOptions = (title: string) => {
+export const getModalOptions = (title: string, size?: string) => {
 	return {
 		title: title,
 		centered: true,
-		size: 'xl',
+		size: size || 'xl',
 		styles: {
 			header: { backgroundColor: '#d87005', padding: '10px' },
 			close: { color: '#f4f4f4', cursor: 'pointer' }

@@ -9,6 +9,7 @@ import OrdersBox from '../components/CustomerProfile/OrdersBox';
 import { Loader } from '@mantine/core';
 import { getSingleCustomer } from '../services/customerServices.ts';
 import { useNavigate } from 'react-router-dom';
+import '../components/CustomerProfile/CustomerProfile.css';
 
 export default function CustomerProfile() {
 	const [customerData, setCustomerData] = useState<IAPISingleCustomer | null>(null);

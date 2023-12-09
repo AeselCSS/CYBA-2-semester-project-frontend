@@ -50,3 +50,12 @@ export const deleteCustomer = async (
 	}
 };
 
+export const getCustomerOrders = async (customerId: string, queryParams: string): Promise<{data: IOrder[], metaData: IMetaData}> => {
+	const response =  await fetch(`${API_URL}/customers/${customerId}/orders?${queryParams}`);
+
+	if (!response.ok) {
+		throw new Error('Error fetching data');
+	}
+
+	return await response.json();
+}
