@@ -25,7 +25,7 @@ export const deleteCustomer = async (
 	logoutOptions: LogoutOptions
 ) => {
 	try {
-		const response = await fetch(`http://localhost:3000/customers/${customerId}`, {
+		const response = await fetch(`${API_URL}/customers/${customerId}`, {
 			method: "DELETE"
 		});
 
