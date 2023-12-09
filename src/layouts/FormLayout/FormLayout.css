@@ -24,6 +24,11 @@
 	color: var(--lightGrey);
 }
 
+.regnr-and-search-wrapper {
+	display: flex;
+	align-items: start;
+}
+
 .form-grid span {
 	grid-column: 2;
 	color: var(--orange);
@@ -36,6 +41,19 @@
 	gap: var(--spacing-xlarge);
 	grid-column: span 2;
 	margin-top: var(--spacing-base);
+}
+.search-car-by-regnr {
+	display: flex;
+	justify-content: center;
+	gap: var(--spacing-xlarge);
+	width: auto;
+	padding: 0 15px 0 15px;
+	margin-left: var(--spacing-small);
+	transition: background-color 0.3s ease;
+}
+
+.search-car-by-regnr:hover {
+	background-color: var(--orange);
 }
 
 /* .form-container input {

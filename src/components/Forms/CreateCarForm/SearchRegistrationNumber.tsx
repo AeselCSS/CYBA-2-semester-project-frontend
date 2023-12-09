@@ -1,21 +1,20 @@
 import React from 'react';
 import { notifications } from '@mantine/notifications';
-import { MdErrorOutline } from "react-icons/md";
-import { IoIosCheckmarkCircleOutline } from "react-icons/io";
+import { MdErrorOutline } from 'react-icons/md';
+import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
 
 interface IAPICar {
-	registrationNumber: string,
-	vinNumber: string,
-	brand: string,
-	model: string,
-	modelVariant: string,
-	firstRegistration: string,
-	lastInspectionDate: string,
-	lastInspectionResult: string,
-	lastInspectionKind: string,
-	mileage: string
+	registrationNumber: string;
+	vinNumber: string;
+	brand: string;
+	model: string;
+	modelVariant: string;
+	firstRegistration: string;
+	lastInspectionDate: string;
+	lastInspectionResult: string;
+	lastInspectionKind: string;
+	mileage: string;
 }
-
 
 interface Props {
 	setAPIResult: (newValue: IAPICar | null) => void;
@@ -23,8 +22,7 @@ interface Props {
 	registrationNumber: string;
 }
 
-export default function SearchRegistrationNumber({ setAPIResult, setRegistrationNumber, registrationNumber}: Props) {
-
+export default function SearchRegistrationNumber({ setAPIResult, setRegistrationNumber, registrationNumber }: Props) {
 	const handleAPIGet = async () => {
 		const response = await fetch(`http://localhost:3000/cars/registration/${registrationNumber}`, {
 			method: 'GET',
@@ -35,18 +33,18 @@ export default function SearchRegistrationNumber({ setAPIResult, setRegistration
 			setAPIResult(carDetails);
 			notifications.show({
 				color: 'green',
-				title: "Succes!",
-				message: "Dine køretøjsoplysninger er hentet succesfuldt",
-				icon: <IoIosCheckmarkCircleOutline />
-			})
+				title: 'Succes!',
+				message: 'Dine køretøjsoplysninger er hentet succesfuldt',
+				icon: <IoIosCheckmarkCircleOutline />,
+			});
 		} else {
 			setAPIResult(null);
 			notifications.show({
 				color: 'red',
-				title: "Hov!",
-				message: "Vi kunne desværre ikke finde dit køretøj. Har de tastet rigtigt?",
-				icon: <MdErrorOutline />
-			})
+				title: 'Hov!',
+				message: 'Vi kunne desværre ikke finde dit køretøj. Har de tastet rigtigt?',
+				icon: <MdErrorOutline />,
+			});
 		}
 	};
 
@@ -57,10 +55,18 @@ export default function SearchRegistrationNumber({ setAPIResult, setRegistration
 	return (
 		<>
 			<label htmlFor='registrationNumber'>Registerings Nr.</label>
-			<input value={registrationNumber} onChange={handleInput} id='registrationNumber' placeholder='Registerings nr.' required={true} />
+			<div className='regnr-and-search-wrapper'>
+				<input
+					value={registrationNumber}
+					onChange={handleInput}
+					id='registrationNumber'
+					placeholder='Registerings nr.'
+					required={true}
+				/>
 
-			<div className='form-btn-wrapper' style={{ paddingBottom: '2rem' }}>
-				<input style={{cursor: 'pointer'}} type="button" value="Søg efter køretøj..." onClick={handleAPIGet}/>
+				<div style={{ paddingBottom: '2rem' }}>
+					<input className='search-car-by-regnr' style={{ cursor: 'pointer' }} type='button' value='Søg' onClick={handleAPIGet} />
+				</div>
 			</div>
 		</>
 	);
