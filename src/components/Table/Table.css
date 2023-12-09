@@ -2,7 +2,7 @@
 table {
 	width: 100%;
 	background-color: var(--black);
-	border-radius: 20px;
+	border-radius: 3px;
 	overflow: hidden;
 	border: 1px solid var(--lightGrey);
 	border-collapse: separate;
@@ -37,9 +37,9 @@ tr:nth-child(even) {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-bottom: 5rem;
-	font-size: 1.2rem;
-	gap: 5px;
+	margin-top: var(--spacing-small);
+	font-size: 1rem;
+	gap: 3px;
 }
 
 .pagination .active {
@@ -48,7 +48,7 @@ tr:nth-child(even) {
 }
 
 .pagination .page-num {
-	padding: 6px 12px;
+	padding: 5px 10px;
 	cursor: pointer;
 	border-radius: 3px;
 	font-weight: 400;
@@ -68,7 +68,6 @@ tr:nth-child(even) {
 }
 
 .sort-icon {
-
 	width: 1em;
 	height: 1em;
 }
