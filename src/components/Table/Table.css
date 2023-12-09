@@ -63,8 +63,8 @@ tr:nth-child(even) {
 .header-content {
 	display: flex;
 	justify-content: space-around;
-	align-items: center; /* This will vertically center the items */
-	cursor: pointer; /* Change cursor to pointer to indicate clickable area */
+	align-items: center;
+	cursor: pointer;
 }
 
 .sort-icon {
@@ -73,7 +73,6 @@ tr:nth-child(even) {
 	height: 1em;
 }
 
-/* You may want to disable pointer events on the icons to ensure they don't interfere with click events */
 .disable-click {
 	pointer-events: none;
 }
