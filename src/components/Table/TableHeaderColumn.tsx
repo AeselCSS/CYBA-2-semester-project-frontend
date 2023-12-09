@@ -15,11 +15,12 @@ interface Props {
 export default function TableHeaderColumn({ title, handleSort, itemType, sortByValue, sortDirValue }: Props) {
 	const selectedDictionary = dictionaries[itemType] as Record<string, string>;
 
-	const excludeSort = itemType === 'order' && (title.includes('registrationNumber') || title.includes('vinNumber'));
+	// used to remove sorting on registrationNumber and vinNumber columns on Orders table
+	const disableSort = itemType === 'order' && (title.includes('registrationNumber') || title.includes('vinNumber'));
 
 	return (
 		<th>
-			<span className={!excludeSort ? 'pointer' : 'disable-click'} onClick={handleSort} id={title}>
+			<span className={!disableSort ? 'pointer' : 'disable-click'} onClick={handleSort} id={title}>
 				{selectedDictionary[title]}
 			</span>
 			{title === sortByValue && (
