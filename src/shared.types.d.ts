@@ -129,6 +129,18 @@ interface ICurrentOrder {
 	}[];
 }
 
+interface newOrder {
+	orderStartDate: string;
+	carId: number;
+	customerId: string;
+	tasks: { id: number }[];
+}
+
+type newOrderInputs = {
+	carId: string;
+	taskIds: string[];
+};
+
 interface ITask {
 	id: number;
 	name: string;

@@ -1,16 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Modal, Loader } from '@mantine/core';
+import { Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { status as danishStatus } from '../../utility/danishDictionary';
 import calculatePrice from '../../utility/priceCalculator';
 import DetailedOrder from '../../modals/DetailedOrder/DetailedOrder';
 import ChangeOrderStatusButton from '../Buttons/ChangeOrderStatusButton';
-import styles from '../../modals/modal.module.css';
-import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
-import { MdErrorOutline } from 'react-icons/md';
-import { notifications } from '@mantine/notifications';
-import { getSingleOrder } from '../../services/orderServices.ts';
+import { getSingleOrder, updateOrderStatusToPending } from '../../services/orderServices.ts';
+import { getModalOptions } from '../../modals/modalOptions.ts';
+import Loading from '../Loading/Loading.tsx';
 
 interface OrdersBoxDetailProps {
 	customerData: IAPISingleCustomer;
@@ -29,59 +27,21 @@ export default function OrdersBoxDetail({ customerData, order }: OrdersBoxDetail
 		getSingleOrder(order.id).then((order) => setCurrentOrder(order));
 	}, [order.id]);
 
-	async function handleClick() {
-		try {
-			const response = await fetch(`http://localhost:3000/orders/${order.id}/status`, {
-				method: 'PATCH',
-				body: JSON.stringify({
-					status: 'PENDING',
-				}),
-				headers: {
-					'Content-Type': 'application/json',
-				},
-			});
-
-			if (response.ok) {
-				notifications.show({
-					color: 'green',
-					title: 'Succes!',
-					message: `Status på ordre nr. ${order.id} opdateret. Køretøjet er i værkstedets varetægt`,
-					icon: <IoIosCheckmarkCircleOutline />,
-				});
-				navigate('/redirect');
-			} else {
-				notifications.show({
-					color: 'red',
-					title: 'Hov!',
-					message: `Status på ordre nr. ${order.id} kunne ikke opdateret. Prøv igen senere`,
-					icon: <MdErrorOutline />,
-				});
-			}
-		} catch (e: unknown) {
-			notifications.show({
-				color: 'red',
-				title: 'Hov!',
-				message: `Status på ordre nr. ${order.id} kunne ikke opdateret. Prøv igen senere`,
-				icon: <MdErrorOutline />,
-			});
+	const handleClick = async () => {
+		const succes = await updateOrderStatusToPending(order.id);
+		if (succes) {
+			navigate('/redirect');
 		}
-	}
+	};
+
+	// Get modal options
+	const modalOptions = getModalOptions(`Ordre nummer: ${order.id}`)
 
 	return (
 		<article className='order-box-details'>
 			{currentOrder ? (
 				<>
-					<Modal
-						opened={isOpen}
-						onClose={close}
-						title={`Ordre nummer: ${order.id}`}
-						centered
-						size='xl'
-
-						styles={{ header: { backgroundColor: '#d87005', padding: '10px' }, close: { color: '#f4f4f4', cursor: 'pointer'} }}
-
-						classNames={{body: styles.body, content: styles.content, title: styles.title, close: styles.close}}
-					>
+					<Modal opened={isOpen} onClose={close} {...modalOptions}>
 						<DetailedOrder orderId={order.id} />
 					</Modal>
 
@@ -99,12 +59,11 @@ export default function OrdersBoxDetail({ customerData, order }: OrdersBoxDetail
 						<h3>{danishStatus[currentOrder.status]}</h3>
 						{(order.status as never) === 'AWAITING_CUSTOMER' && (
 							<ChangeOrderStatusButton btnText='Aflever bil' onClick={handleClick} />
-						)}
-						{' '}
+						)}{' '}
 					</section>
 				</>
 			) : (
-				<Loader />
+				<Loading />
 			)}
 		</article>
 	);

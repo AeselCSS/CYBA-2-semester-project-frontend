@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-
 import { Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import styles from '../../modals/modal.module.css'
+// import styles from '../../modals/modal.module.css'
+import { getModalOptions } from '../../modals/modalOptions.ts';
 
 interface BoxHeaderProps {
 	title: string;
@@ -13,22 +13,13 @@ interface BoxHeaderProps {
 export default function BoxHeader({ title, btnName, navigateTo }: BoxHeaderProps) {
 	const navigate = useNavigate();
 	const [isOpen, { close }] = useDisclosure(false);
+	// Get modal options
+	const modalOptions = getModalOptions(`title`)
 
 	return (
 		<>
-			<Modal
-				opened={isOpen}
-				onClose={close}
-				title='Authentication'
-				className='modal'
-				centered
-				size='xl'
-				styles={{ header: { backgroundColor: '#d87005', padding: '10px' }, close: { color: '#f4f4f4', cursor: 'pointer' } }}
-				classNames={{ body: styles.body, content: styles.content, title: styles.title, close: styles.close }}
-			>
-				{/* Modal content */}
-				<h2>Hej</h2>
-			</Modal>
+			{/*Benyttes denne modal overhovedet?*/}
+			<Modal opened={isOpen} onClose={close} {...modalOptions}></Modal>
 
 			<div className='header-flex'>
 				<h1>{title}</h1>

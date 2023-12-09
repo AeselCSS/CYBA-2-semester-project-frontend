@@ -8,7 +8,7 @@ import PageSize from '../PageSize/PageSize.tsx';
 import TableHeaderColumn from './TableHeaderColumn.tsx';
 import './Table.css';
 import * as dictionaries from '../../utility/danishDictionary.ts';
-import Loader from '../Loader/Loader.tsx';
+import Loading from '../Loader/Loading.tsx';
 
 interface Props {
 	itemType: string;

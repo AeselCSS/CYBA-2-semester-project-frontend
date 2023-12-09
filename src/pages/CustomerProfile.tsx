@@ -6,7 +6,7 @@ import CustomerBox from '../components/CustomerProfile/CustomerBox';
 import CustomerProfileGrid from '../components/CustomerProfile/CustomerProfileGrid';
 import PageLayout from '../layouts/PageLayout/PageLayout';
 import OrdersBox from '../components/CustomerProfile/OrdersBox';
-import Loader from '../components/Loader/Loader';
+import { Loader } from '@mantine/core';
 import { getSingleCustomer } from '../services/customerServices.ts';
 import { useNavigate } from 'react-router-dom';
 
@@ -37,7 +37,9 @@ export default function CustomerProfile() {
 					<OrdersBox customerData={customerData} />
 				</CustomerProfileGrid>
 			) : (
-				<Loader />
+				<div className='loading-wrapper'>
+					<Loader color='orange' type='bars' />
+				</div>
 			)}
 		</PageLayout>
 	);

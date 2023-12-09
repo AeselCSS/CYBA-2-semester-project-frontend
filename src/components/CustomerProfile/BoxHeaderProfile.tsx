@@ -1,11 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import { Modal } from '@mantine/core';
-import { notifications } from '@mantine/notifications';
 import { useDisclosure } from '@mantine/hooks';
-import { useAuth0 } from '@auth0/auth0-react';
 import styles from '../../modals/modal.module.css';
-import { NotificationMessageError, NotificationMessageSuccess } from '../Toaster/NotificationMessage.tsx';
-import { handleLogout } from '../../services/Auth0Services.ts';
+import { useAuth0 } from '@auth0/auth0-react';
+import { deleteCustomer } from '../../services/customerServices.ts';
+
 
 export default function BoxHeaderProfile({ customerId }: { customerId: string }) {
 	const [opened, { open, close }] = useDisclosure(false);
@@ -13,36 +12,14 @@ export default function BoxHeaderProfile({ customerId }: { customerId: string })
 	const { logout } = useAuth0();
 
 	const handleDelete = async () => {
-
-		try {
-			const response = await fetch(`http://localhost:3000/customers/${customerId}`, {
-				method: "DELETE"
-			})
-
-			if (response.ok) {
-				notifications.show(NotificationMessageSuccess({
-					title: "Konto slettet",
-					message: "Din konto er blevet slettet succesfuldt. Håber vi ses igen 💪"
-				}));
-				handleLogout(logout, {
-					logoutParams: {
-						returnTo: window.location.origin
-					}
-				});
-			} else {
-				notifications.show(NotificationMessageError({
-					title: "Hov!",
-					message: "Vi kunne desværre ikke slette din konto. Prøv igen senere"
-				}));
+		await deleteCustomer(customerId, logout, {
+			logoutParams: {
+				returnTo: window.location.origin
 			}
-		} catch (error: unknown) {
-			console.log((error as Error).message);
-			notifications.show(NotificationMessageError({
-				title: "Hov!",
-				message: "Vi kunne desværre ikke slette din konto. Prøv igen senere",
-			}));
-		}
-	}
+		});
+	};
+
+
 
 	return (
 		<>

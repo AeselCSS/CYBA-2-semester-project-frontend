@@ -1,4 +1,8 @@
 import { API_URL } from './config.ts';
+import { NotificationMessageError, NotificationMessageSuccess } from '../components/Toaster/NotificationMessage.tsx';
+import { LogoutOptions } from '@auth0/auth0-react';
+import { handleLogout } from './Auth0Services.ts';
+import { notifications } from '@mantine/notifications';
 
 export const getSingleCustomer = async (id: string) => {
 	try {
@@ -15,22 +19,34 @@ export const getSingleCustomer = async (id: string) => {
 	}
 }
 
-
-export const deleteCustomer = async (id: string) => {
+export const deleteCustomer = async (
+	customerId: string,
+	logout: (options?: LogoutOptions) => Promise<void>,
+	logoutOptions: LogoutOptions
+) => {
 	try {
-		const response = await fetch(`${API_URL}/customers/${id}`, {
-			method: 'DELETE'
+		const response = await fetch(`http://localhost:3000/customers/${customerId}`, {
+			method: "DELETE"
 		});
 
-		if (!response.ok) {
-			throw new Error('Error fetching data');
+		if (response.ok) {
+			notifications.show(NotificationMessageSuccess({
+				title: "Konto slettet",
+				message: "Din konto er blevet slettet succesfuldt. Håber vi ses igen 💪"
+			}));
+			handleLogout(logout, logoutOptions);
+		} else {
+			notifications.show(NotificationMessageError({
+				title: "Hov!",
+				message: "Vi kunne desværre ikke slette din konto. Prøv igen senere"
+			}));
 		}
-
-		return await response.json();
-
-	} catch (error: unknown) {
+	} catch (error) {
 		console.error(error);
+		notifications.show(NotificationMessageError({
+			title: "Hov!",
+			message: "Vi kunne desværre ikke slette din konto. Prøv igen senere",
+		}));
 	}
-
-}
+};
 

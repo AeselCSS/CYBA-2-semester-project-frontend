@@ -11,3 +11,18 @@ export const initiateTaskInstance = async (id: number, employeeId: string) => {
 
 	return await response.json();
 };
+
+export async function getTasks() {
+	try {
+		const response = await fetch('http://localhost:3000/tasks');
+		if (response.ok) {
+			return await response.json();
+		} else {
+			console.log('Promise Tasks is not ok');
+			return null;
+		}
+	} catch (error: unknown) {
+		console.log((error as Error).message);
+		return null;
+	}
+}
