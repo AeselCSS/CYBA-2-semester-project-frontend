@@ -95,6 +95,7 @@ button {
 	background-color: var(--charcoalGrey);
 	color: var(--white);
 	border: none;
+	outline: 0;
 	padding: var(--spacing-small) var(--spacing-small);
 	cursor: pointer;
 	transition: background-color 0.3s ease;
@@ -112,11 +113,16 @@ input {
 	border-radius: var(--border-radius);
 	box-shadow: 0 0 0 var(--black);
 	transition: 0.2s ease-in-out;
+	cursor: pointer;
 }
 
 input:focus {
 	outline: 1px solid var(--orange);
 	box-shadow: 5px 5px 5px var(--black);
+}
+
+input:disabled {
+	cursor: not-allowed;
 }
 
 .toaster {

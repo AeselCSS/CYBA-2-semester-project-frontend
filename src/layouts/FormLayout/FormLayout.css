@@ -55,18 +55,3 @@
 .search-car-by-regnr:hover {
 	background-color: var(--orange);
 }
-
-/* .form-container input {
-	height: 2rem;
-	width: 12rem;
-	padding-left: var(--spacing-small);
-	outline: 1px solid var(--charcoalGrey);
-	border-radius: var(--border-radius);
-	box-shadow: 0 0 0 var(--black);
-	transition: 0.2s ease-in-out;
-}
-
-.form-container input:focus {
-	outline: 1px solid var(--orange);
-	box-shadow: 5px 5px 5px var(--black);
-} */
