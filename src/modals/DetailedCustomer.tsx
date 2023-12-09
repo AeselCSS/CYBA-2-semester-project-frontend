@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import formatDate from '../utility/dateFormat.ts';
+import { getSingleCustomer } from '../services/customerServices.ts';
 
 interface DetailedCustomerProps {
 	customer: ICustomer;
@@ -9,15 +10,8 @@ export default function DetailedCustomer({ customer }: DetailedCustomerProps) {
 	const [customerData, setCustomerData] = useState<IAPISingleCustomer | null>(null);
 
 	useEffect(() => {
-		async function getCustomer() {
-			//TODO Tilføj ENV fil til fetch kaldet
-			const response = await fetch(`http://localhost:3000/customers/${customer.id}`);
-			const data = await response.json();
-			setCustomerData(data);
-		}
-		getCustomer();
+		getSingleCustomer(customer.id).then((data) => setCustomerData(data));
 	}, [customer.id]);
-	console.log(customerData?.orders);
 
 	const filteredOrders = customerData?.orders?.filter((order) => order.status.toString() !== 'COMPLETED') || [];
 

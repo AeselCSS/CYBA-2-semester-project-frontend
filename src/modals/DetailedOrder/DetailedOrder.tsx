@@ -1,25 +1,18 @@
-import { Loader } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import Accordion from './OrderAccordian';
 import { status } from '../../utility/danishDictionary';
 import formatDate from '../../utility/dateFormat';
 import classes from './DetailedOrder.module.css';
 import { Status } from '../../utility/enums.ts';
+import { getSingleOrder } from '../../services/orderServices.ts';
+import Loading from '../../components/Loading/Loading.tsx';
 
 export default function DetailedOrder({ orderId: orderId }: { orderId: number }) {
 	const [order, setOrder] = useState<ICurrentOrder | null>(null);
 
 	// fetche single order
 	useEffect(() => {
-		async function getOrder() {
-			const response = await fetch(`http://localhost:3000/orders/${orderId}`);
-
-			if (response.ok) {
-				const data = await response.json();
-				setOrder(data);
-			}
-		}
-		getOrder();
+		getSingleOrder(orderId).then((data) => setOrder(data));
 	}, [orderId]);
 
 	return (
@@ -43,7 +36,7 @@ export default function DetailedOrder({ orderId: orderId }: { orderId: number })
 					<Accordion order={order} setOrder={setOrder} />
 				</>
 			) : (
-				<Loader />
+				<Loading />
 			)}
 		</div>
 	);

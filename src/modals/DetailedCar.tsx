@@ -1,6 +1,7 @@
 // import { Card } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import formatDate from '../utility/dateFormat.ts';
+import { getSingleCar } from '../services/carServices.ts';
 
 interface DetailedCarProps {
 	car: ICar;
@@ -11,14 +12,12 @@ export default function DetailedCar({ car }: DetailedCarProps) {
 	const [customerData, setCustomerData] = useState<ICustomer | null>(null);
 
 	useEffect(() => {
-		async function getCar() {
-			//TODO Tilføj ENV fil til fetch kaldet
-			const response = await fetch(`http://localhost:3000/cars/${car.id}`);
-			const data = await response.json();
+
+		getSingleCar(car.id).then((data) => {
 			setCarData(data.car);
 			setCustomerData(data.customer);
 		}
-		getCar();
+		);
 	}, [car.id]);
 
 	return (

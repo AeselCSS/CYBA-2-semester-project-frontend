@@ -29,6 +29,16 @@ interface IAPISingleCustomer {
 	orders: IOrder[];
 }
 
+interface INewCustomer {
+	firstName: string;
+	lastName: string;
+	address: string;
+	city: string;
+	zip: number;
+	phone: number;
+	email: string;
+}
+
 interface IAPISingleEmployee {
 	employee: IEmployee;
 }

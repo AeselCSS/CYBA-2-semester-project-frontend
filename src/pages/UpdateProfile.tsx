@@ -4,10 +4,8 @@ import PageLayout from '../layouts/PageLayout/PageLayout.tsx';
 import FormLayout from '../layouts/FormLayout/FormLayout';
 import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { notifications } from '@mantine/notifications';
-import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
-import { MdErrorOutline } from 'react-icons/md';
 import { userIsCustomer } from '../utility/userRoleChecker.ts';
+import { updateCustomer } from '../services/customerServices.ts';
 
 type Inputs = {
 	firstName: string;
@@ -20,25 +18,7 @@ type Inputs = {
 	id: string;
 };
 
-interface INewCustomer {
-	firstName: string;
-	lastName: string;
-	address: string;
-	city: string;
-	zip: number;
-	phone: number;
-	email: string;
-}
 
-async function updateCustomer(newCustomer: INewCustomer, id: string) {
-	return  await fetch(`http://localhost:3000/customers/${id}`, {
-		method: 'PUT',
-		body: JSON.stringify(newCustomer),
-		headers: {
-			'Content-Type': 'application/json',
-		},
-	});
-}
 
 export default function UpdateProfile() {
 	const navigate = useNavigate();
@@ -53,9 +33,7 @@ export default function UpdateProfile() {
 
 	const customer = user as ICustomer;
 
-	async function onSubmit(data: Inputs) {
-
-		console.log(data);
+	const onSubmit: SubmitHandler<Inputs> = async (data) => {
 		const newCustomer = {
 			firstName: data.firstName,
 			lastName: data.lastName,
@@ -66,35 +44,8 @@ export default function UpdateProfile() {
 			email: customer.email,
 		};
 
-		try {
-			const response = await updateCustomer(newCustomer, customer.id);
-
-			if (response.ok) {
-				notifications.show({
-					color: 'green',
-					title: "Succes!",
-					message: "Dine kontooplysninger er nu opdateret. Sådan😎",
-					icon: <IoIosCheckmarkCircleOutline />
-				})
-				navigate('/redirect');
-			} else {
-				notifications.show({
-					color: 'red',
-					title: "Hov!",
-					message: "Vi kunne desværre ikke opdatere dine kontooplysninger. Har du tastet rigtigt?",
-					icon: <MdErrorOutline />
-				})
-			}
-		} catch (error) {
-			notifications.show({
-				color: 'red',
-				title: "Hov!",
-				message: "Vi kunne desværre ikke opdatere dine kontooplysninger. Prøv igen senere",
-				icon: <MdErrorOutline />
-			})
-		}
-	}
-	onSubmit as SubmitHandler<Inputs>;
+		await updateCustomer(customer.id, newCustomer, navigate);
+	};
 
 	return (
 		<PageLayout>

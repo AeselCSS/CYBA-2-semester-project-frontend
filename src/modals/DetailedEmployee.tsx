@@ -1,7 +1,7 @@
-// import { Card } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import formatDate from '../utility/dateFormat.ts';
 import { department, role } from '../utility/danishDictionary.ts';
+import { getSingleEmployee } from '../services/employeeServices.ts';
 
 interface DetailedEmployeeProps {
 	employee: IEmployee;
@@ -11,13 +11,7 @@ export default function DetailedEmployee({ employee }: DetailedEmployeeProps) {
 	const [employeeData, setEmployeeData] = useState<IEmployee | null>(null);
 
 	useEffect(() => {
-		async function getEmployee() {
-			//TODO Tilføj ENV fil til fetch kaldet
-			const response = await fetch(`http://localhost:3000/employees/${employee.id}`);
-			const data = await response.json();
-			setEmployeeData(data);
-		}
-		getEmployee();
+		getSingleEmployee(employee.id).then((data) => setEmployeeData(data));
 	}, [employee.id]);
 
 	return (

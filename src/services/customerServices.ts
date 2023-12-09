@@ -59,3 +59,35 @@ export const getCustomerOrders = async (customerId: string, queryParams: string)
 
 	return await response.json();
 }
+
+export const updateCustomer = async (customerId: string, updatedCustomer: INewCustomer, navigate: (navigateTo: string)=>void) => {
+	try {
+		const response = await fetch(`${API_URL}/customers/${customerId}`, {
+			method: 'PUT',
+			body: JSON.stringify(updatedCustomer),
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
+
+		if (response.ok) {
+			notifications.show(NotificationMessageSuccess({
+				title: "Succes!",
+				message: "Dine kontooplysninger er nu opdateret. Sådan😎",
+			}));
+			navigate('/profile');
+
+		} else {
+			notifications.show(NotificationMessageError({
+				title: "Hov!",
+				message: "Vi kunne desværre ikke opdatere dine kontooplysninger. Har du tastet rigtigt?",
+			}));
+		}
+	} catch (error) {
+		console.error(error);
+		notifications.show(NotificationMessageError({
+			title: "Hov!",
+			message: "Vi kunne desværre ikke opdatere dine kontooplysninger. Prøv igen senere",
+		}));
+	}
+};

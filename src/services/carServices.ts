@@ -2,6 +2,11 @@ import { API_URL } from './config.ts';
 import { notifications } from '@mantine/notifications';
 import { NotificationMessageError, NotificationMessageSuccess } from '../components/Toaster/NotificationMessage.tsx';
 
+export const getSingleCar = async (carId: number) => {
+	const response = await fetch(`${API_URL}/cars/${carId}`);
+	return response.ok ? await response.json() : null;
+}
+
 export const getCustomerCars = async (customerId: string) => {
 	const response = await fetch(`${API_URL}/customers/${customerId}/cars`);
 	return response.ok ? await response.json() : null;
@@ -16,7 +21,7 @@ export const getCarDataFromRegistrationNumber = async (registrationNumber: strin
 
 async function createCar(newCar: INewCar) {
 
-	return await fetch(`http://localhost:3000/cars`, {
+	return await fetch(`${API_URL}/cars`, {
 		method: 'POST',
 		body: JSON.stringify(newCar),
 		headers: {
@@ -59,7 +64,7 @@ export async function submitCarForm(data: CreateCarInputs, registrationNumber: s
 }
 
 async function deleteCar(id: number) {
-		return await fetch(`http://localhost:3000/cars/${id}`, {
+		return await fetch(`${API_URL}/cars/${id}`, {
 			method: 'DELETE',
 		});
 }
