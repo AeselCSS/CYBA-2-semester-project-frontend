@@ -9,8 +9,7 @@ interface Props {
 	registrationNumber: string;
 }
 
-export default function SearchRegistrationNumber({ setAPIResult, setRegistrationNumber, registrationNumber}: Props) {
-
+export default function SearchRegistrationNumber({ setAPIResult, setRegistrationNumber, registrationNumber }: Props) {
 	const handleAPIGet = async () => {
 		const success = await getCarDataFromRegistrationNumber(registrationNumber, setAPIResult);
 		if (success) {
@@ -24,7 +23,7 @@ export default function SearchRegistrationNumber({ setAPIResult, setRegistration
 				message: "Vi kunne desværre ikke finde dit køretøj. Har de tastet rigtigt?",
 			}))
 		}
-	}
+	};
 
 	const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setRegistrationNumber(event.target.value);
@@ -33,10 +32,18 @@ export default function SearchRegistrationNumber({ setAPIResult, setRegistration
 	return (
 		<>
 			<label htmlFor='registrationNumber'>Registerings Nr.</label>
-			<input value={registrationNumber} onChange={handleInput} id='registrationNumber' placeholder='Registerings nr.' required={true} />
+			<div className='regnr-and-search-wrapper'>
+				<input
+					value={registrationNumber}
+					onChange={handleInput}
+					id='registrationNumber'
+					placeholder='Registerings nr.'
+					required={true}
+				/>
 
-			<div className='form-btn-wrapper' style={{ paddingBottom: '2rem' }}>
-				<input style={{cursor: 'pointer'}} type="button" value="Søg efter køretøj..." onClick={handleAPIGet}/>
+				<div style={{ paddingBottom: '2rem' }}>
+					<input className='search-car-by-regnr' style={{ cursor: 'pointer' }} type='button' value='Søg' onClick={handleAPIGet} />
+				</div>
 			</div>
 		</>
 	);

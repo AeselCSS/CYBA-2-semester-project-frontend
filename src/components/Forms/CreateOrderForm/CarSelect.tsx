@@ -18,7 +18,7 @@ export default function CarSelect({ cars, register, errors }: Props) {
 
 			<div>
 				<label htmlFor='cars'>
-					<h3>Tilgængelige køretøjer</h3>
+					<h2>Tilgængelige køretøjer</h2>
 				</label>
 			</div>
 			<select className='cars-select' id='cars' {...register('carId', { required: true, minLength: 1 })}>

@@ -24,14 +24,11 @@ export default function DetailedCar({ car }: DetailedCarProps) {
 		<>
 			{carData && (
 				<div>
-					<div className='header-container'>
-						<h3 className='header-container'>Bil Data</h3>
+					<div>
+						<h2 className='header-one-container'>Bil info</h2>
 					</div>
 					<section className='modal-container'>
 						<div className='modal-grid'>
-							<h3>Regnr</h3>
-							<div>{carData?.registrationNumber}</div>
-
 							<h3>Stel-nr</h3>
 							<div>{carData?.vinNumber}</div>
 							<h3>Kilometertal</h3>
@@ -41,7 +38,7 @@ export default function DetailedCar({ car }: DetailedCarProps) {
 							<h3>Sidste Inspektion</h3>
 							<div>{formatDate(new Date(carData.lastInspectionDate))}</div>
 						</div>
-						<h3 className='header-container'>Kunde Info</h3>
+						<h2 className='header-two-container'>Kunde Info</h2>
 						<div>
 							<div className='modal-grid'>
 								<h3>Navn</h3>

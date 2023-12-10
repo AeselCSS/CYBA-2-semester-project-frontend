@@ -38,14 +38,16 @@
 	flex-direction: column;
 	align-items: center;
 	gap: var(--spacing-small);
+	font-size: var(--font-size-medium);
 }
 
 .carSelectContainer select {
 	height: var(--spacing-xxlarge);
-	width: 220px;
+	max-width: 100%;
+	width: 350px;
 	text-align: center;
 	border-radius: var(--border-radius);
-	font-size: var(--font-size-large);
+	font-size: var(--font-size-medium);
 }
 
 .carSelectContainer select:focus {
@@ -72,7 +74,8 @@ button:disabled {
 
 .btnContainer button {
 	background-color: var(--orange);
-	width: 220px;
+	max-width: 100%;
+	width: 350px;
 	height: var(--spacing-xxlarge);
 	transition: 0.2s ease-in;
 	outline: 1px solid var(--black);

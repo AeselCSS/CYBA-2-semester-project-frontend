@@ -26,6 +26,8 @@ export default function DetailedOrder({ orderId: orderId }: { orderId: number })
 						<div>{order?.createdAt ? formatDate(new Date(order?.createdAt)) : 'Ukendt'}</div>
 						<h3>Sidst opdateret </h3>
 						<div>{order?.updatedAt ? formatDate(new Date(order?.updatedAt)) : 'Ukendt'}</div>
+						<h3>Påbegyndt ordre </h3>
+						<div>{order?.updatedAt ? formatDate(new Date(order?.orderStartDate)) : 'Ukendt'}</div>
 						<h3>Bil registerings nr. </h3>
 						<div>{order?.car.registrationNumber}</div>
 					</section>
