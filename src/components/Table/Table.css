@@ -25,6 +25,7 @@ td {
 	text-align: left;
 	border-right: 1px solid var(--charcoalGrey);
 	min-width: 120px;
+	max-width: 240px;
 }
 
 tr:nth-child(even) {
