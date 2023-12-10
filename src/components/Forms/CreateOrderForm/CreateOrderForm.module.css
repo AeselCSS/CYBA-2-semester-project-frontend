@@ -1,7 +1,6 @@
 .orderFormWrapper {
-	margin: auto auto;
 	width: 90%;
-	margin-top: 3rem;
+	margin: 3rem auto auto auto;
 }
 .orderFormContainer {
 	width: 100%;
@@ -38,7 +37,7 @@
 	flex-direction: column;
 	align-items: center;
 	gap: var(--spacing-small);
-	font-size: var(--font-size-medium);
+	font-size: var(--font-size-base);
 }
 
 .carSelectContainer select {
@@ -47,7 +46,7 @@
 	width: 350px;
 	text-align: center;
 	border-radius: var(--border-radius);
-	font-size: var(--font-size-medium);
+	font-size: var(--font-size-base);
 }
 
 .carSelectContainer select:focus {
