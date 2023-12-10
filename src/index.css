@@ -105,6 +105,10 @@ button:hover {
 	background-color: var(--orange);
 }
 
+button:focus-visible {
+	outline: none !important;
+}
+
 input {
 	height: 2rem;
 	width: 12rem;

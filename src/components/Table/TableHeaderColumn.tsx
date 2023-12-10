@@ -14,9 +14,12 @@ export default function TableHeaderColumn({ title, handleSort, itemType, sortByV
 	const selectedDictionary = dictionaries[itemType] as Record<string, string>;
 	const displayTitle = selectedDictionary[title]; // The translated title for display
 
+	// used to remove sorting on registrationNumber and vinNumber columns on Orders table
+	const disableSort = itemType === 'order' && (title.includes('registrationNumber') || title.includes('vinNumber'));
+
 	return (
 		<th>
-			<div className="header-content" onClick={() => handleSort(title)}>
+			<div className={`header-content ${!disableSort ? 'pointer' : 'disable-click'}`} onClick={() => !disableSort && handleSort(title)} id={title}>
 				<span>{displayTitle}</span>
 				{title === sortByValue && (
 					<span className='sort-icon'>{sortDirValue === 'asc' ? <GoSortAsc /> : <GoSortDesc />}</span>
@@ -25,3 +28,5 @@ export default function TableHeaderColumn({ title, handleSort, itemType, sortByV
 		</th>
 	);
 }
+
+
