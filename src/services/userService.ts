@@ -1,4 +1,3 @@
-import { log } from 'console';
 import { API_URL } from './config.ts';
 
 const saveUserToLocaleStorage = (userData: UserUnion) => {
@@ -21,7 +20,7 @@ export const fetchAndProcessUserData = async (
 
 		if (res.ok) {
 			const data = await res.json();
-			log('data', data);
+			console.log('data', data);
 
 			if (user.cybaRoles[0] === 'employee') {
 				saveUserToLocaleStorage(data as IEmployee);
