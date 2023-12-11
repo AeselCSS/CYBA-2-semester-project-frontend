@@ -68,6 +68,7 @@ button:disabled {
 
 .btnContainer {
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 }
 
@@ -108,8 +109,8 @@ button:disabled {
 	outline: none;
 }
 
-.checkboxDiv input[type='checkbox']:checked {
-	filter: hue-rotate(170deg) saturate(430%);
+.checkboxDiv input[type='checkbox'] {
+	accent-color: var(--orange);
 }
 
 .checkboxDiv input[type='checkbox']:focus {
@@ -117,7 +118,7 @@ button:disabled {
 }
 
 .checkboxDiv input[type='checkbox']:hover {
-	filter: hue-rotate(170deg) saturate(430%);
+	accent-color: var(--orange);
 }
 
 .inputAndDescrWrapper,

@@ -7,7 +7,7 @@ import Loading from '../../Loading/Loading.tsx';
 import { useNavigate } from 'react-router-dom';
 import classes from './CreateOrderForm.module.css';
 import { getTasks } from '../../../services/taskServices.ts';
-import { getCustomerCars} from '../../../services/carServices.ts';
+import { getCustomerCars } from '../../../services/carServices.ts';
 import { getBookedDates, submitOrder } from '../../../services/orderServices.ts';
 
 type TDatePiece = Date | null;
@@ -20,8 +20,11 @@ export default function CreateOrderForm({ customer }: { customer: ICustomer }) {
 	const [date, setDate] = useState<TDate | null>(null);
 	const navigate = useNavigate();
 
-	const { register, handleSubmit, formState: { errors }, } = useForm<newOrderInputs>({ defaultValues: { taskIds: [], carId: '', },
-	});
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<newOrderInputs>({ defaultValues: { taskIds: [], carId: '' } });
 
 	useEffect(() => {
 		async function getTasksAndCarsAndBookedDates() {
@@ -37,7 +40,7 @@ export default function CreateOrderForm({ customer }: { customer: ICustomer }) {
 		getTasksAndCarsAndBookedDates();
 	}, [customer.id]);
 
-	const onSubmit: SubmitHandler<newOrderInputs> = data => {
+	const onSubmit: SubmitHandler<newOrderInputs> = (data) => {
 		submitOrder(data, date, customer, navigate);
 	};
 
@@ -51,9 +54,6 @@ export default function CreateOrderForm({ customer }: { customer: ICustomer }) {
 					<div className={classes.carSelectContainer}>
 						{!cars ? <Loading /> : <CarSelect cars={cars} register={register} errors={errors} />}
 					</div>
-					{errors.taskIds && (
-						<span style={{ color: 'orange', padding: '1.5rem 5rem' }}>Vælg venligst en eller flere services</span>
-					)}
 					<div className={classes.dateContainer}>
 						<DatePicker unavailableDates={unavailableDates} date={date} setDate={setDate} />
 					</div>
@@ -61,6 +61,9 @@ export default function CreateOrderForm({ customer }: { customer: ICustomer }) {
 						<button type='submit' disabled={!date}>
 							Opret Ordre
 						</button>
+						{errors.taskIds && (
+							<span style={{ color: 'orange', textAlign: 'center' }}>Vælg venligst en eller flere services</span>
+						)}
 					</div>
 				</aside>
 			</form>
