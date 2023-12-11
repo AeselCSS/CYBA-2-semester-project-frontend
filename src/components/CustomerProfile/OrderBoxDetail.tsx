@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Modal } from '@mantine/core';
+import { Loader, Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { status as danishStatus } from '../../utility/danishDictionary';
 import calculatePrice from '../../utility/priceCalculator';
@@ -8,7 +8,6 @@ import DetailedOrder from '../../modals/DetailedOrder/DetailedOrder';
 import ChangeOrderStatusButton from '../Buttons/ChangeOrderStatusButton';
 import { getSingleOrder, updateOrderStatusToPending } from '../../services/orderServices.ts';
 import { getModalOptions } from '../../modals/modalOptions.ts';
-import Loading from '../Loading/Loading.tsx';
 
 interface OrdersBoxDetailProps {
 	customerData: IAPISingleCustomer;
@@ -60,7 +59,7 @@ export default function OrdersBoxDetail({ customerData, order }: OrdersBoxDetail
 					</section>
 				</>
 			) : (
-				<Loading />
+				<Loader color='orange' type='bars' />
 			)}
 		</article>
 	);

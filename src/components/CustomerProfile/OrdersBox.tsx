@@ -4,8 +4,8 @@ import ReactPaginate from 'react-paginate';
 import { useEffect, useState } from 'react';
 import usePagination from '../../hooks/usePagination.ts';
 import './OrdersBox.css';
-import Loading from '../Loading/Loading.tsx';
 import { getCustomerOrders } from '../../services/customerServices.ts';
+import { Loader } from '@mantine/core';
 
 export default function OrdersBox({ customerData }: { customerData: IAPISingleCustomer }) {
 	const [orders, setOrders] = useState<IOrder[] | null>(null);
@@ -37,7 +37,7 @@ export default function OrdersBox({ customerData }: { customerData: IAPISingleCu
 		<div className='orders-box box'>
 			<BoxHeader title='Ordre' btnName='Tilføj ordre' navigateTo='/orders/create' />
 			{!orders ? (
-				<Loading />
+				<Loader color='orange' type='bars' />
 			) : (
 				!orders.length && <h2>Ingen ordrer</h2>
 			)}
