@@ -12,10 +12,7 @@ export default function Redirect() {
 
 	useEffect(() => {
 		const processUser = async () => {
-			console.log('user', user);
-			console.log('isAuthenticated', isAuthenticated);
-
-
+		
 			if (!isAuthenticated || !user) {
 				console.error('User is not authenticated');
 				return;

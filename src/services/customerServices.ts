@@ -75,6 +75,7 @@ export const updateCustomer = async (customerId: string, updatedCustomer: INewCu
 				title: "Succes!",
 				message: "Dine kontooplysninger er nu opdateret. Sådan😎",
 			}));
+			
 			navigate('/profile');
 
 		} else {

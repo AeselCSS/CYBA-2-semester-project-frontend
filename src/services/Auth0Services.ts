@@ -17,7 +17,7 @@ export const handleLogout = (logout: (options?: LogoutOptions) => Promise<void>,
 export const handleLogin = async (loginWithRedirect: (options?: RedirectLoginOptions) => Promise<void>) => {
 	await loginWithRedirect({
 		appState: {
-			returnTo: '/',
+			returnTo: '/redirect',
 		},
 		authorizationParams: {
 			prompt: 'login',
