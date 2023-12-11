@@ -65,6 +65,7 @@
 	display: grid;
 	grid-template-columns: 1fr 3fr;
 	gap: var(--spacing-base);
+	min-height: 127px;
 }
 
 .order-box-details span {
