@@ -60,11 +60,16 @@ nav img {
 .nav-links-wrapper > ul > li ul.dropdown {
 	position: absolute;
 	top: 100%;
-	left: 0;
-	background-color: var(--black);
+	left: 10px;
 	z-index: 99;
 	display: none;
-	border: none;
+	background-color: var(--darkGrey);
+	/* border-left: 1px solid var(--orange);
+	border-right: 1px solid var(--orange);
+	border-bottom: 1px solid var(--orange);
+	border-top: 1px solid var(--orange); */
+	border-radius: 0 0 var(--border-radius) var(--border-radius);
+	box-shadow: 2px 2px 5px var(--black);
 }
 
 .nav-links-wrapper > ul > li:hover ul.dropdown {
