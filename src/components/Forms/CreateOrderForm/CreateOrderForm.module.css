@@ -42,6 +42,7 @@
 
 .carSelectContainer select {
 	height: var(--spacing-xxlarge);
+	background-color: var(--black);
 	max-width: 100%;
 	width: 350px;
 	text-align: center;
@@ -59,7 +60,10 @@
 
 .dateContainer {
 	display: flex;
+	align-items: center;
+	flex-direction: column;
 	justify-content: center;
+	gap: var(--spacing-small);
 }
 
 button:disabled {
@@ -84,6 +88,15 @@ button:disabled {
 
 .btnContainer button:hover {
 	filter: brightness(120%);
+}
+
+.btnContainer button:disabled {
+	color: var(--darkGrey);
+	background-color: var(--charcoalGrey);
+}
+
+.btnContainer button:disabled:hover {
+	filter: none;
 }
 
 .checkboxDiv {

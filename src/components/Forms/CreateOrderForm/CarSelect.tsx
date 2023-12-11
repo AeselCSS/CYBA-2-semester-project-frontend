@@ -24,7 +24,6 @@ export default function CarSelect({ cars, register, errors }: Props) {
 			</select>
 			{errors.carId && (
 				<>
-					<p></p>
 					<span style={{ color: 'orange' }}>Vælg venligst et køretøj</span>
 				</>
 			)}

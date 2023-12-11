@@ -55,6 +55,7 @@ export default function CreateOrderForm({ customer }: { customer: ICustomer }) {
 						{!cars ? <Loading /> : <CarSelect cars={cars} register={register} errors={errors} />}
 					</div>
 					<div className={classes.dateContainer}>
+						<h2>Vælg en dato</h2>
 						<DatePicker unavailableDates={unavailableDates} date={date} setDate={setDate} />
 					</div>
 					<div className={classes.btnContainer}>
