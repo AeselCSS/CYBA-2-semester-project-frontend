@@ -154,7 +154,8 @@
 
 .react-calendar__tile--active:enabled:hover,
 .react-calendar__tile--active:enabled:focus {
-	/* outline: 1px solid red; */
+	background: var(--orange);
+	outline: 0;
 }
 
 .react-calendar--selectRange .react-calendar__tile--hover {
