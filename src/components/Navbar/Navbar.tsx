@@ -3,7 +3,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { NavBarButtons } from './NavbarButtons';
 import NavbarLogo from './NavbarLogo';
 import { IoIosArrowDropdown } from 'react-icons/io';
-import { defaultNavigationLinks, customerNavigationLinks, employeeNavigationLinks } from './/navigationData';
+import { defaultNavigationLinks, employeeNavigationLinks } from './/navigationData';
 import { CgProfile } from 'react-icons/cg';
 import './Navbar.css';
 
