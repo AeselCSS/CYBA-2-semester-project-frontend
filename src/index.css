@@ -165,13 +165,12 @@ button:disabled {
 }
 
 .go-back-btn-container button {
-	background-color: var(--darkGrey);
+	background-color: var(--orange);
 	display: flex;
 	align-items: center;
-	outline: 1px solid var(--orange);
 	gap: var(--spacing-base);
 }
 
 .go-back-btn-container button:hover {
-	background-color: var(--orange);
+	background-color: orange;
 }
