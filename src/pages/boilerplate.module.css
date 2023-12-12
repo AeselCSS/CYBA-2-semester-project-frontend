@@ -1,0 +1,32 @@
+.pageWrapper {
+	/* width: 90%; */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+    gap: var(--spacing-base);
+}
+
+.aboutBoxWrapper {
+    display: flex;
+    gap: var(--spacing-xxlarge);
+}
+
+.aboutBoxWrapper p {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-small);
+}
+.aboutBoxWrapper h2, .aboutBoxWrapper h3 {
+	color: var(--white);
+}
+
+.aboutHeader {
+	border-bottom: 4px solid var(--orange);
+	margin-bottom: var(--spacing-small);
+}
+
+.openingHoursWrapper {
+    display: flex;
+    gap: var(--spacing-large);
+}
