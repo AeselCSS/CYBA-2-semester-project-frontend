@@ -13,6 +13,10 @@
 	color: var(--lightGrey);
 }
 
+.customer-view-grid h1 {
+	font-size: var(--font-size-xlarge);
+}
+
 .customer-view-grid h3 {
 	font-size: var(--font-size-small);
 	color: var(--white);
@@ -61,7 +65,8 @@
 	width: 12rem;
 }
 
-.order-text-wrapper div, .order-text-wrapper h3 {
+.order-text-wrapper div,
+.order-text-wrapper h3 {
 	display: flex;
 	align-items: center;
 }
@@ -120,7 +125,8 @@
 	padding-top: var(--spacing-base);
 }
 
-.yes-btn, .no-btn {
+.yes-btn,
+.no-btn {
 	padding: var(--spacing-small) var(--spacing-large);
 }
 
