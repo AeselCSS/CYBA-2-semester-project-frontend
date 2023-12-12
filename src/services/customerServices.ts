@@ -91,3 +91,47 @@ export const updateCustomer = async (customerId: string, updatedCustomer: INewCu
 		}));
 	}
 };
+
+const createCustomer = async (newCustomer: INewCustomer) => {
+	return await fetch(`${API_URL}/customers`, {
+		method: 'POST',
+		body: JSON.stringify(newCustomer),
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	});
+};
+
+export const createProfile = async (data: CreateProfileInputs, authUser: IAuthUser, navigate: (navigateTo: string) => void) => {
+	const newCustomer = {
+		id: authUser.sub,
+		firstName: data.firstName,
+		lastName: data.lastName,
+		address: data.address,
+		city: data.city,
+		zip: Number(data.zip),
+		phone: Number(data.phone),
+		email: authUser.email,
+	};
+
+	try {
+		const res = await createCustomer(newCustomer);
+		if (res.ok) {
+			notifications.show(NotificationMessageSuccess({
+				title: "Succes!",
+				message: "Konto oprettet. Velkommen til🎉",
+			}))
+			navigate('/redirect');
+		} else {
+			notifications.show(NotificationMessageError({
+				title: "Hov!",
+				message: "Vi kunne desværre ikke oprette dig. Har de tastet rigtigt?",
+			}))
+		}
+	} catch (error) {
+		notifications.show(NotificationMessageError({
+			title: "Hov!",
+			message: "Vi kunne desværre ikke oprette dig. Prøv igen senere",
+		}))
+	}
+};
