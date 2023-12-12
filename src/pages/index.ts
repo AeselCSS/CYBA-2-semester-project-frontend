@@ -1,4 +1,4 @@
-export { default as About } from './About';
+export { default as About } from './Services';
 export { default as CarOverview } from './CarOverview';
 export { default as Contact } from './Contact';
 export { default as CreateCar } from './CreateCar';
