@@ -129,6 +129,12 @@ input:focus {
 input:disabled {
 	cursor: not-allowed;
 }
+button:disabled {
+	background-color: var(--charcoalGrey);
+	color: var(--darkGrey);
+	cursor: auto;
+}
+
 
 .toaster {
 	position: fixed;
@@ -155,6 +161,7 @@ input:disabled {
 	flex-direction: row-reverse;
 	padding-top: var(--spacing-small);
 	padding-bottom: var(--spacing-small);
+	width: 95%;
 }
 
 .go-back-btn-container button {

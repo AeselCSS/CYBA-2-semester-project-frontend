@@ -4,7 +4,6 @@ import SearchRegistrationNumber from './SearchRegistrationNumber';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import FormLayout from '../../../layouts/FormLayout/FormLayout';
 import { submitCarForm } from '../../../services/carServices.ts';
-import GoBackButton from '../../Buttons/GoBackButton.tsx';
 
 export default function CreateCarForm({ customer }: { customer: ICustomer }) {
 	const [APIResult, setAPIResult] = useState<IAPICar | null>(null);
@@ -23,7 +22,6 @@ export default function CreateCarForm({ customer }: { customer: ICustomer }) {
 
 	return (
 		<>
-			<GoBackButton />
 			<FormLayout onSubmit={handleSubmit(onSubmit)}>
 				<SearchRegistrationNumber
 					setAPIResult={setAPIResult}
@@ -71,6 +69,7 @@ export default function CreateCarForm({ customer }: { customer: ICustomer }) {
 					<button type='submit' disabled={!registrationNumber || !APIResult}>
 						Bekræft
 					</button>
+					<button onClick={() => navigate('/profile')}>Tilbage</button>
 				</div>
 			</FormLayout>
 		</>

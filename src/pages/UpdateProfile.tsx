@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { userIsCustomer } from '../utility/userRoleChecker.ts';
 import { updateCustomer } from '../services/customerServices.ts';
-import GoBackButton from '../components/Buttons/GoBackButton.tsx';
 
 type Inputs = {
 	firstName: string;
@@ -51,8 +50,6 @@ export default function UpdateProfile() {
 	return (
 		<PageLayout>
 			<h1 style={{ textAlign: 'center' }}>Opdater profil</h1>
-			<GoBackButton />
-
 			<FormLayout onSubmit={handleSubmit(onSubmit)}>
 				<label htmlFor='firstName'>Fornavn</label>
 				<input defaultValue={customer.firstName} placeholder='Fornavn' {...register('firstName', { required: true })} />
