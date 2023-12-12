@@ -24,7 +24,7 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	gap: 3rem;
+	gap: var(--spacing-xlarge);
 	background-color: var(--darkGrey);
 	border-radius: var(--border-radius);
 	box-shadow: 5px 5px 10px var(--black);
@@ -74,6 +74,7 @@ button:disabled {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	align-items: center;
 }
 
 .btnContainer button {

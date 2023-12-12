@@ -4,20 +4,26 @@ import SearchRegistrationNumber from './SearchRegistrationNumber';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import FormLayout from '../../../layouts/FormLayout/FormLayout';
 import { submitCarForm } from '../../../services/carServices.ts';
+import GoBackButton from '../../Buttons/GoBackButton.tsx';
 
 export default function CreateCarForm({ customer }: { customer: ICustomer }) {
 	const [APIResult, setAPIResult] = useState<IAPICar | null>(null);
 	const [registrationNumber, setRegistrationNumber] = useState('');
 	const navigate = useNavigate();
 	const values = APIResult as IAPICar;
-	const { register, handleSubmit, formState: { errors }, } = useForm<CreateCarInputs>({ values, });
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<CreateCarInputs>({ values });
 
-		const onSubmit: SubmitHandler<CreateCarInputs> = async (data: CreateCarInputs) => {
-			await submitCarForm(data, registrationNumber, customer, navigate);
-		};
+	const onSubmit: SubmitHandler<CreateCarInputs> = async (data: CreateCarInputs) => {
+		await submitCarForm(data, registrationNumber, customer, navigate);
+	};
 
 	return (
 		<>
+			<GoBackButton />
 			<FormLayout onSubmit={handleSubmit(onSubmit)}>
 				<SearchRegistrationNumber
 					setAPIResult={setAPIResult}

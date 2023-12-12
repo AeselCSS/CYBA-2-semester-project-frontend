@@ -148,3 +148,22 @@ input:disabled {
 .yes-btn:hover {
 	background-color: red;
 }
+
+.go-back-btn-container {
+	display: flex;
+	flex-direction: row-reverse;
+	padding-top: var(--spacing-small);
+	padding-bottom: var(--spacing-small);
+}
+
+.go-back-btn-container button {
+	background-color: var(--darkGrey);
+	display: flex;
+	align-items: center;
+	outline: 1px solid var(--orange);
+	gap: var(--spacing-base);
+}
+
+.go-back-btn-container button:hover {
+	background-color: var(--orange);
+}

@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { userIsCustomer } from '../utility/userRoleChecker.ts';
 import { updateCustomer } from '../services/customerServices.ts';
+import GoBackButton from '../components/Buttons/GoBackButton.tsx';
 
 type Inputs = {
 	firstName: string;
@@ -50,6 +51,7 @@ export default function UpdateProfile() {
 	return (
 		<PageLayout>
 			<h1 style={{ textAlign: 'center' }}>Opdater profil</h1>
+			<GoBackButton />
 
 			<FormLayout onSubmit={handleSubmit(onSubmit)}>
 				<label htmlFor='firstName'>Fornavn</label>
@@ -69,11 +71,23 @@ export default function UpdateProfile() {
 				{errors.city && <span>By skal udfyldes</span>}
 
 				<label htmlFor='zip'>Post nr.</label>
-				<input defaultValue={customer.zip} type='tel' pattern='[0-9]{4}' placeholder='Post nr.' {...register('zip', { required: true })} />
+				<input
+					defaultValue={customer.zip}
+					type='tel'
+					pattern='[0-9]{4}'
+					placeholder='Post nr.'
+					{...register('zip', { required: true })}
+				/>
 				{errors.zip && <span>Post nr. skal udfyldes</span>}
 
 				<label htmlFor='phone'>Telefon nr.</label>
-				<input defaultValue={customer.phone} type='tel' pattern='[0-9]{8}' placeholder='Telefon nr.' {...register('phone', { required: true })} />
+				<input
+					defaultValue={customer.phone}
+					type='tel'
+					pattern='[0-9]{8}'
+					placeholder='Telefon nr.'
+					{...register('phone', { required: true })}
+				/>
 				{errors.phone && <span>Telefon nr. skal udfyldes</span>}
 
 				<label htmlFor='email'>E-mail</label>
@@ -82,7 +96,7 @@ export default function UpdateProfile() {
 
 				<div className='form-btn-wrapper'>
 					<button type='submit'>Bekræft</button>
-					<button onClick={() => navigate("/profile")} >Tilbage</button>
+					<button onClick={() => navigate('/profile')}>Tilbage</button>
 				</div>
 			</FormLayout>
 		</PageLayout>

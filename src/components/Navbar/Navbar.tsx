@@ -4,6 +4,7 @@ import { NavBarButtons } from './NavbarButtons';
 import NavbarLogo from './NavbarLogo';
 import { IoIosArrowDropdown } from 'react-icons/io';
 import { defaultNavigationLinks, customerNavigationLinks, employeeNavigationLinks } from './/navigationData';
+import { CgProfile } from 'react-icons/cg';
 import './Navbar.css';
 
 export default function Navbar() {
@@ -22,15 +23,25 @@ export default function Navbar() {
 				<div className='nav-links-wrapper'>
 					<ul>
 						{defaultNavigationLinks.map(renderNavLink)}
-						{user && user.cybaRoles[0] === 'customer' && customerNavigationLinks.map(renderNavLink)}
+						{/* {user && user.cybaRoles[0] === 'customer' && customerNavigationLinks.map(renderNavLink)} */}
+						{user && user.cybaRoles[0] === 'customer' && (
+							<li>
+								<div className='dropdown-wrapper'>
+									<NavLink to='/profile'>
+										Min Profil
+										<CgProfile className='dropdown-icon' />
+									</NavLink>
+								</div>
+							</li>
+						)}
 						{user && user.cybaRoles[0] === 'employee' && (
 							<li>
 								<div className='dropdown-wrapper'>
-								<a style={{ cursor: 'pointer' }}>
-									Oversigt
-									<IoIosArrowDropdown className='dropdown-icon'/>
-								</a>
-								<ul className='dropdown'>{employeeNavigationLinks.map(renderNavLink)}</ul>
+									<a style={{ cursor: 'pointer' }}>
+										Oversigt
+										<IoIosArrowDropdown className='dropdown-icon' />
+									</a>
+									<ul className='dropdown'>{employeeNavigationLinks.map(renderNavLink)}</ul>
 								</div>
 							</li>
 						)}
