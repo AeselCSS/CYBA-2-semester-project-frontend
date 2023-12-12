@@ -1,7 +1,11 @@
+import { useAuth0 } from '@auth0/auth0-react';
+import { SignupButton } from '../components/Buttons/SignupButton.tsx';
 import PageLayout from '../layouts/PageLayout/PageLayout.tsx';
 import classes from './boilerplate.module.css';
+import { NavLink } from 'react-router-dom';
 
 export default function Homepage() {
+	const { isAuthenticated } = useAuth0();
 	return (
 		<PageLayout>
 			<section className={classes.pageWrapper}>
@@ -20,6 +24,11 @@ export default function Homepage() {
 							føle sig tryg ved, at deres bil modtager den korrekte opmærksomhed og pleje. Derfor er vores mål altid at levere
 							et stykke arbejde, der indfrier kundens forventninger i henhold til aftalegrundlaget.
 						</p>
+						<div className={classes.centerContainer}>
+							<NavLink to='/services'>
+								<button>Se hvad vi tilbyder!</button>
+							</NavLink>
+						</div>
 						<br />
 					</div>
 					<div>
@@ -34,9 +43,14 @@ export default function Homepage() {
 							Vores filosofi er baseret på at opbygge langvarige relationer med vores kunder. Vi tror på gennemsigtighed,
 							tillid og konstant faglig udvikling for at imødekomme fremtidige udfordringer. Vælg Kim Dehn Auto for en unik
 							kombination af ekspertise, personlig service og dedikation til din bilpleje.
+							{!isAuthenticated && (
+								<div className={classes.centerContainer}>
+									<SignupButton />
+								</div>
+							)}
 						</p>
 					</div>
-					<img src='homepage-pic2.jpg' alt='mechanics working on a car' />
+					<img src='homepage-pic2.jpg' alt='mechanic working on a car' />
 				</div>
 			</section>
 		</PageLayout>

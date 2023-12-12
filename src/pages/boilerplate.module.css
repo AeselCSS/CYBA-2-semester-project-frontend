@@ -7,6 +7,12 @@
 	gap: var(--spacing-base);
 }
 
+.centerContainer {
+    display: flex;
+    justify-content: center;
+    padding-top: var(--spacing-base);
+}
+
 /* ----- Homepage ----- */
 .homepageGrid {
 	display: grid;
@@ -76,4 +82,17 @@
 .openingHoursWrapper {
 	display: flex;
 	gap: var(--spacing-large);
+}
+
+/* ----- Service page ----- */
+
+.servicePageWrapper {
+    display: flex;
+	width: 80%;
+	flex-direction: column;
+	align-items: center;
+	background-color: var(--black);
+	padding: var(--spacing-large);
+	border-radius: var(--border-radius);
+	gap: var(--spacing-base);
 }

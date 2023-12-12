@@ -4,8 +4,8 @@ export const defaultNavigationLinks = [
 	path: '/',
   },
   {
-	name: 'Om os',
-	path: '/about',
+	name: 'Vi tilbyder',
+	path: '/services',
   },
   {
 	name: 'Kontakt',
