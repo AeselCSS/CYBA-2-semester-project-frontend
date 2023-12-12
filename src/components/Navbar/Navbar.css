@@ -24,7 +24,8 @@ nav a {
 }
 
 nav a:hover,
-nav li:hover > a { /* Hovering over the list item will also change the color of the link */
+nav li:hover > a {
+	/* Hovering over the list item will also change the color of the link */
 	color: var(--orange);
 }
 
@@ -60,11 +61,13 @@ nav img {
 .nav-links-wrapper > ul > li ul.dropdown {
 	position: absolute;
 	top: 100%;
-	left: 0;
-	background-color: var(--black);
+	left: 10px;
 	z-index: 99;
 	display: none;
-	border: none;
+	background-color: var(--darkGrey);
+	border-radius: 0 0 var(--border-radius) var(--border-radius);
+	box-shadow: 2px 2px 5px var(--black);
+	animation: fade-in 0.3s both;
 }
 
 .nav-links-wrapper > ul > li:hover ul.dropdown {
@@ -76,7 +79,6 @@ nav img {
 	margin-left: var(--spacing-small);
 	vertical-align: middle;
 }
-
 
 @media (max-width: 768px) {
 	nav {
@@ -93,5 +95,14 @@ nav img {
 
 	.nav-links-wrapper > ul > li {
 		display: block;
+	}
+}
+
+@keyframes fade-in {
+	0% {
+		filter: opacity(0);
+	}
+	100% {
+		filter: opacity(1);
 	}
 }

@@ -42,6 +42,7 @@
 
 .carSelectContainer select {
 	height: var(--spacing-xxlarge);
+	background-color: var(--black);
 	max-width: 100%;
 	width: 350px;
 	text-align: center;
@@ -59,7 +60,10 @@
 
 .dateContainer {
 	display: flex;
+	align-items: center;
+	flex-direction: column;
 	justify-content: center;
+	gap: var(--spacing-small);
 }
 
 button:disabled {
@@ -68,6 +72,7 @@ button:disabled {
 
 .btnContainer {
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 }
 
@@ -83,6 +88,15 @@ button:disabled {
 
 .btnContainer button:hover {
 	filter: brightness(120%);
+}
+
+.btnContainer button:disabled {
+	color: var(--darkGrey);
+	background-color: var(--charcoalGrey);
+}
+
+.btnContainer button:disabled:hover {
+	filter: none;
 }
 
 .checkboxDiv {
@@ -108,8 +122,8 @@ button:disabled {
 	outline: none;
 }
 
-.checkboxDiv input[type='checkbox']:checked {
-	filter: hue-rotate(170deg) saturate(430%);
+.checkboxDiv input[type='checkbox'] {
+	accent-color: var(--orange);
 }
 
 .checkboxDiv input[type='checkbox']:focus {
@@ -117,7 +131,7 @@ button:disabled {
 }
 
 .checkboxDiv input[type='checkbox']:hover {
-	filter: hue-rotate(170deg) saturate(430%);
+	accent-color: var(--orange);
 }
 
 .inputAndDescrWrapper,

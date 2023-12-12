@@ -81,8 +81,8 @@ export default function UpdateProfile() {
 				{errors.email && <span>E-mail skal udfyldes</span>}
 
 				<div className='form-btn-wrapper'>
-					<button onClick={() => navigate("/profile")} >Tilbage</button>
 					<button type='submit'>Bekræft</button>
+					<button onClick={() => navigate("/profile")} >Tilbage</button>
 				</div>
 			</FormLayout>
 		</PageLayout>

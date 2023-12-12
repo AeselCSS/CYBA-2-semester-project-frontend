@@ -9,16 +9,9 @@ interface Props {
 export default function CarSelect({ cars, register, errors }: Props) {
 	return (
 		<>
-			{errors.carId && (
-				<>
-					<p></p>
-					<span style={{ color: 'orange' }}>Vælg venligst et køretøj</span>
-				</>
-			)}
-
 			<div>
 				<label htmlFor='cars'>
-					<h2>Tilgængelige køretøjer</h2>
+					<h2>Vælg et køretøj</h2>
 				</label>
 			</div>
 			<select className='cars-select' id='cars' {...register('carId', { required: true, minLength: 1 })}>
@@ -29,6 +22,11 @@ export default function CarSelect({ cars, register, errors }: Props) {
 					</option>
 				))}
 			</select>
+			{errors.carId && (
+				<>
+					<span style={{ color: 'orange' }}>Vælg venligst et køretøj</span>
+				</>
+			)}
 		</>
 	);
 }

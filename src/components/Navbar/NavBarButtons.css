@@ -14,5 +14,5 @@
 }
 
 .nav-bar-buttons button:hover {
-	background-color: var(--orange); /* Darker shade of orange for hover */
+	background-color: orange; /* Darker shade of orange for hover */
 }

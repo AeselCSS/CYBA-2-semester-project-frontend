@@ -1,5 +1,5 @@
 export const defaultNavigationLinks = [
-	  {
+	{
 	name: 'Forside',
 	path: '/',
   },

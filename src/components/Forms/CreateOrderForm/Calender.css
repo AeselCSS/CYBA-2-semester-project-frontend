@@ -59,6 +59,7 @@
 
 .react-calendar__navigation button:disabled {
 	color: var(--darkGrey);
+	background: var(--charcoalGrey);
 }
 
 .react-calendar__navigation button:enabled:hover,
@@ -117,9 +118,13 @@
 	background-color: var(--charcoalGrey);
 }
 
-.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:hover {
+	outline: 1px solid var(--orange);
+	z-index: 1;
+}
+
 .react-calendar__tile:enabled:focus {
-	background-color: var(--orange);
+	background: var(--orange);
 }
 
 .react-calendar__tile--now {
@@ -144,13 +149,13 @@
 	/* background: var(--orange); */
 	/* outline: 1px solid var(--orange); */
 
-	color: white;
+	background: var(--orange);
 }
 
 .react-calendar__tile--active:enabled:hover,
 .react-calendar__tile--active:enabled:focus {
-	/* background: green; */
-	/* outline: 1px solid var(--orange); */
+	background: var(--orange);
+	outline: 0;
 }
 
 .react-calendar--selectRange .react-calendar__tile--hover {

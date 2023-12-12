@@ -38,7 +38,7 @@ export default function CustomerProfile() {
 					<OrdersBox customerData={customerData} />
 				</CustomerProfileGrid>
 			) : (
-				<div className='loading-wrapper'>
+				<div className='loading-wrapper full-page'>
 					<Loader color='orange' type='bars' />
 				</div>
 			)}
