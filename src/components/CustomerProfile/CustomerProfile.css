@@ -11,6 +11,7 @@
 	background-color: var(--black);
 	box-shadow: 5px 5px 13px var(--black);
 	color: var(--lightGrey);
+	margin: var(--spacing-base) var(--spacing-large) auto var(--spacing-large);
 }
 
 .customer-view-grid h1 {
