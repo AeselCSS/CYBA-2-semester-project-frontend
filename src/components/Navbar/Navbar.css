@@ -29,8 +29,12 @@ nav li:hover > a {
 	color: var(--orange);
 }
 
-nav img {
-	width: 80px;
+nav > img {
+	width: 90px;
+	transition: 0.1s ease-out;
+}
+nav > img:hover {
+	transform: scale(1.02);
 }
 
 .nav-links-wrapper {
