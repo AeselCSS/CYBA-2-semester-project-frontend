@@ -4,29 +4,76 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-    gap: var(--spacing-base);
+	gap: var(--spacing-base);
 }
 
-.aboutBoxWrapper {
-    display: flex;
-    gap: var(--spacing-xxlarge);
+/* ----- Homepage ----- */
+.homepageGrid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: var(--spacing-large);
+	width: 80%;
+	background-color: var(--black);
+	padding: var(--spacing-large);
+	border-radius: var(--border-radius);
+	align-items: center;
 }
 
-.aboutBoxWrapper p {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-small);
+.homepageGrid img {
+	width: 100%;
+	height: 300px;
+	object-fit: cover;
+	border-radius: var(--border-radius);
 }
-.aboutBoxWrapper h2, .aboutBoxWrapper h3 {
+
+.homepageGrid img:last-child {
+	object-position: top;
+}
+
+/* ----- Contact page ----- */
+
+.contactPageWrapper {
+	display: flex;
+	width: 80%;
+	flex-direction: column;
+	align-items: center;
+	background-color: var(--black);
+	padding: var(--spacing-large);
+	border-radius: var(--border-radius);
+	gap: var(--spacing-base);
+}
+
+.contactPageWrapper iframe {
+	border-radius: var(--border-radius);
+}
+
+.contactBoxWrapper {
+	display: flex;
+	justify-content: space-around;
+	gap: var(--spacing-xxlarge);
+	width: 70%;
+}
+
+.contactBoxWrapper > div {
+	min-width: 160px;
+}
+
+.contactBoxWrapper p {
+	display: flex;
+	align-items: center;
+	gap: var(--spacing-small);
+}
+.contactBoxWrapper h2,
+.contactBoxWrapper h3 {
 	color: var(--white);
 }
 
-.aboutHeader {
+.contactHeader {
 	border-bottom: 4px solid var(--orange);
 	margin-bottom: var(--spacing-small);
 }
 
 .openingHoursWrapper {
-    display: flex;
-    gap: var(--spacing-large);
+	display: flex;
+	gap: var(--spacing-large);
 }
