@@ -106,3 +106,15 @@ nav img {
 		filter: opacity(1);
 	}
 }
+
+.nav-user-info {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: var(--spacing-base);
+}
+
+.nav-user-info img {
+	width: 40.8px;
+	border-radius: var(--border-radius);
+}

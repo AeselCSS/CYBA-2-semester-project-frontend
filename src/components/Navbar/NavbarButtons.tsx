@@ -7,8 +7,8 @@ import { useContext } from 'react';
 import UserContext from '../../context/userContext';
 
 export function NavBarButtons() {
-	const { isAuthenticated } = useAuth0();
-	const { user } = useContext(UserContext);
+	const { user: authUser, isAuthenticated } = useAuth0();
+	const { user: contextUser } = useContext(UserContext);
 
 	return (
 		<div className='nav-bar-buttons'>
@@ -20,7 +20,10 @@ export function NavBarButtons() {
 			)}
 			{isAuthenticated && (
 				<>
-					<div>Hej {((user as ICustomer) || (user as IEmployee)).firstName}</div>
+					<div className='nav-user-info'>
+						Hej {((contextUser as IEmployee) || (contextUser as IEmployee)).firstName}
+						<img src={(authUser as IAuthUser).picture} alt='' />
+					</div>
 					<LogoutButton />
 				</>
 			)}
