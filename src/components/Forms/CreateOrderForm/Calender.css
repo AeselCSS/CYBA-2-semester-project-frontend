@@ -54,12 +54,13 @@
 .react-calendar__navigation button {
 	min-width: 44px;
 	background: none;
-	background-color: var(--charcoalGrey);
+	background-color: var(--black);
+	border-radius: 0px;
 }
 
 .react-calendar__navigation button:disabled {
 	color: var(--darkGrey);
-	background: var(--charcoalGrey);
+	background: var(--black);
 }
 
 .react-calendar__navigation button:enabled:hover,
