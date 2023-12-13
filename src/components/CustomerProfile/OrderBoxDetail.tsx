@@ -42,7 +42,14 @@ export default function OrdersBoxDetail({ customerData, order }: OrdersBoxDetail
 					</Modal>
 
 					<div className='image-container'>
-						<img src='order-icon.png' alt='order details' onClick={open} />
+						{(order.status as never) === 'AWAITING_CUSTOMER' ? (
+							<>
+								<img src='car-key-icon.svg' alt='order details' onClick={open} />
+								<ChangeOrderStatusButton btnText='Aflever bil' onClick={handleClick} />
+							</>
+						) : (
+							<img src='order-icon.png' alt='order details' onClick={open} />
+						)}
 					</div>
 					<section className='order-text-wrapper'>
 						<div>Ordre nr:</div>
@@ -53,9 +60,6 @@ export default function OrdersBoxDetail({ customerData, order }: OrdersBoxDetail
 						<h3>{calculatePrice(currentOrder.totalTime)} kr.</h3>
 						<div>Status:</div>
 						<h3>{danishStatus[currentOrder.status]}</h3>
-						{(order.status as never) === 'AWAITING_CUSTOMER' && (
-							<ChangeOrderStatusButton btnText='Aflever bil' onClick={handleClick} />
-						)}{' '}
 					</section>
 				</>
 			) : (

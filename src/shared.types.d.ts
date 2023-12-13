@@ -204,3 +204,14 @@ type CreateCarInputs = {
 	lastInspectionResult: string;
 	lastInspectionKind: string;
 };
+
+type CreateProfileInputs = {
+	firstName: string;
+	lastName: string;
+	address: string;
+	city: string;
+	zip: number;
+	phone: number;
+	email: string;
+	id: string;
+};

@@ -1,8 +1,5 @@
 .content {
-	font-weight: 700;
-	color: red;
-	background-color: green;
-	outline: red;
+	background-color: var(--charcoalGrey);
 }
 
 .header {

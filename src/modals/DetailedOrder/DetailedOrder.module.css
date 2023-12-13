@@ -28,7 +28,9 @@
 	background-color: var(--charcoalGrey);
 	border-radius: 0;
 	width: 100%;
+	height: 75px;
 	padding: var(--spacing-base);
+	cursor: pointer;
 }
 
 .accordianLabel:hover {
@@ -61,6 +63,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	height: 74px;
 	border-bottom: 1px solid var(--lightGrey);
 	padding: var(--spacing-base);
 	gap: 1rem;
@@ -78,4 +81,19 @@
 
 .activeTask {
 	border: var(--orange) 1px solid;
+}
+
+/* Animations */
+
+.popIn {
+	animation: pop-in 0.2s cubic-bezier(0.17, 0.67, 0.23, 1.28);
+}
+
+@keyframes pop-in {
+	0% {
+		transform: scale(0);
+	}
+	100% {
+		transform: scale(1);
+	}
 }

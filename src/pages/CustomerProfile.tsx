@@ -31,6 +31,7 @@ export default function CustomerProfile() {
 
 	return (
 		<PageLayout>
+			<h1 style={{ textAlign: 'center' }}>Min Profil</h1>
 			{customerData ? (
 				<CustomerProfileGrid>
 					<CustomerBox customerData={customerData} />
@@ -38,7 +39,7 @@ export default function CustomerProfile() {
 					<OrdersBox customerData={customerData} />
 				</CustomerProfileGrid>
 			) : (
-				<div className='loading-wrapper'>
+				<div className='loading-wrapper full-page'>
 					<Loader color='orange' type='bars' />
 				</div>
 			)}

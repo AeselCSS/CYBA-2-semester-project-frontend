@@ -24,12 +24,17 @@ nav a {
 }
 
 nav a:hover,
-nav li:hover > a { /* Hovering over the list item will also change the color of the link */
+nav li:hover > a {
+	/* Hovering over the list item will also change the color of the link */
 	color: var(--orange);
 }
 
-nav img {
-	width: 80px;
+nav > img {
+	width: 90px;
+	transition: 0.1s ease-out;
+}
+nav > img:hover {
+	transform: scale(1.02);
 }
 
 .nav-links-wrapper {
@@ -60,11 +65,13 @@ nav img {
 .nav-links-wrapper > ul > li ul.dropdown {
 	position: absolute;
 	top: 100%;
-	left: 0;
-	background-color: var(--black);
+	left: 10px;
 	z-index: 99;
 	display: none;
-	border: none;
+	background-color: var(--darkGrey);
+	border-radius: 0 0 var(--border-radius) var(--border-radius);
+	box-shadow: 2px 2px 5px var(--black);
+	animation: fade-in 0.3s both;
 }
 
 .nav-links-wrapper > ul > li:hover ul.dropdown {
@@ -74,9 +81,10 @@ nav img {
 .dropdown-icon {
 	color: var(--orange);
 	margin-left: var(--spacing-small);
-	vertical-align: middle;
+	/* vertical-align: middle; */
+	position: relative;
+	top: 0.2rem;
 }
-
 
 @media (max-width: 768px) {
 	nav {
@@ -94,4 +102,32 @@ nav img {
 	.nav-links-wrapper > ul > li {
 		display: block;
 	}
+}
+
+@keyframes fade-in {
+	0% {
+		filter: opacity(0);
+	}
+	100% {
+		filter: opacity(1);
+	}
+}
+
+.nav-user-info {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: var(--spacing-base);
+}
+
+.nav-user-info img {
+	width: 40.8px;
+	border-radius: var(--border-radius);
+}
+
+
+.profile-btn-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }

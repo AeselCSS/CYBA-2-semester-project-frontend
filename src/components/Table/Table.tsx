@@ -8,9 +8,9 @@ import PageSize from '../PageSize/PageSize.tsx';
 import TableHeaderColumn from './TableHeaderColumn.tsx';
 import './Table.css';
 import * as dictionaries from '../../utility/danishDictionary.ts';
-import Loading from '../Loading/Loading.tsx';
 import { getTableData } from '../../services/tableDataServices.ts';
 import usePagination from '../../hooks/usePagination.ts';
+import { Loader } from '@mantine/core';
 
 interface Props {
 	itemType: string;
@@ -67,7 +67,9 @@ export default function Table<T extends object>({ itemType, defaultSortBy, skipV
 	}
 
 	return !data ? (
-		<Loading />
+		<div className='loading-wrapper full-page'>
+			<Loader color='orange' type='bars' />
+		</div>
 	) : (
 		<>
 			<Toolbar>

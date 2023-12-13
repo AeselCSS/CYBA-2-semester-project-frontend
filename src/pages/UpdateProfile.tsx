@@ -22,7 +22,7 @@ type Inputs = {
 
 export default function UpdateProfile() {
 	const navigate = useNavigate();
-	const { user } = useContext(UserContext);
+	const { user, setUser } = useContext(UserContext);
 
 	const { register, handleSubmit, formState: { errors }, } = useForm<Inputs>();
 
@@ -44,13 +44,13 @@ export default function UpdateProfile() {
 			email: customer.email,
 		};
 
-		await updateCustomer(customer.id, newCustomer, navigate);
+		const updatedUser = await updateCustomer(customer.id, newCustomer, navigate);
+		setUser(updatedUser)
 	};
 
 	return (
 		<PageLayout>
 			<h1 style={{ textAlign: 'center' }}>Opdater profil</h1>
-
 			<FormLayout onSubmit={handleSubmit(onSubmit)}>
 				<label htmlFor='firstName'>Fornavn</label>
 				<input defaultValue={customer.firstName} placeholder='Fornavn' {...register('firstName', { required: true })} />
@@ -69,11 +69,23 @@ export default function UpdateProfile() {
 				{errors.city && <span>By skal udfyldes</span>}
 
 				<label htmlFor='zip'>Post nr.</label>
-				<input defaultValue={customer.zip} type='tel' pattern='[0-9]{4}' placeholder='Post nr.' {...register('zip', { required: true })} />
+				<input
+					defaultValue={customer.zip}
+					type='tel'
+					pattern='[0-9]{4}'
+					placeholder='Post nr.'
+					{...register('zip', { required: true })}
+				/>
 				{errors.zip && <span>Post nr. skal udfyldes</span>}
 
 				<label htmlFor='phone'>Telefon nr.</label>
-				<input defaultValue={customer.phone} type='tel' pattern='[0-9]{8}' placeholder='Telefon nr.' {...register('phone', { required: true })} />
+				<input
+					defaultValue={customer.phone}
+					type='tel'
+					pattern='[0-9]{8}'
+					placeholder='Telefon nr.'
+					{...register('phone', { required: true })}
+				/>
 				{errors.phone && <span>Telefon nr. skal udfyldes</span>}
 
 				<label htmlFor='email'>E-mail</label>
@@ -81,8 +93,8 @@ export default function UpdateProfile() {
 				{errors.email && <span>E-mail skal udfyldes</span>}
 
 				<div className='form-btn-wrapper'>
-					<button onClick={() => navigate("/profile")} >Tilbage</button>
 					<button type='submit'>Bekræft</button>
+					<button onClick={() => navigate('/profile')}>Tilbage</button>
 				</div>
 			</FormLayout>
 		</PageLayout>

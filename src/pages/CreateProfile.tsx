@@ -1,51 +1,17 @@
 import { useContext } from 'react';
 import UserContext from '../context/userContext';
 import { useNavigate } from 'react-router-dom';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import PageLayout from '../layouts/PageLayout/PageLayout.tsx';
 import FormLayout from '../layouts/FormLayout/FormLayout';
 import '../layouts/FormLayout/FormLayout.css';
-import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
-import { notifications } from '@mantine/notifications';
-import { MdErrorOutline } from 'react-icons/md';
 import { userIsAuthUser } from '../utility/userRoleChecker.ts';
-
-type Inputs = {
-	firstName: string;
-	lastName: string;
-	address: string;
-	city: string;
-	zip: number;
-	phone: number;
-	email: string;
-	id: string;
-};
-
-interface INewCustomer {
-	id: string;
-	firstName: string;
-	lastName: string;
-	address: string;
-	city: string;
-	zip: number;
-	phone: number;
-	email: string;
-}
-
-async function createCustomer(newCustomer: INewCustomer) {
-	return await fetch(`http://localhost:3000/customers`, {
-		method: 'POST',
-		body: JSON.stringify(newCustomer),
-		headers: {
-			'Content-Type': 'application/json',
-		},
-	});
-}
+import { createProfile } from '../services/customerServices.ts';
 
 export default function CreateProfile() {
 	const navigate = useNavigate();
 	const { user } = useContext(UserContext);
-	const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
+	const { register, handleSubmit, formState: { errors } } = useForm<CreateProfileInputs>();
 
 	if (!userIsAuthUser(user)) {
 		navigate('/redirect');
@@ -54,52 +20,11 @@ export default function CreateProfile() {
 
 	const authUser = user as IAuthUser
 
-	async function onSubmit(data: Inputs) {
-		const newCustomer = {
-			id: authUser.sub,
-			firstName: data.firstName,
-			lastName: data.lastName,
-			address: data.address,
-			city: data.city,
-			zip: Number(data.zip),
-			phone: Number(data.phone),
-			email: authUser.email,
-		};
-
-		try {
-			const res = await createCustomer(newCustomer);
-			if (res.ok) {
-				notifications.show({
-					color: 'green',
-					title: "Succes!",
-					message: "Konto oprettet. Velkommen til🎉",
-					icon: <IoIosCheckmarkCircleOutline />
-				})
-				navigate('/redirect');
-			} else {
-				notifications.show({
-					color: 'red',
-					title: "Hov!",
-					message: "Vi kunne desværre ikke oprette dig. Har de tastet rigtigt?",
-					icon: <MdErrorOutline />
-				})
-			}
-		} catch (error) {
-			notifications.show({
-				color: 'red',
-				title: "Hov!",
-				message: "Vi kunne desværre ikke oprette dig. Prøv igen senere",
-				icon: <MdErrorOutline />
-			})
-		}
-	}
-	onSubmit as SubmitHandler<Inputs>;
-	//handleSubmit(onSubmit)
 	return (
 		<PageLayout>
 			<h1 style={{ textAlign: 'center' }}>Opret konto</h1>
 
-			<FormLayout onSubmit={handleSubmit(onSubmit)}>
+			<FormLayout onSubmit={handleSubmit((data: CreateProfileInputs) => createProfile(data, authUser, navigate))}>
 				<label htmlFor='firstName'>Fornavn</label>
 				<input placeholder='Fornavn' {...register('firstName', { required: true })} />
 				{errors.firstName && <span>Fornavn skal udfyldes</span>}

@@ -52,7 +52,7 @@ export async function submitCarForm(data: CreateCarInputs, registrationNumber: s
 		} else {
 			notifications.show(NotificationMessageError({
 				title: 'Hov!',
-				message: 'Noget gik galt. Kontroller de givet oplysninger',
+				message: 'Køretøj eksisterer allerede i vores database. Prøv igen med et andet køretøj eller kontakt værkstedet',
 			}));
 		}
 	} catch (error) {

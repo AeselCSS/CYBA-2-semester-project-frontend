@@ -20,7 +20,7 @@ export function AppRoutes() {
 	return (
 		<Routes>
 			<Route path='/' element={<Homepage />} />
-			<Route path='/about' element={<About />} />
+			<Route path='/services' element={<About />} />
 			<Route path='/contact' element={<Contact />} />
 			<Route path='/redirect' element={<Redirect />} />
 

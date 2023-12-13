@@ -12,9 +12,14 @@ const redirectUri = import.meta.env.VITE_AUTH0_CALLBACK_URL as string;
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
 		<BrowserRouter>
-		<Auth0Provider domain={domain} clientId={clientId} authorizationParams={{ redirect_uri: redirectUri }} cacheLocation='localstorage'>
+			<Auth0Provider
+				domain={domain}
+				clientId={clientId}
+				authorizationParams={{ redirect_uri: redirectUri }}
+				cacheLocation='localstorage'
+			>
 				<App />
-		</Auth0Provider>
+			</Auth0Provider>
 		</BrowserRouter>
 	</React.StrictMode>,
 );

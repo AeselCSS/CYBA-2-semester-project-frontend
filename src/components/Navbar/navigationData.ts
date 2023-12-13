@@ -1,11 +1,11 @@
 export const defaultNavigationLinks = [
-	  {
+	{
 	name: 'Forside',
 	path: '/',
   },
   {
-	name: 'Om os',
-	path: '/about',
+	name: 'Vi tilbyder',
+	path: '/services',
   },
   {
 	name: 'Kontakt',

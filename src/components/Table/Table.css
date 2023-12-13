@@ -36,6 +36,7 @@ tr:nth-child(even) {
 tr:not(:has(>th)):hover {
 	background-color: var(--darkGrey);
 	cursor: pointer;
+	transition: 0.2s ease-out;
 }
 
 /* Pagination */
@@ -69,7 +70,8 @@ tr:not(:has(>th)):hover {
 /* Header Content */
 .header-content {
 	display: flex;
-	justify-content: space-around;
+	gap: var(--spacing-small);
+	/* justify-content: space-around; */
 	align-items: center;
 	cursor: pointer;
 }
