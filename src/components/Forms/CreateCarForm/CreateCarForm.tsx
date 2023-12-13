@@ -10,11 +10,15 @@ export default function CreateCarForm({ customer }: { customer: ICustomer }) {
 	const [registrationNumber, setRegistrationNumber] = useState('');
 	const navigate = useNavigate();
 	const values = APIResult as IAPICar;
-	const { register, handleSubmit, formState: { errors }, } = useForm<CreateCarInputs>({ values, });
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<CreateCarInputs>({ values });
 
-		const onSubmit: SubmitHandler<CreateCarInputs> = async (data: CreateCarInputs) => {
-			await submitCarForm(data, registrationNumber, customer, navigate);
-		};
+	const onSubmit: SubmitHandler<CreateCarInputs> = async (data: CreateCarInputs) => {
+		await submitCarForm(data, registrationNumber, customer, navigate);
+	};
 
 	return (
 		<>
@@ -65,6 +69,7 @@ export default function CreateCarForm({ customer }: { customer: ICustomer }) {
 					<button type='submit' disabled={!registrationNumber || !APIResult}>
 						Bekræft
 					</button>
+					<button onClick={() => navigate('/profile')}>Tilbage</button>
 				</div>
 			</FormLayout>
 		</>

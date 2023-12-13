@@ -9,6 +9,7 @@ import classes from './CreateOrderForm.module.css';
 import { getTasks } from '../../../services/taskServices.ts';
 import { getCustomerCars } from '../../../services/carServices.ts';
 import { getBookedDates, submitOrder } from '../../../services/orderServices.ts';
+import GoBackButton from '../../Buttons/GoBackButton.tsx';
 
 type TDatePiece = Date | null;
 type TDate = TDatePiece | [TDatePiece, TDatePiece];
@@ -45,29 +46,33 @@ export default function CreateOrderForm({ customer }: { customer: ICustomer }) {
 	};
 
 	return (
-		<div className={classes.orderFormWrapper}>
-			<form className={classes.orderFormContainer} onSubmit={handleSubmit(onSubmit)}>
-				<aside className={classes.tasksContainer}>
-					{!tasks ? <Loading /> : tasks.map((task) => <TaskCheckbox task={task} register={register} key={task.id} />)}
-				</aside>
-				<aside className={classes.formRightSideContainer}>
-					<div className={classes.carSelectContainer}>
-						{!cars ? <Loading /> : <CarSelect cars={cars} register={register} errors={errors} />}
-					</div>
-					<div className={classes.dateContainer}>
-						<h2>Vælg en dato</h2>
-						<DatePicker unavailableDates={unavailableDates} date={date} setDate={setDate} />
-					</div>
-					<div className={classes.btnContainer}>
-						<button type='submit' disabled={!date}>
-							Opret Ordre
-						</button>
-						{errors.taskIds && (
-							<span style={{ color: 'orange', textAlign: 'center' }}>Vælg venligst en eller flere services</span>
-						)}
-					</div>
-				</aside>
-			</form>
-		</div>
+		<>
+
+			<GoBackButton />
+			<div className={classes.orderFormWrapper}>
+				<form className={classes.orderFormContainer} onSubmit={handleSubmit(onSubmit)}>
+					<aside className={classes.tasksContainer}>
+						{!tasks ? <Loading /> : tasks.map((task) => <TaskCheckbox task={task} register={register} key={task.id} />)}
+					</aside>
+					<aside className={classes.formRightSideContainer}>
+						<div className={classes.carSelectContainer}>
+							{!cars ? <Loading /> : <CarSelect cars={cars} register={register} errors={errors} />}
+						</div>
+						<div className={classes.dateContainer}>
+							<h2>Vælg en dato</h2>
+							<DatePicker unavailableDates={unavailableDates} date={date} setDate={setDate} />
+						</div>
+						<div className={classes.btnContainer}>
+							<button type='submit' disabled={!date}>
+								Opret Ordre
+							</button>
+							{errors.taskIds && (
+								<span style={{ color: 'orange', textAlign: 'center' }}>Vælg venligst en eller flere services</span>
+							)}
+						</div>
+					</aside>
+				</form>
+			</div>
+		</>
 	);
 }

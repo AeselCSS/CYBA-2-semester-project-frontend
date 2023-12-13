@@ -19,7 +19,7 @@ export default function CreateCar() {
 	return (
 		<PageLayout>
 			<h1 style={{ textAlign: 'center' }}>Opret Køretøj</h1>
-			<CreateCarForm customer={customer}/>
+			<CreateCarForm customer={customer} />
 		</PageLayout>
-	)
+	);
 }

@@ -29,8 +29,12 @@ nav li:hover > a {
 	color: var(--orange);
 }
 
-nav img {
-	width: 80px;
+nav > img {
+	width: 90px;
+	transition: 0.1s ease-out;
+}
+nav > img:hover {
+	transform: scale(1.02);
 }
 
 .nav-links-wrapper {
@@ -77,7 +81,9 @@ nav img {
 .dropdown-icon {
 	color: var(--orange);
 	margin-left: var(--spacing-small);
-	vertical-align: middle;
+	/* vertical-align: middle; */
+	position: relative;
+	top: 0.2rem;
 }
 
 @media (max-width: 768px) {
@@ -105,4 +111,23 @@ nav img {
 	100% {
 		filter: opacity(1);
 	}
+}
+
+.nav-user-info {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: var(--spacing-base);
+}
+
+.nav-user-info img {
+	width: 40.8px;
+	border-radius: var(--border-radius);
+}
+
+
+.profile-btn-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
