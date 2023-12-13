@@ -22,7 +22,7 @@ type Inputs = {
 
 export default function UpdateProfile() {
 	const navigate = useNavigate();
-	const { user } = useContext(UserContext);
+	const { user, setUser } = useContext(UserContext);
 
 	const { register, handleSubmit, formState: { errors }, } = useForm<Inputs>();
 
@@ -44,7 +44,8 @@ export default function UpdateProfile() {
 			email: customer.email,
 		};
 
-		await updateCustomer(customer.id, newCustomer, navigate);
+		const updatedUser = await updateCustomer(customer.id, newCustomer, navigate);
+		setUser(updatedUser)
 	};
 
 	return (
