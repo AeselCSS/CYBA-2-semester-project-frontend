@@ -1,9 +1,9 @@
-import { Role } from './enums.ts';
+import { Department, Role } from './enums.ts';
 
 type UserUnion = ICustomer | IEmployee | IAuthUser | null;
 
 export const userIsEmployee = (user: UserUnion) => {
-	return user && 'department' in user && 'role' in user && user.role === Role.EMPLOYEE;
+	return user && 'department' in user && 'role' in user && user.role === Role.EMPLOYEE && user.department in Department;
 };
 
 export const userIsCustomer = (user: UserUnion) => {
