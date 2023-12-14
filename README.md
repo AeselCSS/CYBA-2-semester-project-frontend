@@ -42,4 +42,4 @@ VITE_AUTH0_CALLBACK_URL="Inset callback url"
 npm run dev
 ```
 
-8. Congrats. Now the frontend should be up and running🥳
+9. Congrats. Now the frontend should be up and running🥳
