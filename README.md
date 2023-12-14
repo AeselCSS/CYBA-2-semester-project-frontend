@@ -29,9 +29,9 @@ npm install
 -   It should look something like this
 
 ```
-VITE_AUTH0_DOMAIN="Inset domain"
-VITE_AUTH0_CLIENT_ID="Inset ID"
-VITE_AUTH0_CALLBACK_URL="Inset callback url"
+VITE_AUTH0_DOMAIN="Insert domain"
+VITE_AUTH0_CLIENT_ID="Insert ID"
+VITE_AUTH0_CALLBACK_URL="Insert callback url"
 ```
 
 7. Before running the frontend, make sure the [backend](https://github.com/YawHB/CYBA-2-semester-project-backend) is running

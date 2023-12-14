@@ -70,7 +70,8 @@ export default function TableBodyRow<T extends object>({ item, skipIndexes }: Pr
 						renderedValue = status[value];
 					}
 
-					if (typeof value === 'string' && !isNaN(Date.parse(value))) {
+					// Checks if the value is a date format
+					if (typeof value === 'string' && !isNaN(Date.parse(value)) && value[10] === 'T') {
 						const date = new Date(value);
 						renderedValue = formatDate(date);
 					}
