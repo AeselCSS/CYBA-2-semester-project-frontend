@@ -21,7 +21,7 @@ export function NavBarButtons() {
 			{isAuthenticated && (
 				<>
 					<div className='nav-user-info'>
-						Hej {((contextUser as IEmployee) || (contextUser as IEmployee)).firstName}
+						Hej {((contextUser as IEmployee) || (contextUser as IEmployee)).firstName || ''}
 						<img src={(authUser as IAuthUser).picture} alt='' />
 					</div>
 					<LogoutButton />
