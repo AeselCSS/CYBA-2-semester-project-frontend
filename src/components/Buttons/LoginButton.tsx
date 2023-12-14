@@ -3,6 +3,7 @@ import React from 'react';
 import { handleLogin } from '../../services/Auth0Services.ts';
 
 export const LoginButton: React.FC = () => {
+	console.log('LoginButton');
 	const { loginWithRedirect } = useAuth0();
 
 	const onLoginClick = async () => {
